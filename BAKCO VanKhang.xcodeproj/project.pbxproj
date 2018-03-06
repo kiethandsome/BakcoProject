@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */; };
+		9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC061FEA1C3E005F07CC /* PayViewController.swift */; };
+		9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */; };
+		9230129B1FD7D87F00F7860D /* ChooseInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */; };
+		9235357B1FC68951005464C2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235357A1FC68951005464C2 /* Extension.swift */; };
+		923694D61FE0F28100329310 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923694D51FE0F28000329310 /* LoginViewController.swift */; };
+		9237E60B1FFC80340031A45B /* FirstAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9237E60A1FFC80340031A45B /* FirstAppointmentViewController.swift */; };
+		923CFBBC1FF8AE8000E6A97D /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBB1FF8AE8000E6A97D /* DateCell.swift */; };
+		923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */; };
+		923CFBC01FF8AF3200E6A97D /* PopUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */; };
+		923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */; };
+		9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */; };
+		9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */; };
+		92810E99200708D100B7A62F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92810E98200708D100B7A62F /* User.swift */; };
+		92CA46412011B49E00E84562 /* HomedTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA46402011B49E00E84562 /* HomedTreatment.swift */; };
+		92F08BBD1FCC79460099BCBF /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */; };
+		92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */; };
+		92F3ADD31FC51B5600C0D6E7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3ADD21FC51B5600C0D6E7 /* BaseNavigationController.swift */; };
+		92F3ADD51FC55F8500C0D6E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3ADD41FC55F8500C0D6E7 /* BaseViewController.swift */; };
+		92F4A033201B669B00181EDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4A032201B669B00181EDA /* Constant.swift */; };
+		92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7C91FE1209D009C6663 /* InformationViewController.swift */; };
+		92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7CB1FE12D07009C6663 /* WebViewController.swift */; };
+		AC8E3BC56C27AEF8F46FE39E /* Pods_BAKCO_VanKhang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */; };
+		F31B83901FBAA46500CA8698 /* HospitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */; };
+		F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */; };
+		F31B839A1FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B83991FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift */; };
+		F32F2EF91F989CC7008C5CAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F2EF81F989CC7008C5CAF /* AppDelegate.swift */; };
+		F32F2EFB1F989CC7008C5CAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */; };
+		F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32F2EFC1F989CC7008C5CAF /* Main.storyboard */; };
+		F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F32F2EFF1F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld */; };
+		F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32F2F021F989CC7008C5CAF /* Assets.xcassets */; };
+		F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */; };
+		F33B74851FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B74841FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift */; };
+		F341747D1FC5F1900093CB1A /* SpecialtyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341747C1FC5F1900093CB1A /* SpecialtyModel.swift */; };
+		F341747F1FC746D90093CB1A /* AppointmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341747E1FC746D90093CB1A /* AppointmentModel.swift */; };
+		F34174811FC748C40093CB1A /* DoctorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34174801FC748C40093CB1A /* DoctorModel.swift */; };
+		F34174831FC748D20093CB1A /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34174821FC748D20093CB1A /* RoomModel.swift */; };
+		F34174851FC749290093CB1A /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34174841FC749290093CB1A /* ServiceModel.swift */; };
+		F34174871FC7493E0093CB1A /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34174861FC7493E0093CB1A /* DetailModel.swift */; };
+		F379DD061FFB9F8800314610 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F379DD051FFB9F8800314610 /* TestViewController.swift */; };
+		F3CC057A1FE480B7005F5213 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC05791FE480B7005F5213 /* PopUpViewController.swift */; };
+		F3CD6BF71F99DA2A00E9E830 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CD6BF61F99DA0A00E9E830 /* CoreLocation.framework */; };
+		F3CD6BFD1F9E41A100E9E830 /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD6BFC1F9E41A100E9E830 /* MatchModel.swift */; };
+		F3CD6BFF1F9E41B800E9E830 /* HospitalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD6BFE1F9E41B800E9E830 /* HospitalModel.swift */; };
+		F3CD6C011F9E41D400E9E830 /* CustomerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD6C001F9E41D400E9E830 /* CustomerModel.swift */; };
+		F3DD420A1FEA19BA00135774 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD42091FEA19B900135774 /* SideMenuViewController.swift */; };
+		F3DD420C1FEA19D400135774 /* SecondMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD420B1FEA19D400135774 /* SecondMainViewController.swift */; };
+		F3FEB2BA1FAC8A2900B10DEE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FEB2B91FAC8A2900B10DEE /* Location.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.release.xcconfig"; sourceTree = "<group>"; };
+		92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderView.xib; sourceTree = "<group>"; };
+		9229AC061FEA1C3E005F07CC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalAppointmentViewController.swift; sourceTree = "<group>"; };
+		9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseInformViewController.swift; sourceTree = "<group>"; };
+		9235357A1FC68951005464C2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		923694D51FE0F28000329310 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9237E60A1FFC80340031A45B /* FirstAppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstAppointmentViewController.swift; sourceTree = "<group>"; };
+		923CFBBB1FF8AE8000E6A97D /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCell.swift; sourceTree = "<group>"; };
+		923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalCell.swift; sourceTree = "<group>"; };
+		9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSchedulersViewController.swift; sourceTree = "<group>"; };
+		9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthSchedulerCell.xib; sourceTree = "<group>"; };
+		92810E98200708D100B7A62F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		92CA46402011B49E00E84562 /* HomedTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomedTreatment.swift; sourceTree = "<group>"; };
+		92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
+		92F3ADD21FC51B5600C0D6E7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		92F3ADD41FC55F8500C0D6E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		92F4A032201B669B00181EDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		92FBE7C91FE1209D009C6663 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		92FBE7CB1FE12D07009C6663 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.debug.xcconfig"; sourceTree = "<group>"; };
+		F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalViewController.swift; sourceTree = "<group>"; };
+		F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSpecialtyViewController.swift; sourceTree = "<group>"; };
+		F31B83991FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAppointmentViewController.swift; sourceTree = "<group>"; };
+		F32F2EF51F989CC7008C5CAF /* BAKCO VanKhang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAKCO VanKhang.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F32F2EF81F989CC7008C5CAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F32F2EFD1F989CC7008C5CAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F32F2F001F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BAKCO_VanKhang.xcdatamodel; sourceTree = "<group>"; };
+		F32F2F021F989CC7008C5CAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F32F2F051F989CC7008C5CAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F32F2F071F989CC7008C5CAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F33B74841FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCareSchedulerModel.swift; sourceTree = "<group>"; };
+		F341747C1FC5F1900093CB1A /* SpecialtyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyModel.swift; sourceTree = "<group>"; };
+		F341747E1FC746D90093CB1A /* AppointmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentModel.swift; sourceTree = "<group>"; };
+		F34174801FC748C40093CB1A /* DoctorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorModel.swift; sourceTree = "<group>"; };
+		F34174821FC748D20093CB1A /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		F34174841FC749290093CB1A /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
+		F34174861FC7493E0093CB1A /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		F379DD051FFB9F8800314610 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		F3CC05791FE480B7005F5213 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		F3CD6BF61F99DA0A00E9E830 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F3CD6BFC1F9E41A100E9E830 /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
+		F3CD6BFE1F9E41B800E9E830 /* HospitalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalModel.swift; sourceTree = "<group>"; };
+		F3CD6C001F9E41D400E9E830 /* CustomerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerModel.swift; sourceTree = "<group>"; };
+		F3DD42091FEA19B900135774 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		F3DD420B1FEA19D400135774 /* SecondMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMainViewController.swift; sourceTree = "<group>"; };
+		F3FEB2B91FAC8A2900B10DEE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAKCO_VanKhang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F32F2EF21F989CC7008C5CAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3CD6BF71F99DA2A00E9E830 /* CoreLocation.framework in Frameworks */,
+				AC8E3BC56C27AEF8F46FE39E /* Pods_BAKCO_VanKhang.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D9E369064BDE466503BF189 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */,
+				4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		92231BD2200E3C3B00E96F00 /* Xib:Nib */ = {
+			isa = PBXGroup;
+			children = (
+				92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */,
+				9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */,
+			);
+			path = "Xib:Nib";
+			sourceTree = "<group>";
+		};
+		923535791FC68943005464C2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9235357A1FC68951005464C2 /* Extension.swift */,
+				92F4A032201B669B00181EDA /* Constant.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		923CFBBA1FF8AE6A00E6A97D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				923CFBBB1FF8AE8000E6A97D /* DateCell.swift */,
+				923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */,
+				923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */,
+				923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		92F08BBB1FCC79240099BCBF /* CustomSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */,
+				92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */,
+			);
+			path = CustomSearchBar;
+			sourceTree = "<group>";
+		};
+		92F3ADD11FC51B3C00C0D6E7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				92F3ADD21FC51B5600C0D6E7 /* BaseNavigationController.swift */,
+				92F3ADD41FC55F8500C0D6E7 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		F32F2EEC1F989CC7008C5CAF = {
+			isa = PBXGroup;
+			children = (
+				F32F2EF71F989CC7008C5CAF /* BAKCO VanKhang */,
+				F32F2EF61F989CC7008C5CAF /* Products */,
+				F3CD6BF51F99DA0900E9E830 /* Frameworks */,
+				1D9E369064BDE466503BF189 /* Pods */,
+				F3CC05771FE47E3B005F5213 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		F32F2EF61F989CC7008C5CAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F32F2EF51F989CC7008C5CAF /* BAKCO VanKhang.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F32F2EF71F989CC7008C5CAF /* BAKCO VanKhang */ = {
+			isa = PBXGroup;
+			children = (
+				92F08BBB1FCC79240099BCBF /* CustomSearchBar */,
+				923535791FC68943005464C2 /* Extension */,
+				92F3ADD11FC51B3C00C0D6E7 /* Base */,
+				F32F2F0E1F98B0FF008C5CAF /* Models */,
+				F32F2F0D1F98B0E7008C5CAF /* ViewControllers */,
+				92231BD2200E3C3B00E96F00 /* Xib:Nib */,
+				923CFBBA1FF8AE6A00E6A97D /* Cells */,
+				F32F2EF81F989CC7008C5CAF /* AppDelegate.swift */,
+				F32F2EFC1F989CC7008C5CAF /* Main.storyboard */,
+				F32F2F021F989CC7008C5CAF /* Assets.xcassets */,
+				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
+				F32F2F071F989CC7008C5CAF /* Info.plist */,
+				F32F2EFF1F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld */,
+			);
+			path = "BAKCO VanKhang";
+			sourceTree = "<group>";
+		};
+		F32F2F0D1F98B0E7008C5CAF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
+				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
+				F3CC05791FE480B7005F5213 /* PopUpViewController.swift */,
+				923694D51FE0F28000329310 /* LoginViewController.swift */,
+				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
+				F379DD051FFB9F8800314610 /* TestViewController.swift */,
+				F3DD420B1FEA19D400135774 /* SecondMainViewController.swift */,
+				9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */,
+				92FBE7C91FE1209D009C6663 /* InformationViewController.swift */,
+				F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */,
+				F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */,
+				9237E60A1FFC80340031A45B /* FirstAppointmentViewController.swift */,
+				F31B83991FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift */,
+				9229AC061FEA1C3E005F07CC /* PayViewController.swift */,
+				92FBE7CB1FE12D07009C6663 /* WebViewController.swift */,
+				9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */,
+				92CA46402011B49E00E84562 /* HomedTreatment.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F32F2F0E1F98B0FF008C5CAF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F3CD6BFC1F9E41A100E9E830 /* MatchModel.swift */,
+				F3CD6BFE1F9E41B800E9E830 /* HospitalModel.swift */,
+				F3CD6C001F9E41D400E9E830 /* CustomerModel.swift */,
+				92810E98200708D100B7A62F /* User.swift */,
+				F3FEB2B91FAC8A2900B10DEE /* Location.swift */,
+				F341747C1FC5F1900093CB1A /* SpecialtyModel.swift */,
+				F341747E1FC746D90093CB1A /* AppointmentModel.swift */,
+				F34174801FC748C40093CB1A /* DoctorModel.swift */,
+				F34174821FC748D20093CB1A /* RoomModel.swift */,
+				F34174841FC749290093CB1A /* ServiceModel.swift */,
+				F34174861FC7493E0093CB1A /* DetailModel.swift */,
+				F33B74841FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F3CC05771FE47E3B005F5213 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F3CD6BF51F99DA0900E9E830 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3CD6BF61F99DA0A00E9E830 /* CoreLocation.framework */,
+				FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F32F2EF41F989CC7008C5CAF /* BAKCO VanKhang */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F32F2F0A1F989CC7008C5CAF /* Build configuration list for PBXNativeTarget "BAKCO VanKhang" */;
+			buildPhases = (
+				5BCB18DCBCBF1DFC65990C67 /* [CP] Check Pods Manifest.lock */,
+				F32F2EF11F989CC7008C5CAF /* Sources */,
+				F32F2EF21F989CC7008C5CAF /* Frameworks */,
+				F32F2EF31F989CC7008C5CAF /* Resources */,
+				92ED8900ECAE2CC1EAA0C77E /* [CP] Embed Pods Frameworks */,
+				EFAD2E87FCB902E7331C1311 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BAKCO VanKhang";
+			productName = "BAKCO VanKhang";
+			productReference = F32F2EF51F989CC7008C5CAF /* BAKCO VanKhang.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F32F2EED1F989CC7008C5CAF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Pham An";
+				TargetAttributes = {
+					F32F2EF41F989CC7008C5CAF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F32F2EF01F989CC7008C5CAF /* Build configuration list for PBXProject "BAKCO VanKhang" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F32F2EEC1F989CC7008C5CAF;
+			productRefGroup = F32F2EF61F989CC7008C5CAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F32F2EF41F989CC7008C5CAF /* BAKCO VanKhang */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F32F2EF31F989CC7008C5CAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */,
+				92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */,
+				F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */,
+				F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */,
+				F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BCB18DCBCBF1DFC65990C67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BAKCO VanKhang-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92ED8900ECAE2CC1EAA0C77E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireSwiftyJSON/AlamofireSwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicColor/DynamicColor.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/IQDropDownTextField/IQDropDownTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftR/SwiftR.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireSwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicColor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQDropDownTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFAD2E87FCB902E7331C1311 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F32F2EF11F989CC7008C5CAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				923694D61FE0F28100329310 /* LoginViewController.swift in Sources */,
+				923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */,
+				923CFBBC1FF8AE8000E6A97D /* DateCell.swift in Sources */,
+				9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */,
+				F32F2EFB1F989CC7008C5CAF /* MainViewController.swift in Sources */,
+				F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */,
+				9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */,
+				F379DD061FFB9F8800314610 /* TestViewController.swift in Sources */,
+				92F08BBD1FCC79460099BCBF /* CustomSearchBar.swift in Sources */,
+				F3DD420A1FEA19BA00135774 /* SideMenuViewController.swift in Sources */,
+				F31B839A1FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift in Sources */,
+				F341747D1FC5F1900093CB1A /* SpecialtyModel.swift in Sources */,
+				92F3ADD51FC55F8500C0D6E7 /* BaseViewController.swift in Sources */,
+				F3CD6BFD1F9E41A100E9E830 /* MatchModel.swift in Sources */,
+				F32F2EF91F989CC7008C5CAF /* AppDelegate.swift in Sources */,
+				9235357B1FC68951005464C2 /* Extension.swift in Sources */,
+				9237E60B1FFC80340031A45B /* FirstAppointmentViewController.swift in Sources */,
+				F3CC057A1FE480B7005F5213 /* PopUpViewController.swift in Sources */,
+				9230129B1FD7D87F00F7860D /* ChooseInformViewController.swift in Sources */,
+				92810E99200708D100B7A62F /* User.swift in Sources */,
+				F33B74851FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift in Sources */,
+				92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */,
+				F34174811FC748C40093CB1A /* DoctorModel.swift in Sources */,
+				F34174871FC7493E0093CB1A /* DetailModel.swift in Sources */,
+				92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */,
+				F3CD6BFF1F9E41B800E9E830 /* HospitalModel.swift in Sources */,
+				F3DD420C1FEA19D400135774 /* SecondMainViewController.swift in Sources */,
+				9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */,
+				92F3ADD31FC51B5600C0D6E7 /* BaseNavigationController.swift in Sources */,
+				F3FEB2BA1FAC8A2900B10DEE /* Location.swift in Sources */,
+				92CA46412011B49E00E84562 /* HomedTreatment.swift in Sources */,
+				92F4A033201B669B00181EDA /* Constant.swift in Sources */,
+				F3CD6C011F9E41D400E9E830 /* CustomerModel.swift in Sources */,
+				92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */,
+				F34174851FC749290093CB1A /* ServiceModel.swift in Sources */,
+				F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */,
+				F341747F1FC746D90093CB1A /* AppointmentModel.swift in Sources */,
+				F34174831FC748D20093CB1A /* RoomModel.swift in Sources */,
+				923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */,
+				923CFBC01FF8AF3200E6A97D /* PopUpCell.swift in Sources */,
+				F31B83901FBAA46500CA8698 /* HospitalViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F32F2EFC1F989CC7008C5CAF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F32F2EFD1F989CC7008C5CAF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F32F2F051F989CC7008C5CAF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F32F2F081F989CC7008C5CAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F32F2F091F989CC7008C5CAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F32F2F0B1F989CC7008C5CAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T7JUX998MG;
+				INFOPLIST_FILE = "BAKCO VanKhang/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vn.bakco.vkhealth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a78ca492-7e4b-4d2a-b645-09186be00a45";
+				PROVISIONING_PROFILE_SPECIFIER = VKHealth_Dev;
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F32F2F0C1F989CC7008C5CAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = T7JUX998MG;
+				INFOPLIST_FILE = "BAKCO VanKhang/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vn.bakco.vkhealth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "51a62bd2-b73f-4bff-94d8-b1dac2a4a7f9";
+				PROVISIONING_PROFILE_SPECIFIER = VKHealth_Dist;
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F32F2EF01F989CC7008C5CAF /* Build configuration list for PBXProject "BAKCO VanKhang" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F32F2F081F989CC7008C5CAF /* Debug */,
+				F32F2F091F989CC7008C5CAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F32F2F0A1F989CC7008C5CAF /* Build configuration list for PBXNativeTarget "BAKCO VanKhang" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F32F2F0B1F989CC7008C5CAF /* Debug */,
+				F32F2F0C1F989CC7008C5CAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F32F2EFF1F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F32F2F001F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodel */,
+			);
+			currentVersion = F32F2F001F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodel */;
+			path = BAKCO_VanKhang.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F32F2EED1F989CC7008C5CAF /* Project object */;
+}
