@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		921291E8204FE1AF0087441A /* DetailSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */; };
 		92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */; };
 		9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC061FEA1C3E005F07CC /* PayViewController.swift */; };
 		9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.release.xcconfig"; sourceTree = "<group>"; };
+		921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSchedulerViewController.swift; sourceTree = "<group>"; };
 		92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderView.xib; sourceTree = "<group>"; };
 		9229AC061FEA1C3E005F07CC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalAppointmentViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
-				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
 				F3CC05791FE480B7005F5213 /* PopUpViewController.swift */,
 				923694D51FE0F28000329310 /* LoginViewController.swift */,
 				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
@@ -240,6 +241,8 @@
 				92FBE7CB1FE12D07009C6663 /* WebViewController.swift */,
 				9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */,
 				92CA46402011B49E00E84562 /* HomedTreatment.swift */,
+				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
+				921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */,
 				F379DD061FFB9F8800314610 /* TestViewController.swift in Sources */,
 				92F08BBD1FCC79460099BCBF /* CustomSearchBar.swift in Sources */,
+				921291E8204FE1AF0087441A /* DetailSchedulerViewController.swift in Sources */,
 				F3DD420A1FEA19BA00135774 /* SideMenuViewController.swift in Sources */,
 				F31B839A1FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift in Sources */,
 				F341747D1FC5F1900093CB1A /* SpecialtyModel.swift in Sources */,

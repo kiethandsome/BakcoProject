@@ -13,6 +13,8 @@ import MBProgressHUD
 
 class SecondMainViewController: BaseViewController {
     
+    var gender = true
+    
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstView: UIView!
     @IBOutlet var secondView: UIView!
@@ -35,10 +37,12 @@ class SecondMainViewController: BaseViewController {
     @IBAction func isMale(_ sender: UIButton) {
         sender.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
         self.femaleButton.setImage(UIImage(named: "no-image"), for: .normal)
+        self.gender = true
     }
     @IBAction func isFemale(_ sender: UIButton) {
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
+        self.gender = false
     }
     
     
@@ -90,31 +94,41 @@ class SecondMainViewController: BaseViewController {
             let password = txtPassword.text,txtPassword.text != "",
             let _ = txtConfirmPassword.text, txtConfirmPassword.text == password
         {
-            register(fullName: fullName,
-                     phone: sosPhoneNum,
-                     email: email,
-                     birthDate: convertDate(date: self.birthdayPicker.date, with: "yyyy-MM-dd"),
-                     address: address,
-                     HealthInsurance: "",
-                     username: username,
-                     password: password,
-                     completion: { (response) in
-                let userID = response["CustomerId"] as! Int
-                print(userID)
-                self.getUserInfo(userId: userID)
-                
-                
-                let mainTab = self.storyboard?.instantiateViewController(withIdentifier: "tab")
-                guard let window = UIApplication.shared.keyWindow else { return }
-                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                    window.rootViewController = mainTab
-                    window.makeKeyAndVisible()
-                }, completion: nil)
-            })
+            self.signup(fullName: fullName, phone: sosPhoneNum, email: email, birthDate: convertDate(date: birthdayPicker.date, with: "yyyy-MM-dd"), address: address, HealthInsurance: "", username: username, password: password, gender: gender)
         } else {
             showAlert(title: "Lỗi", mess: "Bạn phải điền đầy đủ thông tin", style: .alert)
         }
     }
+    
+    func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, HealthInsurance: String, username: String, password: String, gender: Bool) {
+        let parameters: Parameters = [  "Username": username,
+                                        "Password": password,
+                                        "FullName": fullName,
+                                        "Phone": phone,
+                                        "Email": email,
+                                        "HealthInsurance": HealthInsurance,
+                                        "Address": "244/70 Lê Văn Khương",
+                                        "BirthDate": birthDate,
+                                        "Gender": gender,
+                                        "ProvinceCode": "TP.HCM",
+                                        "DistrictCode": "12",
+                                        "WardCode": "Thới An"]
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        Alamofire.request(URL(string: _RegisterURL)!,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            if response.result.isSuccess {
+                                self.showAlert(title: "Thành công!", mess: "Bạn đã đăng kí thành công!", style: .alert)
+                                self.navigationController?.dismiss(animated: true)
+                            } else {
+                                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+                            }
+        }
+    }
+
     
     func getUserInfo(userId: Int) {
         MBProgressHUD.showAdded(to: view, animated: true)

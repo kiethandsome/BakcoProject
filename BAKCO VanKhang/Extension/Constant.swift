@@ -16,8 +16,10 @@ let _GetHealthCareSchedulerApi = "http://api.vkhs.vn/api/BkHealthCareScheduler/G
 let _GetMatchApi = "http://api.vkhs.vn/api/BkMedicalExaminationNote/CreateForMember"
 let _GetFirstAppointmentApi = "http://api.vkhs.vn/api/BkMedicalExaminationNote/Create"
 let _GetScheduleApi = "http://api.vkhs.vn/api/BkCustomer/GetSchedulerCustomer"
-let _RegisterURL = "http://api.vkhs.vn/api/BkCustomer/Create"
-
+let _GetDetailSchedulerApi = "http://api.vkhs.vn/api/BkDoctor/GetWorkDetail"
+let _RegisterURL = "http://api/Account/CustomerRegister"
+let _GetTokenApi = "http://api.vkhs.vn/Token"
+let _GetUserIdApi  = "http://api.vkhs.vn/api/Account/UserInfo"
 
 
 var _userName = ""
@@ -27,5 +29,6 @@ var _userInsurance = ""
 var _userPhone = ""
 var _userEmail = ""
 var _userBirthday = ""
+var _userToken = ""
 
 var userDict = [String : User]()

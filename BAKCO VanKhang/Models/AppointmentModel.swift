@@ -9,6 +9,8 @@
 import Foundation
 
 
+let exTypeArray = [Normal, Service, Expert]
+
 class Appointment: NSObject {
     
     var id: Int!
@@ -21,6 +23,7 @@ class Appointment: NSObject {
     var price = 0
     var statusCode = 0
     var statusLabel = 0
+    var type = ""
     
 
     init(data: [String : Any]) {
@@ -74,9 +77,18 @@ class Appointment: NSObject {
             self.id = 0
         }
         
+        if let type = data["Type"] as? Int {
+            for enumm in exTypeArray.enumerated() {
+                if type == enumm.offset {
+                    self.type = enumm.element
+                }
+            }
+        }
+        
 
     }
 }
+
 
 
 

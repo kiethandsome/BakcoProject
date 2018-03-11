@@ -29,13 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: DidLogin)
         {
             rootVc = mainStoryboard.instantiateViewController(withIdentifier: "tab")
-            _userName = UserDefaults.standard.string(forKey: UserName)!
-            _userId = UserDefaults.standard.integer(forKey: UserId)
-            _userAddress = UserDefaults.standard.string(forKey: UserAddress)!
-            _userInsurance = UserDefaults.standard.string(forKey: UserInsurance)!
-            _userPhone = UserDefaults.standard.string(forKey: UserPhone)!
-            _userEmail = UserDefaults.standard.string(forKey: UserEmail)!
-            _userBirthday = UserDefaults.standard.string(forKey: UserBirthday)!
+            self.setValueForConstantVariables()
         }
         else
         {
@@ -43,6 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }   
         window?.rootViewController = rootVc
         window?.makeKeyAndVisible()
+    }
+    
+    func setValueForConstantVariables() {
+        _userName = UserDefaults.standard.string(forKey: UserName)!
+        _userId = UserDefaults.standard.integer(forKey: UserId)
+        _userAddress = UserDefaults.standard.string(forKey: UserAddress)!
+        _userInsurance = UserDefaults.standard.string(forKey: UserInsurance)!
+        _userPhone = UserDefaults.standard.string(forKey: UserPhone)!
+        _userEmail = UserDefaults.standard.string(forKey: UserEmail)!
+        _userBirthday = UserDefaults.standard.string(forKey: UserBirthday)!
+
     }
 }
 

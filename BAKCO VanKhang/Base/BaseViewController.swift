@@ -104,35 +104,13 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         let dateString = formatter.string(from: date)
         return dateString
     }
+    
+    func login() {}
+
 
 }
 
 extension BaseViewController {
-    
-    /// MARK: API request
-    func register(fullName: String, phone: String, email: String, birthDate: String, address: String, HealthInsurance: String, username: String, password: String, completion: @escaping (_ response: [String : Any]) -> () ) {
-        let parameters: Parameters = ["FullName": fullName,
-                                      "Phone": phone,
-                                      "Email": email,
-                                      "BirthDate": birthDate,
-                                      "Address": address,
-                                      "HealthInsurance": HealthInsurance,
-                                      "Username": username,
-                                      "Password": password]
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string: _RegisterURL)!,
-                          method: .post,
-                          parameters: parameters,
-                          encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            if let responseDict = response.value?.dictionaryObject {
-                                completion(responseDict)
-                            } else {
-                                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
-                            }
-        }
-    }
     
     func requestAPIwith(urlString: String, method: HTTPMethod, params: Parameters, completion: @escaping (_ response: [String : Any]) -> Void ) {
         let url = URL(string: urlString)!

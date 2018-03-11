@@ -94,6 +94,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         case 7:
             let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+            UserDefaults.standard.set(false, forKey: DidLogin)
             guard let window = UIApplication.shared.keyWindow else { return }
             UIView.transition(with: window, duration: 0.5, options: .transitionCurlDown, animations: {
                 window.rootViewController = loginVc

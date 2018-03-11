@@ -26,7 +26,8 @@ class HealthSchedulersViewController: BaseViewController {
         navigationItem.title = "Lịch đã đặt"
         tableView1.delegate = self
         tableView1.dataSource = self
-        tableView1.contentInset.bottom = 20.0
+        tableView1.contentInset = UIEdgeInsets(top: 25.0, left: 0, bottom: 25.0, right: 0)
+        tableView1.separatorStyle = .none
         loadSchedule(with: _userId)
         showBackButton()
     }
@@ -63,7 +64,7 @@ extension HealthSchedulersViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("HealthSchedulerCell", owner: self, options: nil)?.first as! HealthSchedulerCell
         cell.selectionStyle = .none
-//        configCell(cell: cell, indexPath: indexPath.row, scheduler: self.schedulerList[indexPath.row])
+        configCell(cell: cell, indexPath: indexPath.row, scheduler: self.schedulerList[indexPath.row])
         return cell
     }
     
@@ -77,6 +78,27 @@ extension HealthSchedulersViewController: UITableViewDelegate, UITableViewDataSo
         if let insurance = scheduler.customer?.healthInsurance {
             cell.insuranceLabel.text = insurance
         }
+        if let examDate = scheduler.detail?.day {
+            cell.examinationDateLabel.text = examDate
+        }
+        if let time = scheduler.detail?.from {
+            cell.timeLabel.text = time
+        }
+        if let roomName = scheduler.room?.Name {
+            cell.roomNameLabel.text = roomName
+        }
+        
+        cell.numberLabel.text = "Chưa có"
+        cell.examinationTypeLabel.text = scheduler.type
+        cell.schedulerId = scheduler.id
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! HealthSchedulerCell
+        
+        let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailSchedulerViewController") as! DetailSchedulerViewController
+        detailVc.id = cell.schedulerId
+        self.navigationController?.pushViewController(detailVc, animated: true)
     }
     
     
@@ -93,7 +115,7 @@ class HealthSchedulerCell: UITableViewCell {
     @IBOutlet var roomNameLabel: UILabel!
     @IBOutlet var payStatusLabel: UILabel!
     @IBOutlet var paidIdLabel: UILabel!
-    
+    var schedulerId = -1
     
     
 }

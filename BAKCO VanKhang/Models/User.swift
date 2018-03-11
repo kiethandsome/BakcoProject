@@ -12,13 +12,12 @@ import UIKit
 class User: NSObject {
     
     var id = 0
-    var fullName: String?
-    var customerCode: String?
-    var phone: String?
-    var healthInsurance: String?
-    var email:  String?
-    var address: String?
-    var birthDate = ""
+    var fullName = "Chưa có tên"
+    var phone = "Chưa có số điện thoại"
+    var healthInsurance = "Chưa có Bảo hiểm"
+    var email = "Chưa có Email"
+    var address = "Chưa có địa chỉ"
+    var birthDate = "CHưa có ngày sinh"
     var gender: Bool?
     
     var currentUser: User?
@@ -28,23 +27,21 @@ class User: NSObject {
         
         guard let id = data["Id"] as? Int,
             let name = data["FullName"] as? String,
-//            let code = data["CustomerCode"] as? String,
             let phone = data["Phone"] as? String,
-            let insurance = data["HealthInsurance"] as? String,
+//            let insurance = data["HealthInsurance"] as? String,
             let email = data["Email"] as? String,
 //            let address = data["Address"] as? String,
-            let birthDate = data["BirthDate"] as? String,
+//            let birthDate = data["BirthDate"] as? String,
             let gender = data["Gender"] as? Bool
             else { return }
         
         self.id = id
         self.fullName = name
-        self.customerCode = "null"
         self.phone = phone
-        self.healthInsurance = insurance
+//        self.healthInsurance = insurance
         self.email = email
-        self.address = "244/70 Lê Văn Khương, phường Thới An, Quận 12, TP.HCM"
-        self.birthDate = birthDate
+//        self.address = address
+//        self.birthDate = birthDate
         self.gender = gender
         
     }
@@ -58,9 +55,11 @@ class User: NSObject {
         UserDefaults.standard.setValue(user.healthInsurance, forKey: UserInsurance)
         UserDefaults.standard.setValue(user.email, forKey: UserEmail)
         let str = user.birthDate
-        let index = str.index(str.startIndex, offsetBy: 5)
+        let index = str.index(str.startIndex, offsetBy: 10)
         let mySubstring = str[..<index]
         UserDefaults.standard.setValue(mySubstring, forKey: UserBirthday)
+        print(mySubstring)
+        
         UserDefaults.standard.setValue(user.gender, forKey: UserGender)
         UserDefaults.standard.set(user.address, forKey: UserAddress)
         
@@ -86,7 +85,7 @@ class User: NSObject {
     }
     
     static func setUserForPaintent(_ user: User) {
-        userDict[user.fullName!] = user
+        userDict[user.fullName] = user
     }
 }
 
