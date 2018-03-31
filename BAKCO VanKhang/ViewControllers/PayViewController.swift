@@ -43,8 +43,9 @@ class PayViewController: BaseViewController {
     
     @IBAction func confirm(_ sender: Any) {
         if isPayNow {
-            let next = storyboard?.instantiateViewController(withIdentifier: "WebViewController")
-            navigationController?.pushViewController(next!, animated: true)
+//            let next = storyboard?.instantiateViewController(withIdentifier: "WebViewController")
+//            navigationController?.pushViewController(next!, animated: true)
+            showAlert(title: "Xin lỗi", mess: "Chức năng thanh toán trước đang được phát triển, vui lòng chọn thanh toán sau!", style: .alert)
         } else {
             let next = storyboard?.instantiateViewController(withIdentifier: "FinalAppointmentViewController") as! FinalAppointmentViewController
             next.isPaid = false

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.sharedManager().enable = true
         setupFirstScreen()
+        registerForPushNotification()
         return true
     }
     
@@ -48,6 +50,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _userEmail = UserDefaults.standard.string(forKey: UserEmail)!
         _userBirthday = UserDefaults.standard.string(forKey: UserBirthday)!
 
+    }
+    
+    func registerForPushNotification() {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {(granted, error) in
+            if granted {
+                print("Permission is granted")
+                // 1
+                let viewAction = UNNotificationAction(identifier: "viewAction",
+                                                      title: "View",
+                                                      options: [.foreground])
+                
+                // 2
+                let newsCategory = UNNotificationCategory(identifier: "newsCategory",
+                                                          actions: [viewAction],
+                                                          intentIdentifiers: [],
+                                                          options: [])
+                // 3
+                UNUserNotificationCenter.current().setNotificationCategories([newsCategory])
+                
+            } else {
+                print("Permission is fail")
+            }
+        })
+        
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {settings in
+            guard settings.authorizationStatus == .authorized else {
+                print("authorizations status is failed.")
+                return
+            }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        })
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map{ data in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device token: \(token)")
+        _deviceToken = token
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("fail to register with error: \(error)")
     }
 }
 

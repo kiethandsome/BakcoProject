@@ -9,8 +9,7 @@
 import Foundation
 
 
-let _GetServiceDetailURL = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
-let _TrueconfLink = "http://vkhs.vn/index.html#/tcs"
+let _TrueconfLink = "http://vkhealth.vn/#/tcs"
 let _SOSEmergencyApi = "http://api.vkhs.vn/api/SOSCall/CallSOS"
 let _GetHealthCareSchedulerApi = "http://api.vkhs.vn/api/BkHealthCareScheduler/GetByHospitalHealthCareId"
 let _GetMatchApi = "http://api.vkhs.vn/api/BkMedicalExaminationNote/CreateForMember"
@@ -20,6 +19,16 @@ let _GetDetailSchedulerApi = "http://api.vkhs.vn/api/BkDoctor/GetWorkDetail"
 let _RegisterURL = "http://api/Account/CustomerRegister"
 let _GetTokenApi = "http://api.vkhs.vn/Token"
 let _GetUserIdApi  = "http://api.vkhs.vn/api/Account/UserInfo"
+
+/// FamilyDoctor
+let _GetServiceDetailURL = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
+let _CheckContractApi = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckContractVKSOS"
+var _deviceToken = String()
+let _GetFavoriteDoctorListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetFavoriteDoctorList"
+let _GetDoctorListByServiceApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetDoctorListByService"
+let _CallFamilyDoctorServiceApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
+let _RemoveDoctorFromFavoriteListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorToFavorite"
+let _AddDoctorToFavoriteListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
 
 
 var _userName = ""

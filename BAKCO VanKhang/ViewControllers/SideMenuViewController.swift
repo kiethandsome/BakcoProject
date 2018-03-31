@@ -38,11 +38,10 @@ class SideMenuViewController: BaseViewController {
         tv.tableFooterView = UIView()
         tv.contentInset.bottom = 20.0
     }
-
 }
 
-let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "calendar"), #imageLiteral(resourceName: "family-icon"), #imageLiteral(resourceName: "icon-sos"), #imageLiteral(resourceName: "question.png"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "logout")]
-let titles = [_userName, "Thông tin cá nhân", "Lịch khám chữa bệnh", "Danh sách người thân", "Đăng kí yêu cầu cấp cứu SOS", "Hướng dẫn sử dụng", "Thông tin VKHS", "Đăng xuất"]
+let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "calendar"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "logout")]
+let titles = [_userName, "Lịch khám chữa bệnh", "Thông tin VKHS", "Đăng xuất"]
 
 
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
@@ -87,19 +86,32 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
             break
             
-        case 2:
+        case 1:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "HealthSchedulersViewController")
             self.navigationController?.pushViewController(vc!, animated: true)
             break
+            
+        case 2:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VkhsInfoViewController")
+            self.navigationController?.pushViewController(vc!, animated: true)
+            break
         
-        case 7:
-            let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-            UserDefaults.standard.set(false, forKey: DidLogin)
-            guard let window = UIApplication.shared.keyWindow else { return }
-            UIView.transition(with: window, duration: 0.5, options: .transitionCurlDown, animations: {
-                window.rootViewController = loginVc
-                window.makeKeyAndVisible()
+        case 3:
+            let alert = UIAlertController(title: "Xác nhận", message: "Bạn chắc chắn muốn đăng xuất?", preferredStyle: .alert)
+            let okACtion = UIAlertAction(title: "Đăng xuất", style: .destructive, handler: { (action) in
+                let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+                UserDefaults.standard.set(false, forKey: DidLogin)
+                guard let window = UIApplication.shared.keyWindow else { return }
+                UIView.transition(with: window, duration: 0.5, options: .transitionCurlDown, animations: {
+                    window.rootViewController = loginVc
+                    window.makeKeyAndVisible()
+                })
             })
+            let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel)
+            alert.addAction(okACtion)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true)
             break
         default:
             break

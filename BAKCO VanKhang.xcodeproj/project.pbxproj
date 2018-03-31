@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */; };
+		920CC7FE206CD2740082035A /* FavoriteDoctorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */; };
+		9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */; };
 		921291E8204FE1AF0087441A /* DetailSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */; };
 		92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */; };
 		9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC061FEA1C3E005F07CC /* PayViewController.swift */; };
@@ -19,6 +22,7 @@
 		923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */; };
 		923CFBC01FF8AF3200E6A97D /* PopUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */; };
 		923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */; };
+		9259739520663438001F9867 /* FamilyDoctorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259739420663438001F9867 /* FamilyDoctorResponse.swift */; };
 		9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */; };
 		9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */; };
 		92810E99200708D100B7A62F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92810E98200708D100B7A62F /* User.swift */; };
@@ -60,6 +64,9 @@
 
 /* Begin PBXFileReference section */
 		4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.release.xcconfig"; sourceTree = "<group>"; };
+		920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteDoctorCell.xib; sourceTree = "<group>"; };
+		920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDoctorCell.swift; sourceTree = "<group>"; };
+		9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkhsInfoViewcontroller.swift; sourceTree = "<group>"; };
 		921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSchedulerViewController.swift; sourceTree = "<group>"; };
 		92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderView.xib; sourceTree = "<group>"; };
 		9229AC061FEA1C3E005F07CC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
@@ -72,9 +79,11 @@
 		923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCell.swift; sourceTree = "<group>"; };
 		923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalCell.swift; sourceTree = "<group>"; };
+		9259739420663438001F9867 /* FamilyDoctorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyDoctorResponse.swift; sourceTree = "<group>"; };
 		9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSchedulersViewController.swift; sourceTree = "<group>"; };
 		9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthSchedulerCell.xib; sourceTree = "<group>"; };
 		92810E98200708D100B7A62F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		929748E82068B577000961D1 /* BAKCO VanKhang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BAKCO VanKhang.entitlements"; sourceTree = "<group>"; };
 		92CA46402011B49E00E84562 /* HomedTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomedTreatment.swift; sourceTree = "<group>"; };
 		92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
@@ -136,6 +145,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		920CC7FC206CD2530082035A /* FavoriteDoctorCell */ = {
+			isa = PBXGroup;
+			children = (
+				920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */,
+				920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */,
+			);
+			path = FavoriteDoctorCell;
+			sourceTree = "<group>";
+		};
 		92231BD2200E3C3B00E96F00 /* Xib:Nib */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +178,7 @@
 				923CFBBB1FF8AE8000E6A97D /* DateCell.swift */,
 				923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */,
 				923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */,
+				920CC7FC206CD2530082035A /* FavoriteDoctorCell */,
 				923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */,
 			);
 			path = Cells;
@@ -205,6 +224,7 @@
 		F32F2EF71F989CC7008C5CAF /* BAKCO VanKhang */ = {
 			isa = PBXGroup;
 			children = (
+				929748E82068B577000961D1 /* BAKCO VanKhang.entitlements */,
 				92F08BBB1FCC79240099BCBF /* CustomSearchBar */,
 				923535791FC68943005464C2 /* Extension */,
 				92F3ADD11FC51B3C00C0D6E7 /* Base */,
@@ -225,10 +245,10 @@
 		F32F2F0D1F98B0E7008C5CAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
 				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
 				F3CC05791FE480B7005F5213 /* PopUpViewController.swift */,
 				923694D51FE0F28000329310 /* LoginViewController.swift */,
-				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
 				F379DD051FFB9F8800314610 /* TestViewController.swift */,
 				F3DD420B1FEA19D400135774 /* SecondMainViewController.swift */,
 				9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */,
@@ -243,6 +263,7 @@
 				92CA46402011B49E00E84562 /* HomedTreatment.swift */,
 				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
 				921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */,
+				9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -262,6 +283,7 @@
 				F34174841FC749290093CB1A /* ServiceModel.swift */,
 				F34174861FC7493E0093CB1A /* DetailModel.swift */,
 				F33B74841FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift */,
+				9259739420663438001F9867 /* FamilyDoctorResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +347,9 @@
 							com.apple.Maps.iOS = {
 								enabled = 0;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -356,6 +381,7 @@
 				92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */,
 				F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */,
 				F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */,
+				920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */,
 				F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +470,7 @@
 				923CFBBC1FF8AE8000E6A97D /* DateCell.swift in Sources */,
 				9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */,
 				F32F2EFB1F989CC7008C5CAF /* MainViewController.swift in Sources */,
+				920CC7FE206CD2740082035A /* FavoriteDoctorCell.swift in Sources */,
 				F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */,
 				9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */,
 				F379DD061FFB9F8800314610 /* TestViewController.swift in Sources */,
@@ -456,6 +483,7 @@
 				F3CD6BFD1F9E41A100E9E830 /* MatchModel.swift in Sources */,
 				F32F2EF91F989CC7008C5CAF /* AppDelegate.swift in Sources */,
 				9235357B1FC68951005464C2 /* Extension.swift in Sources */,
+				9259739520663438001F9867 /* FamilyDoctorResponse.swift in Sources */,
 				9237E60B1FFC80340031A45B /* FirstAppointmentViewController.swift in Sources */,
 				F3CC057A1FE480B7005F5213 /* PopUpViewController.swift in Sources */,
 				9230129B1FD7D87F00F7860D /* ChooseInformViewController.swift in Sources */,
@@ -476,6 +504,7 @@
 				92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */,
 				F34174851FC749290093CB1A /* ServiceModel.swift in Sources */,
 				F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */,
+				9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */,
 				F341747F1FC746D90093CB1A /* AppointmentModel.swift in Sources */,
 				F34174831FC748D20093CB1A /* RoomModel.swift in Sources */,
 				923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */,
@@ -618,6 +647,7 @@
 			baseConfigurationReference = C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BAKCO VanKhang/BAKCO VanKhang.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T7JUX998MG;
@@ -626,7 +656,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.bakco.vkhealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a78ca492-7e4b-4d2a-b645-09186be00a45";
+				PROVISIONING_PROFILE = "ddc521bb-4559-4d7d-a987-8b4f7d33799d";
 				PROVISIONING_PROFILE_SPECIFIER = VKHealth_Dev;
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.0;
@@ -639,6 +669,7 @@
 			baseConfigurationReference = 4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BAKCO VanKhang/BAKCO VanKhang.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T7JUX998MG;
@@ -647,7 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.bakco.vkhealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "51a62bd2-b73f-4bff-94d8-b1dac2a4a7f9";
+				PROVISIONING_PROFILE = "5184206d-30ee-48da-9c98-8e7968f51989";
 				PROVISIONING_PROFILE_SPECIFIER = VKHealth_Dist;
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.0;

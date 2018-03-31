@@ -12,11 +12,11 @@ import Alamofire
 import MBProgressHUD
 import IQDropDownTextField
 
-enum ExamType: String {
-    case Normal = "Thông thường"
-    case Service = "Dịch vụ"
-    case Expert = "Chuyên gia"
-}
+//enum ExamType: String {
+//    case Normal = "Thông thường"
+//    case Service = "Dịch vụ"
+//    case Expert = "Chuyên gia"
+//}
 
 let Normal = "Thông thường"
 let Service = "Dịch vụ"
@@ -24,7 +24,7 @@ let Expert = "Chuyên gia"
 let attribute: [NSAttributedStringKey : Any] = [.font: UIFont.boldSystemFont(ofSize: 10.0),
                                                 .foregroundColor: UIColor.white,
                                                 .paragraphStyle: NSTextAlignment.center]
-let exDict = [Normal: "0", Service: "1", Expert: "2"]
+let exDict = [Normal: "0", Service: "1"]
 
 
 class ChooseInformViewController: BaseViewController {
@@ -35,7 +35,6 @@ class ChooseInformViewController: BaseViewController {
     var selectedSpecialty: SpecialtyModel?
     var selectedUser: User?
     var selectedHealthCareScheduler: HealthCareSchedulerModel?
-    var selectedDate: String?
     var insurance = false
     var selectedType: String?
     var healthcareSchedule = [HealthCareSchedulerModel]() {
@@ -145,8 +144,9 @@ class ChooseInformViewController: BaseViewController {
                                       "IsMorning": true,
                                       "Date": dateString,
                                       "Type": typeId]
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         requestAPIwith(urlString: URLString, method: .post, params: parameters) { (response) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             print("Match: \(response)")
             self.match.initWithData(data: response)
             
@@ -259,7 +259,15 @@ extension ChooseInformViewController: UICollectionViewDelegateFlowLayout, UIColl
             cell.title.text = healthcareSchedule[indexPath.item].DateView!
         } else {
             cell.title.text = "..."
+            cell.backgroundColor = UIColor.specialGreenColor()
         }
+        
+        if cell.isSelected {
+            cell.backgroundColor = UIColor.orange
+        } else {
+            cell.backgroundColor = UIColor.specialGreenColor()
+        }
+        
         return cell
     }
     
@@ -283,7 +291,7 @@ extension ChooseInformViewController: UICollectionViewDelegateFlowLayout, UIColl
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) { /// deselect là bỏ chọn chứ ko phải nhấp lại
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.specialGreenColor()
     }

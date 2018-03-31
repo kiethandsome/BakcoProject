@@ -14,6 +14,8 @@ import AlamofireSwiftyJSON
 import Alamofire
 import MBProgressHUD
 
+var _long = Double()
+var _lat = Double()
 
 class MainViewController: BaseViewController  {
     
@@ -53,9 +55,9 @@ class MainViewController: BaseViewController  {
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            let parameters: Parameters = ["Phone": "0972101144",
-                                          "Lat": 106,
-                                          "Lng": 10,
+            let parameters: Parameters = ["Phone": _userPhone,
+                                          "Lat": _lat,
+                                          "Lng": _long,
                                           "Speed": 0]
             let sosUrl = URL(string: _SOSEmergencyApi)!
             
@@ -70,16 +72,27 @@ class MainViewController: BaseViewController  {
         }
     }
     
-    /*_______________________________*/
+    private func checkContract(phone: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let link: String = "\(_CheckContractApi)?phone=\(phone)&lat=\(_lat)&lng=\(_long)"
+        let url = URL(string: link)!
+        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let data = response.value?.dictionaryObject, response.result.isSuccess == true {
+                if let message: String = data["message"] as? String {
+                    print("Message: \(message)")
+                }
+            }
+        }
+    }
     
+    /*_______________________________*/
     // Location
-    var longitude: String!
-    var latitude: String!
     var locationManager: CLLocationManager!
     var location: CLLocation!{
         didSet {
-            latitude = "\(location.coordinate.latitude)"
-            longitude = "\(location.coordinate.longitude)"
+            _lat = location.coordinate.latitude
+            _long = location.coordinate.longitude
             print("Long: \(location.coordinate.latitude), Lat: \(location.coordinate.longitude)")
         }
     }
@@ -100,6 +113,7 @@ class MainViewController: BaseViewController  {
         setupUserRightBarButton()
         
         showLogoImage()
+        self.checkContract(phone: _userPhone)
     }
     
     override func viewDidAppear(_ animated: Bool) {

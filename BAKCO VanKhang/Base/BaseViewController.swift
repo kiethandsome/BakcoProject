@@ -119,6 +119,8 @@ extension BaseViewController {
             if let responsed = response.value?.dictionaryObject, response.error == nil {
                 completion(responsed)
                 print(responsed)
+            } else {
+                self.showAlert(title: "Lỗi", mess: (response.error?.localizedDescription)!, style: .alert)
             }
             
             

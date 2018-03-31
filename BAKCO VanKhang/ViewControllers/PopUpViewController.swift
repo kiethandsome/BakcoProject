@@ -19,10 +19,11 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     @IBOutlet var dismissPopUpButton: UIButton!
     @IBOutlet var popUpCollectionView: UICollectionView!
     
-    let images = [#imageLiteral(resourceName: "ic_doctor"), #imageLiteral(resourceName: "ic-dieuduong"), #imageLiteral(resourceName: "ic_chamsocgiamnhe"), #imageLiteral(resourceName: "ic_vltlieu"), #imageLiteral(resourceName: "ic-yhctruyen"), #imageLiteral(resourceName: "ic_vanchuyen")]
+    let images = [#imageLiteral(resourceName: "ic_doctor"), #imageLiteral(resourceName: "ic-dieuduong"), #imageLiteral(resourceName: "ic_chamsocgiamnhe"), #imageLiteral(resourceName: "ic_vltlieu"), #imageLiteral(resourceName: "ic-yhctruyen")]
     let cellNames = ["Bác sĩ GD", "Điều dưỡng", "Chăm sóc giảm nhẹ", "Vật lí trị liệu", "Y học cổ truyền", "Vận chuyển"]
-    private let keys = ["BSGD", "DDTN", "CSGN", "VLTL", "YHCT", "DVK"]
+    private let keys = ["BSGD", "DDTN", "CSGN", "VLTL", "YHCT"]
     
+    var _serviceId = String() ///
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +71,7 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     /// alert
     private func showAlert(title: String, mess: String, style: UIAlertControllerStyle, isSimpleAlert: Bool = true) {
         let alertController = UIAlertController(title: title, message: mess, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let okAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
             self.okAction()
         }
         alertController.addAction(okAction)
@@ -83,10 +84,10 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     }
     
     private func okAction() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomedTreatmentViewController")
-        let nav = BaseNavigationController(rootViewController: vc!)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomedTreatmentViewController") as! HomedTreatmentViewController
+        let nav = BaseNavigationController(rootViewController: vc)
         present(nav, animated: true) {
-            
+            vc.serviceId = self._serviceId
         }
     }
 }
@@ -98,19 +99,25 @@ extension PopUpViewController: UICollectionViewDataSource, UICollectionViewDeleg
         collectionView.deselectItem(at: indexPath, animated: true)
         let cell = collectionView.cellForItem(at: indexPath) as! PopUpCell
         self.requestService(with: cell.key)
-        print(cell.key)
+        self._serviceId = cell.key
 
     }
     
     private func requestService(with serviceId: String) {
-        let url = URL(string: _GetServiceDetailURL)!
-        let param: Parameters = ["ServiceId" : serviceId]
-
+        let url = URL(string: "\(_GetServiceDetailURL)?ServiceId=\(serviceId)")!
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(url, method: .get, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.showAlert(title: "Xác nhận", mess: "con chim non", style: .alert, isSimpleAlert: false)
-            print(response)
+            
+            if let data = response.value?.dictionaryObject  {
+                let dataResponse = FamilyDoctorResponse(data: data)
+                
+                let title = dataResponse.fdData?.title
+                let introText = dataResponse.fdData?.introText
+                
+                self.showAlert(title: title ?? "Ko tìm thấy", mess: introText ?? "", style: .alert, isSimpleAlert: false)
+            }
+
         }
     }
 

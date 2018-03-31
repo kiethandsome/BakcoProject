@@ -92,6 +92,8 @@ class LoginViewController: BaseViewController {
                     self.currentUser = User(data: dict)
                     self.pushToMainViewController()
                 }
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
         }
     }

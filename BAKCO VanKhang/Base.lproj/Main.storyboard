@@ -542,6 +542,47 @@
             </objects>
             <point key="canvasLocation" x="-316" y="-215"/>
         </scene>
+        <!--Vkhs Info View Controller-->
+        <scene sceneID="vPd-AS-j1e">
+            <objects>
+                <viewController storyboardIdentifier="VkhsInfoViewController" id="kHo-rb-wbW" customClass="VkhsInfoViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ok9-h6-g8g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqE-1q-42V">
+                                <rect key="frame" x="20" y="50" width="335" height="577"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Chúng tôi cung ứng các giải pháp sức khoẻ:
+Truyền thông giáo dục sức khoẻ giúp người dân có kiến thức và thực hành đúng các biện pháp dự phòng, chăm sóc, bảo vệ và nâng cao sức khoẻ.
+Tư vấn sức khoẻ từ xa với các chuyên gia y tế qua Hội nghị truyền hình: Người dân mặt đối mặt với chuyên gia để trao đổi, gởi hồ sơ sức khoẻ, bệnh tật đến chuyên gia để được tư vấn.
+Cấp cứu tại chỗ: chỉ cần bấm nút SOS trên ứng dụng Bakco Health. Hệ thống điều hành tự động sẽ định vị người gọi cấp cứu và thông báo yêu cầu cấp cứu đến xe cấp cứu gần nhất để thực hiện nhiệm vụ tiếp cận và cấp cứu trong thời gian ngắn nhất.
+Chữa bệnh tại nhà: BS, Điều dưỡng, Kỹ thuật viên Vật lý trị liệu, Kỹ thuật viên Y học cổ truyền đến nhà theo lịch hẹn để khám, chẩn đoán, chăm sóc, chữa trị cho bệnh nhân.
+Đăng ký khám chữa bệnh với các cơ sở khám chữa bệnh để được cấp số thứ tự, hẹn giờ và thanh toán từ xa: chỉ cần bấm nút “Đặt lịch khám chữa bệnh” và chọn lựa bệnh viện, loại hình khám bệnh, chuyên khoa khám… sẽ được hẹn giờ, không phải chờ đợi.
+Hồ sơ sức khoẻ được bảo mật tuyệt đối, chỉ người chủ hồ sơ mới được phép sử dụng dữ liệu của mình.
+Giao thuốc tại nhà, lấy mẫu bệnh phẩm xét nghiệm tại nhà theo chỉ định của BS điều trị. 
+Vận chuyển BS, ĐD, KTV đến nhà bệnh nhân; bệnh nhân đến BV/PK để khám bệnh; bệnh nhân từ BV/PK về nhà hoặc chuyển viện… bằng nhiều loại phương tiện (ô tô cấp cứu, Ô tô 4, 7,12 chỗ, Môtô). 
+Các giải pháp công nghệ đều được miễn phí.
+Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm y tế cho nhà cung ứng, theo giá chính thức được công bố trên trang web của nhà cung ứng. Việc thanh toán được thực hiện online qua ứng dụng hoặc trên trang web.</string>
+                                <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pqE-1q-42V" firstAttribute="top" secondItem="ZSn-It-T7k" secondAttribute="top" constant="30" id="MW1-ZX-Mki"/>
+                            <constraint firstItem="ZSn-It-T7k" firstAttribute="bottom" secondItem="pqE-1q-42V" secondAttribute="bottom" constant="40" id="fA2-GM-VUv"/>
+                            <constraint firstItem="pqE-1q-42V" firstAttribute="leading" secondItem="ZSn-It-T7k" secondAttribute="leading" constant="20" id="mVF-1K-KJ3"/>
+                            <constraint firstItem="ZSn-It-T7k" firstAttribute="trailing" secondItem="pqE-1q-42V" secondAttribute="trailing" constant="20" id="x3H-T8-wVP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZSn-It-T7k"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ju8-c0-rnX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1081" y="472"/>
+        </scene>
         <!--Detail Scheduler View Controller-->
         <scene sceneID="TW6-YG-L0Y">
             <objects>
@@ -2594,7 +2635,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMS-A2-WoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-231" y="-1613"/>
+            <point key="canvasLocation" x="-772" y="-1728"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Mdh-IU-9bF">
+            <objects>
+                <viewController id="xrc-Bl-wh1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4dZ-ij-Rhs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WtD-BY-sBa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Vh-ny-Dhp" firstAttribute="trailing" secondItem="WtD-BY-sBa" secondAttribute="trailing" id="Xpz-76-59F"/>
+                            <constraint firstItem="WtD-BY-sBa" firstAttribute="top" secondItem="4Vh-ny-Dhp" secondAttribute="top" id="bs7-ic-ysC"/>
+                            <constraint firstItem="4Vh-ny-Dhp" firstAttribute="bottom" secondItem="WtD-BY-sBa" secondAttribute="bottom" id="iVr-9X-GtI"/>
+                            <constraint firstItem="WtD-BY-sBa" firstAttribute="leading" secondItem="4Vh-ny-Dhp" secondAttribute="leading" id="t6W-3N-5Kh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4Vh-ny-Dhp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AEk-DU-uRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-93" y="-1728"/>
         </scene>
         <!--Choose Specialty View Controller-->
         <scene sceneID="rTA-wE-dfi">
@@ -2695,7 +2763,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fyp-6I-mnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-870" y="-1613"/>
+            <point key="canvasLocation" x="-1426" y="-1728"/>
         </scene>
         <!--First Appointment View Controller-->
         <scene sceneID="Gs5-sV-hhi">

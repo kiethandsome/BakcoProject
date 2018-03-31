@@ -34,6 +34,7 @@ class SecondMainViewController: BaseViewController {
     
     @IBOutlet var maleButton: UIButton!
     @IBOutlet var femaleButton: UIButton!
+    
     @IBAction func isMale(_ sender: UIButton) {
         sender.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
         self.femaleButton.setImage(UIImage(named: "no-image"), for: .normal)
@@ -94,25 +95,34 @@ class SecondMainViewController: BaseViewController {
             let password = txtPassword.text,txtPassword.text != "",
             let _ = txtConfirmPassword.text, txtConfirmPassword.text == password
         {
-            self.signup(fullName: fullName, phone: sosPhoneNum, email: email, birthDate: convertDate(date: birthdayPicker.date, with: "yyyy-MM-dd"), address: address, HealthInsurance: "", username: username, password: password, gender: gender)
+            
+            self.signup(fullName: fullName,
+                        phone: sosPhoneNum,
+                        email: email,
+                        birthDate: convertDate(date: birthdayPicker.date, with: "yyyy-MM-dd"),
+                        address: address,
+                        HealthInsurance: "",
+                        username: username,
+                        password: password,
+                        gender: gender)
         } else {
-            showAlert(title: "Lỗi", mess: "Bạn phải điền đầy đủ thông tin", style: .alert)
+            showAlert(title: "Lỗi", mess: "Bạn chưa điền đủ thông tin hoặc nhập sai thông tin. Vui lòng kiểm tra lại!", style: .alert)
         }
     }
     
-    func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, HealthInsurance: String, username: String, password: String, gender: Bool) {
+    private func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, HealthInsurance: String, username: String, password: String, gender: Bool) {
         let parameters: Parameters = [  "Username": username,
                                         "Password": password,
                                         "FullName": fullName,
                                         "Phone": phone,
                                         "Email": email,
                                         "HealthInsurance": HealthInsurance,
-                                        "Address": "244/70 Lê Văn Khương",
+                                        "Address": address,
                                         "BirthDate": birthDate,
                                         "Gender": gender,
-                                        "ProvinceCode": "TP.HCM",
-                                        "DistrictCode": "12",
-                                        "WardCode": "Thới An"]
+                                        "ProvinceCode": "",
+                                        "DistrictCode": "",
+                                        "WardCode": ""]
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(URL(string: _RegisterURL)!,
@@ -147,6 +157,7 @@ class SecondMainViewController: BaseViewController {
             }
         }
     }
+    
     
 }
 

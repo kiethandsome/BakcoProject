@@ -17,7 +17,7 @@ class User: NSObject {
     var healthInsurance = "Chưa có Bảo hiểm"
     var email = "Chưa có Email"
     var address = "Chưa có địa chỉ"
-    var birthDate = "CHưa có ngày sinh"
+    var birthDate = "CHưa có          "
     var gender: Bool?
     
     var currentUser: User?
@@ -31,7 +31,7 @@ class User: NSObject {
 //            let insurance = data["HealthInsurance"] as? String,
             let email = data["Email"] as? String,
 //            let address = data["Address"] as? String,
-//            let birthDate = data["BirthDate"] as? String,
+            let birthDate = data["BirthDate"] as? String,
             let gender = data["Gender"] as? Bool
             else { return }
         
@@ -41,7 +41,7 @@ class User: NSObject {
 //        self.healthInsurance = insurance
         self.email = email
 //        self.address = address
-//        self.birthDate = birthDate
+        self.birthDate = birthDate
         self.gender = gender
         
     }
@@ -54,6 +54,7 @@ class User: NSObject {
         UserDefaults.standard.setValue(user.phone, forKey: UserPhone)
         UserDefaults.standard.setValue(user.healthInsurance, forKey: UserInsurance)
         UserDefaults.standard.setValue(user.email, forKey: UserEmail)
+        
         let str = user.birthDate
         let index = str.index(str.startIndex, offsetBy: 10)
         let mySubstring = str[..<index]
