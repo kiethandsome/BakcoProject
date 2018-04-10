@@ -28,6 +28,7 @@ class CustomSearchBar: UISearchBar {
         fatalError("init(coder:) has not been implemented")
     }
 
+
     func indexOfSearchFieldInSubviews() -> Int! {
         var index: Int!
         let searchBarView = subviews[0]

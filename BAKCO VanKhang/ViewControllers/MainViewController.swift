@@ -55,7 +55,7 @@ class MainViewController: BaseViewController  {
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            let parameters: Parameters = ["Phone": _userPhone,
+            let parameters: Parameters = ["Phone": MyUser.phone,
                                           "Lat": _lat,
                                           "Lng": _long,
                                           "Speed": 0]
@@ -74,7 +74,7 @@ class MainViewController: BaseViewController  {
     
     private func checkContract(phone: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let link: String = "\(_CheckContractApi)?phone=\(phone)&lat=\(_lat)&lng=\(_long)"
+        let link: String = "\(FamilyDocrorApi.checkContract)?phone=\(phone)&lat=\(_lat)&lng=\(_long)"
         let url = URL(string: link)!
         Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -113,7 +113,7 @@ class MainViewController: BaseViewController  {
         setupUserRightBarButton()
         
         showLogoImage()
-        self.checkContract(phone: _userPhone)
+        self.checkContract(phone: MyUser.phone)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -123,8 +123,8 @@ class MainViewController: BaseViewController  {
         checkCoreLocationPermission()
         
         ///
-        if _userId != 0 {
-            print(_userId)
+        if MyUser.id != 0 {
+            print(MyUser.id)
         }
     }
     

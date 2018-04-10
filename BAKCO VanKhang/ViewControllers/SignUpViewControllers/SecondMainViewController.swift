@@ -9,7 +9,10 @@
 import UIKit
 import Alamofire
 import MBProgressHUD
+import IQDropDownTextField
+import AlamofireSwiftyJSON
 
+var _selectedPlace = String()
 
 class SecondMainViewController: BaseViewController {
     
@@ -27,6 +30,7 @@ class SecondMainViewController: BaseViewController {
     @IBOutlet weak var txtBirthday: UITextField!
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet var birthdayPicker: UIDatePicker!
+    @IBOutlet var cityTextfield: UITextField!
     
     @IBOutlet weak var txtUserName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -40,10 +44,17 @@ class SecondMainViewController: BaseViewController {
         self.femaleButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.gender = true
     }
+    
     @IBAction func isFemale(_ sender: UIButton) {
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
         self.gender = false
+    }
+    
+    @IBAction func showCityVc(_ sender: UIButton) {
+        let cityVc = self.storyboard?.instantiateViewController(withIdentifier: "CitiesViewController")
+        let nav = BaseNavigationController(rootViewController: cityVc!)
+        present(nav, animated: true)
     }
     
     
@@ -51,6 +62,11 @@ class SecondMainViewController: BaseViewController {
         super.viewDidLoad()
         title = "Đăng kí"
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cityTextfield.text = _selectedPlace
     }
     
     func setupUI() {
@@ -73,11 +89,10 @@ class SecondMainViewController: BaseViewController {
         
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
-
     }
     
     @IBAction func dateChanged(_ sender: Any) {
-        txtBirthday.text = convertDate(date: birthdayPicker.date, with: "dd-MM-yyyy")
+        txtBirthday.text = birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd")
     }
     
     @IBAction func actOk(_ sender: Any) {
@@ -93,14 +108,15 @@ class SecondMainViewController: BaseViewController {
             let address = txtAddress.text, txtAddress.text != "",
             let username = txtUserName.text,txtUserName.text != "",
             let password = txtPassword.text,txtPassword.text != "",
-            let _ = txtConfirmPassword.text, txtConfirmPassword.text == password
+            let _ = txtConfirmPassword.text, txtConfirmPassword.text == password,
+            let city = _selectedCity, let dist = _selectedDistrict, let ward = _selectedWard
         {
             
             self.signup(fullName: fullName,
                         phone: sosPhoneNum,
                         email: email,
-                        birthDate: convertDate(date: birthdayPicker.date, with: "yyyy-MM-dd"),
-                        address: address,
+                        birthDate: birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd"),
+                        address: address, provinceCode: city.value, districtCode: dist.value, wardCode: ward.value,
                         HealthInsurance: "",
                         username: username,
                         password: password,
@@ -110,7 +126,9 @@ class SecondMainViewController: BaseViewController {
         }
     }
     
-    private func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, HealthInsurance: String, username: String, password: String, gender: Bool) {
+    private func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, provinceCode: String, districtCode: String, wardCode: String,  HealthInsurance: String, username: String, password: String, gender: Bool) {
+
+        
         let parameters: Parameters = [  "Username": username,
                                         "Password": password,
                                         "FullName": fullName,
@@ -120,9 +138,9 @@ class SecondMainViewController: BaseViewController {
                                         "Address": address,
                                         "BirthDate": birthDate,
                                         "Gender": gender,
-                                        "ProvinceCode": "",
-                                        "DistrictCode": "",
-                                        "WardCode": ""]
+                                        "ProvinceCode": provinceCode,
+                                        "DistrictCode": districtCode,
+                                        "WardCode": wardCode]
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(URL(string: _RegisterURL)!,
@@ -150,7 +168,6 @@ class SecondMainViewController: BaseViewController {
                 DispatchQueue.main.async {
                     let user = User(data: data)
                     User.setCurrent(user) /// Set value for User Default.
-                    User.setUserForPaintent(user)
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -160,6 +177,16 @@ class SecondMainViewController: BaseViewController {
     
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

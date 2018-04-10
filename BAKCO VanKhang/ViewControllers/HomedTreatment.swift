@@ -21,7 +21,7 @@ class HomedTreatmentViewController: BaseViewController {
     }
     
     @IBAction func selectMedicalStaff(_ sender: Any) {
-        self.getFavoriteDoctorList(serviceId: self.serviceId, phone: _userPhone)
+        self.getFavoriteDoctorList(serviceId: self.serviceId, phone: MyUser.phone)
     }
     
     @IBAction func selectUsedMedicalStaff(_ sender: Any) {
@@ -49,7 +49,7 @@ class HomedTreatmentViewController: BaseViewController {
         let param: Parameters = [ "Phone": phone,
                                   "ServiceId": serviceId ]
         MBProgressHUD.showAdded(to: self.view , animated: true)
-        self.requestAPIwith(urlString: _GetFavoriteDoctorListApi, method: .post, params: param) { (responseDict) in
+        self.requestAPIwith(urlString: FamilyDocrorApi.favoriteDoctorList, method: .post, params: param) { (responseDict) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(responseDict)
         }

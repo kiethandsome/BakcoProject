@@ -63,7 +63,7 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
 //    }
     
     func configureCustomSearchController() {
-        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 0.0, y: 0.0, width: specialtyList.frame.size.width, height: 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: .orange, searchBarTintColor: .black)
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 0.0, y: 0.0, width: specialtyList.frame.size.width, height: 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.specialGreenColor(), searchBarTintColor: .white)
         
         customSearchController.customSearchBar.placeholder = "Search in this awesome bar..."
         specialtyList.tableHeaderView = customSearchController.customSearchBar

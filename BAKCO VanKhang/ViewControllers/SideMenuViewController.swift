@@ -41,7 +41,7 @@ class SideMenuViewController: BaseViewController {
 }
 
 let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "calendar"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "logout")]
-let titles = [_userName, "Lịch khám chữa bệnh", "Thông tin VKHS", "Đăng xuất"]
+let titles = [MyUser.name, "Lịch khám chữa bệnh", "Thông tin VKHS", "Đăng xuất"]
 
 
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {

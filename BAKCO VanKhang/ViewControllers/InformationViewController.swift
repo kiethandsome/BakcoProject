@@ -47,7 +47,7 @@ class InformationViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.dropdownTextField.isOptionalDropDown = false
         self.dropdownTextField.delegate = self
-        patientList.append(_userName)
+        patientList.append(MyUser.name)
         
         self.dropdownTextField.itemList = patientList
     }
@@ -84,9 +84,9 @@ class InformationViewController: BaseViewController {
     }
     
     func fillAllTextField() {
-        fullNameTextField.text = _userName
-        phoneTextField.text = _userPhone
-        emailTF.text = _userEmail
+        fullNameTextField.text = MyUser.name
+        phoneTextField.text = MyUser.phone
+        emailTF.text = MyUser.email
     }
 
 }

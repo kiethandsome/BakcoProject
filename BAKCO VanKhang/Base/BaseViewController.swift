@@ -54,7 +54,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem = backButton
     }
     @objc func dismisss() {
-        hero_dismissViewController()
+        dismiss(animated: true)
     }
     
     ///Mark: Cancel button
@@ -96,15 +96,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         leftButton.isEnabled = false
         navigationItem.leftBarButtonItem = leftButton
     }
-    
-    ///Mark: Convert day
-    func convertDate(date: Date, with format: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        let dateString = formatter.string(from: date)
-        return dateString
-    }
-    
+
     func login() {}
 
 

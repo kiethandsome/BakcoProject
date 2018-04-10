@@ -27,7 +27,7 @@ class ReviewAppointmentViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         lblHospitalName.text = _selectedHospital?.Name!
-        lblPatientName.text = "Tên bệnh nhân: \(_userName)"
+        lblPatientName.text = "Tên bệnh nhân: \(MyUser.name)"
         lblAddress.text = "Chọn khám tại: \(_selectedHospital?.Address! ?? "...")"
         lblSpecialty.text = "Khoa: \(_selectedSpecialty?.Name! ?? "...")"
         lblDate.text = _selectedScheduler?.DateView!

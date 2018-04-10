@@ -50,10 +50,10 @@ class FinalAppointmentViewController: BaseViewController {
         roomNumberLabel.text = _selectedRoom?.Name!
         
         ///
-        userNameLabel.text = "Bệnh nhân: \(_userName)"
-        insuranceIDLabel.text = "BHYT: \(_userInsurance)"
-        birthdayLabel.text = "Ngày sinh: \(_userBirthday)"
-        phoneNumberLabel.text = "ĐT: \(_userPhone)"
+        userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
+        insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
+        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"
+        phoneNumberLabel.text = "ĐT: \(MyUser.phone)"
     }
     
     @IBAction func okAction(_ sender: Any) {

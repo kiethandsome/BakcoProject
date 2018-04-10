@@ -12,18 +12,10 @@ import Alamofire
 import MBProgressHUD
 import IQDropDownTextField
 
-//enum ExamType: String {
-//    case Normal = "Thông thường"
-//    case Service = "Dịch vụ"
-//    case Expert = "Chuyên gia"
-//}
 
 let Normal = "Thông thường"
 let Service = "Dịch vụ"
 let Expert = "Chuyên gia"
-let attribute: [NSAttributedStringKey : Any] = [.font: UIFont.boldSystemFont(ofSize: 10.0),
-                                                .foregroundColor: UIColor.white,
-                                                .paragraphStyle: NSTextAlignment.center]
 let exDict = [Normal: "0", Service: "1"]
 
 
@@ -54,9 +46,18 @@ class ChooseInformViewController: BaseViewController {
     @IBOutlet var noButton: UIButton!
     @IBOutlet var specialtyButton: UIButton!
     
+    let attribute: [NSAttributedStringKey : Any] = [.font: UIFont.boldSystemFont(ofSize: 10.0),
+                                                    .foregroundColor: UIColor.white,
+                                                    .paragraphStyle: NSTextAlignment.center]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        showBackButton()
+        setupDropDownTextField()
+        setupUserInterface()
+    }
+    
+    func setupUserInterface() {
         self.yesButton.backgroundColor = UIColor.lightGray
         self.yesButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.noButton.backgroundColor = UIColor.lightGray
@@ -67,21 +68,17 @@ class ChooseInformViewController: BaseViewController {
         self.dateCollectionView.register(DateCell.self, forCellWithReuseIdentifier: "cellId")
         self.dateCollectionView.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
-        showBackButton()
-        setupDropDownTextField()
-        setupUserInterface()
-    }
-    
-    func setupUserInterface() {
         self.navigationItem.title = "Đăng kí khám bệnh"
         self.confirmButton.layer.cornerRadius = 5.0
         self.confirmButton.clipsToBounds = true
-        
     }
     
     func setupDropDownTextField() {
-        
-        ///Examination type dropdown setup
+        setupExaminationTypeTextfield()
+        setupUsernameTextfield()
+    }
+    
+    func setupExaminationTypeTextfield() {
         self.exTypeDropDownTextField.isOptionalDropDown = false
         var array = [String]()
         for key in exDict.keys {
@@ -92,15 +89,15 @@ class ChooseInformViewController: BaseViewController {
         exTypeDropDownTextField.delegate = self
         exTypeDropDownTextField.dataSource = self
         selectedType = exTypeDropDownTextField.selectedItem
-        
-        ///Username DropDown setup
-        let usernames: [String] = [_userName]
+    }
+    
+    func setupUsernameTextfield() {
+        let usernames: [String] = [MyUser.name]
         self.usernameDropDownTextField.itemList = usernames
         self.usernameDropDownTextField.showDismissToolbar = true
         self.usernameDropDownTextField.delegate = self
         self.usernameDropDownTextField.dataSource = self
         self.usernameDropDownTextField.isOptionalDropDown = false
-//        selectedUser = userDict[usernameDropDownTextField.selectedItem!]
     }
     
     func validateTextField(textField: UITextField) -> Bool {
@@ -185,6 +182,12 @@ extension ChooseInformViewController {
     }
     
     @IBAction func yes(_ sender: Any) {
+        
+        /// show pop up
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HIUPdateViewController") as! HIUPdateViewController
+        self.tabBarController?.view.addSubview(vc.view)
+        self.tabBarController?.addChildViewController(vc)
+        
         insurance = true
         yesButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
         noButton.setImage(UIImage(named: "no-image"), for: .normal)
@@ -202,7 +205,7 @@ extension ChooseInformViewController {
             let specialty = self.selectedSpecialty,
             let typeId = exDict[self.selectedType!]
         {
-            getMatch(hospital: hospital, paintentID: _userId, specialty: specialty, date: date, typeId: typeId)
+            getMatch(hospital: hospital, paintentID: MyUser.id, specialty: specialty, date: date, typeId: typeId)
         } else {
             showAlert(title: "Lỗi", mess: "Chưa đủ thông tin đề xuất ra phiếu hẹn", style: .alert)
         }

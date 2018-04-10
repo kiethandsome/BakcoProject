@@ -20,24 +20,62 @@ let _RegisterURL = "http://api/Account/CustomerRegister"
 let _GetTokenApi = "http://api.vkhs.vn/Token"
 let _GetUserIdApi  = "http://api.vkhs.vn/api/Account/UserInfo"
 
-/// FamilyDoctor
-let _GetServiceDetailURL = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
-let _CheckContractApi = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckContractVKSOS"
 var _deviceToken = String()
-let _GetFavoriteDoctorListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetFavoriteDoctorList"
-let _GetDoctorListByServiceApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetDoctorListByService"
-let _CallFamilyDoctorServiceApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
-let _RemoveDoctorFromFavoriteListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorToFavorite"
-let _AddDoctorToFavoriteListApi = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
+
+/// Location
+let _GetCitiesApi = "http://api.vkhs.vn/api/Location/GetCities"
+let _GetDistrictsApi = "http://api.vkhs.vn/api/Location/GetDistricts"
+let _GetWardsApi = "http://api.vkhs.vn/api/Location/GetWards"
 
 
-var _userName = ""
-var _userId = 0
-var _userAddress = ""
-var _userInsurance = ""
-var _userPhone = ""
-var _userEmail = ""
-var _userBirthday = ""
-var _userToken = ""
+/// UPdate HI
+let _UpdateHIApi = "http://api.vkhs.vn/api/BkCustomer/UpdateHealthInsurance"
+let _GetHIApi = "http://api.vkhs.vn/api/BkCustomer/GetHealthInsurance"
 
-var userDict = [String : User]()
+
+struct MyUser {
+    
+    static var name = ""
+    static var id = 0
+    static var address = ""
+    static var insuranceId = ""
+    static var phone = ""
+    static var email = ""
+    static var birthday = ""
+    static var token = ""
+}
+
+struct FamilyDocrorApi {
+    
+    static let serviceDetail = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
+    static let checkContract = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckContractVKSOS"
+    static let favoriteDoctorList = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetFavoriteDoctorList"
+    static let doctorListByService = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetDoctorListByService"
+    static let service = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
+    static let removeDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorToFavorite"
+    static let addDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

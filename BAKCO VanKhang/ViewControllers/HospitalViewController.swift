@@ -17,14 +17,20 @@ protocol HopitalViewControllerDelegate: class {
     func didChooseHospital(hospital: HospitalModel)
 }
 
-class HospitalViewController: BaseViewController {
+class HospitalViewController: BaseViewController, UISearchControllerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var hospitalCollection: UICollectionView!
+    
     @IBOutlet var hospitalSearchBar: UISearchBar!
+    
+    let hospitalSearchController = UISearchController()
     
     var hospitals = [HospitalModel]()
     
+    var filterredHospitals = [HospitalModel]()
+    
     weak var delegate: HopitalViewControllerDelegate!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,17 @@ class HospitalViewController: BaseViewController {
         showCancelButton()
     }
     
+    private func setupSearchBar() {
+        if #available(iOS 11.0, *) {
+            self.hospitalSearchController.searchResultsUpdater = self
+            self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
+            self.hospitalSearchController.searchBar.placeholder = "con chim non"
+            definesPresentationContext = true
+            
+        } else {
+            
+        }
+    }
     
     func getHospitals() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -44,7 +61,7 @@ class HospitalViewController: BaseViewController {
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value as Any)
             
-            if (response.error != nil) { // error
+            if (response.error != nil) { /// error
                 self.showAlert(title: "Lỗi", mess: "Ko tìm thấy bệnh viện nào", style: .alert)
             } else {
                 response.result.value?.forEach({ (json) in
@@ -55,6 +72,24 @@ class HospitalViewController: BaseViewController {
                 self.hospitalCollection.reloadData()
             }
         }
+    }
+}
+
+extension HospitalViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return hospitalSearchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
+            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
+        })
+        self.hospitalCollection.reloadData()
     }
 }
 
@@ -112,37 +147,6 @@ extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDe
 
 
 
-
-
-
-
-
-//    public func alert(with hospital: HospitalModel) -> UIAlertController {
-//        let alert = UIAlertController(title: "Loại hình khám bệnh khám bệnh",
-//                                      message: "",
-//                                      preferredStyle: .actionSheet)
-//
-//        let redAction = UIAlertAction(title: "Khám thông thường", style: .default) { (action) in
-//            let chooseSpecialtyScreen = self.storyboard?.instantiateViewController(withIdentifier: "ChooseSpecialtyViewController") as! ChooseSpecialtyViewController
-//            chooseSpecialtyScreen.hospitalName = hospital.Name
-//            chooseSpecialtyScreen.hospitalAddress = hospital.Address
-//            chooseSpecialtyScreen.hospitalService = "Khám thông thường"
-//            self.navigationController?.pushViewController(chooseSpecialtyScreen, animated: true)
-//        }
-//        let greenAction = UIAlertAction(title: "Khám dịch vụ", style: .default) { (action) in
-//
-//        }
-//        let blueAction = UIAlertAction(title: "Khám chuyên khoa", style: .default) { (action) in
-//
-//        }
-//        let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
-//
-//        alert.addAction(redAction)
-//        alert.addAction(greenAction)
-//        alert.addAction(blueAction)
-//        alert.addAction(cancelAction)
-//        return alert
-//    }
 
 
 

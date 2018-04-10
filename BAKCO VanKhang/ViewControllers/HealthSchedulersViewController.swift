@@ -28,13 +28,13 @@ class HealthSchedulersViewController: BaseViewController {
         tableView1.dataSource = self
         tableView1.contentInset = UIEdgeInsets(top: 25.0, left: 0, bottom: 25.0, right: 0)
         tableView1.separatorStyle = .none
-        loadSchedule(with: _userId)
+        loadSchedule(with: MyUser.id)
         showBackButton()
     }
     
     func loadSchedule(with Id: Int) {
         MBProgressHUD.showAdded(to: self.tableView1, animated: true)
-        let url = URL(string: "http://api.vkhs.vn/api/BkCustomer/GetSchedulerCustomer?CustomerId=\(_userId)")
+        let url = URL(string: "http://api.vkhs.vn/api/BkCustomer/GetSchedulerCustomer?CustomerId=\(MyUser.id)")
         Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.tableView1, animated: true)
             

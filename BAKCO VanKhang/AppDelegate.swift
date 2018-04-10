@@ -42,13 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setValueForConstantVariables() {
-        _userName = UserDefaults.standard.string(forKey: UserName)!
-        _userId = UserDefaults.standard.integer(forKey: UserId)
-        _userAddress = UserDefaults.standard.string(forKey: UserAddress)!
-        _userInsurance = UserDefaults.standard.string(forKey: UserInsurance)!
-        _userPhone = UserDefaults.standard.string(forKey: UserPhone)!
-        _userEmail = UserDefaults.standard.string(forKey: UserEmail)!
-        _userBirthday = UserDefaults.standard.string(forKey: UserBirthday)!
+        MyUser.name = UserDefaults.standard.string(forKey: UserName)!
+        MyUser.id = UserDefaults.standard.integer(forKey: UserId)
+        MyUser.address = UserDefaults.standard.string(forKey: UserAddress)!
+        MyUser.insuranceId = UserDefaults.standard.string(forKey: UserInsurance)!
+        MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
+        MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
+        MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
 
     }
     

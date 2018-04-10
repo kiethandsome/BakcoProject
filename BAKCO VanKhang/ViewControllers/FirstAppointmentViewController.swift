@@ -95,10 +95,10 @@ class FirstAppointmentViewController: BaseViewController {
         exTypeLabel.text = type
         
         ///
-        userNameLabel.text = "Bệnh nhân: \(_userName)"
-        insuranceIDLabel.text = "BHYT: \(_userInsurance)"
-        birthdayLabel.text = "Ngày sinh: \(_userBirthday)"
-        phoneNumberLabel.text = "ĐT: \(_userPhone)"
+        userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
+        insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
+        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"
+        phoneNumberLabel.text = "ĐT: \(MyUser.phone)"
         
         if let healthCareId = currentMatch.HealthCareSchedulerId, let userId = currentMatch.CustomerId {
             getAppointMent(healthCareSchedulerId: healthCareId, customerId: userId)
