@@ -15,30 +15,7 @@ import AlamofireSwiftyJSON
 import SwiftyJSON
 
 class HIUPdateViewController : UIViewController {
-    
-    var endDate = String() {
-        didSet {
-            print("End date: \(endDate)")
-        }
-    }
-    
-    var startDate = String() {
-        didSet {
-            print("Start date: \(startDate)")
-        }
-    }
-    
-    var hospitalName = String() {
-        didSet {
-            print("Tên bệnh viện: \(hospitalName)")
-        }
-    }
-    
-    var HIId = String() {
-        didSet {
-            print("Số BHYT: \(HIId)")
-        }
-    }
+
     
     @IBOutlet var viewPopupUI: UIView!
     @IBOutlet var healthInsuranceTextfield: UITextField!
@@ -52,15 +29,22 @@ class HIUPdateViewController : UIViewController {
     }
     
     @IBAction func confirmUpdate(_ sender: Any) {
+        let format = "yyyy-MM-dd"
+        guard let hiid = healthInsuranceTextfield.text, let hosName = issuedPlaceTextfield.text,
+            let startDate = startDayTextfield.date, let endDate = endDayTextfield.date
+            else {return}
         
-        if validateTextfield() {
-        
+        if hiid == ""  || hosName == "" {
+            showAlert(errorMess: "Bạn chưa nhập đủ thông tin")
+        } else {
             updateHealthInsurance(userId: MyUser.id,
-                                  HIId: HIId,
-                                  hospital: hospitalName,
-                                  start: startDate,
-                                  end: endDate)
+                                  HIId: hiid,
+                                  hospital: hosName,
+                                  start: startDate.convertDateToString(with: format),
+                                  end: endDate.convertDateToString(with: format))
         }
+
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,21 +56,14 @@ class HIUPdateViewController : UIViewController {
         showViewWithAnimation()
         setupDropdownTextfield(tf: startDayTextfield)
         setupDropdownTextfield(tf: endDayTextfield)
-        healthInsuranceTextfield.delegate = self
-        issuedPlaceTextfield.delegate = self
         
         getHIId()
-        
-        /// Set value for start, end date at first time
-        startDate = startDayTextfield.selectedItem!
-        endDate = endDayTextfield.selectedItem!
-
     }
+
     
     func setupDropdownTextfield(tf: IQDropDownTextField) {
         tf.isOptionalDropDown = false
         tf.showDismissToolbar = true
-        tf.delegate = self
         tf.dropDownMode = .datePicker
     }
     
@@ -114,35 +91,6 @@ class HIUPdateViewController : UIViewController {
             self.view.removeFromSuperview()
         })
     }
-}
-
-extension HIUPdateViewController : IQDropDownTextFieldDelegate, UITextFieldDelegate {
-    
-    func textField(_ textField: IQDropDownTextField, didSelect date: Date?) {
-        
-        let selectedDate = date?.convertDateToString(with: "yyyy-MM-dd")
-        
-        if textField == startDayTextfield {
-            startDate = selectedDate!
-        }
-        
-        if textField == endDayTextfield {
-            endDate = selectedDate!
-        }
-    }
-
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if textField == issuedPlaceTextfield {
-            hospitalName = textField.text!
-        }
-        
-        if textField == healthInsuranceTextfield {
-            HIId = textField.text!
-        }
-    }
-    
 }
 
 extension HIUPdateViewController {
@@ -200,6 +148,8 @@ extension HIUPdateViewController {
     
     func getHIId() {
         
+        let format = "yyyy-MM-dd'T'HH:mm:ss"
+        
         let url = URL(string: "\(_GetHIApi)?CustomerId=\(MyUser.id)")!
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -212,18 +162,16 @@ extension HIUPdateViewController {
                 
                 let data = response.value?.dictionaryObject
                 
+                ///Set value for textField.
                 let currentHI = HealthInsurance(data: data!)
                 
                 self.healthInsuranceTextfield.text = currentHI.id
-                
                 self.issuedPlaceTextfield.text = currentHI.place
                 
-                let startDate = currentHI.startDate.convertStringToDate(with: "yyyy-MM-dd'T'HH:mm:ss")
-                
-                let endDate = currentHI.endDate.convertStringToDate(with: "yyyy-MM-dd'T'HH:mm:ss")
+                let startDate = currentHI.startDate.convertStringToDate(with: format)
+                let endDate = currentHI.endDate.convertStringToDate(with: format)
                 
                 self.startDayTextfield.setDate(startDate, animated: true)
-                
                 self.endDayTextfield.setDate(endDate, animated: true)
                 
             } else {
@@ -247,20 +195,6 @@ extension HIUPdateViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    func validateTextfield() -> Bool {
-        
-        if self.HIId == "" || self.hospitalName == "" {
-            
-            showAlert(errorMess: "Bạn chưa nhập đủ thông tin")
-            return false
-
-        } else  {
-            
-            return true
-            
-        }
-    }
 }
 
 

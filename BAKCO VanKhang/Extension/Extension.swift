@@ -20,7 +20,6 @@ extension UIColor {
         let color = DynamicColor(hexString: "4095A3")
         return color
     }
-    
 }
 
 extension UIView {
@@ -58,7 +57,6 @@ extension String { /// Convert from String to Date
         dateFormatter.locale = Locale(identifier: "vi_VN")
         return dateFormatter.date(from: self)!
     }
-    
 }
 
 

@@ -47,7 +47,7 @@ class PayViewController: BaseViewController {
 //            navigationController?.pushViewController(next!, animated: true)
             showAlert(title: "Xin lỗi", mess: "Chức năng thanh toán trước đang được phát triển, vui lòng chọn thanh toán sau!", style: .alert)
         } else {
-            let next = storyboard?.instantiateViewController(withIdentifier: "FinalAppointmentViewController") as! FinalAppointmentViewController
+            let next = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "FinalAppointmentViewController") as! FinalAppointmentViewController
             next.isPaid = false
             navigationController?.pushViewController(next, animated: true)
         }

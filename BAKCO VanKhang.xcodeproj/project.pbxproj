@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9201577C207DEA2F00764D05 /* Booking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9201577B207DEA2F00764D05 /* Booking.storyboard */; };
+		9201577F207DEDCC00764D05 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9201577E207DEDCC00764D05 /* Payment.storyboard */; };
+		92015782207DEE9B00764D05 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92015781207DEE9B00764D05 /* APIs.swift */; };
+		92015784207DEEDF00764D05 /* MyStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92015783207DEEDF00764D05 /* MyStoryboard.swift */; };
 		920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */; };
 		920CC7FE206CD2740082035A /* FavoriteDoctorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */; };
 		9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */; };
@@ -30,13 +34,17 @@
 		9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */; };
 		927F5A63207348EA0045D293 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927F5A62207348EA0045D293 /* CitiesViewController.swift */; };
 		92810E99200708D100B7A62F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92810E98200708D100B7A62F /* User.swift */; };
+		928A07CA207CC5FC003AF0E7 /* HealthInsurance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928A07C9207CC5FC003AF0E7 /* HealthInsurance.swift */; };
+		928A07CC207D012A003AF0E7 /* FamilyDoctor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 928A07CB207D012A003AF0E7 /* FamilyDoctor.storyboard */; };
+		928A07CF207D03F6003AF0E7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 928A07CE207D03F6003AF0E7 /* Login.storyboard */; };
 		92CA46412011B49E00E84562 /* HomedTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA46402011B49E00E84562 /* HomedTreatment.swift */; };
 		92DC379520728123008AD7B6 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC379420728123008AD7B6 /* City.swift */; };
+		92E52A0B207E515E00DC32CD /* FavoriteDrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E52A0A207E515E00DC32CD /* FavoriteDrViewController.swift */; };
 		92F08BBD1FCC79460099BCBF /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */; };
 		92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */; };
 		92F3ADD31FC51B5600C0D6E7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3ADD21FC51B5600C0D6E7 /* BaseNavigationController.swift */; };
 		92F3ADD51FC55F8500C0D6E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3ADD41FC55F8500C0D6E7 /* BaseViewController.swift */; };
-		92F4A033201B669B00181EDA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4A032201B669B00181EDA /* Constant.swift */; };
+		92F4A033201B669B00181EDA /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4A032201B669B00181EDA /* MyUser.swift */; };
 		92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7C91FE1209D009C6663 /* InformationViewController.swift */; };
 		92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7CB1FE12D07009C6663 /* WebViewController.swift */; };
 		AC8E3BC56C27AEF8F46FE39E /* Pods_BAKCO_VanKhang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */; };
@@ -69,6 +77,10 @@
 
 /* Begin PBXFileReference section */
 		4FCC2812AAE6A8951DC50BBD /* Pods-BAKCO VanKhang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.release.xcconfig"; sourceTree = "<group>"; };
+		9201577B207DEA2F00764D05 /* Booking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Booking.storyboard; sourceTree = "<group>"; };
+		9201577E207DEDCC00764D05 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		92015781207DEE9B00764D05 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		92015783207DEEDF00764D05 /* MyStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryboard.swift; sourceTree = "<group>"; };
 		920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteDoctorCell.xib; sourceTree = "<group>"; };
 		920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDoctorCell.swift; sourceTree = "<group>"; };
 		9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkhsInfoViewcontroller.swift; sourceTree = "<group>"; };
@@ -92,14 +104,18 @@
 		9276E9A420185E2000EFC492 /* HealthSchedulerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthSchedulerCell.xib; sourceTree = "<group>"; };
 		927F5A62207348EA0045D293 /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
 		92810E98200708D100B7A62F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		928A07C9207CC5FC003AF0E7 /* HealthInsurance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthInsurance.swift; sourceTree = "<group>"; };
+		928A07CB207D012A003AF0E7 /* FamilyDoctor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FamilyDoctor.storyboard; sourceTree = "<group>"; };
+		928A07CE207D03F6003AF0E7 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		929748E82068B577000961D1 /* BAKCO VanKhang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BAKCO VanKhang.entitlements"; sourceTree = "<group>"; };
 		92CA46402011B49E00E84562 /* HomedTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomedTreatment.swift; sourceTree = "<group>"; };
 		92DC379420728123008AD7B6 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		92E52A0A207E515E00DC32CD /* FavoriteDrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDrViewController.swift; sourceTree = "<group>"; };
 		92F08BBC1FCC79460099BCBF /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		92F08BBE1FCC84510099BCBF /* CustomSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		92F3ADD21FC51B5600C0D6E7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		92F3ADD41FC55F8500C0D6E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		92F4A032201B669B00181EDA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		92F4A032201B669B00181EDA /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		92FBE7C91FE1209D009C6663 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		92FBE7CB1FE12D07009C6663 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +171,65 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9201577D207DEB1E00764D05 /* BookingViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */,
+				F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */,
+				F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */,
+				92FBE7C91FE1209D009C6663 /* InformationViewController.swift */,
+				925E415B2073DD9500F9B393 /* HIUpdateViewController.swift */,
+			);
+			path = BookingViewControllers;
+			sourceTree = "<group>";
+		};
+		92015780207DEDFD00764D05 /* PaymentViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9229AC061FEA1C3E005F07CC /* PayViewController.swift */,
+				92FBE7CB1FE12D07009C6663 /* WebViewController.swift */,
+			);
+			path = PaymentViewControllers;
+			sourceTree = "<group>";
+		};
+		92015785207E026A00764D05 /* AppoimentViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9237E60A1FFC80340031A45B /* FirstAppointmentViewController.swift */,
+				9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */,
+				F31B83991FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift */,
+			);
+			path = AppoimentViewControllers;
+			sourceTree = "<group>";
+		};
+		92015787207E02C500764D05 /* SideMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
+				9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */,
+				92015788207E02DC00764D05 /* SchdulersViewControllers */,
+			);
+			path = SideMenuViewControllers;
+			sourceTree = "<group>";
+		};
+		92015788207E02DC00764D05 /* SchdulersViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */,
+				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
+			);
+			path = SchdulersViewControllers;
+			sourceTree = "<group>";
+		};
+		92015789207E067700764D05 /* MainViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
+				F379DD051FFB9F8800314610 /* TestViewController.swift */,
+			);
+			path = MainViewControllers;
+			sourceTree = "<group>";
+		};
 		920CC7FC206CD2530082035A /* FavoriteDoctorCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				9235357A1FC68951005464C2 /* Extension.swift */,
-				92F4A032201B669B00181EDA /* Constant.swift */,
+				92F4A032201B669B00181EDA /* MyUser.swift */,
+				92015781207DEE9B00764D05 /* APIs.swift */,
+				92015783207DEEDF00764D05 /* MyStoryboard.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -194,24 +271,39 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		925E41582073CB1B00F9B393 /* ChildViewController */ = {
+		925E41582073CB1B00F9B393 /* FamilyDoctorViewControlers */ = {
 			isa = PBXGroup;
 			children = (
 				F3CC05791FE480B7005F5213 /* PopUpViewController.swift */,
-				925E415B2073DD9500F9B393 /* HIUpdateViewController.swift */,
+				92CA46402011B49E00E84562 /* HomedTreatment.swift */,
+				92E52A0A207E515E00DC32CD /* FavoriteDrViewController.swift */,
 			);
-			path = ChildViewController;
+			path = FamilyDoctorViewControlers;
 			sourceTree = "<group>";
 		};
-		927F5A61207348870045D293 /* SignUpViewControllers */ = {
+		927F5A61207348870045D293 /* LoginViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				923694D51FE0F28000329310 /* LoginViewController.swift */,
 				F3DD420B1FEA19D400135774 /* SecondMainViewController.swift */,
 				927F5A62207348EA0045D293 /* CitiesViewController.swift */,
 				925E4154207357CC00F9B393 /* DistrictsViewController.swift */,
 				925E41562073605100F9B393 /* WardViewController.swift */,
 			);
-			path = SignUpViewControllers;
+			path = LoginViewControllers;
+			sourceTree = "<group>";
+		};
+		928A07CD207D037A003AF0E7 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				928A07CE207D03F6003AF0E7 /* Login.storyboard */,
+				F32F2EFC1F989CC7008C5CAF /* Main.storyboard */,
+				928A07CB207D012A003AF0E7 /* FamilyDoctor.storyboard */,
+				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
+				9201577B207DEA2F00764D05 /* Booking.storyboard */,
+				9201577E207DEDCC00764D05 /* Payment.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		92F08BBB1FCC79240099BCBF /* CustomSearchBar */ = {
@@ -262,9 +354,8 @@
 				F32F2F0D1F98B0E7008C5CAF /* ViewControllers */,
 				92231BD2200E3C3B00E96F00 /* Xib:Nib */,
 				923CFBBA1FF8AE6A00E6A97D /* Cells */,
+				928A07CD207D037A003AF0E7 /* Storyboard */,
 				F32F2EF81F989CC7008C5CAF /* AppDelegate.swift */,
-				F32F2EFC1F989CC7008C5CAF /* Main.storyboard */,
-				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
 				F32F2F071F989CC7008C5CAF /* Info.plist */,
 				F32F2EFF1F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld */,
 				F32F2F021F989CC7008C5CAF /* Assets.xcassets */,
@@ -275,25 +366,13 @@
 		F32F2F0D1F98B0E7008C5CAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
-				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
-				925E41582073CB1B00F9B393 /* ChildViewController */,
-				923694D51FE0F28000329310 /* LoginViewController.swift */,
-				F379DD051FFB9F8800314610 /* TestViewController.swift */,
-				927F5A61207348870045D293 /* SignUpViewControllers */,
-				9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */,
-				92FBE7C91FE1209D009C6663 /* InformationViewController.swift */,
-				F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */,
-				F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */,
-				9237E60A1FFC80340031A45B /* FirstAppointmentViewController.swift */,
-				F31B83991FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift */,
-				9229AC061FEA1C3E005F07CC /* PayViewController.swift */,
-				92FBE7CB1FE12D07009C6663 /* WebViewController.swift */,
-				9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */,
-				92CA46402011B49E00E84562 /* HomedTreatment.swift */,
-				9276E99E2018574700EFC492 /* HealthSchedulersViewController.swift */,
-				921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */,
-				9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */,
+				92015789207E067700764D05 /* MainViewControllers */,
+				92015787207E02C500764D05 /* SideMenuViewControllers */,
+				925E41582073CB1B00F9B393 /* FamilyDoctorViewControlers */,
+				927F5A61207348870045D293 /* LoginViewControllers */,
+				9201577D207DEB1E00764D05 /* BookingViewControllers */,
+				92015785207E026A00764D05 /* AppoimentViewControllers */,
+				92015780207DEDFD00764D05 /* PaymentViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -315,6 +394,7 @@
 				F33B74841FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift */,
 				9259739420663438001F9867 /* FamilyDoctorResponse.swift */,
 				92DC379420728123008AD7B6 /* City.swift */,
+				928A07C9207CC5FC003AF0E7 /* HealthInsurance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,7 +446,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Pham An";
+				ORGANIZATIONNAME = Lou;
 				TargetAttributes = {
 					F32F2EF41F989CC7008C5CAF = {
 						CreatedOnToolsVersion = 9.0;
@@ -408,9 +488,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928A07CF207D03F6003AF0E7 /* Login.storyboard in Resources */,
 				9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */,
+				9201577F207DEDCC00764D05 /* Payment.storyboard in Resources */,
 				92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */,
+				928A07CC207D012A003AF0E7 /* FamilyDoctor.storyboard in Resources */,
 				F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */,
+				9201577C207DEA2F00764D05 /* Booking.storyboard in Resources */,
 				F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */,
 				920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */,
 				F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */,
@@ -526,6 +610,7 @@
 				F33B74851FEA7D49006A2CF4 /* HealthCareSchedulerModel.swift in Sources */,
 				927F5A63207348EA0045D293 /* CitiesViewController.swift in Sources */,
 				92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */,
+				928A07CA207CC5FC003AF0E7 /* HealthInsurance.swift in Sources */,
 				F34174811FC748C40093CB1A /* DoctorModel.swift in Sources */,
 				F34174871FC7493E0093CB1A /* DetailModel.swift in Sources */,
 				92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */,
@@ -533,14 +618,17 @@
 				F3DD420C1FEA19D400135774 /* SecondMainViewController.swift in Sources */,
 				9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */,
 				92F3ADD31FC51B5600C0D6E7 /* BaseNavigationController.swift in Sources */,
+				92015782207DEE9B00764D05 /* APIs.swift in Sources */,
 				F3FEB2BA1FAC8A2900B10DEE /* Location.swift in Sources */,
 				92CA46412011B49E00E84562 /* HomedTreatment.swift in Sources */,
-				92F4A033201B669B00181EDA /* Constant.swift in Sources */,
+				92F4A033201B669B00181EDA /* MyUser.swift in Sources */,
 				F3CD6C011F9E41D400E9E830 /* CustomerModel.swift in Sources */,
+				92015784207DEEDF00764D05 /* MyStoryboard.swift in Sources */,
 				92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */,
 				F34174851FC749290093CB1A /* ServiceModel.swift in Sources */,
 				F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */,
 				9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */,
+				92E52A0B207E515E00DC32CD /* FavoriteDrViewController.swift in Sources */,
 				F341747F1FC746D90093CB1A /* AppointmentModel.swift in Sources */,
 				F34174831FC748D20093CB1A /* RoomModel.swift in Sources */,
 				923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */,

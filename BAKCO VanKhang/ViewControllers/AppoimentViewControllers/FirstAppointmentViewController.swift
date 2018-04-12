@@ -109,8 +109,8 @@ class FirstAppointmentViewController: BaseViewController {
     }
     
     @IBAction func confirm(_ sender: Any) {
-        let next = storyboard?.instantiateViewController(withIdentifier: "PayViewController")
-        navigationController?.pushViewController(next!, animated: true)
+        let next = MyStoryboard.paymentStoryboard.instantiateViewController(withIdentifier: "PayViewController")
+        navigationController?.pushViewController(next, animated: true)
     }
     
     

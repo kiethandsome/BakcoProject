@@ -14,8 +14,11 @@ import AlamofireSwiftyJSON
 import Alamofire
 import MBProgressHUD
 
-var _long = Double()
-var _lat = Double()
+
+struct MyLocation {
+    static var long = Double()
+    static var lat = Double()
+}
 
 class MainViewController: BaseViewController  {
     
@@ -56,8 +59,8 @@ class MainViewController: BaseViewController  {
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             let parameters: Parameters = ["Phone": MyUser.phone,
-                                          "Lat": _lat,
-                                          "Lng": _long,
+                                          "Lat": MyLocation.lat,
+                                          "Lng": MyLocation.long,
                                           "Speed": 0]
             let sosUrl = URL(string: _SOSEmergencyApi)!
             
@@ -72,27 +75,13 @@ class MainViewController: BaseViewController  {
         }
     }
     
-    private func checkContract(phone: String) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        let link: String = "\(FamilyDocrorApi.checkContract)?phone=\(phone)&lat=\(_lat)&lng=\(_long)"
-        let url = URL(string: link)!
-        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if let data = response.value?.dictionaryObject, response.result.isSuccess == true {
-                if let message: String = data["message"] as? String {
-                    print("Message: \(message)")
-                }
-            }
-        }
-    }
-    
     /*_______________________________*/
     // Location
-    var locationManager: CLLocationManager!
+    var locationManager = CLLocationManager()
     var location: CLLocation!{
         didSet {
-            _lat = location.coordinate.latitude
-            _long = location.coordinate.longitude
+            MyLocation.lat = location.coordinate.latitude
+            MyLocation.long = location.coordinate.longitude
             print("Long: \(location.coordinate.latitude), Lat: \(location.coordinate.longitude)")
         }
     }
@@ -117,20 +106,43 @@ class MainViewController: BaseViewController  {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        checkCoreLocationPermission()
-        
+        super.viewDidAppear(animated)
+        self.checkCoreLocationPermission()
         ///
         if MyUser.id != 0 {
-            print(MyUser.id)
+            print("User id : \(MyUser.id)")
         }
     }
     
-    @IBAction func greenButtonAction(_ sender: Any) { /// Đăng kí khám chữa bệnh.
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "ChooseInformViewController")
-        navigationController?.pushViewController(next!, animated: true)
+    private func checkContract(phone: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let link: String = "\(FamilyDocrorApi.checkContract)?phone=\(phone)&lat=\(MyLocation.lat)&lng=\(MyLocation.long)"
+        let url = URL(string: link)!
+//        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+//            MBProgressHUD.hide(for: self.view, animated: true)
+//            if let data = response.value?.dictionaryObject, response.result.isSuccess {
+//                if let message: String = data["message"] as? String {
+//                    print("Message: \(message)")
+//                }
+//            }
+//        }
+        
+        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseString { (responseString) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            if responseString.result.isSuccess {
+                print(responseString.result.description)
+            } else {
+                print(responseString.error?.localizedDescription as Any)
+            }
+        }
+        
+    }
+    
+    // Mark: Booking Button
+    @IBAction func greenButtonAction(_ sender: Any) {
+        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseInformViewController")
+        navigationController?.pushViewController(next, animated: true)
     }
     
     //Mark: Advisory Button
@@ -144,32 +156,42 @@ class MainViewController: BaseViewController  {
     
     //Mark: Home dotor
     @IBAction func blueButtonAction(_ sender: Any) {
-        let popUpVc = storyboard?.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
+        let popUpVc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
         tabBarController?.view.addSubview((popUpVc.view)!)
         tabBarController?.addChildViewController(popUpVc)
     }
 }
 
+//Mark: Location manager delegate.
+
 extension MainViewController: CLLocationManagerDelegate {
-    ///location
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = (locations ).last
         locationManager.stopUpdatingLocation()
     }
     
     func checkCoreLocationPermission(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-            locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingLocation()
         }
         else if CLLocationManager.authorizationStatus() == .notDetermined{
-            locationManager.requestWhenInUseAuthorization()
+            let mess = "Bạn phải bật vị trí mới sử dụng được dịch vụ Gọi khẩn cấp SOS của chúng tôi!"
+            let title = "Yêu cầu"
+            self.showAlert(title: title, message: mess, style: .alert, okAction: { (action) in
+                self.locationManager.requestWhenInUseAuthorization()
+            })
         }
         else if CLLocationManager.authorizationStatus() == .restricted{
             print("unauthorized")
         }
     }
+
 }
+
 
 
 

@@ -12,7 +12,7 @@ import IQKeyboardManagerSwift
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder {
     
    var window: UIWindow?
 
@@ -25,17 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupFirstScreen() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let rootVc: UIViewController
 
         if UserDefaults.standard.bool(forKey: DidLogin)
         {
-            rootVc = mainStoryboard.instantiateViewController(withIdentifier: "tab")
+            rootVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "tab")
             self.setValueForConstantVariables()
+            self.hideTabbar() /// update later
         }
         else
         {
-            rootVc = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
+            rootVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
         }   
         window?.rootViewController = rootVc
         window?.makeKeyAndVisible()
@@ -49,8 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
         MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
         MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
-
     }
+    
+    func hideTabbar() {
+        UITabBar.appearance().isHidden = true
+    }
+ 
+}
+
+
+extension AppDelegate: UIApplicationDelegate {
     
     func registerForPushNotification() {
         
@@ -100,6 +108,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("fail to register with error: \(error)")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

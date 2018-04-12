@@ -24,7 +24,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        tabBarController?.tabBar.isTranslucent = false
+        tabBarController?.tabBar.isTranslucent = true
+        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = DynamicColor(hexString: "f7f9f9")
     }
     
@@ -54,7 +55,9 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem = backButton
     }
     @objc func dismisss() {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.tabBarController?.tabBar.isHidden = true
+        }
     }
     
     ///Mark: Cancel button
@@ -115,11 +118,20 @@ extension BaseViewController {
                 self.showAlert(title: "Lỗi", mess: (response.error?.localizedDescription)!, style: .alert)
             }
             
-            
         }
     }
     
+    
+    open func showAlert(title: String, message: String, style: UIAlertControllerStyle, okAction: @escaping (_ action: UIAlertAction) -> Void ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: okAction)
+        let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
 
+    
 }
 
 

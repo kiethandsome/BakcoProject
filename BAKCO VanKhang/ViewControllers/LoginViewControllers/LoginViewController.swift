@@ -13,7 +13,7 @@ import AlamofireSwiftyJSON
 import MBProgressHUD
 
 class LoginViewController: BaseViewController {
-    
+        
     var currentUser: User? {
         didSet {
             User.setCurrent(currentUser!)
@@ -22,19 +22,18 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet var buttonView: UIView!
     @IBOutlet var loginButton: UIButton!
-    @IBAction func loginButtonAction(_ sender: Any) {
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "SecondMainViewController")
-        let nav = BaseNavigationController(rootViewController: next!)
-        self.present(nav, animated: true)
-    }
-    
     @IBOutlet var usernameTextfield: UITextField!
     @IBOutlet var passwordTexfield: UITextField!
+
+    @IBAction func loginButtonAction(_ sender: Any) {
+        let next = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "SecondMainViewController")
+        let nav = BaseNavigationController(rootViewController: next)
+        self.present(nav, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
     }
     
     func setupUI() {
@@ -99,7 +98,7 @@ class LoginViewController: BaseViewController {
     }
     
     func pushToMainViewController() {
-        let mainTab = self.storyboard?.instantiateViewController(withIdentifier: "tab")
+        let mainTab = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "tab")
         guard let window = UIApplication.shared.keyWindow else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
             window.rootViewController = mainTab

@@ -148,7 +148,7 @@ class ChooseInformViewController: BaseViewController {
             self.match.initWithData(data: response)
             
             //
-            let firstAppointment = self.storyboard?.instantiateViewController(withIdentifier: "ReviewSpecialtyViewController") as! FirstAppointmentViewController
+            let firstAppointment = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "ReviewSpecialtyViewController") as! FirstAppointmentViewController
             firstAppointment.currentHospital = hospital
             firstAppointment.day = date
             firstAppointment.specialty = specialty
@@ -165,14 +165,14 @@ class ChooseInformViewController: BaseViewController {
 extension ChooseInformViewController {
 
     @IBAction func chooseHospital(_ sender: Any) {
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "HospitalViewController") as! HospitalViewController
+        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "HospitalViewController") as! HospitalViewController
         next.delegate = self
         let nav = BaseNavigationController(rootViewController: next)
         self.present(nav, animated: true)
     }
     
     @IBAction func showSpecialtyList(_ sender: Any) {
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "ChooseSpecialtyViewController") as! ChooseSpecialtyViewController
+        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseSpecialtyViewController") as! ChooseSpecialtyViewController
         next.hospitalId = selectedHospital?.Id
         next.type = exDict[exTypeDropDownTextField.selectedItem!]
         next.naviTitle = exTypeDropDownTextField.selectedItem!
@@ -183,10 +183,13 @@ extension ChooseInformViewController {
     
     @IBAction func yes(_ sender: Any) {
         
-        /// show pop up
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HIUPdateViewController") as! HIUPdateViewController
-        self.tabBarController?.view.addSubview(vc.view)
-        self.tabBarController?.addChildViewController(vc)
+        if !insurance {
+            /// show pop up
+            let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "HIUPdateViewController") as! HIUPdateViewController
+            self.tabBarController?.view.addSubview(vc.view)
+            self.tabBarController?.addChildViewController(vc)
+
+        }
         
         insurance = true
         yesButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)

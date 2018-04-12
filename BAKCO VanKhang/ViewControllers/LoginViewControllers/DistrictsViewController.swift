@@ -1,5 +1,5 @@
 //
-//  WardViewController.swift
+//  DistrictsViewController.swift
 //  BAKCO VanKhang
 //
 //  Created by Kiet on 4/3/18.
@@ -12,28 +12,24 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
-var _selectedWard: Ward! {
-    didSet {
-        _selectedPlace = "\(_selectedWard.name), \(_selectedDistrict.name), \(_selectedCity.name)"
-    }
-}
+var _selectedDistrict: District!
 
-class WardViewController: BaseViewController {
+class DistrictsViewController: BaseViewController {
     
-    @IBOutlet var wardTableview: UITableView!
+    @IBOutlet var distTableview: UITableView!
     
-    var wards = [Ward]() {
+    var districts = [District]() {
         didSet {
-            wardTableview.reloadData()
+            distTableview.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Phường xã"
+        navigationItem.title = "Quận huyện"
         showBackButton()
-        setupTableview(tv: wardTableview)
-        getWard(by: _selectedDistrict.value)
+        setupTableview(tv: distTableview)
+        getDist(by: _selectedCity.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -42,24 +38,23 @@ class WardViewController: BaseViewController {
         tv.dataSource = self
         tv.rowHeight = 50.0
         tv.separatorInset.left = 0
-        
     }
 }
 
-extension WardViewController {
+extension DistrictsViewController {
     
-    func getWard(by distCode: String) {
+    func getDist(by cityCode: String) {
         
-        let getDistUrl = URL(string: "\(_GetWardsApi)?DistrictCode=\(distCode)")!
+        let getDistUrl = URL(string: "\(_GetDistrictsApi)?CityCode=\(cityCode)")!
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(getDistUrl, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             
             if let data = response.value?.array {
-                data.forEach({ (wardData) in
-                    let ward = Ward(data: wardData.dictionaryObject!)
-                    self.wards.append(ward)
+                data.forEach({ (distData) in
+                    let dist = District(data: distData.dictionaryObject!)
+                    self.districts.append(dist)
                 })
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -70,23 +65,28 @@ extension WardViewController {
     
 }
 
-extension WardViewController : UITableViewDelegate, UITableViewDataSource {
+extension DistrictsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wards.count
+        return districts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = wards[indexPath.row].name
+        cell?.textLabel?.text = districts[indexPath.row].name
         cell?.textLabel?.textColor = UIColor.specialGreenColor()
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        _selectedWard = wards[indexPath.row]
-        navigationController?.dismiss(animated: true, completion: nil)
+        _selectedDistrict = districts[indexPath.row]
+        
+        let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
+
+
+

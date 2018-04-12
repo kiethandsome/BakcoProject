@@ -1155,7 +1155,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Pe-0S-dr4">
                                                 <rect key="frame" x="0.0" y="505" width="290" height="40"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã số định danh (CMND*)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VeN-Qd-bOe">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã số định danh (CMND*)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VeN-Qd-bOe">
                                                         <rect key="frame" x="126" y="2.5" width="199" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="fTK-0d-7vR"/>
@@ -1164,7 +1164,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Mã số định danh:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eP-Cz-5uZ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="Mã số định danh:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eP-Cz-5uZ">
                                                         <rect key="frame" x="10" y="0.0" width="106" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                         <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2629,118 +2629,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMM-mx-rfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2751" y="-898"/>
-        </scene>
-        <!--Homed Treatment View Controller-->
-        <scene sceneID="SZL-Ad-ZUZ">
-            <objects>
-                <viewController storyboardIdentifier="HomedTreatmentViewController" id="i6h-TR-o1l" customClass="HomedTreatmentViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1KM-tp-Brj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sV-BD-eRU">
-                                <rect key="frame" x="30" y="170" width="260" height="50"/>
-                                <color key="backgroundColor" red="0.26325890421867371" green="0.59770309925079346" blue="0.65219753980636597" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="wNo-4Y-6SG"/>
-                                </constraints>
-                                <state key="normal" title="Chọn cán bộ y tế theo yêu cầu">
-                                    <color key="titleColor" red="0.99992352724075317" green="1" blue="0.99988287687301636" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="selectMedicalStaff:" destination="i6h-TR-o1l" eventType="touchUpInside" id="H8S-WA-h0f"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1TS-5D-iHV">
-                                <rect key="frame" x="30" y="250" width="260" height="50"/>
-                                <color key="backgroundColor" red="0.26325890419999998" green="0.59770309929999998" blue="0.65219753979999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="w0i-yk-OOh"/>
-                                </constraints>
-                                <state key="normal" title="Chọn cán bộ y tế đã từng khám">
-                                    <color key="titleColor" red="0.9999235272" green="1" blue="0.99988287689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="selectUsedMedicalStaff:" destination="i6h-TR-o1l" eventType="touchUpInside" id="mMh-nb-tvz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndr-K2-DMY">
-                                <rect key="frame" x="30" y="330" width="260" height="50"/>
-                                <color key="backgroundColor" red="0.26325890419999998" green="0.59770309929999998" blue="0.65219753979999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="xLF-3c-XZc"/>
-                                </constraints>
-                                <state key="normal" title="Gọi tự động">
-                                    <color key="titleColor" red="0.9999235272" green="1" blue="0.99988287689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="automaticallyCalling:" destination="i6h-TR-o1l" eventType="touchUpInside" id="SL6-7U-c97"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4sV-BD-eRU" firstAttribute="top" secondItem="9Pf-i0-uil" secondAttribute="top" constant="150" id="33q-Jb-mI6"/>
-                            <constraint firstItem="ndr-K2-DMY" firstAttribute="top" secondItem="1TS-5D-iHV" secondAttribute="bottom" constant="30" id="Det-Bz-KA4"/>
-                            <constraint firstItem="1TS-5D-iHV" firstAttribute="top" secondItem="4sV-BD-eRU" secondAttribute="bottom" constant="30" id="FWh-2x-QVK"/>
-                            <constraint firstItem="9Pf-i0-uil" firstAttribute="trailing" secondItem="ndr-K2-DMY" secondAttribute="trailing" constant="30" id="Ili-du-bVM"/>
-                            <constraint firstItem="4sV-BD-eRU" firstAttribute="leading" secondItem="9Pf-i0-uil" secondAttribute="leading" constant="30" id="P8E-Nm-tud"/>
-                            <constraint firstAttribute="trailing" secondItem="1TS-5D-iHV" secondAttribute="trailing" constant="30" id="o4r-gU-6Hg"/>
-                            <constraint firstItem="ndr-K2-DMY" firstAttribute="leading" secondItem="9Pf-i0-uil" secondAttribute="leading" constant="30" id="qxe-F7-f8v"/>
-                            <constraint firstItem="9Pf-i0-uil" firstAttribute="trailing" secondItem="4sV-BD-eRU" secondAttribute="trailing" constant="30" id="v2D-oa-swT"/>
-                            <constraint firstItem="1TS-5D-iHV" firstAttribute="leading" secondItem="9Pf-i0-uil" secondAttribute="leading" constant="30" id="v40-JI-V5Q"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9Pf-i0-uil"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kMS-A2-WoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-772" y="-1728"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Mdh-IU-9bF">
-            <objects>
-                <viewController id="xrc-Bl-wh1" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4dZ-ij-Rhs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WtD-BY-sBa">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4Vh-ny-Dhp" firstAttribute="trailing" secondItem="WtD-BY-sBa" secondAttribute="trailing" id="Xpz-76-59F"/>
-                            <constraint firstItem="WtD-BY-sBa" firstAttribute="top" secondItem="4Vh-ny-Dhp" secondAttribute="top" id="bs7-ic-ysC"/>
-                            <constraint firstItem="4Vh-ny-Dhp" firstAttribute="bottom" secondItem="WtD-BY-sBa" secondAttribute="bottom" id="iVr-9X-GtI"/>
-                            <constraint firstItem="WtD-BY-sBa" firstAttribute="leading" secondItem="4Vh-ny-Dhp" secondAttribute="leading" id="t6W-3N-5Kh"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="4Vh-ny-Dhp"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AEk-DU-uRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-93" y="-1728"/>
         </scene>
         <!--Choose Specialty View Controller-->
         <scene sceneID="rTA-wE-dfi">

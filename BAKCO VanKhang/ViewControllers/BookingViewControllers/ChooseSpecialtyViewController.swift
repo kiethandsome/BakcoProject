@@ -41,6 +41,7 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
         showCancelButton()
         specialtyList.dataSource = self
         specialtyList.delegate = self
+        specialtyList.tableFooterView = UIView()
         //configSearchController()
         configureCustomSearchController()
         

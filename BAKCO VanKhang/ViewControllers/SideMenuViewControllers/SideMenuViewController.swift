@@ -99,7 +99,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             let alert = UIAlertController(title: "Xác nhận", message: "Bạn chắc chắn muốn đăng xuất?", preferredStyle: .alert)
             let okACtion = UIAlertAction(title: "Đăng xuất", style: .destructive, handler: { (action) in
-                let loginVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+                let loginVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
                 UserDefaults.standard.set(false, forKey: DidLogin)
                 guard let window = UIApplication.shared.keyWindow else { return }
                 UIView.transition(with: window, duration: 0.5, options: .transitionCurlDown, animations: {

@@ -1,8 +1,8 @@
 //
-//  Constant.swift
+//  APIs.swift
 //  BAKCO VanKhang
 //
-//  Created by Kiet on 1/26/18.
+//  Created by Kiet on 4/11/18.
 //  Copyright © 2018 Pham An. All rights reserved.
 //
 
@@ -32,19 +32,6 @@ let _GetWardsApi = "http://api.vkhs.vn/api/Location/GetWards"
 let _UpdateHIApi = "http://api.vkhs.vn/api/BkCustomer/UpdateHealthInsurance"
 let _GetHIApi = "http://api.vkhs.vn/api/BkCustomer/GetHealthInsurance"
 
-
-struct MyUser {
-    
-    static var name = ""
-    static var id = 0
-    static var address = ""
-    static var insuranceId = ""
-    static var phone = ""
-    static var email = ""
-    static var birthday = ""
-    static var token = ""
-}
-
 struct FamilyDocrorApi {
     
     static let serviceDetail = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
@@ -54,28 +41,9 @@ struct FamilyDocrorApi {
     static let service = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
     static let removeDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorToFavorite"
     static let addDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
+    static let serviceStatus = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

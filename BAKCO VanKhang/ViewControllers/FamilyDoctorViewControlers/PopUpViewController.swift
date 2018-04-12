@@ -75,7 +75,6 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
             self.okAction()
         }
         alertController.addAction(okAction)
-        
         if !isSimpleAlert { ///simple alert
             let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
@@ -84,7 +83,8 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     }
     
     private func okAction() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomedTreatmentViewController") as! HomedTreatmentViewController
+        let storyboard = UIStoryboard(name: "FamilyDoctor", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomedTreatmentViewController") as! HomedTreatmentViewController
         let nav = BaseNavigationController(rootViewController: vc)
         present(nav, animated: true) {
             vc.serviceId = self._serviceId
@@ -108,16 +108,12 @@ extension PopUpViewController: UICollectionViewDataSource, UICollectionViewDeleg
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
-            
             if let data = response.value?.dictionaryObject  {
                 let dataResponse = FamilyDoctorResponse(data: data)
-                
                 let title = dataResponse.fdData?.title
                 let introText = dataResponse.fdData?.introText
-                
                 self.showAlert(title: title ?? "Ko tìm thấy", mess: introText ?? "", style: .alert, isSimpleAlert: false)
             }
-
         }
     }
 
@@ -140,7 +136,6 @@ extension PopUpViewController: UICollectionViewDataSource, UICollectionViewDeleg
         cell.imageView.layer.borderWidth = 1.0
         cell.imageView.layer.borderColor = UIColor.black.cgColor
         cell.key = keys[indexPath.item]
-        
         let fontAttribute = [NSAttributedStringKey.foregroundColor: UIColor.gray, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 11.0)] as [NSAttributedStringKey : Any]
         cell.nameLabel.attributedText = NSAttributedString(string: cellNames[indexPath.item],
                                                            attributes: fontAttribute)

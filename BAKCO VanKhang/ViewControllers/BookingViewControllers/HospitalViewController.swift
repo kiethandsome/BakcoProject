@@ -43,17 +43,17 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
         showCancelButton()
     }
     
-    private func setupSearchBar() {
-        if #available(iOS 11.0, *) {
-            self.hospitalSearchController.searchResultsUpdater = self
-            self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
-            self.hospitalSearchController.searchBar.placeholder = "con chim non"
-            definesPresentationContext = true
-            
-        } else {
-            
-        }
-    }
+//    private func setupSearchBar() {
+//        if #available(iOS 11.0, *) {
+//            self.hospitalSearchController.searchResultsUpdater = self
+//            self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
+//            self.hospitalSearchController.searchBar.placeholder = "con chim non"
+//            definesPresentationContext = true
+//
+//        } else {
+//
+//        }
+//    }
     
     func getHospitals() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -75,23 +75,23 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     }
 }
 
-extension HospitalViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    func searchBarIsEmpty() -> Bool {
-        return hospitalSearchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
-            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
-        })
-        self.hospitalCollection.reloadData()
-    }
-}
+//extension HospitalViewController: UISearchResultsUpdating {
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//        filterContentForSearchText(searchController.searchBar.text!)
+//    }
+//
+//    func searchBarIsEmpty() -> Bool {
+//        return hospitalSearchController.searchBar.text?.isEmpty ?? true
+//    }
+//
+//    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+//        self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
+//            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
+//        })
+//        self.hospitalCollection.reloadData()
+//    }
+//}
 
 
 extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

@@ -52,8 +52,8 @@ class SecondMainViewController: BaseViewController {
     }
     
     @IBAction func showCityVc(_ sender: UIButton) {
-        let cityVc = self.storyboard?.instantiateViewController(withIdentifier: "CitiesViewController")
-        let nav = BaseNavigationController(rootViewController: cityVc!)
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let nav = BaseNavigationController(rootViewController: cityVc)
         present(nav, animated: true)
     }
     
@@ -127,7 +127,6 @@ class SecondMainViewController: BaseViewController {
     }
     
     private func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, provinceCode: String, districtCode: String, wardCode: String,  HealthInsurance: String, username: String, password: String, gender: Bool) {
-
         
         let parameters: Parameters = [  "Username": username,
                                         "Password": password,
@@ -163,7 +162,6 @@ class SecondMainViewController: BaseViewController {
         Alamofire.request(URL(string: "http://api.vkhs.vn/api/BkCustomer/GetById/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value?.dictionaryValue as Any)
-            
             if let data = response.value?.dictionaryObject {
                 DispatchQueue.main.async {
                     let user = User(data: data)

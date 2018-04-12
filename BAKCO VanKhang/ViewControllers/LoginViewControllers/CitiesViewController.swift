@@ -50,7 +50,6 @@ extension CitiesViewController {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(getCitiesUrl, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
-            
             if let data = response.value?.array {
                 data.forEach({ (cityData) in
                     let city = City(data: cityData.dictionaryObject!)
@@ -82,8 +81,8 @@ extension CitiesViewController : UITableViewDelegate, UITableViewDataSource {
         tableView .deselectRow(at: indexPath, animated: true)
         _selectedCity = cities[indexPath.row]
         
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DistrictsViewController")
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
