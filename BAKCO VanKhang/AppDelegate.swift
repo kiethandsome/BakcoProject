@@ -31,7 +31,6 @@ class AppDelegate: UIResponder {
         {
             rootVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "tab")
             self.setValueForConstantVariables()
-            self.hideTabbar() /// update later
         }
         else
         {
@@ -49,10 +48,6 @@ class AppDelegate: UIResponder {
         MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
         MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
         MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
-    }
-    
-    func hideTabbar() {
-        UITabBar.appearance().isHidden = true
     }
  
 }

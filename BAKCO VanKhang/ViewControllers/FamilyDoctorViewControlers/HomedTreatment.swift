@@ -23,7 +23,6 @@ class HomedTreatmentViewController: BaseViewController {
     
     @IBAction func selectMedicalStaff(_ sender: Any) {
         let vc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "FavoriteDrViewController") as! FavoriteDrViewController
-        self.serviceId = vc.serviceId
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

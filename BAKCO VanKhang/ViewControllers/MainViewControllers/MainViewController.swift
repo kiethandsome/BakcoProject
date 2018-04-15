@@ -179,16 +179,13 @@ extension MainViewController: CLLocationManagerDelegate {
             self.locationManager.startUpdatingLocation()
         }
         else if CLLocationManager.authorizationStatus() == .notDetermined{
-            let mess = "Bạn phải bật vị trí mới sử dụng được dịch vụ Gọi khẩn cấp SOS của chúng tôi!"
-            let title = "Yêu cầu"
-            self.showAlert(title: title, message: mess, style: .alert, okAction: { (action) in
-                self.locationManager.requestWhenInUseAuthorization()
-            })
+            self.locationManager.requestWhenInUseAuthorization()
         }
         else if CLLocationManager.authorizationStatus() == .restricted{
             print("unauthorized")
         }
     }
+    
 
 }
 

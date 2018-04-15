@@ -19,6 +19,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        self.view.resignFirstResponder()
     }
     
     override func viewDidLoad() {
@@ -122,12 +123,15 @@ extension BaseViewController {
     }
     
     
-    open func showAlert(title: String, message: String, style: UIAlertControllerStyle, okAction: @escaping (_ action: UIAlertAction) -> Void ) {
+    open func showAlert(title: String, message: String, style: UIAlertControllerStyle, hasTwoButton: Bool = true, okAction: @escaping (_ action: UIAlertAction) -> Void ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: okAction)
-        let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
         alert.addAction(ok)
-        alert.addAction(cancelAction)
+
+        if hasTwoButton {
+            let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+        }
         present(alert, animated: true)
     }
 

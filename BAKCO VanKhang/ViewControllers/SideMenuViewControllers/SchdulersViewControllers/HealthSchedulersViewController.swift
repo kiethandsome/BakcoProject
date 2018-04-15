@@ -104,21 +104,7 @@ extension HealthSchedulersViewController: UITableViewDelegate, UITableViewDataSo
     
 }
 
-class HealthSchedulerCell: UITableViewCell {
-    @IBOutlet var hospitalNameLabel: UILabel!
-    @IBOutlet var paintentNameLabel: UILabel!
-    @IBOutlet var insuranceLabel: UILabel!
-    @IBOutlet var examinationTypeLabel: UILabel!
-    @IBOutlet var examinationDateLabel: UILabel!
-    @IBOutlet var numberLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var roomNameLabel: UILabel!
-    @IBOutlet var payStatusLabel: UILabel!
-    @IBOutlet var paidIdLabel: UILabel!
-    var schedulerId = -1
-    
-    
-}
+
 
 
 

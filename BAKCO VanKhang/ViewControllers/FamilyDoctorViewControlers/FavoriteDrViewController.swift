@@ -14,21 +14,70 @@ import SwiftyJSON
 import MBProgressHUD
 
 class FavoriteDrViewController: BaseViewController {
+        
+    var familyDoctorList = [FamilyDoctor]() {
+        didSet {
+            favDoctorTableview.reloadData()
+        }
+    }
     
-    var serviceId = String()
+//    public let footerView: UIView = {
+//
+//        let attribute: [NSAttributedStringKey : Any] = [NSAttributedStringKey.foregroundColor : UIColor.lightGray,
+//                                                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0),
+//                                                        NSAttributedStringKey.paragraphStyle : NSTextAlignment.center]
+//
+//        let view = UIView()
+//        view.frame.size = CGSize(width: 500, height: 500)
+//        let label = UILabel()
+//        label.frame.size = CGSize(width: 500, height: 50)
+//        label.attributedText = NSAttributedString(string: "Không có dữ liệu", attributes: attribute)
+//        view.addSubview(label)
+//
+//        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//
+//        return view
+//    }()
     
     @IBOutlet var favDoctorTableview: UITableView!
-    @IBOutlet var searchDoctorNameTexfield: UITextField!
-    @IBOutlet var searchButton: UIButton!
-    
-    @IBAction func searchButtonAction(_ sender: Any) {
-        guard let text = searchDoctorNameTexfield.text else {return}
-        self.getDoctors(serviceId: serviceId, phone: MyUser.phone, keyWord: text)
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchDoctorNameTexfield.delegate = self
+        setupNavBar()
+        favDoctorTableview.delegate = self
+        favDoctorTableview.dataSource = self
+        favDoctorTableview.tableFooterView = UIView()
+        favDoctorTableview.rowHeight = 70.0
+    }
+    
+    func config(tableView: UITableView) {
+
+        if familyDoctorList.count > 0 {
+
+        } else {
+//            tableView.tableFooterView = footerView
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getFavoriteDoctors(phone: MyUser.phone, serviceId: SelectedFDItem.serviceId)
+        config(tableView: self.favDoctorTableview)
+    }
+    
+    func setupNavBar() {
+        showBackButton()
+        self.title = SelectedFDItem.serviceName
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleBarButton))
+        self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func handleBarButton() {
+        let vc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "DoctorByServiceViewController")
+        let nav = BaseNavigationController(rootViewController: vc)
+        self.navigationController?.present(nav, animated: true)
     }
 }
 
@@ -37,45 +86,142 @@ class FavoriteDrViewController: BaseViewController {
 extension FavoriteDrViewController {
     
     func getFavoriteDoctors(phone: String, serviceId: String) {
+        self.familyDoctorList.removeAll()
         let param: Parameters = [ "Phone": phone,
                                   "ServiceId": serviceId ]
+        let url = URL(string: FamilyDocrorApi.favoriteDoctorList)!
         MBProgressHUD.showAdded(to: self.view , animated: true)
-        self.requestAPIwith(urlString: FamilyDocrorApi.favoriteDoctorList, method: .post, params: param) { (responseDict) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            print(responseDict)
-        }
-    }
-    
-    func getDoctors(serviceId: String, phone: String, keyWord: String) {
-        let param: Parameters = [ "Phone": phone,
-                                  "ServiceId": serviceId,
-                                  "Keyword" : keyWord]
-        let url = URL(string: FamilyDocrorApi.doctorListByService)!
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             
             MBProgressHUD.hide(for: self.view, animated: true)
+            
+            if response.result.isSuccess {
+                
+                guard let dict = response.value?.dictionaryObject,
+                    let data = dict["data"] as? [[String : Any]]
+                    else { return }
+                data.forEach({ (familyDoctor) in
+                    let newFD = FamilyDoctor(data: familyDoctor)
+                    self.familyDoctorList.append(newFD)
+                })
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
         }
     }
     
-}
-
-//Mark: UITextField Delegate.
-
-extension FavoriteDrViewController: UITextFieldDelegate {
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        if text == "" {
-            self.searchButton.isEnabled = false
-            self.searchButton.backgroundColor = UIColor.lightGray
-        } else {
-            self.searchButton.isEnabled = true
-            self.searchButton.backgroundColor = UIColor.specialGreenColor()
+    func removeDoctorFromFavoriteList(tableView: UITableView, indexPath: IndexPath, phone: String, serviceId: String, doctorId: String) {
+        
+        let param: Parameters = [ "Phone": phone,
+                                  "DoctorId" : doctorId,
+                                  "ServiceId": serviceId
+                                  ]
+        
+        let url = URL(string: FamilyDocrorApi.removeDoctor)!
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            if response.result.isSuccess {
+                print(response)
+                
+                guard let dict = response.value?.dictionaryObject,
+                    let mess = dict["mess"] as? String
+                else { return }
+                
+                if mess == "Xóa thành công." {
+                    self.deleteRowAndUpdateDoctorList(tableView: tableView, indexPath: indexPath)
+                }
+            } else {
+                self.showAlert(title: "Lỗi", message: response.error.debugDescription, style: .alert, hasTwoButton: false, okAction: { (okAction) in
+                    
+                })
+            }
         }
     }
     
+    
+    func callDoctorService(doctorName: String, doctorId: String, doctorPhone: String) {
+        let param = [
+            "Phone": MyUser.phone,
+            "ServiceId": SelectedFDItem.serviceId,
+            "DoctorId": doctorId,
+            "DoctorName": doctorPhone,
+            "DoctorPhone": doctorPhone,
+            "DeviceType": "iOS",
+            "DeviceToken": _deviceToken
+        ]
+        let url = URL(string: FamilyDocrorApi.callService)!
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
+        Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+
+            if response.result.isSuccess {
+                print(response)
+                guard let dict = response.value?.dictionaryObject,
+                    let mess = dict["mess"] as? String
+                    else { return }
+                self.showAlert(title: "Thông báo", mess: mess, style: .alert)
+            } else {
+                self.showAlert(title: "Lỗi", message: (response.error?.localizedDescription)!, style: .alert, hasTwoButton: false, okAction: { (ok) in
+                    
+                })
+            }
+        }
+    }
 }
+
+extension FavoriteDrViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return familyDoctorList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavDoctorCell", for: indexPath)
+        cell.textLabel?.text = familyDoctorList[indexPath.row].doctorName
+        cell.detailTextLabel?.text = familyDoctorList[indexPath.row].doctorPhone
+        
+        cell.textLabel?.textColor = UIColor.specialGreenColor()
+        cell.detailTextLabel?.textColor = UIColor.lightGray
+        return cell
+    }
+    
+    /// Commit editting style
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let doctor = self.familyDoctorList[indexPath.row]
+
+        let delButton = UITableViewRowAction(style: .default, title: "Xoá") { (delete, indexpath) in
+            self.removeDoctorFromFavoriteList(tableView: tableView, indexPath: indexPath, phone: MyUser.phone, serviceId: SelectedFDItem.serviceId, doctorId: doctor.doctorId)
+        }
+        let callServiceButton = UITableViewRowAction(style: .default, title: "Gọi dịch vụ") { (callService, indexpath) in
+            self.callDoctorService(doctorName: doctor.doctorName, doctorId: doctor.doctorId, doctorPhone: doctor.doctorPhone)
+        }
+        callServiceButton.backgroundColor = UIColor.specialGreenColor()
+        return [callServiceButton, delButton]
+    }
+    
+    func deleteRowAndUpdateDoctorList(tableView: UITableView, indexPath: IndexPath) {
+        tableView.beginUpdates()
+        self.familyDoctorList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .bottom)
+        tableView.endUpdates()
+    }
+    
+    
+}
+
 
 
 

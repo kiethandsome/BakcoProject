@@ -11,6 +11,11 @@ import Alamofire
 import AlamofireSwiftyJSON
 import MBProgressHUD
 
+struct SelectedFDItem {
+    static var serviceId = String()
+    static var serviceName = String()
+}
+
 
 class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and dont know why
     
@@ -22,8 +27,6 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     let images = [#imageLiteral(resourceName: "ic_doctor"), #imageLiteral(resourceName: "ic-dieuduong"), #imageLiteral(resourceName: "ic_chamsocgiamnhe"), #imageLiteral(resourceName: "ic_vltlieu"), #imageLiteral(resourceName: "ic-yhctruyen")]
     let cellNames = ["Bác sĩ GD", "Điều dưỡng", "Chăm sóc giảm nhẹ", "Vật lí trị liệu", "Y học cổ truyền", "Vận chuyển"]
     private let keys = ["BSGD", "DDTN", "CSGN", "VLTL", "YHCT"]
-    
-    var _serviceId = String() ///
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,11 +86,9 @@ class PopUpViewController: UIViewController { ///Cant use baseViewCOntroller and
     }
     
     private func okAction() {
-        let storyboard = UIStoryboard(name: "FamilyDoctor", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomedTreatmentViewController") as! HomedTreatmentViewController
+        let vc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "HomedTreatmentViewController") as! HomedTreatmentViewController
         let nav = BaseNavigationController(rootViewController: vc)
         present(nav, animated: true) {
-            vc.serviceId = self._serviceId
         }
     }
 }
@@ -99,7 +100,8 @@ extension PopUpViewController: UICollectionViewDataSource, UICollectionViewDeleg
         collectionView.deselectItem(at: indexPath, animated: true)
         let cell = collectionView.cellForItem(at: indexPath) as! PopUpCell
         self.requestService(with: cell.key)
-        self._serviceId = cell.key
+        SelectedFDItem.serviceName = cell.nameLabel.text!
+        SelectedFDItem.serviceId = cell.key
 
     }
     

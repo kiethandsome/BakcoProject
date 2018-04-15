@@ -80,7 +80,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="nYX-FW-lbh" firstAttribute="centerX" secondItem="gjM-IJ-968" secondAttribute="centerX" id="0xP-Jy-LrM"/>
                                     <constraint firstItem="nYX-FW-lbh" firstAttribute="top" secondItem="gjM-IJ-968" secondAttribute="top" constant="10" id="4Q7-pv-8pm"/>
@@ -120,74 +120,176 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="10E-gV-frl">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavDoctorCell" textLabel="v5F-hk-ASC" detailTextLabel="3cC-eE-1mf" imageView="415-TR-FNz" style="IBUITableViewCellStyleSubtitle" id="hL9-GY-ggP">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hL9-GY-ggP" id="OT2-j0-W4g">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v5F-hk-ASC">
+                                                    <rect key="frame" x="51" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3cC-eE-1mf">
+                                                    <rect key="frame" x="51" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="user (1)" id="415-TR-FNz">
+                                                    <rect key="frame" x="15" y="11" width="21" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEm-Zs-o2S">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập tên hoặc số điện thoại của bác sĩ bạn muốn tìm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EfB-Zz-Jqi">
-                                        <rect key="frame" x="20" y="10" width="265" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="H1v-1O-bZ9"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zib-bd-lG6">
-                                        <rect key="frame" x="295" y="15" width="60" height="30"/>
-                                        <color key="backgroundColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="IMb-c7-3Tq"/>
-                                            <constraint firstAttribute="width" constant="60" id="pPc-7p-rDh"/>
-                                        </constraints>
-                                        <state key="normal" title="Tìm">
-                                            <color key="titleColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="searchButtonAction:" destination="Muq-kI-INz" eventType="touchUpInside" id="Jx8-QQ-9NH"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Zib-bd-lG6" secondAttribute="trailing" constant="20" id="8o8-Xa-Hru"/>
-                                    <constraint firstItem="EfB-Zz-Jqi" firstAttribute="leading" secondItem="lEm-Zs-o2S" secondAttribute="leading" constant="20" id="dbE-5F-Cdi"/>
-                                    <constraint firstItem="Zib-bd-lG6" firstAttribute="centerY" secondItem="lEm-Zs-o2S" secondAttribute="centerY" id="gY2-nz-K0F"/>
-                                    <constraint firstAttribute="height" constant="60" id="gyl-rR-erB"/>
-                                    <constraint firstItem="EfB-Zz-Jqi" firstAttribute="centerY" secondItem="lEm-Zs-o2S" secondAttribute="centerY" id="hgd-1p-pzx"/>
-                                    <constraint firstItem="Zib-bd-lG6" firstAttribute="leading" secondItem="EfB-Zz-Jqi" secondAttribute="trailing" constant="10" id="oLk-ms-w8X"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="10E-gV-frl" firstAttribute="top" secondItem="lEm-Zs-o2S" secondAttribute="bottom" id="5bV-8e-qod"/>
                             <constraint firstItem="dLQ-C3-EM2" firstAttribute="trailing" secondItem="10E-gV-frl" secondAttribute="trailing" id="EKq-o3-N7D"/>
-                            <constraint firstItem="dLQ-C3-EM2" firstAttribute="trailing" secondItem="lEm-Zs-o2S" secondAttribute="trailing" id="caO-QQ-sck"/>
-                            <constraint firstItem="lEm-Zs-o2S" firstAttribute="top" secondItem="gse-97-IwP" secondAttribute="top" id="j7e-8V-Fd8"/>
                             <constraint firstItem="10E-gV-frl" firstAttribute="leading" secondItem="dLQ-C3-EM2" secondAttribute="leading" id="pBy-KD-H4X"/>
+                            <constraint firstItem="10E-gV-frl" firstAttribute="top" secondItem="dLQ-C3-EM2" secondAttribute="top" id="qFT-os-RSP"/>
                             <constraint firstItem="dLQ-C3-EM2" firstAttribute="bottom" secondItem="10E-gV-frl" secondAttribute="bottom" id="tn4-Hd-LBB"/>
-                            <constraint firstItem="lEm-Zs-o2S" firstAttribute="leading" secondItem="dLQ-C3-EM2" secondAttribute="leading" id="zf2-kh-ZpU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dLQ-C3-EM2"/>
                     </view>
                     <connections>
                         <outlet property="favDoctorTableview" destination="10E-gV-frl" id="KGa-nJ-3Ne"/>
-                        <outlet property="searchButton" destination="Zib-bd-lG6" id="ZWQ-zH-OLA"/>
-                        <outlet property="searchDoctorNameTexfield" destination="EfB-Zz-Jqi" id="c7X-BH-LYM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toW-4g-Iql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-106" y="-1728"/>
+        </scene>
+        <!--Doctor By Service View Controller-->
+        <scene sceneID="mX3-GR-4Ki">
+            <objects>
+                <viewController storyboardIdentifier="DoctorByServiceViewController" id="wih-mJ-RTT" customClass="DoctorByServiceViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SDC-7J-bh0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dSu-GJ-uf9">
+                                <rect key="frame" x="0.0" y="110" width="375" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DoctorCell" id="05e-0O-uIw">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="05e-0O-uIw" id="u3v-cf-yXE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="olc-pB-bTB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên Bác sĩ/ Số điện thoại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfC-oY-YGw">
+                                        <rect key="frame" x="20" y="46" width="265" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="4rh-jg-WLt"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6t-NH-HOe">
+                                        <rect key="frame" x="295" y="46" width="60" height="40"/>
+                                        <color key="backgroundColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="GJf-Cb-Hrz"/>
+                                            <constraint firstAttribute="width" constant="60" id="zb3-Fj-lJl"/>
+                                        </constraints>
+                                        <state key="normal" title="Tìm">
+                                            <color key="titleColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchButtonAction:" destination="wih-mJ-RTT" eventType="touchUpInside" id="LTZ-6e-V7R"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhập tên hoặc sdt của bác sĩ mà bạn muốn tìm." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDS-IF-i3U">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                        <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cfC-oY-YGw" firstAttribute="leading" secondItem="olc-pB-bTB" secondAttribute="leading" constant="20" id="Eeq-Pm-3mz"/>
+                                    <constraint firstItem="cfC-oY-YGw" firstAttribute="top" secondItem="WDS-IF-i3U" secondAttribute="bottom" constant="10" id="Hgp-mk-RiJ"/>
+                                    <constraint firstItem="v6t-NH-HOe" firstAttribute="leading" secondItem="cfC-oY-YGw" secondAttribute="trailing" constant="10" id="JK8-GG-cld"/>
+                                    <constraint firstItem="WDS-IF-i3U" firstAttribute="leading" secondItem="olc-pB-bTB" secondAttribute="leading" id="SZ2-Lj-Uf5"/>
+                                    <constraint firstItem="v6t-NH-HOe" firstAttribute="centerY" secondItem="cfC-oY-YGw" secondAttribute="centerY" id="aZu-ow-U3U"/>
+                                    <constraint firstAttribute="trailing" secondItem="WDS-IF-i3U" secondAttribute="trailing" id="f69-cu-494"/>
+                                    <constraint firstItem="WDS-IF-i3U" firstAttribute="top" secondItem="olc-pB-bTB" secondAttribute="top" constant="20" id="fCb-c3-ggs"/>
+                                    <constraint firstAttribute="height" constant="110" id="gUe-6l-gPV"/>
+                                    <constraint firstAttribute="trailing" secondItem="v6t-NH-HOe" secondAttribute="trailing" constant="20" id="jfW-Hi-gPM"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHI-gM-hX6">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhấn vào tên bác sĩ mà bạn muốn để thêm vào danh sách ưa thích." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfD-KM-AHE">
+                                        <rect key="frame" x="10" y="0.0" width="355" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                        <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wfD-KM-AHE" secondAttribute="bottom" id="AQs-oV-idd"/>
+                                    <constraint firstAttribute="height" constant="50" id="BsU-WT-Imw"/>
+                                    <constraint firstItem="wfD-KM-AHE" firstAttribute="top" secondItem="NHI-gM-hX6" secondAttribute="top" id="HQu-1H-2Og"/>
+                                    <constraint firstItem="wfD-KM-AHE" firstAttribute="leading" secondItem="NHI-gM-hX6" secondAttribute="leading" constant="10" id="XLs-GS-RNh"/>
+                                    <constraint firstAttribute="trailing" secondItem="wfD-KM-AHE" secondAttribute="trailing" constant="10" id="nTL-GK-9I5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NHI-gM-hX6" firstAttribute="leading" secondItem="kRX-Qk-L1r" secondAttribute="leading" id="51W-kw-kiU"/>
+                            <constraint firstItem="dSu-GJ-uf9" firstAttribute="leading" secondItem="kRX-Qk-L1r" secondAttribute="leading" id="VOR-7l-6oy"/>
+                            <constraint firstItem="olc-pB-bTB" firstAttribute="leading" secondItem="kRX-Qk-L1r" secondAttribute="leading" id="Wer-9Y-fto"/>
+                            <constraint firstItem="NHI-gM-hX6" firstAttribute="top" secondItem="dSu-GJ-uf9" secondAttribute="bottom" id="aoR-bU-VvX"/>
+                            <constraint firstItem="kRX-Qk-L1r" firstAttribute="trailing" secondItem="NHI-gM-hX6" secondAttribute="trailing" id="dsv-AM-cPg"/>
+                            <constraint firstItem="dSu-GJ-uf9" firstAttribute="top" secondItem="olc-pB-bTB" secondAttribute="bottom" id="f1I-Or-aGE"/>
+                            <constraint firstItem="kRX-Qk-L1r" firstAttribute="trailing" secondItem="dSu-GJ-uf9" secondAttribute="trailing" id="hJ9-00-I6c"/>
+                            <constraint firstItem="olc-pB-bTB" firstAttribute="top" secondItem="SDC-7J-bh0" secondAttribute="top" id="kjd-co-G6u"/>
+                            <constraint firstItem="olc-pB-bTB" firstAttribute="trailing" secondItem="kRX-Qk-L1r" secondAttribute="trailing" id="np6-xa-VSL"/>
+                            <constraint firstItem="NHI-gM-hX6" firstAttribute="top" secondItem="dSu-GJ-uf9" secondAttribute="bottom" id="oyB-Ve-Wxq"/>
+                            <constraint firstAttribute="bottom" secondItem="NHI-gM-hX6" secondAttribute="bottom" id="z13-eo-EEC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kRX-Qk-L1r"/>
+                    </view>
+                    <connections>
+                        <outlet property="doctorTableview" destination="dSu-GJ-uf9" id="ASM-ku-P1Q"/>
+                        <outlet property="searchButton" destination="v6t-NH-HOe" id="rwc-pb-7p4"/>
+                        <outlet property="searchTextfield" destination="cfC-oY-YGw" id="s3A-W5-gLL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9I-BM-4W2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="583" y="-1728"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="zH1-Uf-Huh">
@@ -266,4 +368,7 @@
             <point key="canvasLocation" x="-1468" y="-1728"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="user (1)" width="21" height="21"/>
+    </resources>
 </document>

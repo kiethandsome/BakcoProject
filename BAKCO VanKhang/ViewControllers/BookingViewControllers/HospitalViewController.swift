@@ -35,25 +35,32 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Chọn bệnh viện"
+        hospitalCollection.isScrollEnabled = true
         hospitalCollection.delegate = self
         hospitalCollection.dataSource = self
         hospitalCollection.contentInset = UIEdgeInsetsMake(20, 30, 0, 30)
         hospitalCollection.register(HospitalCell.self, forCellWithReuseIdentifier: "cellId")
         getHospitals()
         showCancelButton()
+        
+        if #available(iOS 11.0, *) {
+            setupSearchBar()
+        }
     }
     
-//    private func setupSearchBar() {
-//        if #available(iOS 11.0, *) {
-//            self.hospitalSearchController.searchResultsUpdater = self
-//            self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
-//            self.hospitalSearchController.searchBar.placeholder = "con chim non"
-//            definesPresentationContext = true
-//
-//        } else {
-//
-//        }
-//    }
+    private func setupSearchBar() {
+        if #available(iOS 11.0, *) {
+            self.hospitalSearchController.searchResultsUpdater = self
+            self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
+            self.hospitalSearchController.searchBar.placeholder = "con chim non"
+            definesPresentationContext = true
+            
+            self.navigationItem.searchController = hospitalSearchController
+
+        } else {
+
+        }
+    }
     
     func getHospitals() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -75,23 +82,23 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     }
 }
 
-//extension HospitalViewController: UISearchResultsUpdating {
-//
-//    func updateSearchResults(for searchController: UISearchController) {
-//        filterContentForSearchText(searchController.searchBar.text!)
-//    }
-//
-//    func searchBarIsEmpty() -> Bool {
-//        return hospitalSearchController.searchBar.text?.isEmpty ?? true
-//    }
-//
-//    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-//        self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
-//            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
-//        })
-//        self.hospitalCollection.reloadData()
-//    }
-//}
+extension HospitalViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+
+    func searchBarIsEmpty() -> Bool {
+        return hospitalSearchController.searchBar.text?.isEmpty ?? true
+    }
+
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
+            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
+        })
+        self.hospitalCollection.reloadData()
+    }
+}
 
 
 extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

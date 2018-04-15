@@ -38,8 +38,8 @@ struct FamilyDocrorApi {
     static let checkContract = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckContractVKSOS"
     static let favoriteDoctorList = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetFavoriteDoctorList"
     static let doctorListByService = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetDoctorListByService"
-    static let service = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
-    static let removeDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorToFavorite"
+    static let callService = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
+    static let removeDoctor = "http://api.vkhs.vn/api/BkFamilyDoctor/RemoveDoctorFromFavorite"
     static let addDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
     static let serviceStatus = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
     
