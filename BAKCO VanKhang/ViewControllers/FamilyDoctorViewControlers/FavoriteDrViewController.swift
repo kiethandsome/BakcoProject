@@ -21,50 +21,21 @@ class FavoriteDrViewController: BaseViewController {
         }
     }
     
-//    public let footerView: UIView = {
-//
-//        let attribute: [NSAttributedStringKey : Any] = [NSAttributedStringKey.foregroundColor : UIColor.lightGray,
-//                                                        NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0),
-//                                                        NSAttributedStringKey.paragraphStyle : NSTextAlignment.center]
-//
-//        let view = UIView()
-//        view.frame.size = CGSize(width: 500, height: 500)
-//        let label = UILabel()
-//        label.frame.size = CGSize(width: 500, height: 50)
-//        label.attributedText = NSAttributedString(string: "Không có dữ liệu", attributes: attribute)
-//        view.addSubview(label)
-//
-//        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//
-//        return view
-//    }()
-    
-    @IBOutlet var favDoctorTableview: UITableView!
-
+    @IBOutlet var favDoctorTableview: UITableView!    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         favDoctorTableview.delegate = self
         favDoctorTableview.dataSource = self
-        favDoctorTableview.tableFooterView = UIView()
         favDoctorTableview.rowHeight = 70.0
+        favDoctorTableview.tableFooterView = UIView()
     }
     
-    func config(tableView: UITableView) {
-
-        if familyDoctorList.count > 0 {
-
-        } else {
-//            tableView.tableFooterView = footerView
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getFavoriteDoctors(phone: MyUser.phone, serviceId: SelectedFDItem.serviceId)
-        config(tableView: self.favDoctorTableview)
     }
     
     func setupNavBar() {
@@ -215,7 +186,7 @@ extension FavoriteDrViewController: UITableViewDelegate, UITableViewDataSource {
     func deleteRowAndUpdateDoctorList(tableView: UITableView, indexPath: IndexPath) {
         tableView.beginUpdates()
         self.familyDoctorList.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .bottom)
+        tableView.deleteRows(at: [indexPath], with: .middle)
         tableView.endUpdates()
     }
     

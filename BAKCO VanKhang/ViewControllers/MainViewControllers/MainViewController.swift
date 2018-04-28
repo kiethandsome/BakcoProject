@@ -22,11 +22,6 @@ struct MyLocation {
 
 class MainViewController: BaseViewController  {
     
-    @IBOutlet var greenButton: UIButton!  //Hospitals Button
-    @IBOutlet var blueButton: UIButton! //Another Button
-    @IBOutlet var advisoryButton: UIButton!
-
-    
     //Mark: Layout SOS button and SOS calling actions.___________________________/
     let sosButton: UIButton = {
         let button = UIButton()
@@ -90,13 +85,6 @@ class MainViewController: BaseViewController  {
         super.viewDidLoad()
         view.addSubview(sosButton)
         view.backgroundColor = .white
-        
-        blueButton.layer.cornerRadius = 10.0
-        blueButton.clipsToBounds = true
-        blueButton.contentMode = .scaleToFill
-
-        greenButton.layer.cornerRadius = 10.0
-        greenButton.clipsToBounds = true
 
         setupSOSButton()
         setupUserRightBarButton()
@@ -118,14 +106,6 @@ class MainViewController: BaseViewController  {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let link: String = "\(FamilyDocrorApi.checkContract)?phone=\(phone)&lat=\(MyLocation.lat)&lng=\(MyLocation.long)"
         let url = URL(string: link)!
-//        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
-//            MBProgressHUD.hide(for: self.view, animated: true)
-//            if let data = response.value?.dictionaryObject, response.result.isSuccess {
-//                if let message: String = data["message"] as? String {
-//                    print("Message: \(message)")
-//                }
-//            }
-//        }
         
         Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseString { (responseString) in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -140,25 +120,33 @@ class MainViewController: BaseViewController  {
     }
     
     // Mark: Booking Button
-    @IBAction func greenButtonAction(_ sender: Any) {
+    @IBAction func bookingButtonAction(_ sender: Any) {
         let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseInformViewController")
         navigationController?.pushViewController(next, animated: true)
     }
     
     //Mark: Advisory Button
     @IBAction func advisoryButtonAction(_ sender: Any) {
-        self.showAlert(title: "Xác nhận", mess: "Mở trình duyệt?", style: .alert, isSimpleAlert: false)
-    }
-    override func okAction() {
-        let url = URL(string: _TrueconfLink)
-        UIApplication.shared.open(url!)
+        self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
+            let url = URL(string: _TrueconfLink)
+            UIApplication.shared.open(url!)
+        }
     }
     
     //Mark: Home dotor
-    @IBAction func blueButtonAction(_ sender: Any) {
+    @IBAction func familyDoctorButonAction(_ sender: Any) {
         let popUpVc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
         tabBarController?.view.addSubview((popUpVc.view)!)
         tabBarController?.addChildViewController(popUpVc)
+    }
+    
+    // Mark : Medical television Button
+    @IBAction func medicalTvButtonAction(_ sender: Any) {
+        
+        self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
+            let url = URL(string: _MedicalTvLink)
+            UIApplication.shared.open(url!)
+        }
     }
 }
 

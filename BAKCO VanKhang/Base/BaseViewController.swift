@@ -14,7 +14,6 @@ import AlamofireSwiftyJSON
 import MBProgressHUD
 
 
-
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -25,8 +24,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        tabBarController?.tabBar.isTranslucent = true
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = false
+//        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = DynamicColor(hexString: "f7f9f9")
     }
     
@@ -45,7 +44,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationItem.rightBarButtonItem = menuButon
     }
     @objc func showUserMenu() {
-        let menuVc = storyboard?.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
+        let menuVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SideMenuViewController") as! SideMenuViewController
         let baseNav = BaseNavigationController(rootViewController: menuVc)
         present(baseNav, animated: true, completion: nil)
     }
@@ -62,8 +61,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     ///Mark: Cancel button
-    func showCancelButton() {
-        let backButton = UIBarButtonItem(title: "Huỷ", style: .plain, target: self, action: #selector(dismisss))
+    func showCancelButton(title: String = "Huỷ") {
+        let backButton = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(dismisss))
         navigationItem.leftBarButtonItem = backButton
     }
     
@@ -100,10 +99,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         leftButton.isEnabled = false
         navigationItem.leftBarButtonItem = leftButton
     }
-
-    func login() {}
-
-
 }
 
 extension BaseViewController {
@@ -134,8 +129,6 @@ extension BaseViewController {
         }
         present(alert, animated: true)
     }
-
-    
 }
 
 

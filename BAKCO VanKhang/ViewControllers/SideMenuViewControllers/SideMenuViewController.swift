@@ -19,7 +19,7 @@ class SideMenuViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Thông tin cá nhân"
+        self.title = "Trang cá nhân"
         setupBackDownButton()
         configTableView(tv: sideTableView)
     }
@@ -33,16 +33,14 @@ class SideMenuViewController: BaseViewController {
         tv.dataSource = self
         tv.register(NormalCell.self, forCellReuseIdentifier: "Cell")
         tv.register(BigCell.self, forCellReuseIdentifier: "BigCell")
-        tv.separatorColor = UIColor.specialGreenColor()
         tv.separatorInset.left = 0
         tv.tableFooterView = UIView()
         tv.contentInset.bottom = 20.0
     }
 }
 
-let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "calendar"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "logout")]
-let titles = [MyUser.name, "Lịch khám chữa bệnh", "Thông tin VKHS", "Đăng xuất"]
-
+let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
+let titles = [MyUser.name, ServiceIntroductionTitle, PersonalInforTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
 
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -65,7 +63,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             cell.avatarImageView.layer.cornerRadius = 25.0
             cell.avatarImageView.layer.masksToBounds = true
             cell.userNameLabel.text = titles[indexPath.row]
-            cell.selectionStyle = .none
             return cell
         }
 
@@ -73,7 +70,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cellImageView.image = images[indexPath.row]
         cell.selectionStyle = .blue
         cell.cellTitle.text = titles[indexPath.row]
-
+        cell.accessoryType  = .disclosureIndicator
         return cell
     }
 
@@ -82,21 +79,41 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+            
         case 0:
-            
             break
             
-        case 1:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HealthSchedulersViewController")
-            self.navigationController?.pushViewController(vc!, animated: true)
+        case 1: /// Giơi thiệu dịch vụ
+            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
+            vc.viewControllerID = ServiceIntroductionTitle
+            self.navigationController?.pushViewController(vc, animated: true)
             break
             
-        case 2:
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "VkhsInfoViewController")
-            self.navigationController?.pushViewController(vc!, animated: true)
+//        case 2: /// Hướng dẫn sử dụng
+//            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
+//            vc.viewControllerID = GuildlineTitle
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            break
+            
+        case 2: /// Thông tin cá nhân
+            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
+            vc.viewControllerID = PersonalInforTitle
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        case 3: /// Thông tin ứng dụng
+            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "VkhsInfoViewController")
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+            
+        case 4: /// Liên hệ
+            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "IntroductionViewController") as! IntroductionViewController
+            vc.content = MyIntroductionText.contactInformation
+            vc.title = "Liên hệ"
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         
-        case 3:
+        case 5: /// Đăng xuất
             let alert = UIAlertController(title: "Xác nhận", message: "Bạn chắc chắn muốn đăng xuất?", preferredStyle: .alert)
             let okACtion = UIAlertAction(title: "Đăng xuất", style: .destructive, handler: { (action) in
                 let loginVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")

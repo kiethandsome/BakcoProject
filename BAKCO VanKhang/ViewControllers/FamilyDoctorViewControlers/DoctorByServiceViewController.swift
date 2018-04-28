@@ -54,7 +54,7 @@ class DoctorByServiceViewController : BaseViewController {
         self.searchButton.isEnabled = false
         self.searchButton.backgroundColor = UIColor.lightGray
         config(tableView: self.doctorTableview)
-        showCancelButton()
+        showCancelButton(title: "Xong")
     }
     
     func config(tableView: UITableView) {
@@ -104,7 +104,7 @@ extension DoctorByServiceViewController {
         }
     }
     
-    func addDoctorToFavList(phone: String, doctorId: String, serviceId: String, indexPath: IndexPath) {
+    func addDoctorToFavList(tableView: UITableView, phone: String, doctorId: String, serviceId: String, indexPath: IndexPath) {
         let params = [
             "Phone": phone,
             "DoctorId": doctorId,
@@ -123,36 +123,16 @@ extension DoctorByServiceViewController {
                 let mess = dict!["mess"] as! String
                 self.showAlert(title: "Xác nhận", message: mess, style: .alert, hasTwoButton: false, okAction: { (ok) in
                     ///Delete selected item in doctor list
-//                    self.familyDoctors.remove(at: indexPath.row)
-//                    self.doctorTableview.reloadData()
-//
-                    self.dismiss(animated: true)
+                    self.deleteRow(tableview: tableView, indexPath: indexPath)
                 })
             } else {
                 self.showAlert(title: "Lỗi", mess: (response.error?.localizedDescription)!, style: .alert)
             }
         }
     }
+    
+    
 }
-
-//Mark: UITextField Delegate.
-
-//extension DoctorByServiceViewController: UITextFieldDelegate {
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        guard let text = textField.text else { return }
-//        if text == "" {
-//            self.searchButton.isEnabled = false
-//            self.searchButton.backgroundColor = UIColor.lightGray
-//        } else {
-//            self.searchButton.isEnabled = true
-//            self.searchButton.backgroundColor = UIColor.specialGreenColor()
-//        }
-//    }
-//
-//
-//
-//}
 
 // Mark : TABLVIEW DELEGATE DATASOURCE
 
@@ -173,8 +153,15 @@ extension DoctorByServiceViewController : UITableViewDelegate, UITableViewDataSo
         let doctorID = familyDoctors[indexPath.row].doctorId
         
         self.showAlert(title: "Xác nhận", message: "Bạn muốn thêm bác sĩ này vào danh sách ưa thích?", style: .alert) { (ok) in
-            self.addDoctorToFavList(phone: MyUser.phone, doctorId: doctorID, serviceId: SelectedFDItem.serviceId, indexPath: indexPath)
+            self.addDoctorToFavList(tableView: tableView, phone: MyUser.phone, doctorId: doctorID, serviceId: SelectedFDItem.serviceId, indexPath: indexPath)
         }
+    }
+    
+    private func deleteRow(tableview: UITableView, indexPath: IndexPath) {
+        tableview.beginUpdates()
+        self.familyDoctors.remove(at: indexPath.row)
+        tableview.deleteRows(at: [indexPath], with: .middle)
+        tableview.endUpdates()
     }
 }
 

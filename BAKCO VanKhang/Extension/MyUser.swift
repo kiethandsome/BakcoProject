@@ -18,6 +18,7 @@ struct MyUser {
     static var email = String()
     static var birthday = String()
     static var token = String()
+    static var gender = Bool()
 }
 
 

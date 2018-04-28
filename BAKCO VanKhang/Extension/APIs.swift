@@ -10,38 +10,41 @@ import Foundation
 
 
 let _TrueconfLink = "http://vkhealth.vn/#/tcs"
-let _SOSEmergencyApi = "http://api.vkhs.vn/api/SOSCall/CallSOS"
-let _GetHealthCareSchedulerApi = "http://api.vkhs.vn/api/BkHealthCareScheduler/GetByHospitalHealthCareId"
-let _GetMatchApi = "http://api.vkhs.vn/api/BkMedicalExaminationNote/CreateForMember"
-let _GetFirstAppointmentApi = "http://api.vkhs.vn/api/BkMedicalExaminationNote/Create"
-let _GetScheduleApi = "http://api.vkhs.vn/api/BkCustomer/GetSchedulerCustomer"
-let _GetDetailSchedulerApi = "http://api.vkhs.vn/api/BkDoctor/GetWorkDetail"
-let _RegisterURL = "http://api/Account/CustomerRegister"
-let _GetTokenApi = "http://api.vkhs.vn/Token"
-let _GetUserIdApi  = "http://api.vkhs.vn/api/Account/UserInfo"
+let _MedicalTvLink = "http://yttv.vn"
+
+let _SOSEmergencyApi = "http://api.vkhealth.vn/api/SOSCall/CallSOS"
+let _GetHealthCareSchedulerApi = "http://api.vkhealth.vn/api/BkHealthCareScheduler/GetByHospitalHealthCareId"
+let _GetMatchApi = "http://api.vkhealth.vn/api/BkMedicalExaminationNote/CreateForMember"
+let _GetFirstAppointmentApi = "http://api.vkhealth.vn/api/BkMedicalExaminationNote/Create"
+let _GetScheduleApi = "http://api.vkhealth.vn/api/BkCustomer/GetSchedulerCustomer"
+let _GetDetailSchedulerApi = "http://api.vkhealth.vn/api/BkDoctor/GetWorkDetail"
+let _RegisterURL = "http://api.vkhealth.vn/api/Account/CustomerRegister"
+let _GetTokenApi = "http://api.vkhealth.vn/Token"
+let _GetUserIdApi  = "http://api.vkhealth.vn/api/Account/UserInfo"
+let _UpdateInformApi = "http://api.vkhealth.vn/api/BkCustomer/Update"
 
 var _deviceToken = String()
 
 /// Location
-let _GetCitiesApi = "http://api.vkhs.vn/api/Location/GetCities"
-let _GetDistrictsApi = "http://api.vkhs.vn/api/Location/GetDistricts"
-let _GetWardsApi = "http://api.vkhs.vn/api/Location/GetWards"
+let _GetCitiesApi = "http://api.vkhealth.vn/api/Location/GetCities"
+let _GetDistrictsApi = "http://api.vkhealth.vn/api/Location/GetDistricts"
+let _GetWardsApi = "http://api.vkhealth.vn/api/Location/GetWards"
 
 
 /// UPdate HI
-let _UpdateHIApi = "http://api.vkhs.vn/api/BkCustomer/UpdateHealthInsurance"
-let _GetHIApi = "http://api.vkhs.vn/api/BkCustomer/GetHealthInsurance"
+let _UpdateHIApi = "http://api.vkhealth.vn/api/BkCustomer/UpdateHealthInsurance"
+let _GetHIApi = "http://api.vkhealth.vn/api/BkCustomer/GetHealthInsurance"
 
 struct FamilyDocrorApi {
     
     static let serviceDetail = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetServiceDetails"
-    static let checkContract = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckContractVKSOS"
+    static let checkContract = "http://api.vkhealth.vn/api/BkFamilyDoctor/CheckContractVKSOS"
     static let favoriteDoctorList = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetFavoriteDoctorList"
     static let doctorListByService = "http://api.vkhealth.vn/api/BkFamilyDoctor/GetDoctorListByService"
     static let callService = "http://api.vkhealth.vn/api/BkFamilyDoctor/CallFamilyDoctorService"
-    static let removeDoctor = "http://api.vkhs.vn/api/BkFamilyDoctor/RemoveDoctorFromFavorite"
+    static let removeDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/RemoveDoctorFromFavorite"
     static let addDoctor = "http://api.vkhealth.vn/api/BkFamilyDoctor/AddDoctorToFavorite"
-    static let serviceStatus = "http://api.vkhs.vn/api/BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
+    static let serviceStatus = "http://api.vkhealth.vn/api/BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
     
 }
 

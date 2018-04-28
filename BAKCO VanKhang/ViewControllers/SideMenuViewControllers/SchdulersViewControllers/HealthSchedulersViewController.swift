@@ -96,7 +96,7 @@ extension HealthSchedulersViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! HealthSchedulerCell
         
-        let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailSchedulerViewController") as! DetailSchedulerViewController
+        let detailVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "DetailSchedulerViewController") as! DetailSchedulerViewController
         detailVc.id = cell.schedulerId
         self.navigationController?.pushViewController(detailVc, animated: true)
     }

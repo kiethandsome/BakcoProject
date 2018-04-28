@@ -11,11 +11,11 @@
 		9201577F207DEDCC00764D05 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9201577E207DEDCC00764D05 /* Payment.storyboard */; };
 		92015782207DEE9B00764D05 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92015781207DEE9B00764D05 /* APIs.swift */; };
 		92015784207DEEDF00764D05 /* MyStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92015783207DEEDF00764D05 /* MyStoryboard.swift */; };
-		920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */; };
-		920CC7FE206CD2740082035A /* FavoriteDoctorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */; };
 		9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */; };
+		921113A3208AF86000B0E47A /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 921113A2208AF86000B0E47A /* SideMenu.storyboard */; };
 		921291E8204FE1AF0087441A /* DetailSchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */; };
-		92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */; };
+		92176C2F208747EE002C8BE8 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92176C2E208747EE002C8BE8 /* IntroductionViewController.swift */; };
+		92176C3120874929002C8BE8 /* IntroductionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92176C3020874929002C8BE8 /* IntroductionText.swift */; };
 		9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC061FEA1C3E005F07CC /* PayViewController.swift */; };
 		9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */; };
 		9230129B1FD7D87F00F7860D /* ChooseInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */; };
@@ -27,7 +27,11 @@
 		923CFBBE1FF8AEFF00E6A97D /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */; };
 		923CFBC01FF8AF3200E6A97D /* PopUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */; };
 		923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */; };
+		924846E42083A6C4005E9A14 /* MyFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924846E32083A6C4005E9A14 /* MyFooterView.xib */; };
+		924846E72083A83A005E9A14 /* MyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924846E62083A83A005E9A14 /* MyFooterView.swift */; };
+		92566480208AFF18006BDBE5 /* UpdateInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256647F208AFF18006BDBE5 /* UpdateInformViewController.swift */; };
 		9259739520663438001F9867 /* FamilyDoctorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259739420663438001F9867 /* FamilyDoctorResponse.swift */; };
+		925E0B8F208733DD00F22E25 /* SelectIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E0B8E208733DD00F22E25 /* SelectIntroductionViewController.swift */; };
 		925E4155207357CC00F9B393 /* DistrictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E4154207357CC00F9B393 /* DistrictsViewController.swift */; };
 		925E41572073605100F9B393 /* WardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E41562073605100F9B393 /* WardViewController.swift */; };
 		925E415C2073DD9600F9B393 /* HIUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E415B2073DD9500F9B393 /* HIUpdateViewController.swift */; };
@@ -84,11 +88,11 @@
 		9201577E207DEDCC00764D05 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		92015781207DEE9B00764D05 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		92015783207DEEDF00764D05 /* MyStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryboard.swift; sourceTree = "<group>"; };
-		920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteDoctorCell.xib; sourceTree = "<group>"; };
-		920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDoctorCell.swift; sourceTree = "<group>"; };
 		9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkhsInfoViewcontroller.swift; sourceTree = "<group>"; };
+		921113A2208AF86000B0E47A /* SideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		921291E7204FE1AF0087441A /* DetailSchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSchedulerViewController.swift; sourceTree = "<group>"; };
-		92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuHeaderView.xib; sourceTree = "<group>"; };
+		92176C2E208747EE002C8BE8 /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		92176C3020874929002C8BE8 /* IntroductionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionText.swift; sourceTree = "<group>"; };
 		9229AC061FEA1C3E005F07CC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		9229AC081FEA7069005F07CC /* FinalAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalAppointmentViewController.swift; sourceTree = "<group>"; };
 		9230129A1FD7D87F00F7860D /* ChooseInformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseInformViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +104,11 @@
 		923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCell.swift; sourceTree = "<group>"; };
 		923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalCell.swift; sourceTree = "<group>"; };
+		924846E32083A6C4005E9A14 /* MyFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFooterView.xib; sourceTree = "<group>"; };
+		924846E62083A83A005E9A14 /* MyFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFooterView.swift; sourceTree = "<group>"; };
+		9256647F208AFF18006BDBE5 /* UpdateInformViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInformViewController.swift; sourceTree = "<group>"; };
 		9259739420663438001F9867 /* FamilyDoctorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyDoctorResponse.swift; sourceTree = "<group>"; };
+		925E0B8E208733DD00F22E25 /* SelectIntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIntroductionViewController.swift; sourceTree = "<group>"; };
 		925E4154207357CC00F9B393 /* DistrictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictsViewController.swift; sourceTree = "<group>"; };
 		925E41562073605100F9B393 /* WardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardViewController.swift; sourceTree = "<group>"; };
 		925E415B2073DD9500F9B393 /* HIUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIUpdateViewController.swift; sourceTree = "<group>"; };
@@ -211,9 +219,12 @@
 		92015787207E02C500764D05 /* SideMenuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				92015788207E02DC00764D05 /* SchdulersViewControllers */,
 				F3DD42091FEA19B900135774 /* SideMenuViewController.swift */,
 				9210F312206816D90059076F /* VkhsInfoViewcontroller.swift */,
-				92015788207E02DC00764D05 /* SchdulersViewControllers */,
+				925E0B8E208733DD00F22E25 /* SelectIntroductionViewController.swift */,
+				92176C2E208747EE002C8BE8 /* IntroductionViewController.swift */,
+				9256647F208AFF18006BDBE5 /* UpdateInformViewController.swift */,
 			);
 			path = SideMenuViewControllers;
 			sourceTree = "<group>";
@@ -236,23 +247,6 @@
 			path = MainViewControllers;
 			sourceTree = "<group>";
 		};
-		920CC7FC206CD2530082035A /* FavoriteDoctorCell */ = {
-			isa = PBXGroup;
-			children = (
-				920CC7FA206CD23A0082035A /* FavoriteDoctorCell.xib */,
-				920CC7FD206CD2740082035A /* FavoriteDoctorCell.swift */,
-			);
-			path = FavoriteDoctorCell;
-			sourceTree = "<group>";
-		};
-		92231BD2200E3C3B00E96F00 /* Xib:Nib */ = {
-			isa = PBXGroup;
-			children = (
-				92231BD3200E3C5500E96F00 /* MenuHeaderView.xib */,
-			);
-			path = "Xib:Nib";
-			sourceTree = "<group>";
-		};
 		92326465207FB17800B67118 /* HealthSchedulerCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +263,7 @@
 				92F4A032201B669B00181EDA /* MyUser.swift */,
 				92015781207DEE9B00764D05 /* APIs.swift */,
 				92015783207DEEDF00764D05 /* MyStoryboard.swift */,
+				92176C3020874929002C8BE8 /* IntroductionText.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -276,7 +271,6 @@
 		923CFBBA1FF8AE6A00E6A97D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				920CC7FC206CD2530082035A /* FavoriteDoctorCell */,
 				92326465207FB17800B67118 /* HealthSchedulerCell */,
 				923CFBBB1FF8AE8000E6A97D /* DateCell.swift */,
 				923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */,
@@ -284,6 +278,23 @@
 				923CFBC11FF8AFC200E6A97D /* HospitalCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		924846E52083A6E0005E9A14 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				924846E82083A857005E9A14 /* MyFooterView */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		924846E82083A857005E9A14 /* MyFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				924846E62083A83A005E9A14 /* MyFooterView.swift */,
+				924846E32083A6C4005E9A14 /* MyFooterView.xib */,
+			);
+			path = MyFooterView;
 			sourceTree = "<group>";
 		};
 		925E41582073CB1B00F9B393 /* FamilyDoctorViewControlers */ = {
@@ -315,9 +326,10 @@
 				928A07CE207D03F6003AF0E7 /* Login.storyboard */,
 				F32F2EFC1F989CC7008C5CAF /* Main.storyboard */,
 				928A07CB207D012A003AF0E7 /* FamilyDoctor.storyboard */,
-				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
 				9201577B207DEA2F00764D05 /* Booking.storyboard */,
 				9201577E207DEDCC00764D05 /* Payment.storyboard */,
+				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
+				921113A2208AF86000B0E47A /* SideMenu.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -367,7 +379,7 @@
 				92F3ADD11FC51B3C00C0D6E7 /* Base */,
 				F32F2F0E1F98B0FF008C5CAF /* Models */,
 				F32F2F0D1F98B0E7008C5CAF /* ViewControllers */,
-				92231BD2200E3C3B00E96F00 /* Xib:Nib */,
+				924846E52083A6E0005E9A14 /* VIews */,
 				923CFBBA1FF8AE6A00E6A97D /* Cells */,
 				928A07CD207D037A003AF0E7 /* Storyboard */,
 				F32F2EF81F989CC7008C5CAF /* AppDelegate.swift */,
@@ -507,13 +519,13 @@
 			files = (
 				928A07CF207D03F6003AF0E7 /* Login.storyboard in Resources */,
 				9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */,
+				924846E42083A6C4005E9A14 /* MyFooterView.xib in Resources */,
 				9201577F207DEDCC00764D05 /* Payment.storyboard in Resources */,
-				92231BD4200E3C5500E96F00 /* MenuHeaderView.xib in Resources */,
 				928A07CC207D012A003AF0E7 /* FamilyDoctor.storyboard in Resources */,
 				F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */,
+				921113A3208AF86000B0E47A /* SideMenu.storyboard in Resources */,
 				9201577C207DEA2F00764D05 /* Booking.storyboard in Resources */,
 				F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */,
-				920CC7FB206CD23A0082035A /* FavoriteDoctorCell.xib in Resources */,
 				F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,7 +615,6 @@
 				9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */,
 				92DC379520728123008AD7B6 /* City.swift in Sources */,
 				F32F2EFB1F989CC7008C5CAF /* MainViewController.swift in Sources */,
-				920CC7FE206CD2740082035A /* FavoriteDoctorCell.swift in Sources */,
 				F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */,
 				9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */,
 				925E41572073605100F9B393 /* WardViewController.swift in Sources */,
@@ -617,6 +628,7 @@
 				F341747D1FC5F1900093CB1A /* SpecialtyModel.swift in Sources */,
 				92F3ADD51FC55F8500C0D6E7 /* BaseViewController.swift in Sources */,
 				925E4155207357CC00F9B393 /* DistrictsViewController.swift in Sources */,
+				92566480208AFF18006BDBE5 /* UpdateInformViewController.swift in Sources */,
 				F3CD6BFD1F9E41A100E9E830 /* MatchModel.swift in Sources */,
 				F32F2EF91F989CC7008C5CAF /* AppDelegate.swift in Sources */,
 				9235357B1FC68951005464C2 /* Extension.swift in Sources */,
@@ -630,7 +642,11 @@
 				92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */,
 				92326464207FB0D600B67118 /* HealthSchedulerCell.swift in Sources */,
 				928A07CA207CC5FC003AF0E7 /* HealthInsurance.swift in Sources */,
+				92176C3120874929002C8BE8 /* IntroductionText.swift in Sources */,
+				924846E72083A83A005E9A14 /* MyFooterView.swift in Sources */,
+				92176C2F208747EE002C8BE8 /* IntroductionViewController.swift in Sources */,
 				F34174811FC748C40093CB1A /* DoctorModel.swift in Sources */,
+				925E0B8F208733DD00F22E25 /* SelectIntroductionViewController.swift in Sources */,
 				F34174871FC7493E0093CB1A /* DetailModel.swift in Sources */,
 				92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */,
 				F3CD6BFF1F9E41B800E9E830 /* HospitalModel.swift in Sources */,
@@ -800,8 +816,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.vkhealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "320d3133-bef2-453b-bbae-bd01e91d5f03";
-				PROVISIONING_PROFILE_SPECIFIER = VanKhangDev;
+				PROVISIONING_PROFILE = "fb3726a7-2f45-49d5-a6f0-2aa7ec488768";
+				PROVISIONING_PROFILE_SPECIFIER = VK_Dev2;
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

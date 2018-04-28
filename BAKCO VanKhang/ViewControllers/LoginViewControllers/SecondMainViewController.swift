@@ -111,7 +111,6 @@ class SecondMainViewController: BaseViewController {
             let _ = txtConfirmPassword.text, txtConfirmPassword.text == password,
             let city = _selectedCity, let dist = _selectedDistrict, let ward = _selectedWard
         {
-            
             self.signup(fullName: fullName,
                         phone: sosPhoneNum,
                         email: email,
@@ -128,32 +127,44 @@ class SecondMainViewController: BaseViewController {
     
     private func signup(fullName: String, phone: String, email: String, birthDate: String, address: String, provinceCode: String, districtCode: String, wardCode: String,  HealthInsurance: String, username: String, password: String, gender: Bool) {
         
-        let parameters: Parameters = [  "Username": username,
-                                        "Password": password,
-                                        "FullName": fullName,
-                                        "Phone": phone,
-                                        "Email": email,
-                                        "HealthInsurance": HealthInsurance,
-                                        "Address": address,
-                                        "BirthDate": birthDate,
-                                        "Gender": gender,
-                                        "ProvinceCode": provinceCode,
-                                        "DistrictCode": districtCode,
-                                        "WardCode": wardCode]
+        let parameters: Parameters = [
+            "Username": username,
+            "Password": password,
+            "FullName": fullName,
+            "Phone": phone,
+            "Email": email,
+            "HealthInsurance": HealthInsurance,
+            "Address": address,
+            "BirthDate": birthDate,
+            "Gender": true,
+            "ProvinceCode": provinceCode,
+            "DistrictCode": districtCode,
+            "WardCode": wardCode
+            ]
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(URL(string: _RegisterURL)!,
                           method: .post,
                           parameters: parameters,
-                          encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+                          encoding: JSONEncoding.default).responseString { (responseString) in
+                            
                             MBProgressHUD.hide(for: self.view, animated: true)
-                            if response.result.isSuccess {
-                                self.showAlert(title: "Thành công!", mess: "Bạn đã đăng kí thành công!", style: .alert)
-                                self.navigationController?.dismiss(animated: true)
+                            
+                            if responseString.result.isSuccess {
+                                
+                                guard let message = responseString.value else { return }
+                                if message == "" {
+                                    self.showAlert(title: "Xác nhận", message: "Đăng kí thành công", style: .alert, hasTwoButton: false, okAction: { (okkk) in
+                                        self.navigationController?.dismiss(animated: true)
+                                    })
+                                } else {
+                                    self.showAlert(title: "Lỗi", mess: message, style: .alert)
+                                }
                             } else {
-                                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+                                self.showAlert(title: "Lỗi", mess: responseString.error.debugDescription, style: .alert)
                             }
         }
+        
     }
 
     

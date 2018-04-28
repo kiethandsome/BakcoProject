@@ -17,5 +17,5 @@ struct MyStoryboard {
     static let familyDoctorStoryboard = UIStoryboard(name: "FamilyDoctor", bundle: Bundle.main)
     static let bookingStoryboard = UIStoryboard(name: "Booking", bundle: Bundle.main)
     static let paymentStoryboard = UIStoryboard(name: "Payment", bundle: Bundle.main)
-    
+    static let sideMenuStoryboard = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
 }

@@ -71,10 +71,16 @@ class LoginViewController: BaseViewController {
         Alamofire.request(getTokenApi, method: .post, encoding: "grant_type=password&username=\(username)&password=\(password)").responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if response.result.isSuccess {
-                let token = response.value?.dictionaryObject!["access_token"] as! String; print("Token: \(token)")
-                self.getUserID(token: token)
+                print(response.response?.statusCode as Any)
+                guard let dict = response.value?.dictionaryObject else { return }
+                if let token = dict["access_token"] as? String {
+                    print("Token: \(token)")
+                    self.getUserID(token: token)
+                } else if let error = dict["error_description"] as? String {
+                    self.showAlert(title: "Error", message: error, style: .alert, hasTwoButton: false, okAction: { (okAction) in })
+                }
             } else {
-                self.showAlert(title: "LỖI", mess: (response.error?.localizedDescription)!, style: .alert)
+                self.showAlert(title: "LỗI", mess: (response.error?.localizedDescription)!, style: .alert)
             }
         }
     }

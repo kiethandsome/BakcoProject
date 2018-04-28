@@ -72,7 +72,7 @@ class User: NSObject {
         MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
         MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
         MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
-        
+//        MyUser.gender = UserDefaults.standard.bool(forKey: UserGender)
         
     }
     
