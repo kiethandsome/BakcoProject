@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 import UserNotifications
+import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder {
         IQKeyboardManager.sharedManager().enable = true
         setupFirstScreen()
         registerForPushNotification()
+        DropDown.startListeningToKeyboard()
         return true
     }
     
@@ -28,7 +30,11 @@ class AppDelegate: UIResponder {
         let rootVc: UIViewController
 
         if UserDefaults.standard.bool(forKey: DidLogin)
+//            let userData = UserDefaults.standard.object(forKey: CurrentUser) as? Data,
+//            let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User
         {
+//            User.setCurrent(user)
+//            print("user was Exsisted, name: \(user.fullName)")
             rootVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "tab")
             self.setValueForConstantVariables()
         }
@@ -48,6 +54,7 @@ class AppDelegate: UIResponder {
         MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
         MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
         MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
+        MyUser.current = User.init(id: MyUser.id, name: MyUser.name, phone: MyUser.phone, hiid: MyUser.insuranceId, email: MyUser.email, address: MyUser.address, birthdate: MyUser.birthday, gender: MyUser.gender)
     }
  
 }

@@ -60,7 +60,7 @@ extension FavoriteDrViewController {
         self.familyDoctorList.removeAll()
         let param: Parameters = [ "Phone": phone,
                                   "ServiceId": serviceId ]
-        let url = URL(string: FamilyDocrorApi.favoriteDoctorList)!
+        let url = URL(string: API.FamilyDoctor.favoriteDoctorList)!
         MBProgressHUD.showAdded(to: self.view , animated: true)
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             
@@ -89,7 +89,7 @@ extension FavoriteDrViewController {
                                   "ServiceId": serviceId
                                   ]
         
-        let url = URL(string: FamilyDocrorApi.removeDoctor)!
+        let url = URL(string: API.FamilyDoctor.removeDoctor)!
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
@@ -126,7 +126,7 @@ extension FavoriteDrViewController {
             "DeviceType": "iOS",
             "DeviceToken": _deviceToken
         ]
-        let url = URL(string: FamilyDocrorApi.callService)!
+        let url = URL(string: API.FamilyDoctor.callService)!
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
 

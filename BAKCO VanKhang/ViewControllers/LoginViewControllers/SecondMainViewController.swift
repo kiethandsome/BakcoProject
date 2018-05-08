@@ -24,7 +24,7 @@ class SecondMainViewController: BaseViewController {
     @IBOutlet var okButton: UIButton!
     
     @IBOutlet weak var txtFullName: UITextField!
-    @IBOutlet weak var txtPhone: UIView!
+    @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var txtEmergencyPhone: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtBirthday: UITextField!
@@ -96,32 +96,73 @@ class SecondMainViewController: BaseViewController {
     }
     
     @IBAction func actOk(_ sender: Any) {
-        registerUser()
+        let isValid = validateInputContent()
+        if isValid == true {
+            self.registerUser()
+        } else {
+            
+        }
     }
     
     func registerUser() {
-        /// Validate textField
-        if let fullName = txtFullName.text, txtFullName.text != "",
-            let sosPhoneNum = txtEmergencyPhone.text, txtEmergencyPhone.text != "",
-            let email = txtEmail.text, txtEmail.text != "",
-            let _ = txtBirthday.text, txtBirthday.text != "",
-            let address = txtAddress.text, txtAddress.text != "",
-            let username = txtUserName.text,txtUserName.text != "",
-            let password = txtPassword.text,txtPassword.text != "",
-            let _ = txtConfirmPassword.text, txtConfirmPassword.text == password,
-            let city = _selectedCity, let dist = _selectedDistrict, let ward = _selectedWard
-        {
-            self.signup(fullName: fullName,
-                        phone: sosPhoneNum,
-                        email: email,
-                        birthDate: birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd"),
-                        address: address, provinceCode: city.value, districtCode: dist.value, wardCode: ward.value,
-                        HealthInsurance: "",
-                        username: username,
-                        password: password,
-                        gender: gender)
+        let birthDate: String = birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd")
+        self.signup(fullName: txtFullName.text!,
+                    phone: txtPhone.text!,
+                    email: txtEmail.text!,
+                    birthDate: birthDate,
+                    address: txtAddress.text!,
+                    provinceCode: SelectedPlace.city.value, districtCode: SelectedPlace.district.value, wardCode: SelectedPlace.ward.value,
+                    HealthInsurance: "",
+                    username: txtUserName.text!,
+                    password: txtPassword.text!,
+                    gender: gender)
+    }
+    
+    func validateInputContent() -> Bool {
+        guard let fullName = txtFullName.text,
+            let phone = txtPhone.text,
+            let email = txtEmail.text,
+            let birthday = txtBirthday.text,
+            let address = txtAddress.text,
+            let username = txtUserName.text,
+            let password = txtPassword.text,
+            let confirmPassword = txtConfirmPassword.text
+            else { return false }
+        if fullName == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập họ tên", style: .alert)
+            return false
+        } else if phone == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập số điện thoại", style: .alert)
+            return false
+        } else if email == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập email", style: .alert)
+            return false
+        } else if birthday == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập ngày sinh", style: .alert)
+            return false
+        } else if address == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập địa chỉ", style: .alert)
+            return false
+        } else if username == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập tên đăng nhập", style: .alert)
+            return false
+        } else if username.count < 6 {
+            showAlert(title: "Lỗi", mess: "Tên người dùng phải trên 6 kí tự, không bao gồm các kí tự đặt biệt và phải viết thường", style: .alert)
+            return false
+        } else if password == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập mật khẩu", style: .alert)
+            return false
+        } else if password.count < 6 {
+            showAlert(title: "Lỗi", mess: "Mật khẩu phải trên 6 kí tự, không bao gồm các kí tự đặt biệt và phải viết thường", style: .alert)
+            return false
+        } else if confirmPassword == "" {
+            showAlert(title: "Lỗi", mess: "Bạn chưa nhập xác nhận mật khẩu", style: .alert)
+            return false
+        } else if confirmPassword != password {
+            showAlert(title: "Lỗi", mess: "Xác nhận mật khẩu không khớp với mật khẩu bạn đã nhập", style: .alert)
+            return false
         } else {
-            showAlert(title: "Lỗi", mess: "Bạn chưa điền đủ thông tin hoặc nhập sai thông tin. Vui lòng kiểm tra lại!", style: .alert)
+            return true
         }
     }
     
@@ -143,7 +184,7 @@ class SecondMainViewController: BaseViewController {
             ]
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string: _RegisterURL)!,
+        Alamofire.request(URL(string: API.register)!,
                           method: .post,
                           parameters: parameters,
                           encoding: JSONEncoding.default).responseString { (responseString) in
@@ -164,13 +205,12 @@ class SecondMainViewController: BaseViewController {
                                 self.showAlert(title: "Lỗi", mess: responseString.error.debugDescription, style: .alert)
                             }
         }
-        
     }
 
     
     func getUserInfo(userId: Int) {
         MBProgressHUD.showAdded(to: view, animated: true)
-        Alamofire.request(URL(string: "http://api.vkhs.vn/api/BkCustomer/GetById/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: "\(API.getUserId)\(userId)")!, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value?.dictionaryValue as Any)
             if let data = response.value?.dictionaryObject {

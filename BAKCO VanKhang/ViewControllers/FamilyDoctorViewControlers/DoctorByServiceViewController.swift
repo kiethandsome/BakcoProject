@@ -83,7 +83,7 @@ extension DoctorByServiceViewController {
         let param: Parameters = [ "Phone": phone,
                                   "ServiceId": serviceId,
                                   "Keyword" : keyWord]
-        let url = URL(string: FamilyDocrorApi.doctorListByService)!
+        let url = URL(string: API.FamilyDoctor.doctorListByService)!
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             
@@ -111,7 +111,7 @@ extension DoctorByServiceViewController {
             "ServiceId": serviceId
         ]
         
-        let url = URL(string: FamilyDocrorApi.addDoctor)!
+        let url = URL(string: API.FamilyDoctor.addDoctor)!
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in

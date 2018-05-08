@@ -106,7 +106,7 @@ extension PopUpViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     private func requestService(with serviceId: String) {
-        let url = URL(string: "\(FamilyDocrorApi.serviceDetail)?ServiceId=\(serviceId)")!
+        let url = URL(string: "\(API.FamilyDoctor.serviceDetail)?ServiceId=\(serviceId)")!
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)

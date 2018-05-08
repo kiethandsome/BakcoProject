@@ -33,7 +33,7 @@ class DetailSchedulerViewController: BaseViewController {
     
     var currentScheduler: Appointment! {
         didSet {
-            hospitalNameLabel.text = currentScheduler.hospital?.Name!
+            hospitalNameLabel.text = currentScheduler.hospital?.Name
             serviceNameLabel.text = currentScheduler.service?.Name
             timeLabel.text = currentScheduler.detail?.from
             priceLabel.text = "\(currentScheduler.price)"
@@ -76,7 +76,7 @@ class DetailSchedulerViewController: BaseViewController {
     
     private func getDetailScheduler(id: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let url = URL(string: "\(_GetDetailSchedulerApi)/\(id)")
+        let url = URL(string: "\(API.getDetailScheduler)/\(id)")
         Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if response.result.isSuccess {

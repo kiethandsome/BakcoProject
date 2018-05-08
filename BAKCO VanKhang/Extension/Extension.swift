@@ -55,7 +55,9 @@ extension String { /// Convert from String to Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.locale = Locale(identifier: "vi_VN")
-        return dateFormatter.date(from: self)!
+        
+        guard let result = dateFormatter.date(from: self) else { return Date() }
+        return result
     }
 }
 

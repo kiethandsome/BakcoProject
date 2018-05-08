@@ -13,6 +13,7 @@ pod 'Hero', '~> 1.0'
 pod 'IQDropDownTextField', '~> 1.1'
 pod 'IQKeyboardManagerSwift', '~> 5.0'
 pod 'SwiftR'
+pod 'DropDown'
 
 
 end

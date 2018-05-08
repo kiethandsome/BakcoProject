@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2B53101EC29FFFF7B80D815E9E4763C9'
-               BlueprintName = 'IQDropDownTextField'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'IQDropDownTextField.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B53101EC29FFFF7B80D815E9E4763C9"
+               BlueprintName = "IQDropDownTextField"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "IQDropDownTextField.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

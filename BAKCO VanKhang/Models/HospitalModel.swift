@@ -9,14 +9,23 @@
 import Foundation
 import UIKit
 
-class HospitalModel: NSObject {
-    var Id: Int?
-    var Name: String?
-    var Image: String?
-    var Website: String?
-    var Price: Int?
-    var Address: String?
+public struct Hospital {
+    var Id: Int
+    var Name: String
+    var Image: String
+    var Website: String
+    var Price: Int
+    var Address: String
     
+    public init() {
+        self.Id = -1
+        self.Name = ""
+        self.Image = ""
+        self.Website = ""
+        self.Price = -1
+        self.Address = ""
+    }
+
     
     init(data: [String : Any]) {
         if let id = data["Id"] as? Int {
@@ -49,7 +58,6 @@ class HospitalModel: NSObject {
         } else {
             Price = 0
         }
-        super.init()
     }
 }
 

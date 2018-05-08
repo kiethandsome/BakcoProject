@@ -57,7 +57,7 @@ class MainViewController: BaseViewController  {
                                           "Lat": MyLocation.lat,
                                           "Lng": MyLocation.long,
                                           "Speed": 0]
-            let sosUrl = URL(string: _SOSEmergencyApi)!
+            let sosUrl = URL(string: API.sosEmergency)!
             
             locationManager.startUpdatingLocation()
             MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -104,7 +104,7 @@ class MainViewController: BaseViewController  {
     
     private func checkContract(phone: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let link: String = "\(FamilyDocrorApi.checkContract)?phone=\(phone)&lat=\(MyLocation.lat)&lng=\(MyLocation.long)"
+        let link: String = "\(API.FamilyDoctor.checkContract)?phone=\(phone)&lat=\(MyLocation.lat)&lng=\(MyLocation.long)"
         let url = URL(string: link)!
         
         Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseString { (responseString) in
@@ -121,14 +121,17 @@ class MainViewController: BaseViewController  {
     
     // Mark: Booking Button
     @IBAction func bookingButtonAction(_ sender: Any) {
-        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseInformViewController")
+//        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseInformViewController")
+//        navigationController?.pushViewController(next, animated: true)
+        
+        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "BookingViewController")
         navigationController?.pushViewController(next, animated: true)
     }
     
     //Mark: Advisory Button
     @IBAction func advisoryButtonAction(_ sender: Any) {
         self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
-            let url = URL(string: _TrueconfLink)
+            let url = URL(string: Link._TrueconfLink)
             UIApplication.shared.open(url!)
         }
     }
@@ -144,7 +147,7 @@ class MainViewController: BaseViewController  {
     @IBAction func medicalTvButtonAction(_ sender: Any) {
         
         self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
-            let url = URL(string: _MedicalTvLink)
+            let url = URL(string: Link._MedicalTvLink)
             UIApplication.shared.open(url!)
         }
     }

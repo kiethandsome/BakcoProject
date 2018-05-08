@@ -14,7 +14,7 @@ let exTypeArray = [Normal, Service, Expert]
 class Appointment: NSObject {
     
     var id: Int!
-    var hospital: HospitalModel?
+    var hospital: Hospital?
     var doctor: Doctor?
     var room: Room?
     var customer: User?
@@ -35,7 +35,7 @@ class Appointment: NSObject {
         }
         
         if let hospitalData = data["Hospital"] as? [String : Any] {
-            self.hospital = HospitalModel(data: hospitalData)
+            self.hospital = Hospital(data: hospitalData)
         } else {
             print("\n No hospital data!")
         }
@@ -84,8 +84,6 @@ class Appointment: NSObject {
                 }
             }
         }
-        
-
     }
 }
 

@@ -854,7 +854,7 @@
                         <outlet property="txtEmergencyPhone" destination="pEX-8V-P3Q" id="gW7-Gc-KA3"/>
                         <outlet property="txtFullName" destination="tL1-FA-HgX" id="9Zq-ZG-KVv"/>
                         <outlet property="txtPassword" destination="7bi-J6-Z0V" id="HGd-fz-sdD"/>
-                        <outlet property="txtPhone" destination="Rub-yY-I25" id="n1L-AV-uhf"/>
+                        <outlet property="txtPhone" destination="aly-eI-h3d" id="ArQ-1J-QGB"/>
                         <outlet property="txtUserName" destination="RUp-D6-52E" id="eLw-Yt-o3r"/>
                         <outlet property="userImageView" destination="uy9-8X-yav" id="htL-Xk-d2h"/>
                     </connections>

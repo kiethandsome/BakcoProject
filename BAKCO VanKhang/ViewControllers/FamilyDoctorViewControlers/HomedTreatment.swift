@@ -45,7 +45,7 @@ class HomedTreatmentViewController: BaseViewController {
     
     
     func checkFamilyDoctorServiceStatus() {
-        let url = URL(string: FamilyDocrorApi.serviceStatus)!
+        let url = URL(string: API.FamilyDoctor.serviceStatus)!
         let param: Parameters = [
             "ServiceId": serviceId,
             "SosPhone": MyUser.phone

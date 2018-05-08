@@ -26,7 +26,14 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         tabBarController?.tabBar.isTranslucent = false
 //        tabBarController?.tabBar.isHidden = true
-        view.backgroundColor = DynamicColor(hexString: "f7f9f9")
+        view.backgroundColor = UIColor.white
+    }
+    
+    ///MArk: Right Bar button
+    func showRightBarButton(title: String, action: Selector?) {
+        let barButton = UIBarButtonItem(title: title, style: .done, target: self, action: action)
+        navigationItem.rightBarButtonItem = barButton
+        barButton.isEnabled = false
     }
     
     ///mark: Back Button
@@ -78,8 +85,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
             let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
         }
-        
-
         present(alertController, animated: true)
     }
     
@@ -113,10 +118,8 @@ extension BaseViewController {
             } else {
                 self.showAlert(title: "Lỗi", mess: (response.error?.localizedDescription)!, style: .alert)
             }
-            
         }
     }
-    
     
     open func showAlert(title: String, message: String, style: UIAlertControllerStyle, hasTwoButton: Bool = true, okAction: @escaping (_ action: UIAlertAction) -> Void ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)

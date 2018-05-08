@@ -41,9 +41,9 @@ class FinalAppointmentViewController: BaseViewController {
             }
         }
         
-        lblHospitalName.text = _selectedHospital?.Name!
-        lblAddress.text = _selectedHospital?.Address!
-        exDayLabel.text = _selectedScheduler?.DateView!
+        lblHospitalName.text = _selectedHospital?.Name
+        lblAddress.text = _selectedHospital?.Address
+        exDayLabel.text = _selectedScheduler?.DateView
         InsuranceLabel.text = _selectedInsurance
         exTypeLabel.text = _selectedExamType
         timeLabel.text = _selectedDetail?.from

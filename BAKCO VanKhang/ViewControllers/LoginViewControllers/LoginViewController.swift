@@ -67,7 +67,7 @@ class LoginViewController: BaseViewController {
     
     private func getToken(username: String, password: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let getTokenApi = URL(string: _GetTokenApi)!
+        let getTokenApi = URL(string: API.getToken)!
         Alamofire.request(getTokenApi, method: .post, encoding: "grant_type=password&username=\(username)&password=\(password)").responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if response.result.isSuccess {
@@ -87,7 +87,7 @@ class LoginViewController: BaseViewController {
     
     private func getUserID(token: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let getUserIdApi = URL(string: _GetUserIdApi)!
+        let getUserIdApi = URL(string: API.getUserId)!
         Alamofire.request(getUserIdApi, method: .get, encoding: JSONEncoding.default, headers: ["Authorization" : "Bearer \(token)"]).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             if response.result.isSuccess {

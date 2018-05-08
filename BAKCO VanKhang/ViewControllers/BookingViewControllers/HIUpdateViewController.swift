@@ -16,6 +16,7 @@ import SwiftyJSON
 
 class HIUPdateViewController : UIViewController {
 
+    let dismissVc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "BookingViewController") as! BookingViewController
     
     @IBOutlet var viewPopupUI: UIView!
     @IBOutlet var healthInsuranceTextfield: UITextField!
@@ -26,6 +27,7 @@ class HIUPdateViewController : UIViewController {
     
     @IBAction func cancelAction(_ sender: Any) {
         dismissViewWithAnimation()
+        self.dismissVc.didUseInsurance(false)
     }
     
     @IBAction func confirmUpdate(_ sender: Any) {
@@ -49,6 +51,7 @@ class HIUPdateViewController : UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.resignFirstResponder()
+        self.dismissViewWithAnimation()
     }
     
     override func viewDidLoad() {
@@ -86,7 +89,6 @@ class HIUPdateViewController : UIViewController {
             
         }, completion: {
             (value: Bool) in
-            
             self.removeFromParentViewController()
             self.view.removeFromSuperview()
         })
@@ -99,7 +101,7 @@ extension HIUPdateViewController {
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
 
-        let url = URL(string: _UpdateHIApi)!
+        let url = URL(string: API.updateHI)!
 
         let param : Parameters = ["CustomerId" : userId,
                                   "HealthInsurance_Start_No" : HIId,
@@ -124,6 +126,7 @@ extension HIUPdateViewController {
                 print("Http Status Code : \(httpStatusCode ?? 10 )")
                 
                 self.dismissViewWithAnimation()
+                self.dismissVc.didUseInsurance(true)
                 
             } else {
                 
@@ -150,7 +153,7 @@ extension HIUPdateViewController {
         
         let format = "yyyy-MM-dd'T'HH:mm:ss"
         
-        let url = URL(string: "\(_GetHIApi)?CustomerId=\(MyUser.id)")!
+        let url = URL(string: "\(API.getHI)?CustomerId=\(MyUser.id)")!
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
@@ -159,6 +162,9 @@ extension HIUPdateViewController {
             MBProgressHUD.hide(for: self.view, animated: true)
             
             if response.result.isSuccess {
+                
+                ///test
+                print(response)
                 
                 let data = response.value?.dictionaryObject
                 
@@ -170,6 +176,7 @@ extension HIUPdateViewController {
                 
                 let startDate = currentHI.startDate.convertStringToDate(with: format)
                 let endDate = currentHI.endDate.convertStringToDate(with: format)
+                
                 
                 self.startDayTextfield.setDate(startDate, animated: true)
                 self.endDayTextfield.setDate(endDate, animated: true)

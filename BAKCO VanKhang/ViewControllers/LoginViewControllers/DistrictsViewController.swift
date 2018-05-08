@@ -12,8 +12,6 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
-var _selectedDistrict: District!
-
 class DistrictsViewController: BaseViewController {
     
     @IBOutlet var distTableview: UITableView!
@@ -29,7 +27,7 @@ class DistrictsViewController: BaseViewController {
         navigationItem.title = "Quận huyện"
         showBackButton()
         setupTableview(tv: distTableview)
-        getDist(by: _selectedCity.value)
+        getDist(by: SelectedPlace.city.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -45,7 +43,7 @@ extension DistrictsViewController {
     
     func getDist(by cityCode: String) {
         
-        let getDistUrl = URL(string: "\(_GetDistrictsApi)?CityCode=\(cityCode)")!
+        let getDistUrl = URL(string: "\(API.Location.getDistricts)?CityCode=\(cityCode)")!
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(getDistUrl, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
@@ -80,7 +78,7 @@ extension DistrictsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        _selectedDistrict = districts[indexPath.row]
+        SelectedPlace.district = districts[indexPath.row]
         
         let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController")
         self.navigationController?.pushViewController(vc, animated: true)

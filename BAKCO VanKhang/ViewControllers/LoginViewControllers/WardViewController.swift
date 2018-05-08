@@ -12,14 +12,8 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
-var _selectedWard: Ward! {
-    didSet {
-        _selectedPlace = "\(_selectedWard.name), \(_selectedDistrict.name), \(_selectedCity.name)"
-    }
-}
-
 class WardViewController: BaseViewController {
-    
+        
     @IBOutlet var wardTableview: UITableView!
     
     var wards = [Ward]() {
@@ -33,7 +27,7 @@ class WardViewController: BaseViewController {
         navigationItem.title = "Phường xã"
         showBackButton()
         setupTableview(tv: wardTableview)
-        getWard(by: _selectedDistrict.value)
+        getWard(by: SelectedPlace.district.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -48,7 +42,7 @@ class WardViewController: BaseViewController {
 extension WardViewController {
     
     func getWard(by distCode: String) {
-        let getDistUrl = URL(string: "\(_GetWardsApi)?DistrictCode=\(distCode)")!
+        let getDistUrl = URL(string: "\(API.Location.getWards)?DistrictCode=\(distCode)")!
         MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(getDistUrl, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -62,7 +56,6 @@ extension WardViewController {
             }
         }
     }
-    
 }
 
 extension WardViewController : UITableViewDelegate, UITableViewDataSource {
@@ -80,8 +73,24 @@ extension WardViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        _selectedWard = wards[indexPath.row]
-        navigationController?.dismiss(animated: true, completion: nil)
+        SelectedPlace.ward = self.wards[indexPath.row]
+        SelectedPlace.stringValue = SelectedPlace.ward.name + ", " + SelectedPlace.district.name + ", " + SelectedPlace.city.name
+        navigationController?.dismiss(animated: true)
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,7 +19,7 @@ class SideMenuViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Trang cá nhân"
+        self.title = "Tuỳ chọn thông tin"
         setupBackDownButton()
         configTableView(tv: sideTableView)
     }
@@ -85,19 +85,19 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
         case 1: /// Giơi thiệu dịch vụ
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-            vc.viewControllerID = ServiceIntroductionTitle
+            vc.title = ServiceIntroductionTitle
             self.navigationController?.pushViewController(vc, animated: true)
             break
             
 //        case 2: /// Hướng dẫn sử dụng
 //            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-//            vc.viewControllerID = GuildlineTitle
+//            vc.title = GuildlineTitle
 //            self.navigationController?.pushViewController(vc, animated: true)
 //            break
             
         case 2: /// Thông tin cá nhân
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-            vc.viewControllerID = PersonalInforTitle
+            vc.title = PersonalInforTitle
             self.navigationController?.pushViewController(vc, animated: true)
             
             

@@ -11,6 +11,8 @@ import UIKit
 
 class DateCell: UICollectionViewCell {
     
+    let textAttributes : [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14.0)]
+
     let title: UILabel = {
         let label = UILabel()
         return label
@@ -22,8 +24,9 @@ class DateCell: UICollectionViewCell {
         backgroundColor = UIColor.specialGreenColor()
         addContraintsWithFormat(format: "H:|[v0]|", views: title)
         addContraintsWithFormat(format: "V:|[v0]|", views: title)
-        layer.cornerRadius = 10.0
+        layer.cornerRadius = 8.0
         clipsToBounds = true
+        title.attributedText = NSAttributedString(string: "", attributes: textAttributes)
     }
     
     required init?(coder aDecoder: NSCoder) {

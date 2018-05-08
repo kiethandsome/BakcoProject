@@ -23,13 +23,13 @@ class ChooseInformViewController: BaseViewController {
     
     // Property:
     
-    var selectedHospital: HospitalModel?
-    var selectedSpecialty: SpecialtyModel?
+    var selectedHospital: Hospital?
+    var selectedSpecialty: Specialty?
     var selectedUser: User?
-    var selectedHealthCareScheduler: HealthCareSchedulerModel?
+    var selectedHealthCareScheduler: HealthCareScheduler?
     var insurance = false
     var selectedType: String?
-    var healthcareSchedule = [HealthCareSchedulerModel]() {
+    var healthcareSchedule = [HealthCareScheduler]() {
         didSet {
             dateCollectionView.reloadData()
         }
@@ -112,7 +112,7 @@ class ChooseInformViewController: BaseViewController {
                                       "HealthCareId": healthcareId,
                                       "Type": type]
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string:_GetHealthCareSchedulerApi)!, method: .get, parameters: parameters).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: API.getHealthCareScheduler)!, method: .get, parameters: parameters).responseSwiftyJSON { (response) in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 print(response)
 
@@ -121,23 +121,22 @@ class ChooseInformViewController: BaseViewController {
             } else {
                 self.healthcareSchedule.removeAll()
                 response.value?.forEach({ (json) in
-                    var newHealthCareScheduler = HealthCareSchedulerModel()
-                    newHealthCareScheduler.initWithData(data: json.1.dictionaryObject!)
+                    let newHealthCareScheduler = HealthCareScheduler(data: json.1.dictionaryObject!)
                     self.healthcareSchedule.append(newHealthCareScheduler)
                 })
             }
         }
     }
     
-    func getMatch(hospital: HospitalModel, paintentID: Int, specialty: SpecialtyModel, date: HealthCareSchedulerModel, typeId: String) {
-        let date1 : String = date.Date!
+    func getMatch(hospital: Hospital, paintentID: Int, specialty: Specialty, date: HealthCareScheduler, typeId: String) {
+        let date1 : String = date.Date
         let index = date1.index(date1.startIndex, offsetBy: 10)
         let dateString = date1[..<index] /// substring
         
-        let URLString = _GetMatchApi
+        let URLString = API.createExaminationNote
         let parameters: Parameters = ["CustomerId": paintentID,
-                                      "HospitalId": hospital.Id!,
-                                      "HealthCareId": specialty.Id!,
+                                      "HospitalId": hospital.Id,
+                                      "HealthCareId": specialty.Id,
                                       "IsMorning": true,
                                       "Date": dateString,
                                       "Type": typeId]
@@ -222,7 +221,7 @@ extension ChooseInformViewController: HopitalViewControllerDelegate, ChooseSpeci
         self.selectedUser = user
     }
     
-    func didChooseSpecialty(specialty: SpecialtyModel) {
+    func didChooseSpecialty(specialty: Specialty) {
         self.specialtyTextField.text = specialty.Name
         self.selectedSpecialty = specialty
         ///
@@ -235,7 +234,7 @@ extension ChooseInformViewController: HopitalViewControllerDelegate, ChooseSpeci
         }
     }
     
-    func didChooseHospital(hospital: HospitalModel) {
+    func didChooseHospital(hospital: Hospital) {
         self.hospitalNameTextField.text = hospital.Name
         self.selectedHospital = hospital
         
@@ -248,6 +247,7 @@ extension ChooseInformViewController: HopitalViewControllerDelegate, ChooseSpeci
 // MARK: COLLECTION VIEW DELEGATES
 
 extension ChooseInformViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if healthcareSchedule.count > 0 {
             return healthcareSchedule.count
@@ -262,7 +262,7 @@ extension ChooseInformViewController: UICollectionViewDelegateFlowLayout, UIColl
         cell.title.textAlignment = NSTextAlignment.center
 
         if healthcareSchedule.count > 0 {
-            cell.title.text = healthcareSchedule[indexPath.item].DateView!
+            cell.title.text = healthcareSchedule[indexPath.item].DateView
         } else {
             cell.title.text = "..."
             cell.backgroundColor = UIColor.specialGreenColor()
@@ -278,7 +278,7 @@ extension ChooseInformViewController: UICollectionViewDelegateFlowLayout, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 70.0, height: 30.0)
+        return CGSize(width: 80.0, height: 40.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

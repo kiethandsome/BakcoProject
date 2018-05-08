@@ -1,5 +1,5 @@
 //
-//  SpecialtyModel.swift
+//  Specialty.swift
 //  BAKCO VanKhang
 //
 //  Created by Pham An on 11/21/17.
@@ -9,13 +9,20 @@
 import Foundation
 import UIKit
 
-struct SpecialtyModel {
-    var Id: Int?
-    var Name: String?
-    var Price: Int?
-    var Image: String?
-    var Code: String?
-    var Description: String?
+struct Specialty {
+    var Id = Int()
+    var Name = String()
+    var Price = Int()
+    var Image = String()
+    var Code = String()
+    
+    init() {
+        self.Id = 0
+        self.Name = ""
+        self.Price = 0
+        self.Image = ""
+        self.Code = ""
+    }
     
     mutating func initWithData(data: [String:Any?]) {
         
@@ -47,13 +54,6 @@ struct SpecialtyModel {
         } else {
             Code = ""
         }
-        
-        if let description = data["Description"] as? String {
-            Description = description
-        } else {
-            Description = ""
-        }
-        
     }
 }
 

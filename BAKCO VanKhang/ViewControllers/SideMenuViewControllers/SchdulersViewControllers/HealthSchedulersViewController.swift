@@ -34,7 +34,7 @@ class HealthSchedulersViewController: BaseViewController {
     
     func loadSchedule(with Id: Int) {
         MBProgressHUD.showAdded(to: self.tableView1, animated: true)
-        let url = URL(string: "http://api.vkhs.vn/api/BkCustomer/GetSchedulerCustomer?CustomerId=\(MyUser.id)")
+        let url = URL(string: API.getSchedulerCustomer + "?CustomerId=\(MyUser.id)")
         Alamofire.request(url!, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.tableView1, animated: true)
             
@@ -45,11 +45,10 @@ class HealthSchedulersViewController: BaseViewController {
                     let data = dataJson.dictionaryObject
                     let schedule = Appointment(data: data!)
                     print(schedule.id)
-                    print(schedule.customer?.id ?? -10)
+                    print(schedule.customer?.fullName ?? "Con chim non")
                     self.schedulerList.append(schedule)
                 }
             } else {
-                print("LỖI KO CÓ LỊCH")
                 self.showAlert(title: "Lỗi", mess: "Bệnh nhân này chưa đặt lịch khám!", style: .alert)
             }
         }

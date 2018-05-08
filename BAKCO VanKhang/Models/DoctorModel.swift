@@ -8,17 +8,54 @@
 
 import Foundation
 
-class Doctor: NSObject {
+struct Doctor {
     
-    var id = 0
-    var fullName: String?
-    var idH: Int?
-    var image: String?
+    var id = Int()
+    var fullName = String()
+    var idH = Int()
+    var image = String()
+    
+    init() {
+        id = 0
+        fullName = ""
+        idH = 0
+        image = ""
+    }
     
     init(data: [String : Any]) {
-        id = data["Id"] as! Int
-        fullName = data["FullName"] as? String
-        idH = data["IdH"] as? Int
-        image = data["Image"] as? String
+        
+        if let id = data["Id"] as? Int {
+            self.id = id
+        } else {
+            self.id = 0
+        }
+        
+        if let fullName = data["FullName"] as? String {
+            self.fullName = fullName
+        } else {
+            self.fullName = "Chưa có tên"
+        }
+        
+        if let idH = data["IdH"] as? Int {
+            self.idH = idH
+        } else {
+            self.idH = 0
+        }
+        
+        if let image = data["Image"] as? String {
+            self.image = image
+        } else {
+            self.image = ""
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+

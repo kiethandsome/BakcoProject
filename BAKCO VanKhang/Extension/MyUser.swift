@@ -10,6 +10,7 @@ import Foundation
 
 
 struct MyUser {
+    static var current: User?
     static var name = String()
     static var id = Int()
     static var address = String()

@@ -114,7 +114,6 @@
         <!--Favorite Dr View Controller-->
         <scene sceneID="ILi-B7-Qtx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="toW-4g-Iql" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FavoriteDrViewController" id="Muq-kI-INz" customClass="FavoriteDrViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gse-97-IwP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -168,6 +167,7 @@
                         <outlet property="favDoctorTableview" destination="10E-gV-frl" id="KGa-nJ-3Ne"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="toW-4g-Iql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-106" y="-1728"/>
         </scene>

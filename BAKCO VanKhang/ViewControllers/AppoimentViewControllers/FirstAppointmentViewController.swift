@@ -11,9 +11,9 @@ import AlamofireSwiftyJSON
 import Alamofire
 import MBProgressHUD
 
-var _selectedHospital: HospitalModel?
-var _selectedSpecialty: SpecialtyModel?
-var _selectedScheduler: HealthCareSchedulerModel?
+var _selectedHospital: Hospital?
+var _selectedSpecialty: Specialty?
+var _selectedScheduler: HealthCareScheduler?
 var _selectedInsurance = ""
 var _selectedExamType = ""
 var _selectedDetail: DetailModel?
@@ -39,17 +39,17 @@ class FirstAppointmentViewController: BaseViewController {
     @IBOutlet var roomNumberLabel: UILabel!
     @IBOutlet var confirmButton: UIButton!
     
-    var specialty: SpecialtyModel!{
+    var specialty: Specialty!{
         didSet {
             _selectedSpecialty = specialty
         }
     }
-    var day: HealthCareSchedulerModel! {
+    var day: HealthCareScheduler! {
         didSet {
             _selectedScheduler = day
         }
     }
-    var currentHospital: HospitalModel! {
+    var currentHospital: Hospital! {
         didSet {
             _selectedHospital = currentHospital
         }
@@ -87,25 +87,27 @@ class FirstAppointmentViewController: BaseViewController {
         super.viewDidLoad()
         navigationItem.title = "Xác nhận"
         showBackButton()
-        
-        lblHospitalName.text = currentHospital.Name
-        lblAddress.text = currentHospital.Address
-        exDayLabel.text = day.DateView
-        InsuranceLabel.text = didHaveInsurance ? "Sử dụng BHYT: Có" : "Sử dụng BHYT: Không"
-        exTypeLabel.text = type
-        
-        ///
-        userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
-        insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
-        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"
-        phoneNumberLabel.text = "ĐT: \(MyUser.phone)"
-        
+        setupContent()
+
         if let healthCareId = currentMatch.HealthCareSchedulerId, let userId = currentMatch.CustomerId {
             getAppointMent(healthCareSchedulerId: healthCareId, customerId: userId)
         } else {
             showAlert(title: "Lỗi", mess: "Vui lòng kiểm tra lại", style: .alert)
         }
         
+    }
+    
+    fileprivate func setupContent() {
+        lblHospitalName.text = BookingInform.hospital.Name
+        lblAddress.text = BookingInform.hospital.Address
+        exDayLabel.text = BookingInform.scheduler.DateView
+        InsuranceLabel.text = BookingInform.didUseHI ? "Sử dụng BHYT: Có" : "Sử dụng BHYT: Không"
+        exTypeLabel.text = BookingInform.exTypeName
+        ///
+        userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
+        insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
+        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"
+        phoneNumberLabel.text = "ĐT: \(MyUser.phone)"
     }
     
     @IBAction func confirm(_ sender: Any) {
@@ -115,7 +117,7 @@ class FirstAppointmentViewController: BaseViewController {
     
     
     func getAppointMent(healthCareSchedulerId: Int, customerId: Int) {
-        let urlString = _GetFirstAppointmentApi
+        let urlString = API.getFirstAppointment
         let parameters: Parameters = [ "HasHealthInsurance" : self.didHaveInsurance,
                                        "HealthCareSchedulerId": healthCareSchedulerId,
                                        "CustomerId": customerId,

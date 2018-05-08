@@ -14,7 +14,7 @@ import SDWebImage
 import MBProgressHUD
 
 protocol HopitalViewControllerDelegate: class {
-    func didChooseHospital(hospital: HospitalModel)
+    func didChooseHospital(hospital: Hospital)
 }
 
 class HospitalViewController: BaseViewController, UISearchControllerDelegate, UISearchBarDelegate {
@@ -25,9 +25,9 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     let hospitalSearchController = UISearchController()
     
-    var hospitals = [HospitalModel]()
+    var hospitals = [Hospital]()
     
-    var filterredHospitals = [HospitalModel]()
+    var filterredHospitals = [Hospital]()
     
     weak var delegate: HopitalViewControllerDelegate!
     
@@ -64,7 +64,7 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     func getHospitals() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string:"http://api.vkhs.vn/api/BkHospital/Get")!, method: .get).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: API.getHospital)!, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value as Any)
             
@@ -73,7 +73,7 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
             } else {
                 response.result.value?.forEach({ (json) in
                     let data = json.1.dictionaryObject
-                    let newHospital: HospitalModel = HospitalModel(data: data!)
+                    let newHospital: Hospital = Hospital(data: data!)
                     self.hospitals.append(newHospital)
                 })
                 self.hospitalCollection.reloadData()
@@ -94,7 +94,7 @@ extension HospitalViewController: UISearchResultsUpdating {
 
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         self.filterredHospitals = hospitals.filter({ (hospital) -> Bool in
-            return (hospital.Name?.lowercased().contains(searchText.lowercased()))!
+            return (hospital.Name.lowercased().contains(searchText.lowercased()))
         })
         self.hospitalCollection.reloadData()
     }
@@ -107,10 +107,8 @@ extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDe
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let currentHospital = hospitals[indexPath.item]
-        dismiss(animated: true) {
-            self.delegate.didChooseHospital(hospital: currentHospital)
-        }
-        
+        self.delegate.didChooseHospital(hospital: currentHospital)
+        dismiss(animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -127,9 +125,9 @@ extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.hospitalImageView.clipsToBounds = true
         cell.hospitalImageView.layer.borderWidth = 1.0
         cell.hospitalImageView.layer.borderColor = UIColor.black.cgColor
-        let imageLink = hospitals[indexPath.item].Image!
+        let imageLink = hospitals[indexPath.item].Image
         cell.hospitalImageView.sd_setImage(with: URL(string: imageLink), placeholderImage: #imageLiteral(resourceName: "hospital"))
-        cell.hospitalNameLabel.attributedText = NSAttributedString(string: hospitals[indexPath.item].Name!,
+        cell.hospitalNameLabel.attributedText = NSAttributedString(string: hospitals[indexPath.item].Name,
                                                                    attributes: fontAttribute)
 
         return cell

@@ -475,7 +475,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
         <!--Update Inform View Controller-->
         <scene sceneID="XrV-ry-QcZ">
             <objects>
-                <viewController storyboardIdentifier="UpdateInformViewController" id="TFT-pR-bti" customClass="UpdateInformViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateInformViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TFT-pR-bti" customClass="UpdateInformViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TwZ-FU-y9C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -490,8 +490,8 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                             <constraint firstAttribute="height" constant="80" id="q1n-Q5-DEE"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RD-s0-Qwa" userLabel="FirstView">
-                                        <rect key="frame" x="15" y="120" width="345" height="405"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RD-s0-Qwa" userLabel="ContentView">
+                                        <rect key="frame" x="15" y="120" width="345" height="365"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Nz-Gq-VDd">
                                                 <rect key="frame" x="0.0" y="5" width="345" height="40"/>
@@ -506,10 +506,10 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user (1)" translatesAutoresizingMaskIntoConstraints="NO" id="s5S-b5-YXL">
-                                                        <rect key="frame" x="10" y="13" width="20" height="15"/>
+                                                        <rect key="frame" x="10" y="11.5" width="20" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="fdZ-ug-DUU"/>
-                                                            <constraint firstAttribute="height" constant="15" id="jgO-tH-0HS"/>
+                                                            <constraint firstAttribute="height" constant="18" id="jgO-tH-0HS"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvC-rC-3Ti">
@@ -577,51 +577,8 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                     <constraint firstItem="qaP-bg-jh2" firstAttribute="centerY" secondItem="Wch-6K-NHQ" secondAttribute="centerY" id="uDV-cc-hEc"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzZ-UJ-73U">
-                                                <rect key="frame" x="0.0" y="85" width="345" height="40"/>
-                                                <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kích hoạt chức năng yêu cầu cáp cứu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEy-Fg-KYh">
-                                                        <rect key="frame" x="50" y="2.5" width="275" height="35"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="5MA-cF-eWl"/>
-                                                        </constraints>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                    </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phoe" translatesAutoresizingMaskIntoConstraints="NO" id="7EE-vu-JOh">
-                                                        <rect key="frame" x="10" y="12.5" width="15" height="15"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="15" id="HvB-Qv-gU9"/>
-                                                            <constraint firstAttribute="width" constant="15" id="ujf-uo-ybR"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k85-mK-2Va">
-                                                        <rect key="frame" x="20" y="5" width="22" height="14"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="22" id="38w-Gx-Xzz"/>
-                                                            <constraint firstAttribute="height" constant="14" id="pzw-5A-pTa"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                                        <color key="textColor" red="1" green="0.52708031190000004" blue="0.57445283650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="k85-mK-2Va" firstAttribute="leading" secondItem="tzZ-UJ-73U" secondAttribute="leading" constant="20" id="2a8-kJ-BQ4"/>
-                                                    <constraint firstItem="k85-mK-2Va" firstAttribute="top" secondItem="tzZ-UJ-73U" secondAttribute="top" constant="5" id="HCa-zO-Q7F"/>
-                                                    <constraint firstItem="vEy-Fg-KYh" firstAttribute="leading" secondItem="7EE-vu-JOh" secondAttribute="trailing" constant="25" id="Iac-72-Qqk"/>
-                                                    <constraint firstAttribute="height" constant="40" id="JIt-F0-wvj"/>
-                                                    <constraint firstItem="vEy-Fg-KYh" firstAttribute="centerY" secondItem="7EE-vu-JOh" secondAttribute="centerY" id="Lzo-oT-Jun"/>
-                                                    <constraint firstAttribute="trailing" secondItem="vEy-Fg-KYh" secondAttribute="trailing" constant="20" id="RQX-RZ-Hck"/>
-                                                    <constraint firstItem="vEy-Fg-KYh" firstAttribute="leading" secondItem="k85-mK-2Va" secondAttribute="trailing" constant="8" id="dR0-QH-Vb2"/>
-                                                    <constraint firstItem="7EE-vu-JOh" firstAttribute="leading" secondItem="tzZ-UJ-73U" secondAttribute="leading" constant="10" id="gbl-86-JwF"/>
-                                                    <constraint firstItem="7EE-vu-JOh" firstAttribute="centerY" secondItem="tzZ-UJ-73U" secondAttribute="centerY" id="mWz-aQ-xoW"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlF-bX-gjx">
-                                                <rect key="frame" x="0.0" y="125" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="85" width="345" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XIy-Zn-Zsc">
                                                         <rect key="frame" x="50" y="2.5" width="275" height="35"/>
@@ -651,7 +608,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBE-fP-EOh">
-                                                <rect key="frame" x="0.0" y="165" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="125" width="345" height="40"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cake" translatesAutoresizingMaskIntoConstraints="NO" id="6ji-Pt-8pE">
                                                         <rect key="frame" x="10" y="10" width="20" height="20"/>
@@ -660,16 +617,16 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                             <constraint firstAttribute="height" constant="20" id="y4z-dU-nBC"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày, tháng, năm sinh" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c3E-gN-mfk" customClass="IQDropDownTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày, tháng, năm sinh" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-jE-lQA" customClass="IQDropDownTextField">
                                                         <rect key="frame" x="50" y="3" width="275" height="35"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="A2G-RG-leM"/>
+                                                            <constraint firstAttribute="height" constant="35" id="9IH-cv-4Qf"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backDown" translatesAutoresizingMaskIntoConstraints="NO" id="zTH-mf-d0N">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caret-down" translatesAutoresizingMaskIntoConstraints="NO" id="zTH-mf-d0N">
                                                         <rect key="frame" x="295" y="10" width="25" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="FTH-Xx-3QW"/>
@@ -679,18 +636,18 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="c3E-gN-mfk" firstAttribute="leading" secondItem="6ji-Pt-8pE" secondAttribute="trailing" constant="20" id="Fbo-SM-gPi"/>
+                                                    <constraint firstItem="6ji-Pt-8pE" firstAttribute="centerY" secondItem="WBE-fP-EOh" secondAttribute="centerY" id="883-KV-Uef"/>
+                                                    <constraint firstItem="dOa-jE-lQA" firstAttribute="centerY" secondItem="WBE-fP-EOh" secondAttribute="centerY" id="Fw0-np-iUy"/>
                                                     <constraint firstAttribute="height" constant="40" id="JHX-lV-J7A"/>
-                                                    <constraint firstItem="c3E-gN-mfk" firstAttribute="centerY" secondItem="WBE-fP-EOh" secondAttribute="centerY" id="Uz8-8q-cFn"/>
+                                                    <constraint firstItem="dOa-jE-lQA" firstAttribute="leading" secondItem="6ji-Pt-8pE" secondAttribute="trailing" constant="20" id="UJA-uh-k9G"/>
                                                     <constraint firstItem="6ji-Pt-8pE" firstAttribute="leading" secondItem="WBE-fP-EOh" secondAttribute="leading" constant="10" id="ZMT-ol-DtD"/>
-                                                    <constraint firstAttribute="trailing" secondItem="c3E-gN-mfk" secondAttribute="trailing" constant="20" id="jwp-0n-nex"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dOa-jE-lQA" secondAttribute="trailing" constant="20" id="pb4-46-RX8"/>
                                                     <constraint firstItem="zTH-mf-d0N" firstAttribute="centerY" secondItem="WBE-fP-EOh" secondAttribute="centerY" id="qeT-dy-ihd"/>
                                                     <constraint firstAttribute="trailing" secondItem="zTH-mf-d0N" secondAttribute="trailing" constant="25" id="wvV-v5-MK3"/>
-                                                    <constraint firstItem="6ji-Pt-8pE" firstAttribute="centerY" secondItem="c3E-gN-mfk" secondAttribute="centerY" id="x4G-r3-3sF"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgL-WX-e9Z">
-                                                <rect key="frame" x="0.0" y="205" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="165" width="345" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số nhà, tên đường" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4w4-EO-74b">
                                                         <rect key="frame" x="50" y="2.5" width="275" height="35"/>
@@ -720,7 +677,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICx-W1-FJi">
-                                                <rect key="frame" x="0.0" y="285" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="245" width="345" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số bảo hiểm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2F-E3-gZx">
                                                         <rect key="frame" x="50" y="2.5" width="275" height="35"/>
@@ -750,10 +707,10 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftd-y0-oJN">
-                                                <rect key="frame" x="0.0" y="325" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="285" width="345" height="40"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã số định danh (CMND*)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R2U-3I-JQk">
-                                                        <rect key="frame" x="126" y="2.5" width="199" height="35"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mã số định danh (CMND)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R2U-3I-JQk">
+                                                        <rect key="frame" x="50" y="2.5" width="275" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="7Ns-DD-RfJ"/>
                                                         </constraints>
@@ -761,26 +718,26 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Mã số định danh:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9m-to-MhI">
-                                                        <rect key="frame" x="10" y="0.0" width="106" height="40"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                                        <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="id-card" translatesAutoresizingMaskIntoConstraints="NO" id="Zlw-Mr-38Q">
+                                                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="LEA-oh-jD7"/>
+                                                            <constraint firstAttribute="width" constant="20" id="z5A-E5-cIA"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="S9m-to-MhI" secondAttribute="bottom" id="8AV-o5-Or1"/>
                                                     <constraint firstAttribute="trailing" secondItem="R2U-3I-JQk" secondAttribute="trailing" constant="20" id="HOp-pW-uHR"/>
-                                                    <constraint firstItem="R2U-3I-JQk" firstAttribute="centerY" secondItem="S9m-to-MhI" secondAttribute="centerY" id="WqC-kG-QQm"/>
-                                                    <constraint firstItem="S9m-to-MhI" firstAttribute="leading" secondItem="ftd-y0-oJN" secondAttribute="leading" constant="10" id="aXq-CW-Oth"/>
+                                                    <constraint firstItem="R2U-3I-JQk" firstAttribute="centerY" secondItem="ftd-y0-oJN" secondAttribute="centerY" id="aY2-9P-TaH"/>
                                                     <constraint firstAttribute="height" constant="40" id="dYl-hW-3gY"/>
-                                                    <constraint firstItem="S9m-to-MhI" firstAttribute="top" secondItem="ftd-y0-oJN" secondAttribute="top" id="rd3-Rc-wAb"/>
-                                                    <constraint firstItem="R2U-3I-JQk" firstAttribute="leading" secondItem="S9m-to-MhI" secondAttribute="trailing" constant="10" id="xoO-sS-qkb"/>
+                                                    <constraint firstItem="Zlw-Mr-38Q" firstAttribute="leading" secondItem="ftd-y0-oJN" secondAttribute="leading" constant="10" id="hpv-kQ-AJS"/>
+                                                    <constraint firstItem="R2U-3I-JQk" firstAttribute="leading" secondItem="Zlw-Mr-38Q" secondAttribute="trailing" constant="20" id="oGc-aK-IrA"/>
+                                                    <constraint firstItem="Zlw-Mr-38Q" firstAttribute="centerY" secondItem="ftd-y0-oJN" secondAttribute="centerY" id="p48-PW-A0A"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qei-rb-1Nh">
-                                                <rect key="frame" x="0.0" y="365" width="345" height="35"/>
+                                                <rect key="frame" x="0.0" y="325" width="345" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giới tính:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MId-ed-bWt">
                                                         <rect key="frame" x="10" y="0.0" width="56" height="35"/>
@@ -855,7 +812,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obw-1V-Ugb">
-                                                <rect key="frame" x="0.0" y="245" width="345" height="40"/>
+                                                <rect key="frame" x="0.0" y="205" width="345" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tỉnh/ Thành, Quận/Huyện, Phường/xã" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QIk-C3-88T">
                                                         <rect key="frame" x="50" y="2.5" width="275" height="35"/>
@@ -866,7 +823,7 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backDown" translatesAutoresizingMaskIntoConstraints="NO" id="YIg-og-MiX">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="caret-down" translatesAutoresizingMaskIntoConstraints="NO" id="YIg-og-MiX">
                                                         <rect key="frame" x="295" y="10" width="25" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="DRi-7X-0sm"/>
@@ -881,7 +838,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         </state>
                                                         <connections>
                                                             <action selector="choosePlaces:" destination="TFT-pR-bti" eventType="touchUpInside" id="KHB-rG-vYv"/>
-                                                            <action selector="showCityVc:" destination="TFT-pR-bti" eventType="touchUpInside" id="0rh-ds-Box"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -912,7 +868,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                             <constraint firstItem="ftd-y0-oJN" firstAttribute="leading" secondItem="3RD-s0-Qwa" secondAttribute="leading" id="Esw-Zn-6pM"/>
                                             <constraint firstAttribute="trailing" secondItem="Obw-1V-Ugb" secondAttribute="trailing" id="Fj8-Nn-MXC"/>
                                             <constraint firstAttribute="trailing" secondItem="qgL-WX-e9Z" secondAttribute="trailing" id="H9l-C2-FPL"/>
-                                            <constraint firstItem="OlF-bX-gjx" firstAttribute="top" secondItem="tzZ-UJ-73U" secondAttribute="bottom" id="HXM-UT-4cl"/>
                                             <constraint firstItem="7Nz-Gq-VDd" firstAttribute="top" secondItem="3RD-s0-Qwa" secondAttribute="top" constant="5" id="Hou-Ca-Nb4"/>
                                             <constraint firstAttribute="trailing" secondItem="OlF-bX-gjx" secondAttribute="trailing" id="K20-Gb-lLd"/>
                                             <constraint firstItem="ftd-y0-oJN" firstAttribute="top" secondItem="ICx-W1-FJi" secondAttribute="bottom" id="PgH-9c-uGh"/>
@@ -921,7 +876,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                             <constraint firstAttribute="trailing" secondItem="7Nz-Gq-VDd" secondAttribute="trailing" id="Xrz-Eo-7VV"/>
                                             <constraint firstAttribute="trailing" secondItem="ftd-y0-oJN" secondAttribute="trailing" id="YPJ-AE-tfq"/>
                                             <constraint firstItem="qgL-WX-e9Z" firstAttribute="leading" secondItem="3RD-s0-Qwa" secondAttribute="leading" id="aZL-5w-EmQ"/>
-                                            <constraint firstItem="tzZ-UJ-73U" firstAttribute="leading" secondItem="3RD-s0-Qwa" secondAttribute="leading" id="aZM-qe-HRs"/>
                                             <constraint firstAttribute="trailing" secondItem="Wch-6K-NHQ" secondAttribute="trailing" id="d7W-tA-YOW"/>
                                             <constraint firstAttribute="trailing" secondItem="WBE-fP-EOh" secondAttribute="trailing" id="dWc-7C-dCP"/>
                                             <constraint firstItem="Wch-6K-NHQ" firstAttribute="top" secondItem="7Nz-Gq-VDd" secondAttribute="bottom" id="eC3-wv-s3v"/>
@@ -931,24 +885,26 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                             <constraint firstItem="WBE-fP-EOh" firstAttribute="top" secondItem="OlF-bX-gjx" secondAttribute="bottom" id="kgk-AN-dCA"/>
                                             <constraint firstItem="ICx-W1-FJi" firstAttribute="top" secondItem="Obw-1V-Ugb" secondAttribute="bottom" id="o3X-G4-4x7"/>
                                             <constraint firstAttribute="trailing" secondItem="qei-rb-1Nh" secondAttribute="trailing" id="o9m-Ni-9TD"/>
-                                            <constraint firstAttribute="trailing" secondItem="tzZ-UJ-73U" secondAttribute="trailing" id="rUW-uz-zqb"/>
                                             <constraint firstAttribute="bottom" secondItem="qei-rb-1Nh" secondAttribute="bottom" constant="5" id="raE-91-1xI"/>
                                             <constraint firstAttribute="trailing" secondItem="ICx-W1-FJi" secondAttribute="trailing" id="ris-zU-2yI"/>
                                             <constraint firstItem="qgL-WX-e9Z" firstAttribute="top" secondItem="WBE-fP-EOh" secondAttribute="bottom" id="sjI-OW-UhW"/>
                                             <constraint firstItem="qei-rb-1Nh" firstAttribute="top" secondItem="ftd-y0-oJN" secondAttribute="bottom" id="ukX-pH-mhZ"/>
                                             <constraint firstItem="qei-rb-1Nh" firstAttribute="leading" secondItem="3RD-s0-Qwa" secondAttribute="leading" id="wGi-on-G60"/>
+                                            <constraint firstItem="OlF-bX-gjx" firstAttribute="top" secondItem="Wch-6K-NHQ" secondAttribute="bottom" id="yUE-mM-qaV"/>
                                             <constraint firstItem="ftd-y0-oJN" firstAttribute="top" secondItem="ICx-W1-FJi" secondAttribute="bottom" id="zFe-mp-gqd"/>
-                                            <constraint firstItem="tzZ-UJ-73U" firstAttribute="top" secondItem="Wch-6K-NHQ" secondAttribute="bottom" id="zOj-T3-tHi"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pi-eo-d28">
-                                        <rect key="frame" x="117" y="555" width="140" height="35"/>
+                                        <rect key="frame" x="117" y="515" width="140" height="35"/>
                                         <color key="backgroundColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="Q19-Ov-ArG"/>
@@ -995,31 +951,33 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                     <navigationItem key="navigationItem" id="NLS-L3-2Io"/>
                     <connections>
                         <outlet property="addressTextfield" destination="4w4-EO-74b" id="ugo-FI-xpU"/>
-                        <outlet property="birthdayTextfield" destination="c3E-gN-mfk" id="SUA-PR-7hg"/>
+                        <outlet property="birthdayTextfield" destination="dOa-jE-lQA" id="Jk9-63-myD"/>
+                        <outlet property="confirmButton" destination="1pi-eo-d28" id="pPB-ix-WyK"/>
+                        <outlet property="contentView" destination="3RD-s0-Qwa" id="RGL-pw-EPz"/>
                         <outlet property="emailTextfield" destination="XIy-Zn-Zsc" id="G7h-mr-9Gc"/>
                         <outlet property="femaleButton" destination="9I6-et-zO7" id="M6p-rA-7hU"/>
                         <outlet property="hiTextfield" destination="a2F-E3-gZx" id="gCC-mv-hdu"/>
                         <outlet property="maleButton" destination="h5p-Aq-1gr" id="Uue-xc-x6q"/>
                         <outlet property="pesonalIdTextfield" destination="R2U-3I-JQk" id="UhO-wo-JKL"/>
                         <outlet property="phoneTextfield" destination="T1L-hq-gXb" id="1hT-yO-yLV"/>
-                        <outlet property="sosPhoneTextfield" destination="vEy-Fg-KYh" id="QXc-Pg-AkD"/>
-                        <outlet property="txtPhone" destination="Wch-6K-NHQ" id="5ma-7r-hTt"/>
+                        <outlet property="placesTextfield" destination="QIk-C3-88T" id="4dF-CB-BPE"/>
                         <outlet property="userImageView" destination="JYq-lu-Jw6" id="vva-4C-P3K"/>
                         <outlet property="usernameTextfield" destination="aWf-u4-J5D" id="BMK-KT-dEV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWW-vI-fwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4332" y="-762"/>
+            <point key="canvasLocation" x="-4558" y="-781"/>
         </scene>
     </scenes>
     <resources>
         <image name="Mail" width="21" height="21"/>
         <image name="avatar-placeholder" width="540" height="540"/>
-        <image name="backDown" width="64" height="64"/>
         <image name="cake" width="21" height="21"/>
+        <image name="caret-down" width="24" height="24"/>
         <image name="checked" width="21" height="21"/>
         <image name="home1" width="21" height="21"/>
+        <image name="id-card" width="21" height="21"/>
         <image name="phoe" width="21" height="21"/>
         <image name="plus" width="21" height="21"/>
         <image name="user (1)" width="21" height="21"/>

@@ -16,13 +16,10 @@ let PersonalInforTitle = "Trang cá nhân"
 class SelectIntroductionViewController : BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var selectionIntroduceTableview: UITableView!
-    
-    var viewControllerID = String()
-    
+
     var cellTitles = [String]()
     
     override func viewDidLoad() {
-        title = "Giới thiệu dịch vụ"
         super.viewDidLoad()
         self.showBackButton()
         selectionIntroduceTableview.delegate = self
@@ -31,7 +28,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
         selectionIntroduceTableview.rowHeight = 60.0
         selectionIntroduceTableview.tableFooterView = UIView()
         
-        switch self.viewControllerID {
+        switch self.title! {
             
         case ServiceIntroductionTitle:
             self.cellTitles = ["Gọi cấp cứu SOS", "Tư vấn sức khoẻ từ xa", "Chữa bệnh tại nhà", "Đăng kí khám chữa bệnh"]
@@ -43,7 +40,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             
         case PersonalInforTitle:
 //            self.cellTitles = ["Thông tin cá nhân", "Thông tin người thân", "Lịch sử dùng dịch vụ", "Hồ sơ sức khoẻ cá nhân"]
-            self.cellTitles = ["Lịch sử dùng dịch vụ"]
+            self.cellTitles = ["Thông tin cá nhân", "Lịch sử dùng dịch vụ"]
             break
             
         default:
@@ -102,6 +99,11 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
         case "Lịch sử dùng dịch vụ" :
             let healthSchedulerVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "HealthSchedulersViewController")
             self.navigationController?.pushViewController(healthSchedulerVc, animated: true)
+            break
+            
+        case "Thông tin cá nhân" :
+            let updateInformVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "UpdateInformViewController")
+            self.navigationController?.pushViewController(updateInformVc, animated: true)
             break
         
         default:

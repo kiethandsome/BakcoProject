@@ -12,8 +12,6 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
-var _selectedCity: City!
-
 class CitiesViewController: BaseViewController {
     
     @IBOutlet var citiesTableview: UITableView!
@@ -24,7 +22,7 @@ class CitiesViewController: BaseViewController {
         }
     }
     
-    let getCitiesUrl = URL(string: _GetCitiesApi)!
+    let getCitiesUrl = URL(string: API.Location.getCities)!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +77,7 @@ extension CitiesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        _selectedCity = cities[indexPath.row]
+        SelectedPlace.city = cities[indexPath.row]
         
         let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController")
         self.navigationController?.pushViewController(vc, animated: true)
