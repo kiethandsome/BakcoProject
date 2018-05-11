@@ -14,9 +14,11 @@ import Alamofire
 import AlamofireSwiftyJSON
 import SwiftyJSON
 
-class HIUPdateViewController : UIViewController {
+protocol HIUPdateViewControllerDelegate: class {
+    func didSelectUseInsurance(didUsed: Bool, hiid: String)
+}
 
-    let dismissVc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "BookingViewController") as! BookingViewController
+class HIUPdateViewController : UIViewController {
     
     @IBOutlet var viewPopupUI: UIView!
     @IBOutlet var healthInsuranceTextfield: UITextField!
@@ -25,9 +27,11 @@ class HIUPdateViewController : UIViewController {
     @IBOutlet var endDayTextfield: IQDropDownTextField!
     @IBOutlet var confirmButton: UIButton!
     
+    weak var delegate: HIUPdateViewControllerDelegate!
+    
     @IBAction func cancelAction(_ sender: Any) {
+        delegate.didSelectUseInsurance(didUsed: false, hiid: "")
         dismissViewWithAnimation()
-        self.dismissVc.didUseInsurance(false)
     }
     
     @IBAction func confirmUpdate(_ sender: Any) {
@@ -125,8 +129,10 @@ extension HIUPdateViewController {
                 
                 print("Http Status Code : \(httpStatusCode ?? 10 )")
                 
+                self.delegate.didSelectUseInsurance(didUsed: true, hiid: HIId)
+                
                 self.dismissViewWithAnimation()
-                self.dismissVc.didUseInsurance(true)
+
                 
             } else {
                 

@@ -118,21 +118,21 @@ class User: NSObject {
         UserDefaults.standard.setValue(user.gender, forKey: UserGender)
         UserDefaults.standard.set(user.address, forKey: UserAddress)
         
-        setCurrentToMyUser()
+        setCurrentToMyUser(user: user)
         
 //        _currentUser = user
     }
     
     
-    private static func setCurrentToMyUser() {  /// Gán dữ liệu cho My User hỗ trợ Get thuộc tính user Nhanh gọn.
-        MyUser.name = UserDefaults.standard.string(forKey: UserName)!
-        MyUser.id = UserDefaults.standard.integer(forKey: UserId)
-        MyUser.address = UserDefaults.standard.string(forKey: UserAddress)!
-        MyUser.insuranceId = UserDefaults.standard.string(forKey: UserInsurance)!
-        MyUser.phone = UserDefaults.standard.string(forKey: UserPhone)!
-        MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
-        MyUser.birthday = UserDefaults.standard.string(forKey: UserBirthday)!
-        MyUser.gender = UserDefaults.standard.bool(forKey: UserGender)
+    private static func setCurrentToMyUser(user: User) {  /// Gán dữ liệu cho My User hỗ trợ Get thuộc tính user Nhanh gọn.
+        MyUser.name = user.fullName
+        MyUser.id = user.id
+        MyUser.address = user.address
+        MyUser.insuranceId = user.healthInsurance
+        MyUser.phone = user.phone
+        MyUser.email = user.email
+        MyUser.birthday = user.birthDate
+        MyUser.gender = user.gender
     }
     
 //    class func setCurrent(_ user: User, writeToUserDefalt: Bool = false) {

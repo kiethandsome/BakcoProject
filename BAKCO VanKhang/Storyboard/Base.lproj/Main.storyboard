@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Menlo.ttc">
-            <string>Menlo-Bold</string>
-            <string>Menlo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Tìm kiếm-->
         <scene sceneID="GBH-EA-Rqs">
@@ -382,7 +376,7 @@
         <!--First Appointment View Controller-->
         <scene sceneID="Gs5-sV-hhi">
             <objects>
-                <viewController storyboardIdentifier="ReviewSpecialtyViewController" id="sVi-Ej-f9i" customClass="FirstAppointmentViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstAppointmentViewController" id="sVi-Ej-f9i" customClass="FirstAppointmentViewController" customModule="BAKCO_VanKhang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1kQ-oT-7SU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -644,7 +638,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="rmd-30-5A6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                                <state key="normal" title="Xác nhận">
+                                                <state key="normal" title="Tiếp tục">
                                                     <color key="titleColor" red="0.9999235272" green="1" blue="0.99988287689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -709,7 +703,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TOZ-Mx-o6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2766" y="-928"/>
+            <point key="canvasLocation" x="2522" y="-993"/>
         </scene>
         <!--Final Appointment View Controller-->
         <scene sceneID="tn8-Z4-Hu8">

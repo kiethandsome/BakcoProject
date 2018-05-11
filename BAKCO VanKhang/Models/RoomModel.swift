@@ -9,10 +9,14 @@
 import Foundation
 class Room: NSObject {
     
-    var Id: Int?
-    var Name: String?
-    var HealthCareId:Int?
-    var HealthCare: Int?
+    var Id = -1
+    var Name = String()
+    var HealthCareId = -1
+    var HealthCare = -1
+    
+    override init() {
+        super.init()
+    }
     
     init(data: [String : Any]) {
         

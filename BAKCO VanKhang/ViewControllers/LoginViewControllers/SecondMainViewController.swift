@@ -66,7 +66,7 @@ class SecondMainViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        cityTextfield.text = _selectedPlace
+        cityTextfield.text = SelectedPlace.stringValue
     }
     
     func setupUI() {
@@ -197,6 +197,7 @@ class SecondMainViewController: BaseViewController {
                                 if message == "" {
                                     self.showAlert(title: "Xác nhận", message: "Đăng kí thành công", style: .alert, hasTwoButton: false, okAction: { (okkk) in
                                         self.navigationController?.dismiss(animated: true)
+                                        SelectedPlace.release()
                                     })
                                 } else {
                                     self.showAlert(title: "Lỗi", mess: message, style: .alert)

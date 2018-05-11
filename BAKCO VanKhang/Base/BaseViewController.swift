@@ -110,14 +110,18 @@ extension BaseViewController {
     
     func requestAPIwith(urlString: String, method: HTTPMethod, params: Parameters, completion: @escaping (_ response: [String : Any]) -> Void ) {
         let url = URL(string: urlString)!
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request(url, method: method, parameters: params, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             print(response.description)
             if let responsed = response.value?.dictionaryObject, response.error == nil {
                 completion(responsed)
                 print(responsed)
+                MBProgressHUD.hide(for: self.view, animated: true)
             } else {
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.showAlert(title: "Lỗi", mess: (response.error?.localizedDescription)!, style: .alert)
             }
+            
         }
     }
     

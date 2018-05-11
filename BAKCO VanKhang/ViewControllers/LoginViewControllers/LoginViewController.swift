@@ -61,7 +61,11 @@ class LoginViewController: BaseViewController {
         if let username = self.usernameTextfield.text, self.usernameTextfield.text != "" {
             if let password = self.passwordTexfield.text, self.passwordTexfield.text != "" {
                 self.getToken(username: username, password: password)
+            } else {
+                showAlert(title: "Chưa thế đăng nhập!", mess: "Bạn chưa nhập mật khẩu", style: .alert)
             }
+        } else {
+            showAlert(title: "Chưa thế đăng nhập!", mess: "Bạn chưa nhập mật khẩu", style: .alert)
         }
     }
     

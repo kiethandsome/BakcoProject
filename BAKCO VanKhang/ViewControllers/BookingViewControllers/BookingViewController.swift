@@ -15,33 +15,13 @@ import AlamofireSwiftyJSON
 import DropDown
 import SwiftyJSON
 
-
 public let extypeDict = [Normal : "0",
                          Service : "1",
                          Expert : "2"]
 
-public struct BookingInform {
-    static var paintent = MyUser.current
-    static var hospital = Hospital()
-    static var didUseHI = Bool()
-    static var exTypeId = String()
-    static var exTypeName = String()
-    static var doctor = Doctor()
-    static var specialty = Specialty()
-    static var scheduler = HealthCareScheduler()
-    static var time = HealthCareScheduler.Time()
-    
-    static func release() {
-        self.hospital = Hospital()
-        self.didUseHI = false
-        self.exTypeId = String()
-        self.exTypeName = ""
-        self.doctor = Doctor()
-        self.scheduler = HealthCareScheduler()
-        self.time = HealthCareScheduler.Time()
-    }
-}
 
+
+// MARK: PROPERTIES.
 class BookingViewController: BaseViewController {
     
     var didUseInsurance: (Bool) -> Void = { result in
@@ -92,10 +72,14 @@ class BookingViewController: BaseViewController {
     
     @IBAction func confirm(_ sender: Any) {
         if validate() {
-            if BookingInform.exTypeId == extypeDict[Expert] { /// for expert
-                createExaminationNoteWithDoctor()
-            } else {
-                createExaminationNoteForMember() /// for normal
+            showAlert(title: "Xác nhận", message: "Bạn có chắc muốn đăng kí nhận phiếu hẹn khám chữa bệnh? \n(Sau khi đặt cuộc hẹn, bệnh nhân không thể sửa hoặc huỷ).", style: .alert) { (ok) in
+                if BookingInform.exTypeId == extypeDict[Expert] {
+                    /// for expert
+                    self.createExaminationNoteWithDoctor()
+                } else {
+                    /// for normal
+                    self.createExamninationNote()
+                }
             }
         }
     }
@@ -124,7 +108,7 @@ class BookingViewController: BaseViewController {
 }
 
 
-//Mark: Functions
+// Mark: FUNCTIONS.
 extension BookingViewController {
     
     override func viewDidLoad() {
@@ -165,9 +149,9 @@ extension BookingViewController {
                 if item == "Có" {
                     /// show pop up
                     let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "HIUPdateViewController") as! HIUPdateViewController
+                    vc.delegate = self
                     self.tabBarController?.view.addSubview(vc.view)
                     self.tabBarController?.addChildViewController(vc)
-                    BookingInform.didUseHI = true
                 } else {
                     BookingInform.didUseHI = false
                 }
@@ -220,44 +204,94 @@ extension BookingViewController {
         return String(dateString)
     }
     
-    /// Create for member
-    fileprivate func createExaminationNoteForMember() {
+    /** Lấy Id lịch khám */
+    fileprivate func getSchedulerId() {
         let param : Parameters = ["CustomerId": MyUser.id,
                                   "HospitalId": BookingInform.hospital.Id,
                                   "HealthCareId": BookingInform.specialty.Id,
                                   "IsMorning": true,
                                   "Date": subString(text: BookingInform.scheduler.Date, offsetBy: 10),
-                                  "Type": BookingInform.exTypeId]
-        
-        let completionHandler : ((DataResponse<String>) -> Void) = { reponse in
+                                  "Type": BookingInform.exTypeId
+                                    ]
+        let completionHandler : ((DataResponse<JSON>) -> Void) = { response in
             MBProgressHUD.hide(for: self.view, animated: true)
-            print(reponse)
+            if response.result.isSuccess {
+                guard let data = response.value?.dictionaryObject else { return }
+                let match = MatchModel(data: data)
+                print(match.schedulerId)
+                BookingInform.match = match /// Gán
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
         }
         let uRL = URL(string: API.createExaminationNote)!
-        
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        
-        Alamofire.request(uRL, method: .post, parameters: param, encoding: JSONEncoding.default).responseString(completionHandler: completionHandler)
+        Alamofire.request(uRL, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
     }
     
     
-    /// Create with doctor
-    fileprivate func createExaminationNoteWithDoctor() {
-        let param : Parameters = ["CustomerId": MyUser.id,
-                                  "DoctorId": BookingInform.doctor.id,
-                                  "HospitalId": BookingInform.hospital.Id,
-                                  "HealthCareId": BookingInform.time.timeId]
-        
-        let completionHandler : ((DataResponse<String>) -> Void) = { reponse in
+    /** Tạo phiếu hẹn cho luồng thông thường và dịch vụ
+     Push qua màn hình phiếu hẹn nếu có kq trả về */
+    fileprivate func createExamninationNote() {
+        let api = URL(string: API.getFirstAppointment)!
+        let param : Parameters = [
+            "HasHealthInsurance": BookingInform.didUseHI,
+            "HealthCareSchedulerId": BookingInform.match.schedulerId,
+            "CustomerId": (BookingInform.paintent?.id)!,
+            "PatientId": (BookingInform.paintent?.id)!,
+            "DoctorId": BookingInform.doctor.id,
+            "Type": BookingInform.exTypeId
+        ]
+        let completionHandler = { (response: DataResponse<JSON>) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
-            print(reponse)
+            print(response)
+            if response.result.isSuccess {
+                guard let data = response.value?.dictionaryObject else {return}
+                let newAppointment = Appointment(data: data)
+                BookingInform.appointment = newAppointment  /// Gán
+                print(newAppointment.service.Code)
+                let vc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "FirstAppointmentViewController") as! FirstAppointmentViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
         }
-        let uRL = URL(string: API.createExaminationNoteByDoctor)!
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
-        Alamofire.request(uRL, method: .post, parameters: param, encoding: JSONEncoding.default).responseString(completionHandler: completionHandler)
+        MBProgressHUD.showAdded(to: view, animated: true)
+        Alamofire.request(api, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
     }
+
+    
+    
+    /** Tạo phiếu hẹn với bác sĩ
+     Push qua màn hình phiếu hẹn nếu có kq trả về */
+    fileprivate func createExaminationNoteWithDoctor() {
+        let api = URL(string: API.getFirstAppointment)!
+        let param : Parameters = [
+            "HasHealthInsurance": BookingInform.didUseHI,
+            "HealthCareSchedulerId": BookingInform.time.timeId,
+            "CustomerId": (BookingInform.paintent?.id)!,
+            "PatientId": (BookingInform.paintent?.id)!,
+            "DoctorId": BookingInform.doctor.id,
+            "Type": BookingInform.exTypeId
+        ]
+        let completionHandler = { (response: DataResponse<JSON>) -> Void in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            print(response)
+            if response.result.isSuccess {
+                guard let data = response.value?.dictionaryObject else {return}
+                let newAppointment = Appointment(data: data)
+                BookingInform.appointment = newAppointment  /// Gán
+                print(newAppointment.service.Code)
+                let vc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "FirstAppointmentViewController") as! FirstAppointmentViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
+        }
+        MBProgressHUD.showAdded(to: view, animated: true)
+        Alamofire.request(api, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
+    }
+    
     
     fileprivate func validate() -> Bool {
         guard let hospitalName = hospitalTextfield.text,
@@ -291,14 +325,20 @@ extension BookingViewController {
     }
 }
 
-
+// MARK: DELEGATE METHODS.
 extension BookingViewController: HopitalViewControllerDelegate {
     func didChooseHospital(hospital: Hospital) {
-        BookingInform.hospital = hospital  /// Gán
+        BookingInform.hospital = hospital /// Gán
         self.hospitalTextfield.text = hospital.Name
+        
+        /// REset Textfield
         self.expDocOrSpecialtyTextfield.text = ""
         self.exTypeTextfield.text = ""
         self.dateAndTimeTextfield.text = ""
+        
+        /// reset Dropdown
+        guard let index = exTypeDropdown.indexPathForSelectedRow?.row else {return}
+        self.exTypeDropdown.deselectRow(index)
     }
 }
 
@@ -306,6 +346,8 @@ extension BookingViewController: ChooseSpecialtyViewControllerDelegate {
     func didChooseSpecialty(specialty: Specialty) {
         BookingInform.specialty = specialty /// Gán
         self.expDocOrSpecialtyTextfield.text = specialty.Name
+        /// reset date
+        self.dateAndTimeTextfield.text = ""
     }
 }
 
@@ -313,6 +355,8 @@ extension BookingViewController: ExpDoctorViewControllerDelegate {
     func didSelectDoctor(doctor: Doctor) {
         BookingInform.doctor = doctor  /// Gán
         self.expDocOrSpecialtyTextfield.text = doctor.fullName
+        /// reset date
+        self.dateAndTimeTextfield.text = ""
     }
 }
 
@@ -325,9 +369,27 @@ extension BookingViewController: SchedulersViewControllerDelegate {
     func didSelectScheduler(scheduler: HealthCareScheduler) {
         BookingInform.scheduler = scheduler /// Gán
         dateAndTimeTextfield.text = scheduler.DateView
+        
+        if BookingInform.exTypeId == extypeDict[Expert] {
+            
+        } else {
+            /** LẤy id lịch sau khi chọn ngày
+             cho luồng thông thường và dịch vụ */
+            getSchedulerId()
+        }
     }
 }
 
+extension BookingViewController: HIUPdateViewControllerDelegate {
+    func didSelectUseInsurance(didUsed: Bool, hiid: String) {
+        BookingInform.didUseHI = didUsed  /// Gán
+        BookingInform.hiid = hiid /// Gán
+        MyUser.insuranceId = hiid /// Gán vào MyUser
+        UserDefaults.standard.set(hiid, forKey: UserInsurance) /// Gán vào UserDefaults
+        hIIdTextfield.text = didUsed ? "Có" : "Không"
+        hiDropdown.selectRow(didUsed ? 0 : 1)
+    }
+}
 
 
 

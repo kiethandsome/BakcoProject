@@ -19,6 +19,7 @@ protocol SchedulersViewControllerDelegate: class {
 }
 
 class SchedulersViewController: BaseViewController {
+    @IBOutlet weak var maskView: UIView!
     @IBOutlet var dateCollectionView: UICollectionView!
     @IBOutlet var timeCollectionView: UICollectionView!
     @IBOutlet var timeSegmentControl: UISegmentedControl!
@@ -60,9 +61,16 @@ extension SchedulersViewController {
         config(collectionView: dateCollectionView)
         config(collectionView: timeCollectionView)
         
-        if BookingInform.exTypeId == "2" {
+        if BookingInform.exTypeId == extypeDict[Expert] {
+            maskView.isHidden = true    /// Ẩn maskView nếu là luồng chuyên gia
+        } else {
+            maskView.isHidden = false
+        }
+        
+        if BookingInform.exTypeId == extypeDict[Expert] {
             /// Lấy lịch theo chuyên gia
-            getSchedulerForExpDoctor(doctorId: BookingInform.doctor.id, hospitalId: BookingInform.hospital.Id)
+            getSchedulerForExpDoctor(doctorId: BookingInform.doctor.id,
+                                     hospitalId: BookingInform.hospital.Id)
         } else {
             /// Lấy lịch theo thông thường
             getSchedulerNormally(hospitalId: BookingInform.hospital.Id,
@@ -73,11 +81,17 @@ extension SchedulersViewController {
     
     @objc func done() {
         delegate.didSelectScheduler(scheduler: didSelectScheduler)
-        if let time = didSelectTime {
-            delegate.didSelectTime(time: time)
+        if BookingInform.exTypeId == extypeDict[Expert] {
+            /// Nếu là chuyên gia
+            if let time = didSelectTime {
+                delegate.didSelectTime(time: time)
+                dismiss(animated: true)
+            }
+            showAlert(title: "Lỗi", mess: "Bạn chưa chọn giờ!", style: .alert)
+        } else {
             dismiss(animated: true)
         }
-        showAlert(title: "Lỗi", mess: "Bạn chưa chọn giờ!", style: .alert)
+        
     }
     
     fileprivate func config(collectionView: UICollectionView) {
@@ -198,14 +212,13 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
                 configTime(cell: cell, indexPath: indexPath, timeList: self.afternoonTimeList)
                 break
                 
-            default:
-                break
+            default: break
+                
             }
-            
             break
             
-        default:
-            break
+        default: break
+            
         }
         return cell
     }

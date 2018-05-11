@@ -11,52 +11,51 @@ import Foundation
 var _deviceToken = String()
 
 struct HeaderApi {
-    static let dev = "http://202.78.227.176:8009/api/"  /// Để Dev
-    static let test = "http://apiv2.vkhealth.vn/api/"   /// Để test
-    static let deploy = "http://api.vkhealth.vn/api/"   /// Đề upload
+    static let dev = "http://202.78.227.176:8009"  /// Để Dev
+    static let test = "http://apiv2.vkhealth.vn"   /// Để test
+    static let deploy = "http://api.vkhealth.vn"   /// Đề upload
 }
 
-public let ApiDomain = HeaderApi.test /// Constant header
+public let ApiDomain = HeaderApi.deploy
 
 struct API {
-    static let sosEmergency = ApiDomain + "SOSCall/CallSOS"
-    static let getHealthCareScheduler = ApiDomain + "BkHealthCareScheduler/GetByHospitalHealthCareId"
-    static let createExaminationNote = ApiDomain + "BkMedicalExaminationNote/CreateForMember"
-    static let createExaminationNoteByDoctor = ApiDomain + "BkMedicalExaminationNote/CreateWithDoctor"
-    static let getFirstAppointment = ApiDomain + "BkMedicalExaminationNote/Create"
-    static let getSchedule = ApiDomain + "BkCustomer/GetSchedulerCustomer"
-    static let getDetailScheduler = ApiDomain + "BkDoctor/GetWorkDetail"
-    static let register = ApiDomain + "Account/CustomerRegister"
-    static let getToken = ApiDomain + "Token"
-    static let getUserId  = ApiDomain + "Account/UserInfo"
-    static let getUserById = ApiDomain + "BkCustomer/GetById/"
-    static let updateInform = ApiDomain + "BkCustomer/Update"
-    static let getDoctor = ApiDomain + "BkHospital/GetDoctorByHospitalId"
-    static let getSchedulerByDoctor = ApiDomain + "BkHealthCareScheduler/GetByDoctor"
-    static let getSchedulerCustomer = ApiDomain + "BkCustomer/GetSchedulerCustomer"
-    static let signalR = "http://api.vkhealth.vn/signalr/hubs"
-    static let getHealthCareByHospital = ApiDomain + "BkHealthCare/GetByHospitalId"
-    static let getHospital = ApiDomain + "BkHospital/Get"
-    static let updateHI = ApiDomain + "BkCustomer/UpdateHealthInsurance"
-    static let getHI = ApiDomain + "BkCustomer/GetHealthInsurance"
+    static let sosEmergency = ApiDomain + "/api/SOSCall/CallSOS"
+    static let getHealthCareScheduler = ApiDomain + "/api/BkHealthCareScheduler/GetByHospitalHealthCareId"
+    static let createExaminationNote = ApiDomain + "/api/BkMedicalExaminationNote/CreateForMember"
+    static let createExaminationNoteByDoctor = ApiDomain + "/api/BkMedicalExaminationNote/CreateWithDoctor"
+    static let getFirstAppointment = ApiDomain + "/api/BkMedicalExaminationNote/Create"
+    static let getSchedule = ApiDomain + "/api/BkCustomer/GetSchedulerCustomer"
+    static let getDetailScheduler = ApiDomain + "/api/BkDoctor/GetWorkDetail"
+    static let register = ApiDomain + "/api/Account/CustomerRegister"
+    static let getToken = ApiDomain + "/Token"
+    static let getUserId  = ApiDomain + "/api/Account/UserInfo"
+    static let getUserById = ApiDomain + "/api/BkCustomer/GetById/"
+    static let updateInform = ApiDomain + "/api/BkCustomer/Update"
+    static let getDoctor = ApiDomain + "/api/BkHospital/GetDoctorByHospitalId"
+    static let getSchedulerByDoctor = ApiDomain + "/api/BkHealthCareScheduler/GetByDoctor"
+    static let getSchedulerCustomer = ApiDomain + "/api/BkCustomer/GetSchedulerCustomer" 
+    static let signalR = ApiDomain + "/signalr/hubs"
+    static let getHealthCareByHospital = ApiDomain + "/api/BkHealthCare/GetByHospitalId"
+    static let getHospital = ApiDomain + "/api/BkHospital/Get"
+    static let updateHI = ApiDomain + "/api/BkCustomer/UpdateHealthInsurance"
+    static let getHI = ApiDomain + "/api/BkCustomer/GetHealthInsurance"
     
     struct FamilyDoctor {
-        static let serviceDetail = ApiDomain + "BkFamilyDoctor/GetServiceDetails"
-        static let checkContract = ApiDomain + "BkFamilyDoctor/CheckContractVKSOS"
-        static let favoriteDoctorList = ApiDomain + "BkFamilyDoctor/GetFavoriteDoctorList"
-        static let doctorListByService = ApiDomain + "BkFamilyDoctor/GetDoctorListByService"
-        static let callService = ApiDomain + "BkFamilyDoctor/CallFamilyDoctorService"
-        static let removeDoctor = ApiDomain + "BkFamilyDoctor/RemoveDoctorFromFavorite"
-        static let addDoctor = ApiDomain + "BkFamilyDoctor/AddDoctorToFavorite"
-        static let serviceStatus = ApiDomain + "BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
+        static let serviceDetail = ApiDomain + "/api/BkFamilyDoctor/GetServiceDetails"
+        static let checkContract = ApiDomain + "/api/BkFamilyDoctor/CheckContractVKSOS"
+        static let favoriteDoctorList = ApiDomain + "/api/BkFamilyDoctor/GetFavoriteDoctorList"
+        static let doctorListByService = ApiDomain + "/api/BkFamilyDoctor/GetDoctorListByService"
+        static let callService = ApiDomain + "/api/BkFamilyDoctor/CallFamilyDoctorService"
+        static let removeDoctor = ApiDomain + "/api/BkFamilyDoctor/RemoveDoctorFromFavorite"
+        static let addDoctor = ApiDomain + "/api/BkFamilyDoctor/AddDoctorToFavorite"
+        static let serviceStatus = ApiDomain + "/api/BkFamilyDoctor/CheckFamilyDoctorServiceStatus"
     }
     
     struct Location {
-        static let getCities = ApiDomain + "Location/GetCities"
-        static let getDistricts = ApiDomain + "Location/GetDistricts"
-        static let getWards = ApiDomain + "Location/GetWards"
+        static let getCities = ApiDomain + "/api/Location/GetCities"
+        static let getDistricts = ApiDomain + "/api/Location/GetDistricts"
+        static let getWards = ApiDomain + "/api/Location/GetWards"
     }
-
 }
 
 struct Link {

@@ -68,25 +68,18 @@ extension HealthSchedulersViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     private func configCell(cell: HealthSchedulerCell, indexPath: Int, scheduler: Appointment) {
-        if let hospitalName = scheduler.hospital?.Name {
-            cell.hospitalNameLabel.text = hospitalName
-        }
+        cell.hospitalNameLabel.text = scheduler.hospital.Name
+        
         if let paintentName = scheduler.customer?.fullName {
             cell.paintentNameLabel.text = paintentName
         }
         if let insurance = scheduler.customer?.healthInsurance {
             cell.insuranceLabel.text = insurance
         }
-        if let examDate = scheduler.detail?.day {
-            cell.examinationDateLabel.text = examDate
-        }
-        if let time = scheduler.detail?.from {
-            cell.timeLabel.text = time
-        }
-        if let roomName = scheduler.room?.Name {
-            cell.roomNameLabel.text = roomName
-        }
-        
+        cell.examinationDateLabel.text = scheduler.detail.day
+        cell.timeLabel.text = scheduler.detail.from
+        cell.roomNameLabel.text = scheduler.room.Name
+
         cell.numberLabel.text = "Chưa có"
         cell.examinationTypeLabel.text = scheduler.type
         cell.schedulerId = scheduler.id

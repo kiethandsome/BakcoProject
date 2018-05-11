@@ -9,17 +9,22 @@
 import Foundation
 
 struct MatchModel {
-    var HealthCareSchedulerId: Int?
-    var CustomerId: Int?
     
-    mutating func initWithData(data: [String:Any]?) {
+    var schedulerId = -1
+    var customerId = -1
+    
+    init() {
         
-        guard let schedule = data!["HealthCareSchedulerId"] as? Int,
-            let customerId = data!["CustomerId"] as? Int
+    }
+    
+    init(data: [String:Any]) {
+        
+        guard let schedule = data["HealthCareSchedulerId"] as? Int,
+            let customerId = data["CustomerId"] as? Int
             else { return }
                 
-        HealthCareSchedulerId = schedule
-        CustomerId = customerId
+        self.schedulerId = schedule
+        self.customerId = customerId
         
     }
     

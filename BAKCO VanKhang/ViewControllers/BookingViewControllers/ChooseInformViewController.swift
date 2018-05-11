@@ -144,16 +144,10 @@ class ChooseInformViewController: BaseViewController {
         requestAPIwith(urlString: URLString, method: .post, params: parameters) { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print("Match: \(response)")
-            self.match.initWithData(data: response)
+            self.match = MatchModel(data: response)
             
             //
             let firstAppointment = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "ReviewSpecialtyViewController") as! FirstAppointmentViewController
-            firstAppointment.currentHospital = hospital
-            firstAppointment.day = date
-            firstAppointment.specialty = specialty
-            firstAppointment.type = self.selectedType
-            firstAppointment.currentMatch = self.match
-            firstAppointment.didHaveInsurance = self.insurance
             self.navigationController?.pushViewController(firstAppointment, animated: true)
         }
     }

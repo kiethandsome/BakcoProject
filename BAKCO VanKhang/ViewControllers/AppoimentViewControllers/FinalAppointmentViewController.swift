@@ -25,7 +25,7 @@ class FinalAppointmentViewController: BaseViewController {
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var roomNumberLabel: UILabel!
-    var isPaid: Bool?
+    var isPaid = Bool()
     
     @IBOutlet var paidmentStatusLabel: UILabel!
     
@@ -33,21 +33,19 @@ class FinalAppointmentViewController: BaseViewController {
         super.viewDidLoad()
         navigationItem.title = "Phiếu hẹn"
         showBackButton()
-        if let isPaid = isPaid {
-            if isPaid {
-                paidmentStatusLabel.text = "Tình trạng thanh toán: Đã thanh toán"
-            } else {
-                paidmentStatusLabel.text = "Tình trạng thanh toán: Chưa thanh toán"
-            }
+        if isPaid {
+            paidmentStatusLabel.text = "Tình trạng thanh toán: Đã thanh toán"
+        } else {
+            paidmentStatusLabel.text = "Tình trạng thanh toán: Chưa thanh toán"
         }
         
-        lblHospitalName.text = _selectedHospital?.Name
-        lblAddress.text = _selectedHospital?.Address
-        exDayLabel.text = _selectedScheduler?.DateView
-        InsuranceLabel.text = _selectedInsurance
-        exTypeLabel.text = _selectedExamType
-        timeLabel.text = _selectedDetail?.from
-        roomNumberLabel.text = _selectedRoom?.Name!
+        lblHospitalName.text = BookingInform.hospital.Name
+        lblAddress.text = BookingInform.hospital.Address
+        exDayLabel.text = BookingInform.scheduler.DateView
+        InsuranceLabel.text = BookingInform.hiid
+        exTypeLabel.text = BookingInform.exTypeName
+        timeLabel.text = BookingInform.time.from
+        roomNumberLabel.text = ""
         
         ///
         userNameLabel.text = "Bệnh nhân: \(MyUser.name)"

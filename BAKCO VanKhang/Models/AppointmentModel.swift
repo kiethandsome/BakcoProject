@@ -13,18 +13,21 @@ let exTypeArray = [Normal, Service, Expert]
 
 class Appointment: NSObject {
     
-    var id: Int!
-    var hospital: Hospital?
-    var doctor: Doctor?
-    var room: Room?
+    var id = Int()
+    var hospital = Hospital()
+    var doctor = Doctor()
+    var room = Room()
     var customer: User?
-    var service: Serviced?
-    var detail: DetailModel?
-    var price = 0
-    var statusCode = 0
-    var statusLabel = 0
+    var service = Serviced()
+    var detail = DetailModel()
+    var price = -1
+    var statusCode = -1
+    var statusLabel = -1
     var type = ""
     
+    override init() {
+        super.init()
+    }
 
     init(data: [String : Any]) {
         

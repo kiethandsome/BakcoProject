@@ -33,15 +33,15 @@ class DetailSchedulerViewController: BaseViewController {
     
     var currentScheduler: Appointment! {
         didSet {
-            hospitalNameLabel.text = currentScheduler.hospital?.Name
-            serviceNameLabel.text = currentScheduler.service?.Name
-            timeLabel.text = currentScheduler.detail?.from
+            hospitalNameLabel.text = currentScheduler.hospital.Name
+            serviceNameLabel.text = currentScheduler.service.Name
+            timeLabel.text = currentScheduler.detail.from
             priceLabel.text = "\(currentScheduler.price)"
-            doctorNameLabel.text = currentScheduler.doctor?.fullName
+            doctorNameLabel.text = currentScheduler.doctor.fullName
 //            insuranceLabel.text = currentScheduler.
             
             paintentIdLabel.text = "\((currentScheduler.customer?.id)!)"
-            examIdLabel.text = "\((currentScheduler.id)!)"
+            examIdLabel.text = "\(currentScheduler.id)"
             paintentNameLabel.text = currentScheduler.customer?.fullName
             phoneLabel.text = currentScheduler.customer?.phone
             emailLabel.text = currentScheduler.customer?.email
