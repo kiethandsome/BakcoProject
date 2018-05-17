@@ -8,6 +8,9 @@
 
 import Foundation
 
+let Expert = "Chuyên gia"
+let Service = "Dịch vụ"
+let Normal = "Thông thường"
 
 let exTypeArray = [Normal, Service, Expert]
 

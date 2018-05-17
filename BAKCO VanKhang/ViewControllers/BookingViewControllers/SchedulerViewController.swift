@@ -62,17 +62,17 @@ extension SchedulersViewController {
         config(collectionView: timeCollectionView)
         
         if BookingInform.exTypeId == extypeDict[Expert] {
-            maskView.isHidden = true    /// Ẩn maskView nếu là luồng chuyên gia
+            maskView.isHidden = true    // Ẩn maskView nếu là luồng chuyên gia
         } else {
             maskView.isHidden = false
         }
         
         if BookingInform.exTypeId == extypeDict[Expert] {
-            /// Lấy lịch theo chuyên gia
+            // Lấy lịch theo chuyên gia
             getSchedulerForExpDoctor(doctorId: BookingInform.doctor.id,
                                      hospitalId: BookingInform.hospital.Id)
         } else {
-            /// Lấy lịch theo thông thường
+            // Lấy lịch theo thông thường
             getSchedulerNormally(hospitalId: BookingInform.hospital.Id,
                                  healthcareId: BookingInform.specialty.Id,
                                  type: BookingInform.exTypeId)
@@ -82,7 +82,7 @@ extension SchedulersViewController {
     @objc func done() {
         delegate.didSelectScheduler(scheduler: didSelectScheduler)
         if BookingInform.exTypeId == extypeDict[Expert] {
-            /// Nếu là chuyên gia
+            // Nếu là chuyên gia
             if let time = didSelectTime {
                 delegate.didSelectTime(time: time)
                 dismiss(animated: true)
@@ -162,18 +162,18 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
-        /// Ngày
+        // Ngày
         case dateCollectionView:
             if schedulerList.count > 0 {
                 return schedulerList.count
             }
             return 1
-        /// Giờ
+        // Giờ
         case timeCollectionView:
-            if timeSegmentControl.selectedSegmentIndex == 0 { /// sáng
+            if timeSegmentControl.selectedSegmentIndex == 0 { // sáng
                 return numberOfItems(with: morningTimeList)
             } else {
-                return numberOfItems(with: afternoonTimeList) /// chiều
+                return numberOfItems(with: afternoonTimeList) // chiều
             }
         default:
             return 1
@@ -204,11 +204,11 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
         case timeCollectionView:
             
             switch timeSegmentControl.selectedSegmentIndex {
-            case 0: /// Sáng
+            case 0: // Sáng
                 configTime(cell: cell, indexPath: indexPath, timeList: self.morningTimeList)
                 break
                 
-            case 1: /// Chiều
+            case 1: // Chiều
                 configTime(cell: cell, indexPath: indexPath, timeList: self.afternoonTimeList)
                 break
                 
@@ -260,10 +260,10 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
             
         case timeCollectionView:
             if timeSegmentControl.selectedSegmentIndex == 0 {
-                /// Sáng
+                // Sáng
                 selectTimeHandler(cell: cell, indexPath: indexPath, timeList: morningTimeList)
             } else {
-                /// Chiều
+                // Chiều
                 selectTimeHandler(cell: cell, indexPath: indexPath, timeList: afternoonTimeList)
             }
             break
@@ -279,18 +279,18 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
         self.afternoonTimeList.removeAll()
         self.morningTimeList = dateList[indexPath.item].morning
         self.afternoonTimeList = dateList[indexPath.item].afternoon
-        didSelectScheduler = dateList[indexPath.item]       /// Ngày đã chọn
+        didSelectScheduler = dateList[indexPath.item]       // Ngày đã chọn
         navigationItem.rightBarButtonItem?.isEnabled = true
     }
     
     fileprivate func selectTimeHandler(cell: DateCell, indexPath: IndexPath, timeList: [HealthCareScheduler.Time]) {
         if timeList.count > 0 {
             cell.backgroundColor = UIColor.orange
-            didSelectTime = timeList[indexPath.item]  /// Giờ đã chọn
+            didSelectTime = timeList[indexPath.item]  // Giờ đã chọn
         }
     }
     
-    /// Deselect là bỏ chọn chứ ko phải nhấp lại
+    // Deselect là bỏ chọn chứ ko phải nhấp lại
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.specialGreenColor()

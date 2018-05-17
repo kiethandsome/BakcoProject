@@ -13,7 +13,6 @@ class FinalAppointmentViewController: BaseViewController {
     
     @IBOutlet weak var lblHospitalName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
-    
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var insuranceIDLabel: UILabel!
     @IBOutlet var birthdayLabel: UILabel!
@@ -21,7 +20,6 @@ class FinalAppointmentViewController: BaseViewController {
     @IBOutlet var exTypeLabel: UILabel!
     @IBOutlet var InsuranceLabel: UILabel!
     @IBOutlet var exDayLabel: UILabel!
-    
     @IBOutlet var numberLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var roomNumberLabel: UILabel!
@@ -38,16 +36,15 @@ class FinalAppointmentViewController: BaseViewController {
         } else {
             paidmentStatusLabel.text = "Tình trạng thanh toán: Chưa thanh toán"
         }
-        
         lblHospitalName.text = BookingInform.hospital.Name
         lblAddress.text = BookingInform.hospital.Address
         exDayLabel.text = BookingInform.scheduler.DateView
         InsuranceLabel.text = BookingInform.hiid
         exTypeLabel.text = BookingInform.exTypeName
         timeLabel.text = BookingInform.time.from
-        roomNumberLabel.text = ""
-        
+        roomNumberLabel.text = BookingInform.appointment.room.Name
         ///
+        numberLabel.text = "\(BookingInform.appointment.id)"
         userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
         insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
         birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"

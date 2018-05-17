@@ -120,7 +120,6 @@ class User: NSObject {
         
         setCurrentToMyUser(user: user)
         
-//        _currentUser = user
     }
     
     
@@ -133,6 +132,7 @@ class User: NSObject {
         MyUser.email = user.email
         MyUser.birthday = user.birthDate
         MyUser.gender = user.gender
+        MyUser.current = user
     }
     
 //    class func setCurrent(_ user: User, writeToUserDefalt: Bool = false) {

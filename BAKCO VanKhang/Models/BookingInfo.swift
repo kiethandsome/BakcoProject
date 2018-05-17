@@ -9,7 +9,7 @@
 import Foundation
 
 public struct BookingInform {
-    static var paintent = MyUser.current
+    static var paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
     static var hospital = Hospital()
     static var didUseHI = Bool()
     static var hiid = String()

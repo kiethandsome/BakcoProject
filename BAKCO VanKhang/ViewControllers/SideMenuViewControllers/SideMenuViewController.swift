@@ -11,8 +11,11 @@ import UIKit
 
 class SideMenuViewController: BaseViewController {
     
+    let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
+    let titles = [MyUser.name, ServiceIntroductionTitle, PersonalInforTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
+    
     @objc func dismissWithAnmation() {
-        hero_dismissViewController()
+        dismiss(animated: true)
     }
     
     @IBOutlet var sideTableView: UITableView!
@@ -39,8 +42,7 @@ class SideMenuViewController: BaseViewController {
     }
 }
 
-let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
-let titles = [MyUser.name, ServiceIntroductionTitle, PersonalInforTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
+
 
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     

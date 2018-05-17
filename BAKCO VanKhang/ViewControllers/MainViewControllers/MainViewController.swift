@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import DynamicColor
-import Hero
 import AlamofireSwiftyJSON
 import Alamofire
 import MBProgressHUD
@@ -105,7 +104,7 @@ class MainViewController: BaseViewController  {
     private func checkContract(phone: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let link: String = "\(API.FamilyDoctor.checkContract)?phone=\(phone)&lat=\(MyLocation.lat)&lng=\(MyLocation.long)"
-        let url = URL(string: link)!
+        guard let url = URL(string: link) else {return}
         
         Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseString { (responseString) in
             MBProgressHUD.hide(for: self.view, animated: true)

@@ -102,7 +102,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             break
             
         case "Thông tin cá nhân" :
-            let updateInformVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "UpdateInformViewController")
+            let updateInformVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "UpdateInfoViewController") as! UpdateInfoViewController
             self.navigationController?.pushViewController(updateInformVc, animated: true)
             break
         

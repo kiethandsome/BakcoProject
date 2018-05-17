@@ -11,7 +11,6 @@ import UIKit
 
 
 struct MyStoryboard {
-    
     static let loginStoryboard = UIStoryboard(name: "Login", bundle: Bundle.main)
     static let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     static let familyDoctorStoryboard = UIStoryboard(name: "FamilyDoctor", bundle: Bundle.main)

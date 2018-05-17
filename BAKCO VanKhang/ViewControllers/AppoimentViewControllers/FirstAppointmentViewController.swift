@@ -25,6 +25,7 @@ class FirstAppointmentViewController: BaseViewController {
     @IBOutlet var exTypeLabel: UILabel!
     @IBOutlet var InsuranceLabel: UILabel!
     @IBOutlet var exDayLabel: UILabel!
+    @IBOutlet weak var doctorLabel: UILabel!
     
     /// Những thông tin từ api response.
     @IBOutlet var numberLabel: UILabel!
@@ -56,6 +57,10 @@ class FirstAppointmentViewController: BaseViewController {
         insuranceIDLabel.text = "BHYT: " + MyUser.insuranceId
         birthdayLabel.text = "Ngày sinh: " + MyUser.birthday
         phoneNumberLabel.text = "ĐT: " + MyUser.phone
+        
+        if BookingInform.exTypeId == extypeDict[Expert] {
+            doctorLabel.text = BookingInform.doctor.fullName
+        }
     }
     
     fileprivate func setupApiResponseContent() {

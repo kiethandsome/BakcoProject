@@ -26,7 +26,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet var passwordTexfield: UITextField!
 
     @IBAction func loginButtonAction(_ sender: Any) {
-        let next = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "SecondMainViewController")
+        let next = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "SignUpViewController")
         let nav = BaseNavigationController(rootViewController: next)
         self.present(nav, animated: true)
     }
@@ -110,7 +110,7 @@ class LoginViewController: BaseViewController {
     func pushToMainViewController() {
         let mainTab = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "tab")
         guard let window = UIApplication.shared.keyWindow else { return }
-        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: window, duration: 0.5, options: .curveEaseIn, animations: {
             window.rootViewController = mainTab
             window.makeKeyAndVisible()
         }, completion: nil)

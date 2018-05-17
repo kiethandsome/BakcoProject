@@ -10,6 +10,7 @@ import UIKit
 import MBProgressHUD
 import Alamofire
 import IQDropDownTextField
+import DropDown
 
 protocol InformationViewControllerDelegate: class {
     func didSelectUser(with user: User)
@@ -88,7 +89,6 @@ class InformationViewController: BaseViewController {
         phoneTextField.text = MyUser.phone
         emailTF.text = MyUser.email
     }
-
 }
 
 extension InformationViewController: IQDropDownTextFieldDelegate{

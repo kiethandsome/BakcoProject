@@ -8,10 +8,10 @@
 
 import UIKit
 import DynamicColor
-import Hero
 import Alamofire
 import AlamofireSwiftyJSON
 import MBProgressHUD
+
 
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -25,8 +25,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         tabBarController?.tabBar.isTranslucent = false
-//        tabBarController?.tabBar.isHidden = true
         view.backgroundColor = UIColor.white
+
     }
     
     ///MArk: Right Bar button
@@ -129,7 +129,6 @@ extension BaseViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: okAction)
         alert.addAction(ok)
-
         if hasTwoButton {
             let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
