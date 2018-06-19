@@ -8,9 +8,18 @@
 
 import Foundation
 
-public let extypeDict = [Normal : "0",
-                         Service : "1",
-                         Expert : "2"]
-
-var _paintentList: [User?] = [MyUser.current] 
-var _paintentNameList: [String] = []
+struct Constant {
+    
+    static let exTypeDict = [Normal : "0",
+                             Service : "1",
+                             Expert : "2"]
+    
+    static var paintentList: [User?] = [MyUser.current]
+    static var paintentNameList: [String] = []
+    
+    static let insertUserString = "Thêm bệnh nhân"
+    
+    static let yes = "Có"
+    static let no = "Không"
+    
+}

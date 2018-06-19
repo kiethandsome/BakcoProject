@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct BookingInform {
+public struct BookingInfo {
     static var paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
     static var hospital = Hospital()
     static var didUseHI = Bool()
@@ -23,6 +23,7 @@ public struct BookingInform {
     static var appointment = Appointment()
     
     static func release() {
+        self.paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
         self.hospital = Hospital()
         self.didUseHI = false
         self.exTypeId = String()

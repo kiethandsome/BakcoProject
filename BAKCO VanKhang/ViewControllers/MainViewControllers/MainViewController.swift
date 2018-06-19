@@ -21,29 +21,16 @@ struct MyLocation {
 
 class MainViewController: BaseViewController  {
     
-    //Mark: Layout SOS button and SOS calling actions.___________________________/
-    let sosButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "icon-sos-ok1"), for: .normal)
-        return button
-    }()
+    @IBOutlet weak var sosButton: UIButton!
+    @IBAction func checkConnection(_ sender: UIButton) {
+        if Reachability.isConnectedToNetwork(){
+        }else{
+        }
+    }
     
     func setupSOSButton() {
-        let buttonWidth = view.bounds.size.height / 4
-        sosButton.frame = CGRect(x: (view.frame.size.width - buttonWidth) / 2,
-                                 y: 100,
-                                 width: buttonWidth,
-                                 height: buttonWidth)
-        sosButton.center.x = view.center.x
-        sosButton.center.y = view.center.y - 150
-        sosButton.layer.cornerRadius = buttonWidth / 2
+        sosButton.layer.cornerRadius = sosButton.bounds.width / 2
         sosButton.clipsToBounds = true
-        let anotherWidth = sosButton.frame.size.width / 30
-        sosButton.contentEdgeInsets = UIEdgeInsets(top: -anotherWidth,
-                                                   left: -anotherWidth,
-                                                   bottom: -anotherWidth - 6,
-                                                   right: -anotherWidth - 8)
-        ///mark: Long pressed handle
         let longPressed = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
         longPressed.minimumPressDuration = 2.0
         longPressed.delegate = self
@@ -120,22 +107,17 @@ class MainViewController: BaseViewController  {
     
     // Mark: Booking Button
     @IBAction func bookingButtonAction(_ sender: Any) {
-//        let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseInformViewController")
-//        navigationController?.pushViewController(next, animated: true)
-        
         let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "BookingViewController")
         navigationController?.pushViewController(next, animated: true)
     }
     
-    //Mark: Advisory Button
+    //Mark: Telehealth booking button
     @IBAction func advisoryButtonAction(_ sender: Any) {
-        self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
-            let url = URL(string: Link._TrueconfLink)
-            UIApplication.shared.open(url!)
-        }
+        let teleHealthViewController = MyStoryboard.teleHealthStoryboard.instantiateViewController(withIdentifier: "TeleHealthViewController")
+        self.navigationController?.pushViewController(teleHealthViewController, animated: true)
     }
     
-    //Mark: Home dotor
+    //Mark: Family Doctor
     @IBAction func familyDoctorButonAction(_ sender: Any) {
         let popUpVc = MyStoryboard.familyDoctorStoryboard.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
         tabBarController?.view.addSubview((popUpVc.view)!)

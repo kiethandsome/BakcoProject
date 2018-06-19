@@ -50,7 +50,7 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
 //        guard let hospitalID = hospitalId, let type = type
 //            else { return }
         
-        getSpecialties(hospitalId: BookingInform.hospital.Id, type: BookingInform.exTypeId)
+        getSpecialties(hospitalId: BookingInfo.hospital.Id, type: BookingInfo.exTypeId)
         showCancelButton()
     }
     

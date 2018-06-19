@@ -42,31 +42,31 @@ class FirstAppointmentViewController: BaseViewController {
     }
     
     override func popToBack() {
-        BookingInform.release()
+        BookingInfo.release()
         navigationController?.popToRootViewController(animated: true)
     }
     
     fileprivate func setupAlreadyContent() {
-        lblHospitalName.text = BookingInform.hospital.Name
-        lblAddress.text = BookingInform.hospital.Address
-        exDayLabel.text = BookingInform.scheduler.DateView
-        InsuranceLabel.text = BookingInform.didUseHI ? "Sử dụng BHYT: Có" : "Sử dụng BHYT: Không"
-        exTypeLabel.text = BookingInform.exTypeName
+        lblHospitalName.text = BookingInfo.hospital.Name
+        lblAddress.text = BookingInfo.hospital.Address
+        exDayLabel.text = BookingInfo.scheduler.DateView
+        InsuranceLabel.text = BookingInfo.didUseHI ? "Sử dụng BHYT: Có" : "Sử dụng BHYT: Không"
+        exTypeLabel.text = BookingInfo.exTypeName
         ///
         userNameLabel.text = "Bệnh nhân: " + MyUser.name
         insuranceIDLabel.text = "BHYT: " + MyUser.insuranceId
         birthdayLabel.text = "Ngày sinh: " + MyUser.birthday
         phoneNumberLabel.text = "ĐT: " + MyUser.phone
         
-        if BookingInform.exTypeId == extypeDict[Expert] {
-            doctorLabel.text = BookingInform.doctor.fullName
+        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
+            doctorLabel.text = BookingInfo.doctor.fullName
         }
     }
     
     fileprivate func setupApiResponseContent() {
-        numberLabel.text = "\( BookingInform.appointment.id)"
-        timeLabel.text = BookingInform.appointment.detail.from
-        roomNumberLabel.text = BookingInform.appointment.room.Name
+        numberLabel.text = "\( BookingInfo.appointment.id)"
+        timeLabel.text = BookingInfo.appointment.detail.from
+        roomNumberLabel.text = BookingInfo.appointment.room.Name
     }
     
     @IBAction func confirm(_ sender: Any) {

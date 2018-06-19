@@ -25,6 +25,7 @@ class ExpDoctorViewController: BaseViewController {
         }
     }
     weak var delegate: ExpDoctorViewControllerDelegate!
+    var hospitalId = Int()
 }
 
 extension ExpDoctorViewController {
@@ -33,7 +34,7 @@ extension ExpDoctorViewController {
         super.viewDidLoad()
         title = "Chuyên gia"
         config(tableView: doctorTableview)
-        getDoctor(hospitalId: BookingInform.hospital.Id)
+        getDoctor(hospitalId: self.hospitalId)
         showCancelButton(title: "Huỷ")
     }
     

@@ -17,7 +17,7 @@ import MBProgressHUD
 
 class UpdateInfoViewController: BaseViewController, IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
     
-    var updatedPaintent: User?
+    var userId : Int?
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var usernameTextfield: UITextField!
@@ -48,9 +48,9 @@ extension UpdateInfoViewController {
             let email = emailTextfield.text, let hiid = hiTextfield.text,
             let address = addressTextfield.text, let bd = birthdayTextfield.date
             else { return }
-        let province = SelectedPlace.city.value
-        let district = SelectedPlace.district.value
-        let ward = SelectedPlace.ward.value
+        let province = Place.city.value
+        let district = Place.district.value
+        let ward = Place.ward.value
 
         let parameters: Parameters = [
             "Id": MyUser.id,
@@ -72,7 +72,8 @@ extension UpdateInfoViewController {
             if response.result.isSuccess {
                 self.showAlert(title: "Thành công", message: "Cập nhât thông tin người dùng thành công!", style: .alert, hasTwoButton: false, okAction: { (_) in
 //                    self.getUserInfo(by: MyUser.id)
-                    SelectedPlace.release()
+                    Place.release()
+                    self.disableButton(button: self.confirmButton)
                 })
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -105,12 +106,13 @@ extension UpdateInfoViewController {
         super.viewDidLoad()
         setupUI()
         setupTextfield(tf: usernameTextfield, phoneTextfield, emailTextfield, addressTextfield, hiTextfield)
-        getUserInfo(by: MyUser.id)
+        guard let userId = self.userId else { return }
+        getUserInfo(by: userId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.placesTextfield.text = SelectedPlace.stringValue
+        self.placesTextfield.text = Place.stringValue
     }
     
     fileprivate func setupTextfield(tf: UITextField...) {
@@ -147,12 +149,10 @@ extension UpdateInfoViewController {
     }
     
     fileprivate func setupUI() {
-        title = "Thông tin cá nhân"
+        title = "Cập nhật thông tin cá nhân"
         showBackButton()
         disableButton(button: confirmButton)
         contentView.layer.borderColor = UIColor.specialGreenColor().cgColor
-//        guard let currentUser = MyUser.current else {return}
-//        setupAllTextField(user: currentUser)
     }
     
     fileprivate func setupPicker(picker: IQDropDownTextField, user: User) {
@@ -167,7 +167,7 @@ extension UpdateInfoViewController {
     
     fileprivate func getUserInfo(by userId: Int) {
         MBProgressHUD.showAdded(to: view, animated: true)
-        Alamofire.request(URL(string: API.getUserId + "/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: API.getUserById + "/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value?.dictionaryValue as Any)
             if let data = response.value?.dictionaryObject {
@@ -175,7 +175,6 @@ extension UpdateInfoViewController {
                     self.showAlert(title: "Lỗi", mess: message, style: .alert)
                 } else {
                     let user = User(data: data)
-                    User.setCurrent(user) // Set value for User Default.
                     self.setupAllTextField(user: user)
                     self.disableButton(button: self.confirmButton)
                 }

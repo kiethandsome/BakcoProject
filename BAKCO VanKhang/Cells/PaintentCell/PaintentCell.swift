@@ -8,27 +8,13 @@
 
 import UIKit
 import Foundation
-import DropDown
 
-class PaintentCell: DropDownCell {
+class PaintentCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneNumLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Initialization code
-        self.optionLabel = nameLabel
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        if selected {
-            backgroundColor = .lightGray
-        }
-    }
-    
 }

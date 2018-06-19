@@ -77,8 +77,8 @@ extension CitiesViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        SelectedPlace.city = cities[indexPath.row]
-        
+        let selectedCity = cities[indexPath.row]
+        Place.city = selectedCity /// Gán
         let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController")
         self.navigationController?.pushViewController(vc, animated: true)
     }

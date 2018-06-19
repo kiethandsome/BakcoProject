@@ -9,11 +9,8 @@
 import Foundation
 
 class City: NSObject {
-    
     var name = String()
-    
     var value = String()
-    
     override init() {
         super.init()
         self.name = ""
@@ -21,52 +18,12 @@ class City: NSObject {
     }
     
     init(data: [String : Any]) {
-        
         self.name = data["Name"] as! String
         self.value = data["Value"] as! String
         super.init()
     }
 }
 
-class District: NSObject {
-    
-    var name = String()
-    
-    var value = String()
-    
-    override init() {
-        super.init()
-        self.name = ""
-        self.value = ""
-    }
-    
-    init(data: [String : Any]) {
-        
-        self.name = data["Name"] as! String
-        self.value = data["Value"] as! String
-        super.init()
-    }
-}
-
-class Ward: NSObject {
-    
-    var name = String()
-    
-    var value = String()
-    
-    override init() {
-        super.init()
-        self.name = ""
-        self.value = ""
-    }
-    
-    init(data: [String : Any]) {
-        
-        self.name = data["Name"] as! String
-        self.value = data["Value"] as! String
-        super.init()
-    }
-}
 
 
 

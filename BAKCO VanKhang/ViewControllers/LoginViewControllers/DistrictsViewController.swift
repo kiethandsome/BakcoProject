@@ -27,7 +27,7 @@ class DistrictsViewController: BaseViewController {
         navigationItem.title = "Quận huyện"
         showBackButton()
         setupTableview(tv: distTableview)
-        getDist(by: SelectedPlace.city.value)
+        getDist(by: Place.city.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -78,8 +78,8 @@ extension DistrictsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        SelectedPlace.district = districts[indexPath.row]
-        
+        let district = districts[indexPath.row]
+        Place.district = district /// Gán
         let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController")
         self.navigationController?.pushViewController(vc, animated: true)
     }

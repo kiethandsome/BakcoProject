@@ -12,11 +12,11 @@ import UIKit
 class User: NSObject {
     
     var id = 0
-    var fullName = "Chưa có tên"
-    var phone = "Chưa có số điện thoại"
-    var healthInsurance = "Chưa có Bảo hiểm"
-    var email = "Chưa có Email"
-    var address = "Chưa có địa chỉ"
+    var fullName = ""
+    var phone = ""
+    var healthInsurance = ""
+    var email = ""
+    var address = ""
     var birthDate = "CHưa có          "
     var gender = true
     

@@ -13,7 +13,7 @@ import AlamofireSwiftyJSON
 import SDWebImage
 import MBProgressHUD
 
-protocol HopitalViewControllerDelegate: class {
+protocol HospitalViewControllerDelegate: class {
     func didChooseHospital(hospital: Hospital)
 }
 
@@ -29,7 +29,9 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     var filterredHospitals = [Hospital]()
     
-    weak var delegate: HopitalViewControllerDelegate!
+    var url = URL(string: API.getHospital)!
+    
+    weak var delegate: HospitalViewControllerDelegate!
     
     
     override func viewDidLoad() {
@@ -64,7 +66,7 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     func getHospitals() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string: API.getHospital)!, method: .get).responseSwiftyJSON { (response) in
+        Alamofire.request(url, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value as Any)
             

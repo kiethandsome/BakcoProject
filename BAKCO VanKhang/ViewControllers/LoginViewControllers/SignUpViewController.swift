@@ -12,8 +12,6 @@ import MBProgressHUD
 import IQDropDownTextField
 import AlamofireSwiftyJSON
 
-var _selectedPlace = String()
-
 class SignUpViewController: BaseViewController {
     
     var gender = true
@@ -65,7 +63,7 @@ class SignUpViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        cityTextfield.text = SelectedPlace.stringValue
+        cityTextfield.text = Place.stringValue
     }
     
     func setupUI() {
@@ -110,7 +108,7 @@ class SignUpViewController: BaseViewController {
                     email: txtEmail.text!,
                     birthDate: birthDate,
                     address: txtAddress.text!,
-                    provinceCode: SelectedPlace.city.value, districtCode: SelectedPlace.district.value, wardCode: SelectedPlace.ward.value,
+                    provinceCode: Place.city.value, districtCode: Place.district.value, wardCode: Place.ward.value,
                     HealthInsurance: "",
                     username: txtUserName.text!,
                     password: txtPassword.text!,
@@ -196,7 +194,7 @@ class SignUpViewController: BaseViewController {
                                 if message == "" {
                                     self.showAlert(title: "Xác nhận", message: "Đăng kí thành công", style: .alert, hasTwoButton: false, okAction: { (_) in
                                         self.navigationController?.dismiss(animated: true)
-                                        SelectedPlace.release()
+                                        Place.release()
                                     })
                                 } else {
                                     self.showAlert(title: "Lỗi", mess: message, style: .alert)

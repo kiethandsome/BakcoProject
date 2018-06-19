@@ -40,6 +40,13 @@ struct API {
     static let updateHI = ApiDomain + "/api/BkCustomer/UpdateHealthInsurance"
     static let getHI = ApiDomain + "/api/BkCustomer/GetHealthInsurance"
     static let getPaintents = ApiDomain + "/api/BkCustomer/GetProfiles"
+    static let createCustomer = ApiDomain + "/api/BkCustomer/Create"
+    static let addProfiles = ApiDomain + "/api/BkCustomer/AddProfiles"
+    
+    struct TeleHealth {
+        static let getHospitals = ApiDomain + "/api/BkHospital/GetByUnitType"
+        static let getSchedule = ApiDomain + "/api/TelehealthSchedule/GetScheduleByDoctor"
+    }
     
     struct FamilyDoctor {
         static let serviceDetail = ApiDomain + "/api/BkFamilyDoctor/GetServiceDetails"

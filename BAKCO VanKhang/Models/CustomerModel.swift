@@ -1,5 +1,5 @@
 //
-//  CustomerModel.swift
+//  Customer.swift
 //  BAKCO VanKhang
 //
 //  Created by Pham An on 10/23/17.
@@ -20,7 +20,7 @@ let UserBirthday = "Birthday"
 let UserGender = "Gender"
 let DidLogin = "DidLogin"
 
-class CustomerModel {
+class Customer {
     
     var Id: Int?
     var FullName: String?
@@ -32,9 +32,9 @@ class CustomerModel {
     var BirthDate: String?
     var Gender: Bool?
     
-    private static var _currentUser: CustomerModel?
+    private static var _currentUser: Customer?
     
-    static var current: CustomerModel { /// Get only varriable
+    static var current: Customer { /// Get only varriable
         guard let currentUser = _currentUser else {
             fatalError("Error: current user doesnt exsist")
         }
@@ -98,7 +98,7 @@ class CustomerModel {
         }
     }
     
-    static func setCurrent(_ user: CustomerModel) {
+    static func setCurrent(_ user: Customer) {
 
         self._currentUser = user
         UserDefaults.standard.set(true, forKey: DidLogin)

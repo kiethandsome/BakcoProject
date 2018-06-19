@@ -104,6 +104,18 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         leftButton.isEnabled = false
         navigationItem.leftBarButtonItem = leftButton
     }
+    
+    func showHUD() {
+        DispatchQueue.main.async {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+    }
+    
+    func hideHUD() {
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
 }
 
 extension BaseViewController {

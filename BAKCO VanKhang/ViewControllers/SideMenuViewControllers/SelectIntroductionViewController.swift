@@ -104,6 +104,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
         case "Thông tin cá nhân" :
             let updateInformVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "UpdateInfoViewController") as! UpdateInfoViewController
             self.navigationController?.pushViewController(updateInformVc, animated: true)
+            updateInformVc.userId = MyUser.id
             break
         
         default:

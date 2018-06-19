@@ -36,15 +36,15 @@ class FinalAppointmentViewController: BaseViewController {
         } else {
             paidmentStatusLabel.text = "Tình trạng thanh toán: Chưa thanh toán"
         }
-        lblHospitalName.text = BookingInform.hospital.Name
-        lblAddress.text = BookingInform.hospital.Address
-        exDayLabel.text = BookingInform.scheduler.DateView
-        InsuranceLabel.text = BookingInform.hiid
-        exTypeLabel.text = BookingInform.exTypeName
-        timeLabel.text = BookingInform.time.from
-        roomNumberLabel.text = BookingInform.appointment.room.Name
+        lblHospitalName.text = BookingInfo.hospital.Name
+        lblAddress.text = BookingInfo.hospital.Address
+        exDayLabel.text = BookingInfo.scheduler.DateView
+        InsuranceLabel.text = BookingInfo.hiid
+        exTypeLabel.text = BookingInfo.exTypeName
+        timeLabel.text = BookingInfo.time.from
+        roomNumberLabel.text = BookingInfo.appointment.room.Name
         ///
-        numberLabel.text = "\(BookingInform.appointment.id)"
+        numberLabel.text = "\(BookingInfo.appointment.id)"
         userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
         insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
         birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"

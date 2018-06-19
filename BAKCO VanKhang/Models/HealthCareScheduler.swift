@@ -75,8 +75,6 @@ public struct HealthCareScheduler {
                 self.afternoon.append(time)
             })
         }
-        
-        
     }
     
 }

@@ -61,27 +61,27 @@ extension SchedulersViewController {
         config(collectionView: dateCollectionView)
         config(collectionView: timeCollectionView)
         
-        if BookingInform.exTypeId == extypeDict[Expert] {
+        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
             maskView.isHidden = true    // Ẩn maskView nếu là luồng chuyên gia
         } else {
             maskView.isHidden = false
         }
         
-        if BookingInform.exTypeId == extypeDict[Expert] {
+        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
             // Lấy lịch theo chuyên gia
-            getSchedulerForExpDoctor(doctorId: BookingInform.doctor.id,
-                                     hospitalId: BookingInform.hospital.Id)
+            getSchedulerForExpDoctor(doctorId: BookingInfo.doctor.id,
+                                     hospitalId: BookingInfo.hospital.Id)
         } else {
             // Lấy lịch theo thông thường
-            getSchedulerNormally(hospitalId: BookingInform.hospital.Id,
-                                 healthcareId: BookingInform.specialty.Id,
-                                 type: BookingInform.exTypeId)
+            getSchedulerNormally(hospitalId: BookingInfo.hospital.Id,
+                                 healthcareId: BookingInfo.specialty.Id,
+                                 type: BookingInfo.exTypeId)
         }
     }
     
     @objc func done() {
         delegate.didSelectScheduler(scheduler: didSelectScheduler)
-        if BookingInform.exTypeId == extypeDict[Expert] {
+        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
             // Nếu là chuyên gia
             if let time = didSelectTime {
                 delegate.didSelectTime(time: time)
@@ -121,8 +121,9 @@ extension SchedulersViewController {
     }
     
     func getSchedulerForExpDoctor(doctorId: Int, hospitalId: Int) {
-        let parameters: Parameters = ["HospitalId": hospitalId,
-                                      "DoctorId": doctorId]
+        let parameters: Parameters = ["HospitalId" : hospitalId,
+                                      "DoctorId" : doctorId,
+                                      "ServiceId" : 1]
         let api = URL(string: API.getSchedulerByDoctor)!
         let completionHandler: (DataResponse<JSON>) -> Void = {response in
             MBProgressHUD.hide(for: self.view, animated: true)

@@ -13,7 +13,7 @@ import AlamofireSwiftyJSON
 import Alamofire
 
 class WardViewController: BaseViewController {
-        
+    
     @IBOutlet var wardTableview: UITableView!
     
     var wards = [Ward]() {
@@ -27,7 +27,7 @@ class WardViewController: BaseViewController {
         navigationItem.title = "Phường xã"
         showBackButton()
         setupTableview(tv: wardTableview)
-        getWard(by: SelectedPlace.district.value)
+        getWard(by: Place.district.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -73,8 +73,8 @@ extension WardViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
-        SelectedPlace.ward = self.wards[indexPath.row]
-        SelectedPlace.stringValue = SelectedPlace.ward.name + ", " + SelectedPlace.district.name + ", " + SelectedPlace.city.name
+        let selectedWard = wards[indexPath.row]
+        Place.ward = selectedWard
         navigationController?.dismiss(animated: true)
     }
     

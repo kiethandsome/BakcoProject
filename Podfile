@@ -15,6 +15,6 @@ pod 'IQKeyboardManagerSwift', '~> 5.0'
 pod 'SwiftR'
 pod 'DropDown'
 pod 'Presentr'
-
+pod 'JTAppleCalendar', '~> 7.0'
 
 end

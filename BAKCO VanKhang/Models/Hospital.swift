@@ -1,5 +1,5 @@
 //
-//  HospitalModel.swift
+//  Hospital.swift
 //  BAKCO VanKhang
 //
 //  Created by Pham An on 10/23/17.
