@@ -117,13 +117,13 @@ class User: NSObject {
         UserDefaults.standard.setValue(mySubstring, forKey: UserBirthday)
         UserDefaults.standard.setValue(user.gender, forKey: UserGender)
         UserDefaults.standard.set(user.address, forKey: UserAddress)
-        
+
         setCurrentToMyUser(user: user)
         
     }
     
-    
-    private static func setCurrentToMyUser(user: User) {  /// Gán dữ liệu cho My User hỗ trợ Get thuộc tính user Nhanh gọn.
+    /// Gán dữ liệu cho My User hỗ trợ Get thuộc tính user Nhanh gọn.
+    private static func setCurrentToMyUser(user: User) {
         MyUser.name = user.fullName
         MyUser.id = user.id
         MyUser.address = user.address
@@ -135,14 +135,7 @@ class User: NSObject {
         MyUser.current = user
     }
     
-//    class func setCurrent(_ user: User, writeToUserDefalt: Bool = false) {
-//        UserDefaults.standard.set(true, forKey: DidLogin)
-//        if writeToUserDefalt {
-//            let data = NSKeyedArchiver.archivedData(withRootObject: user)
-//            UserDefaults.standard.set(data, forKey: CurrentUser)
-//        }
-//        _currentUser = user
-//    }
+
     
     static func logoutUser() {
         UserDefaults.standard.set(false, forKey: DidLogin)
@@ -154,6 +147,7 @@ class User: NSObject {
         UserDefaults.standard.setValue("", forKey: UserBirthday)
         UserDefaults.standard.setValue("", forKey: UserGender)
         UserDefaults.standard.set(nil, forKey: CurrentUser)
+        UserDefaults.standard.set("", forKey: UserToken)
     }
 }
 
@@ -172,6 +166,14 @@ class User: NSObject {
 
 
 
+//    class func setCurrent(_ user: User, writeToUserDefalt: Bool = false) {
+//        UserDefaults.standard.set(true, forKey: DidLogin)
+//        if writeToUserDefalt {
+//            let data = NSKeyedArchiver.archivedData(withRootObject: user)
+//            UserDefaults.standard.set(data, forKey: CurrentUser)
+//        }
+//        _currentUser = user
+//    }
 
 
 

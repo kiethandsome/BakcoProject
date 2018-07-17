@@ -18,4 +18,6 @@ struct MyStoryboard {
     static let paymentStoryboard = UIStoryboard(name: "Payment", bundle: Bundle.main)
     static let sideMenuStoryboard = UIStoryboard(name: "SideMenu", bundle: Bundle.main)
     static let teleHealthStoryboard = UIStoryboard(name: "TeleHealth", bundle: Bundle.main)
+    static let medicalFacility = UIStoryboard(name: "Hospital:MedicalFacility", bundle: Bundle.main)
+
 }

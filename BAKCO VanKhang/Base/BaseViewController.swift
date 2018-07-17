@@ -147,6 +147,11 @@ extension BaseViewController {
         }
         present(alert, animated: true)
     }
+    
+    func presentVcWithNav(vc: UIViewController) {
+        let nav = BaseNavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
+    }
 }
 
 

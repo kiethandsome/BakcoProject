@@ -49,6 +49,8 @@ class SchedulersViewController: BaseViewController {
     var didSelectTime: HealthCareScheduler.Time?
     
     var didSelectScheduler = HealthCareScheduler()
+    
+    var serviceId = Int()
 }
 
 extension SchedulersViewController {
@@ -123,10 +125,11 @@ extension SchedulersViewController {
     func getSchedulerForExpDoctor(doctorId: Int, hospitalId: Int) {
         let parameters: Parameters = ["HospitalId" : hospitalId,
                                       "DoctorId" : doctorId,
-                                      "ServiceId" : 1]
+                                      "ServiceId" : BookingInfo.serviceId]
         let api = URL(string: API.getSchedulerByDoctor)!
         let completionHandler: (DataResponse<JSON>) -> Void = {response in
             MBProgressHUD.hide(for: self.view, animated: true)
+            print(response)
             if let error = response.error {
                 self.showAlert(title: "Lỗi", mess: error.localizedDescription, style: .alert)
             } else {
@@ -281,13 +284,18 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
         self.morningTimeList = dateList[indexPath.item].morning
         self.afternoonTimeList = dateList[indexPath.item].afternoon
         didSelectScheduler = dateList[indexPath.item]       // Ngày đã chọn
-        navigationItem.rightBarButtonItem?.isEnabled = true
+        if BookingInfo.exTypeId != Constant.exTypeDict[Expert] {
+            /// nếu ko phải là luồng chuyên gia.
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        
     }
     
     fileprivate func selectTimeHandler(cell: DateCell, indexPath: IndexPath, timeList: [HealthCareScheduler.Time]) {
         if timeList.count > 0 {
             cell.backgroundColor = UIColor.orange
             didSelectTime = timeList[indexPath.item]  // Giờ đã chọn
+            navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     

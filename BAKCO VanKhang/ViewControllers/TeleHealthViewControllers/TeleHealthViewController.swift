@@ -14,7 +14,7 @@ import SwiftyJSON
 import MBProgressHUD
 
 public struct TeleHealthInfo {
-    static var paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+    static var patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
     static var hospital = Hospital()
     static var doctor = Doctor()
     static var specialty = Specialty()
@@ -42,8 +42,8 @@ class TeleHealthViewController: BaseViewController {
     @IBOutlet weak var schedulerTextfield: UITextField!
     
     /** Chọn bệnh nhân */
-    @IBAction func selectPaintent(_ sender: Any) {
-        let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "PaintentListViewController") as! PaintentListViewController
+    @IBAction func selectPatient(_ sender: Any) {
+        let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "PatientListViewController") as! PatientListViewController
         vc.direct = .teleHealth
         let nav = BaseNavigationController(rootViewController: vc)
         present(nav, animated: true)
@@ -56,11 +56,11 @@ class TeleHealthViewController: BaseViewController {
         let nav = BaseNavigationController(rootViewController: hospitalVc)
 
         let alert = UIAlertController(title: "Tuỳ chọn", message: "", preferredStyle: .actionSheet)
-        let singleMemberAction  = UIAlertAction(title: "Đơn vị một thành viên", style: .default) { (_) in
+        let singleMemberAction  = UIAlertAction(title: "Cán bộ tư vấn", style: .default) { (_) in
             hospitalVc.url = URL(string: API.TeleHealth.getHospitals + "?unitTypeId=2")! /// "2" là đơn vị 1 thành viên
             self.present(nav, animated: true)
         }
-        let multiMemberAction = UIAlertAction(title: "Đơn vị nhiều thành viên", style: .default) { (_) in
+        let multiMemberAction = UIAlertAction(title: "Đơn vị tư vấn", style: .default) { (_) in
             hospitalVc.url = URL(string: API.TeleHealth.getHospitals + "?unitTypeId=1")! /// "1" là đơn vị nhiều thành viên
             self.present(nav, animated: true)
         }
@@ -109,7 +109,7 @@ class TeleHealthViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        paintentNameTextfield.text = TeleHealthInfo.paintent.fullName
+        paintentNameTextfield.text = TeleHealthInfo.patient.fullName
     }
     
     fileprivate func setupUI() {
@@ -119,7 +119,7 @@ class TeleHealthViewController: BaseViewController {
     
     /** Lấy ds bệnh nhân. */
     fileprivate func getPaintent() {
-        let api = URL(string: API.getPaintents + "?CustomerId=\(MyUser.id)")!
+        let api = URL(string: API.getPatients + "?CustomerId=\(MyUser.id)")!
         let completionHandler = { (response: DataResponse<JSON>) -> Void in
             self.hideHUD()
             self.parseToSystemPaintentList(with: response)

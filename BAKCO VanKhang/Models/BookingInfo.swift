@@ -9,13 +9,14 @@
 import Foundation
 
 public struct BookingInfo {
-    static var paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+    static var patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
     static var hospital = Hospital()
     static var didUseHI = Bool()
     static var hiid = String()
     static var exTypeId = String()
     static var exTypeName = String()
     static var doctor = Doctor()
+    static var serviceId = Int()
     static var specialty = Specialty()
     static var scheduler = HealthCareScheduler()
     static var time = HealthCareScheduler.Time()
@@ -23,7 +24,7 @@ public struct BookingInfo {
     static var appointment = Appointment()
     
     static func release() {
-        self.paintent = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+        self.patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
         self.hospital = Hospital()
         self.didUseHI = false
         self.exTypeId = String()
@@ -33,5 +34,6 @@ public struct BookingInfo {
         self.time = HealthCareScheduler.Time()
         self.hiid = ""
         self.appointment = Appointment()
+        self.serviceId = Int()
     }
 }

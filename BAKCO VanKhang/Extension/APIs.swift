@@ -11,9 +11,9 @@ import Foundation
 var _deviceToken = String()
 
 struct HeaderApi {
-    static let dev = "http://202.78.227.176:8009"  /// Để Dev
-    static let test = "http://apiv2.vkhealth.vn"   /// Để test
-    static let deploy = "http://api.vkhealth.vn"   /// Đề upload
+    static let dev = "http://202.78.227.176:8009"  ///  Dev
+    static let test = "http://apiv2.vkhealth.vn"   ///  test
+    static let deploy = "http://api.vkhealth.vn"   ///  deploy
 }
 
 public let ApiDomain = HeaderApi.deploy
@@ -39,9 +39,12 @@ struct API {
     static let getHospital = ApiDomain + "/api/BkHospital/Get"
     static let updateHI = ApiDomain + "/api/BkCustomer/UpdateHealthInsurance"
     static let getHI = ApiDomain + "/api/BkCustomer/GetHealthInsurance"
-    static let getPaintents = ApiDomain + "/api/BkCustomer/GetProfiles"
+    static let getPatients = ApiDomain + "/api/BkCustomer/GetProfiles"
     static let createCustomer = ApiDomain + "/api/BkCustomer/Create"
     static let addProfiles = ApiDomain + "/api/BkCustomer/AddProfiles"
+    static let getHospitalServiceTypes = ApiDomain + "/api/BkHospital/GetServiceTypes?HospitalId="
+    static let getDoctorServices = ApiDomain + "/api/BkDoctor/GetServicesByDoctor"
+    static let changePass = ApiDomain + "/api/Account/ChangePassword"
     
     struct TeleHealth {
         static let getHospitals = ApiDomain + "/api/BkHospital/GetByUnitType"

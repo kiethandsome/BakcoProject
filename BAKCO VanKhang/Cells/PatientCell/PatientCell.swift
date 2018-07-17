@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class PaintentCell: UITableViewCell {
+class PatientCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneNumLabel: UILabel!

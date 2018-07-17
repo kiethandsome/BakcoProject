@@ -1,5 +1,5 @@
 //
-//  AddPaintentViewController.swift
+//  AddPatientViewController.swift
 //  BAKCO VanKhang
 //
 //  Created by lou on 6/17/18.
@@ -14,7 +14,7 @@ import UIKit
 import SwiftyJSON
 import IQDropDownTextField
 
-class AddPaintentViewController: BaseViewController {
+class AddPatientViewController: BaseViewController {
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var usernameTextfield: UITextField!
@@ -73,7 +73,7 @@ class AddPaintentViewController: BaseViewController {
     }
 }
 
-extension AddPaintentViewController: IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
+extension AddPatientViewController: IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Thêm bệnh nhân"
@@ -127,7 +127,7 @@ extension AddPaintentViewController: IQDropDownTextFieldDelegate, IQDropDownText
                 if let data = response.value, let dict = data.dictionaryObject {
                     let customerId = dict["CustomerId"] as! Int
                     self.showAlert(title: "Thành công!", message: "Tạo thành công bệnh nhân", style: .alert, hasTwoButton: false, okAction: { (_) in
-                        self.addPaintent(profileId: customerId)
+                        self.addPatient(profileId: customerId)
                     })
                 } else {
                 }
@@ -141,7 +141,7 @@ extension AddPaintentViewController: IQDropDownTextFieldDelegate, IQDropDownText
     }
     
     /// Thêm bệnh nhân vào danh sách
-    fileprivate func addPaintent(profileId: Int) {
+    fileprivate func addPatient(profileId: Int) {
         let url = URL(string: API.addProfiles + "?CustomerId=" + "\(MyUser.id)" + "&ProfileId=" + "\(profileId)")!
         let completionHandler = { (response: DataResponse<JSON>) -> Void in
             self.hideHUD()

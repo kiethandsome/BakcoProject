@@ -40,7 +40,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             
         case PersonalInforTitle:
 //            self.cellTitles = ["Thông tin cá nhân", "Thông tin người thân", "Lịch sử dùng dịch vụ", "Hồ sơ sức khoẻ cá nhân"]
-            self.cellTitles = ["Thông tin cá nhân", "Lịch sử dùng dịch vụ"]
+            self.cellTitles = ["Thông tin cá nhân", "Lịch sử dùng dịch vụ", "Đổi mật khẩu"]
             break
             
         default:
@@ -49,7 +49,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
     }
     
     
-    // Delegate & Data source
+    // Mark : Delegate & Data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTitles.count
@@ -105,6 +105,11 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             let updateInformVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "UpdateInfoViewController") as! UpdateInfoViewController
             self.navigationController?.pushViewController(updateInformVc, animated: true)
             updateInformVc.userId = MyUser.id
+            break
+            
+        case "Đổi mật khẩu" :
+            let changePassVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+            self.navigationController?.pushViewController(changePassVc, animated: true)
             break
         
         default:

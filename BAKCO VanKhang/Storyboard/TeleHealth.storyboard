@@ -48,7 +48,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="rIV-To-HJV"/>
                                                 </constraints>
                                                 <connections>
-                                                    <action selector="selectPaintent:" destination="DZd-73-UKB" eventType="touchUpInside" id="LSk-Wa-iPq"/>
+                                                    <action selector="selectPatient:" destination="DZd-73-UKB" eventType="touchUpInside" id="nsx-un-iPR"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Bệnh nhân:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBf-e1-1kp">

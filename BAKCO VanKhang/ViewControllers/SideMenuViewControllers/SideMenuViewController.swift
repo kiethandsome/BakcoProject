@@ -11,8 +11,8 @@ import UIKit
 
 class SideMenuViewController: BaseViewController {
     
-    let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
-    let titles = [MyUser.name, ServiceIntroductionTitle, PersonalInforTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
+    let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
+    let titles = [MyUser.name, PersonalInforTitle, ServiceIntroductionTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
     
     @objc func dismissWithAnmation() {
         dismiss(animated: true)
@@ -85,11 +85,12 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             break
             
-        case 1: /// Giơi thiệu dịch vụ
+        case 1: /// Thong tin ca nhan
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-            vc.title = ServiceIntroductionTitle
+            vc.title = PersonalInforTitle
             self.navigationController?.pushViewController(vc, animated: true)
             break
+
             
 //        case 2: /// Hướng dẫn sử dụng
 //            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
@@ -97,10 +98,11 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
 //            self.navigationController?.pushViewController(vc, animated: true)
 //            break
             
-        case 2: /// Thông tin cá nhân
+        case 2: /// Gioi thieu dich vu
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-            vc.title = PersonalInforTitle
+            vc.title = ServiceIntroductionTitle
             self.navigationController?.pushViewController(vc, animated: true)
+            break
             
             
         case 3: /// Thông tin ứng dụng

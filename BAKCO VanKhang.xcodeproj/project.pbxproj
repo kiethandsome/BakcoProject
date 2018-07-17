@@ -54,21 +54,28 @@
 		92F4A033201B669B00181EDA /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4A032201B669B00181EDA /* MyUser.swift */; };
 		92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7C91FE1209D009C6663 /* InformationViewController.swift */; };
 		92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE7CB1FE12D07009C6663 /* WebViewController.swift */; };
-		9A0DC7A520ACAA3600C9FCCC /* PaintentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DC7A320ACAA3600C9FCCC /* PaintentCell.swift */; };
-		9A0DC7A620ACAA3600C9FCCC /* PaintentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A0DC7A420ACAA3600C9FCCC /* PaintentCell.xib */; };
 		9A261B7120D4BDD5002B75B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A261B7020D4BDD5002B75B4 /* Place.swift */; };
+		9A4241B620EFE8ED003DBC01 /* PatientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4241B420EFE8ED003DBC01 /* PatientListViewController.swift */; };
+		9A4241B720EFE8ED003DBC01 /* PatientInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4241B520EFE8ED003DBC01 /* PatientInfoViewController.swift */; };
+		9A4241B920EFE987003DBC01 /* AddPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4241B820EFE986003DBC01 /* AddPatientViewController.swift */; };
+		9A4241BD20EFF749003DBC01 /* PatientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4241BB20EFF749003DBC01 /* PatientCell.swift */; };
+		9A4241BE20EFF749003DBC01 /* PatientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4241BC20EFF749003DBC01 /* PatientCell.xib */; };
+		9A443E1720DD37C70012A087 /* Hospital:MedicalFacility.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A443E1620DD37C70012A087 /* Hospital:MedicalFacility.storyboard */; };
+		9A443E1B20DD39930012A087 /* MedicalFacilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A443E1A20DD39930012A087 /* MedicalFacilityViewController.swift */; };
+		9A443E1F20DD3B010012A087 /* MedicalFacilityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A443E1D20DD3B010012A087 /* MedicalFacilityCell.swift */; };
+		9A443E2020DD3B010012A087 /* MedicalFacilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A443E1E20DD3B010012A087 /* MedicalFacilityCell.xib */; };
 		9A4CBAC820A4988D00810258 /* BookingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CBAC720A4988D00810258 /* BookingInfo.swift */; };
 		9A7C3EDB20C6E4BB007D9311 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C3EDA20C6E4BB007D9311 /* Reachability.swift */; };
+		9A7E3F0220ECAEF900BCABEF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E3F0120ECAEF900BCABEF /* ServicesViewController.swift */; };
+		9A7E3F0420ECB26800BCABEF /* DoctorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E3F0320ECB26800BCABEF /* DoctorService.swift */; };
 		9A84199A20D61E6C003DD7A7 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199920D61E6C003DD7A7 /* District.swift */; };
 		9A84199C20D61E92003DD7A7 /* Ward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199B20D61E92003DD7A7 /* Ward.swift */; };
-		9A84199E20D62C84003DD7A7 /* PaintentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199D20D62C84003DD7A7 /* PaintentListViewController.swift */; };
-		9A8419A020D64501003DD7A7 /* AddPaintentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199F20D64501003DD7A7 /* AddPaintentViewController.swift */; };
+		9A8655EB20F717EF005CCCAC /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8655EA20F717EF005CCCAC /* ChangePasswordViewController.swift */; };
 		9A8D5C9220C439DC004B64FB /* TeleHealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9120C439DC004B64FB /* TeleHealthViewController.swift */; };
 		9A8D5C9420C43A0E004B64FB /* TeleHealth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9320C43A0E004B64FB /* TeleHealth.storyboard */; };
 		9A8D5C9620C45FEE004B64FB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9520C45FEE004B64FB /* CalendarViewController.swift */; };
 		9A8D5C9A20C4611F004B64FB /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9820C4611F004B64FB /* CalendarCell.swift */; };
 		9AABB63720AD648000E3117C /* UpdateInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */; };
-		9AABB63920AD64BA00E3117C /* PaintentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AABB63820AD64BA00E3117C /* PaintentInfoViewController.swift */; };
 		9AADB86420A6A7F700B5D8D4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AADB86320A6A7F700B5D8D4 /* Constant.swift */; };
 		AC8E3BC56C27AEF8F46FE39E /* Pods_BAKCO_VanKhang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */; };
 		F31B83901FBAA46500CA8698 /* HospitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */; };
@@ -147,21 +154,28 @@
 		92F4A032201B669B00181EDA /* MyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		92FBE7C91FE1209D009C6663 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		92FBE7CB1FE12D07009C6663 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		9A0DC7A320ACAA3600C9FCCC /* PaintentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintentCell.swift; sourceTree = "<group>"; };
-		9A0DC7A420ACAA3600C9FCCC /* PaintentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaintentCell.xib; sourceTree = "<group>"; };
 		9A261B7020D4BDD5002B75B4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		9A4241B420EFE8ED003DBC01 /* PatientListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListViewController.swift; sourceTree = "<group>"; };
+		9A4241B520EFE8ED003DBC01 /* PatientInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientInfoViewController.swift; sourceTree = "<group>"; };
+		9A4241B820EFE986003DBC01 /* AddPatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPatientViewController.swift; sourceTree = "<group>"; };
+		9A4241BB20EFF749003DBC01 /* PatientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientCell.swift; sourceTree = "<group>"; };
+		9A4241BC20EFF749003DBC01 /* PatientCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PatientCell.xib; sourceTree = "<group>"; };
+		9A443E1620DD37C70012A087 /* Hospital:MedicalFacility.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Hospital:MedicalFacility.storyboard"; sourceTree = "<group>"; };
+		9A443E1A20DD39930012A087 /* MedicalFacilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalFacilityViewController.swift; sourceTree = "<group>"; };
+		9A443E1D20DD3B010012A087 /* MedicalFacilityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalFacilityCell.swift; sourceTree = "<group>"; };
+		9A443E1E20DD3B010012A087 /* MedicalFacilityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicalFacilityCell.xib; sourceTree = "<group>"; };
 		9A4CBAC720A4988D00810258 /* BookingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInfo.swift; sourceTree = "<group>"; };
 		9A7C3EDA20C6E4BB007D9311 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		9A7E3F0120ECAEF900BCABEF /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		9A7E3F0320ECB26800BCABEF /* DoctorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorService.swift; sourceTree = "<group>"; };
 		9A84199920D61E6C003DD7A7 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		9A84199B20D61E92003DD7A7 /* Ward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ward.swift; sourceTree = "<group>"; };
-		9A84199D20D62C84003DD7A7 /* PaintentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintentListViewController.swift; sourceTree = "<group>"; };
-		9A84199F20D64501003DD7A7 /* AddPaintentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaintentViewController.swift; sourceTree = "<group>"; };
+		9A8655EA20F717EF005CCCAC /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		9A8D5C9120C439DC004B64FB /* TeleHealthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleHealthViewController.swift; sourceTree = "<group>"; };
 		9A8D5C9320C43A0E004B64FB /* TeleHealth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeleHealth.storyboard; sourceTree = "<group>"; };
 		9A8D5C9520C45FEE004B64FB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9A8D5C9820C4611F004B64FB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoViewController.swift; sourceTree = "<group>"; };
-		9AABB63820AD64BA00E3117C /* PaintentInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintentInfoViewController.swift; sourceTree = "<group>"; };
 		9AADB86320A6A7F700B5D8D4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.debug.xcconfig"; sourceTree = "<group>"; };
 		F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalViewController.swift; sourceTree = "<group>"; };
@@ -225,9 +239,10 @@
 				92390EA7209AE3BE001FDCCA /* BookingViewController.swift */,
 				92390EAF209B478F001FDCCA /* ExpDoctorViewController.swift */,
 				92806FA920A0C0D800BD717E /* SchedulerViewController.swift */,
-				9A84199D20D62C84003DD7A7 /* PaintentListViewController.swift */,
-				9AABB63820AD64BA00E3117C /* PaintentInfoViewController.swift */,
-				9A84199F20D64501003DD7A7 /* AddPaintentViewController.swift */,
+				9A7E3F0120ECAEF900BCABEF /* ServicesViewController.swift */,
+				9A4241B820EFE986003DBC01 /* AddPatientViewController.swift */,
+				9A4241B520EFE8ED003DBC01 /* PatientInfoViewController.swift */,
+				9A4241B420EFE8ED003DBC01 /* PatientListViewController.swift */,
 			);
 			path = BookingViewControllers;
 			sourceTree = "<group>";
@@ -260,6 +275,7 @@
 				925E0B8E208733DD00F22E25 /* SelectIntroductionViewController.swift */,
 				92176C2E208747EE002C8BE8 /* IntroductionViewController.swift */,
 				9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */,
+				9A8655EA20F717EF005CCCAC /* ChangePasswordViewController.swift */,
 			);
 			path = SideMenuViewControllers;
 			sourceTree = "<group>";
@@ -308,8 +324,9 @@
 		923CFBBA1FF8AE6A00E6A97D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9A443E1C20DD3A300012A087 /* MedicalFacilityCell */,
 				92326465207FB17800B67118 /* HealthSchedulerCell */,
-				9A0DC7A220ACAA0100C9FCCC /* PaintentCell */,
+				9A4241BA20EFF749003DBC01 /* PatientCell */,
 				923CFBBB1FF8AE8000E6A97D /* DateCell.swift */,
 				923CFBBD1FF8AEFF00E6A97D /* MenuCell.swift */,
 				923CFBBF1FF8AF3200E6A97D /* PopUpCell.swift */,
@@ -353,6 +370,7 @@
 				F32F2F041F989CC7008C5CAF /* LaunchScreen.storyboard */,
 				921113A2208AF86000B0E47A /* SideMenu.storyboard */,
 				9A8D5C9320C43A0E004B64FB /* TeleHealth.storyboard */,
+				9A443E1620DD37C70012A087 /* Hospital:MedicalFacility.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -375,13 +393,30 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		9A0DC7A220ACAA0100C9FCCC /* PaintentCell */ = {
+		9A4241BA20EFF749003DBC01 /* PatientCell */ = {
 			isa = PBXGroup;
 			children = (
-				9A0DC7A320ACAA3600C9FCCC /* PaintentCell.swift */,
-				9A0DC7A420ACAA3600C9FCCC /* PaintentCell.xib */,
+				9A4241BB20EFF749003DBC01 /* PatientCell.swift */,
+				9A4241BC20EFF749003DBC01 /* PatientCell.xib */,
 			);
-			path = PaintentCell;
+			path = PatientCell;
+			sourceTree = "<group>";
+		};
+		9A443E1920DD395F0012A087 /* MedicalFacilityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A443E1A20DD39930012A087 /* MedicalFacilityViewController.swift */,
+			);
+			path = MedicalFacilityViewController;
+			sourceTree = "<group>";
+		};
+		9A443E1C20DD3A300012A087 /* MedicalFacilityCell */ = {
+			isa = PBXGroup;
+			children = (
+				9A443E1D20DD3B010012A087 /* MedicalFacilityCell.swift */,
+				9A443E1E20DD3B010012A087 /* MedicalFacilityCell.xib */,
+			);
+			path = MedicalFacilityCell;
 			sourceTree = "<group>";
 		};
 		9A8D5C9020C439DC004B64FB /* TeleHealthViewControllers */ = {
@@ -434,6 +469,7 @@
 		F32F2F0D1F98B0E7008C5CAF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A443E1920DD395F0012A087 /* MedicalFacilityViewController */,
 				92015789207E067700764D05 /* MainViewControllers */,
 				92015787207E02C500764D05 /* SideMenuViewControllers */,
 				925E41582073CB1B00F9B393 /* FamilyDoctorViewControlers */,
@@ -457,6 +493,7 @@
 				F341747C1FC5F1900093CB1A /* SpecialtyModel.swift */,
 				F341747E1FC746D90093CB1A /* AppointmentModel.swift */,
 				F34174801FC748C40093CB1A /* Doctor.swift */,
+				9A7E3F0320ECB26800BCABEF /* DoctorService.swift */,
 				F34174821FC748D20093CB1A /* Room.swift */,
 				F34174841FC749290093CB1A /* Serviced.swift */,
 				F34174861FC7493E0093CB1A /* Detail.swift */,
@@ -523,7 +560,7 @@
 				TargetAttributes = {
 					F32F2EF41F989CC7008C5CAF = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -565,13 +602,15 @@
 				9276E9A520185E2000EFC492 /* HealthSchedulerCell.xib in Resources */,
 				9201577F207DEDCC00764D05 /* Payment.storyboard in Resources */,
 				928A07CC207D012A003AF0E7 /* FamilyDoctor.storyboard in Resources */,
+				9A443E1720DD37C70012A087 /* Hospital:MedicalFacility.storyboard in Resources */,
+				9A4241BE20EFF749003DBC01 /* PatientCell.xib in Resources */,
 				F32F2F061F989CC7008C5CAF /* LaunchScreen.storyboard in Resources */,
 				921113A3208AF86000B0E47A /* SideMenu.storyboard in Resources */,
 				9201577C207DEA2F00764D05 /* Booking.storyboard in Resources */,
+				9A443E2020DD3B010012A087 /* MedicalFacilityCell.xib in Resources */,
 				9A8D5C9420C43A0E004B64FB /* TeleHealth.storyboard in Resources */,
 				F32F2F031F989CC7008C5CAF /* Assets.xcassets in Resources */,
 				F32F2EFE1F989CC7008C5CAF /* Main.storyboard in Resources */,
-				9A0DC7A620ACAA3600C9FCCC /* PaintentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,8 +683,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				923694D61FE0F28100329310 /* LoginViewController.swift in Sources */,
+				9A443E1B20DD39930012A087 /* MedicalFacilityViewController.swift in Sources */,
 				923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */,
-				9A8419A020D64501003DD7A7 /* AddPaintentViewController.swift in Sources */,
 				923CFBBC1FF8AE8000E6A97D /* DateCell.swift in Sources */,
 				9229AC071FEA1C3E005F07CC /* PayViewController.swift in Sources */,
 				92DC379520728123008AD7B6 /* City.swift in Sources */,
@@ -655,12 +694,12 @@
 				F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */,
 				9276E99F2018574700EFC492 /* HealthSchedulersViewController.swift in Sources */,
 				925E41572073605100F9B393 /* WardViewController.swift in Sources */,
-				9AABB63920AD64BA00E3117C /* PaintentInfoViewController.swift in Sources */,
 				9A8D5C9A20C4611F004B64FB /* CalendarCell.swift in Sources */,
 				F379DD061FFB9F8800314610 /* TestViewController.swift in Sources */,
 				92F08BBD1FCC79460099BCBF /* CustomSearchBar.swift in Sources */,
 				9271C1772080865F00D5A41B /* DoctorByServiceViewController.swift in Sources */,
 				925E415C2073DD9600F9B393 /* HIUpdateViewController.swift in Sources */,
+				9A4241BD20EFF749003DBC01 /* PatientCell.swift in Sources */,
 				921291E8204FE1AF0087441A /* DetailSchedulerViewController.swift in Sources */,
 				F3DD420A1FEA19BA00135774 /* SideMenuViewController.swift in Sources */,
 				F31B839A1FBB4A7C00CA8698 /* ReviewAppointmentViewController.swift in Sources */,
@@ -679,11 +718,14 @@
 				9237E60B1FFC80340031A45B /* FirstAppointmentViewController.swift in Sources */,
 				F3CC057A1FE480B7005F5213 /* PopUpViewController.swift in Sources */,
 				92810E99200708D100B7A62F /* User.swift in Sources */,
+				9A4241B720EFE8ED003DBC01 /* PatientInfoViewController.swift in Sources */,
 				9AABB63720AD648000E3117C /* UpdateInfoViewController.swift in Sources */,
 				927F5A63207348EA0045D293 /* CitiesViewController.swift in Sources */,
+				9A4241B620EFE8ED003DBC01 /* PatientListViewController.swift in Sources */,
 				92FBE7CC1FE12D07009C6663 /* WebViewController.swift in Sources */,
 				92390EB0209B478F001FDCCA /* ExpDoctorViewController.swift in Sources */,
 				9A261B7120D4BDD5002B75B4 /* Place.swift in Sources */,
+				9A7E3F0220ECAEF900BCABEF /* ServicesViewController.swift in Sources */,
 				92326464207FB0D600B67118 /* HealthSchedulerCell.swift in Sources */,
 				928A07CA207CC5FC003AF0E7 /* HealthInsurance.swift in Sources */,
 				92176C3120874929002C8BE8 /* IntroductionText.swift in Sources */,
@@ -693,9 +735,11 @@
 				92806FA820A0A58800BD717E /* HealthCareScheduler.swift in Sources */,
 				925E0B8F208733DD00F22E25 /* SelectIntroductionViewController.swift in Sources */,
 				F34174871FC7493E0093CB1A /* Detail.swift in Sources */,
+				9A7E3F0420ECB26800BCABEF /* DoctorService.swift in Sources */,
 				92F08BBF1FCC84510099BCBF /* CustomSearchController.swift in Sources */,
 				F3CD6BFF1F9E41B800E9E830 /* Hospital.swift in Sources */,
 				F3DD420C1FEA19D400135774 /* SignUpViewController.swift in Sources */,
+				9A4241B920EFE987003DBC01 /* AddPatientViewController.swift in Sources */,
 				9229AC091FEA7069005F07CC /* FinalAppointmentViewController.swift in Sources */,
 				92F3ADD31FC51B5600C0D6E7 /* BaseNavigationController.swift in Sources */,
 				9A4CBAC820A4988D00810258 /* BookingInfo.swift in Sources */,
@@ -704,14 +748,14 @@
 				92CA46412011B49E00E84562 /* HomedTreatment.swift in Sources */,
 				92F4A033201B669B00181EDA /* MyUser.swift in Sources */,
 				F3CD6C011F9E41D400E9E830 /* CustomerModel.swift in Sources */,
+				9A443E1F20DD3B010012A087 /* MedicalFacilityCell.swift in Sources */,
 				92015784207DEEDF00764D05 /* MyStoryboard.swift in Sources */,
 				92FBE7CA1FE1209D009C6663 /* InformationViewController.swift in Sources */,
 				F34174851FC749290093CB1A /* Serviced.swift in Sources */,
 				F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */,
 				9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */,
 				92E52A0B207E515E00DC32CD /* FavoriteDrViewController.swift in Sources */,
-				9A84199E20D62C84003DD7A7 /* PaintentListViewController.swift in Sources */,
-				9A0DC7A520ACAA3600C9FCCC /* PaintentCell.swift in Sources */,
+				9A8655EB20F717EF005CCCAC /* ChangePasswordViewController.swift in Sources */,
 				9271C17520807C0B00D5A41B /* FamilyDoctor.swift in Sources */,
 				F341747F1FC746D90093CB1A /* AppointmentModel.swift in Sources */,
 				F34174831FC748D20093CB1A /* Room.swift in Sources */,
@@ -856,17 +900,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BAKCO VanKhang/BAKCO VanKhang.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WL6F7QTY3Z;
 				INFOPLIST_FILE = "BAKCO VanKhang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.vkhealth1;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.vkhealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3446ceb2-1425-42f4-91b0-bfcb885ff12b";
+				PROVISIONING_PROFILE_SPECIFIER = VK_Dev;
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -881,15 +925,15 @@
 				CODE_SIGN_ENTITLEMENTS = "BAKCO VanKhang/BAKCO VanKhang.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WL6F7QTY3Z;
 				INFOPLIST_FILE = "BAKCO VanKhang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.vkhealth1;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.vkhealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e3cac299-3452-49aa-9707-df97f8524f24";
+				PROVISIONING_PROFILE_SPECIFIER = VK_Dist;
 				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -38,20 +38,20 @@ public struct Hospital {
         } else {
             Image = ""
         }
-        if let name = data["Name"] as? String {
+        if let name = data["Name"] as? String, name != "" {
             Name = name
         } else {
-            Name = ""
+            Name = "Đang cập nhật"
         }
-        if let web = data["Website"] as? String {
+        if let web = data["Website"] as? String, web != "" {
             Website = web
         } else {
-            Website = ""
+            Website = "Đang cập nhật"
         }
-        if let address = data["Address"] as? String {
+        if let address = data["Address"] as? String, address != "" {
             Address = address
         } else {
-            Address = ""
+            Address = "Đang cập nhật"
         }
         if let price = data["Price"] as? Int {
             Price = price

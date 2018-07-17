@@ -24,7 +24,9 @@ class MainViewController: BaseViewController  {
     @IBOutlet weak var sosButton: UIButton!
     @IBAction func checkConnection(_ sender: UIButton) {
         if Reachability.isConnectedToNetwork(){
+            
         }else{
+            print("Internet Connection not Available!")
         }
     }
     
@@ -126,7 +128,6 @@ class MainViewController: BaseViewController  {
     
     // Mark : Medical television Button
     @IBAction func medicalTvButtonAction(_ sender: Any) {
-        
         self.showAlert(title: "Xác nhận", message: "Mở trình duyệt?", style: .actionSheet, hasTwoButton: true) { (okAction) in
             let url = URL(string: Link._MedicalTvLink)
             UIApplication.shared.open(url!)
@@ -156,6 +157,24 @@ extension MainViewController: CLLocationManagerDelegate {
         else if CLLocationManager.authorizationStatus() == .restricted{
             print("unauthorized")
         }
+    }
+    
+    func checkingConnection() {
+
+    }
+    
+    func checkInsternetConnection() {
+        
+    }
+    
+    func checkGPS() -> Bool {
+        if CLLocationManager.authorizationStatus() == .restricted{
+            self.showAlert(title: "Bật định vị", message: "Vui lòng bật định vị để sử dụng dịch vụ của chúng tôi!", style: .alert) { (_) in
+                // move to settings
+            }
+            return false
+        }
+        return true
     }
     
 

@@ -26,6 +26,32 @@ class BookingViewController: BaseViewController {
     
     var exTypeDropdown = DropDown()
     var hiDropdown = DropDown()
+    var hospitalServiceTypes = [Int]() {
+        didSet {
+            hospitalServiceTypeNames.removeAll()
+            for id in hospitalServiceTypes {
+                switch id {
+                case 0:
+                    hospitalServiceTypeNames.append(Normal)
+                    break
+                case 1:
+                    hospitalServiceTypeNames.append(Service)
+                    break
+                case 2:
+                    hospitalServiceTypeNames.append(Expert)
+                    break
+                default:
+                    break
+                }
+            }   
+        }
+    }
+    
+    var hospitalServiceTypeNames = [String]() {
+        didSet {
+            self.config(dropdown: exTypeDropdown, for: exTypeTextfield)
+        }
+    }
     
     //Presntr.
     var presentr : Presentr = {
@@ -46,7 +72,7 @@ class BookingViewController: BaseViewController {
         return customPresenter
     }()
     
-    @IBOutlet var paintentTextfield: UITextField!
+    @IBOutlet var patientTextfield: UITextField!
     @IBOutlet var hospitalTextfield: UITextField!
     @IBOutlet var hIIdTextfield: UITextField!
     @IBOutlet var exTypeTextfield: UITextField!
@@ -78,7 +104,7 @@ class BookingViewController: BaseViewController {
     }
     
     @IBAction func showScheduler(_ sender: Any) {
-        if paintentTextfield.text == "" {
+        if patientTextfield.text == "" {
             showAlert(title: "Lỗi", mess: "Bạn chưa chọn bệnh viện", style: .alert)
         } else if hospitalTextfield.text == "" {
             
@@ -114,15 +140,15 @@ class BookingViewController: BaseViewController {
     }
     
     @IBAction func userDropdown(_ sender: Any) {
-        let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "PaintentListViewController") as! PaintentListViewController
+        let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "PatientListViewController") as! PatientListViewController
         vc.direct = .booking
         let nav = BaseNavigationController(rootViewController: vc)
         present(nav, animated: true)
     }
     
     @IBAction func hiDropdown(_ sender: Any) {
-        guard let paintentName = paintentTextfield.text else { return }
-        if paintentName == "" || BookingInfo.paintent.id == 0 {
+        guard let patientName = patientTextfield.text else { return }
+        if patientName == "" || BookingInfo.patient.id == 0 {
             showAlert(title: "Lỗi", mess: "Bạn chưa chọn bệnh nhân!", style: .alert)
         } else {
             self.hiDropdown.show()
@@ -154,11 +180,22 @@ extension BookingViewController {
         showBackButton()
         config(dropdown: hiDropdown, for: hIIdTextfield)
         config(dropdown: exTypeDropdown, for: exTypeTextfield)
+        setupRightBarButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.paintentTextfield.text = BookingInfo.paintent.fullName
+        self.patientTextfield.text = BookingInfo.patient.fullName
+    }
+    
+    func setupRightBarButton() {
+        let button = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showMedicalFacility))
+        self.navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func showMedicalFacility() {
+        let vc = MyStoryboard.medicalFacility.instantiateViewController(withIdentifier: "MedicalFacilityViewController")
+        self.presentVcWithNav(vc: vc)
     }
     
     fileprivate func config(dropdown: DropDown, for textview: UITextField) {
@@ -187,7 +224,7 @@ extension BookingViewController {
             break
             
         case exTypeDropdown:
-            dropdown.dataSource = exTypeArray
+            dropdown.dataSource = self.hospitalServiceTypeNames
             dropdown.selectionAction =  { (index: Int, item: String) in
                 print(item)
                 self.exTypeTextfield.text = item
@@ -242,11 +279,11 @@ extension BookingViewController {
             let hiId = hIIdTextfield.text,
             let exType = exTypeTextfield.text,
             let expDocNameOrSpecialtyName = expDocOrSpecialtyTextfield.text,
-            let paintentName = paintentTextfield.text,
+            let patientName = patientTextfield.text,
             let date = dateAndTimeTextfield.text
         else { return false }
         
-        if paintentName == "" {
+        if patientName == "" {
             showAlert(title: "Lỗi", mess: "Bạn phải chọn bệnh nhân", style: .alert)
         } else if hospitalName == "" {
             showAlert(title: "Lỗi", mess: "Bạn phải chọn Cơ sở khám", style: .alert)
@@ -307,8 +344,8 @@ extension BookingViewController {
             "HospitalId" : BookingInfo.hospital.Id,
             "HealthCareSchedulerId": BookingInfo.match.schedulerId,
             "ServiceId" : 1,
-            "CustomerId": (BookingInfo.paintent.id),
-            "PatientId": (BookingInfo.paintent.id),
+            "CustomerId": (BookingInfo.patient.id),
+            "PatientId": (BookingInfo.patient.id),
             "DoctorId": BookingInfo.doctor.id,
             "Type": BookingInfo.exTypeId
         ]
@@ -337,16 +374,19 @@ extension BookingViewController {
         let api = URL(string: API.getFirstAppointment)!
         let param : Parameters = [
             "HasHealthInsurance": BookingInfo.didUseHI,
+            "HospitalId": BookingInfo.hospital.Id,
             "HealthCareSchedulerId": BookingInfo.time.timeId, /// thay HealthcareSchedulerId bằng time id
-            "ServiceId" : 1,
-            "CustomerId": (BookingInfo.paintent.id),
-            "PatientId": (BookingInfo.paintent.id),
+            "ServiceId" : BookingInfo.serviceId,
+            "CustomerId": (BookingInfo.patient.id),
+            "PatientId": (BookingInfo.patient.id),
             "DoctorId": BookingInfo.doctor.id,
             "Type": BookingInfo.exTypeId
-        ]
+            ]
+        
         let completionHandler = { (response: DataResponse<JSON>) -> Void in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideHUD()
             if response.result.isSuccess {
+                print(response)
                 if let data = response.value?.dictionaryObject {
                     let newAppointment = Appointment(data: data)
                     BookingInfo.appointment = newAppointment  // Gán
@@ -360,8 +400,29 @@ extension BookingViewController {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
             }
-        MBProgressHUD.showAdded(to: view, animated: true)
+        self.showHUD()
         Alamofire.request(api, method: .post, parameters: param, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
+    }
+    
+    
+    func getHospitalServiceTypes(hospitalId: Int) {
+        self.showHUD()
+        let url = URL(string: API.getHospitalServiceTypes + "\(hospitalId)")!
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            print(response)
+            if response.result.isSuccess {
+                if let data = response.value?.arrayObject as? [Int], data.count > 0 {
+                    self.hospitalServiceTypes = data
+                } else {
+                    self.showAlert(title: "Lỗi", message: "Bệnh viện không có dịch vụ nào. Vui lòng thử chọn lại bệnh viện khác", style: .alert, hasTwoButton: false, okAction: { (okAction) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                }
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
+        }
     }
 }
 
@@ -376,10 +437,15 @@ extension BookingViewController: HospitalViewControllerDelegate {
         self.exTypeTextfield.text = ""
         self.dateAndTimeTextfield.text = ""
         
+        /// get hospital service type
+        self.getHospitalServiceTypes(hospitalId: hospital.Id)
+        
         /// reset Dropdown
         guard let index = exTypeDropdown.indexPathForSelectedRow else {return}
         self.exTypeDropdown.deselectRow(index.row)
+        
     }
+
 }
 
 extension BookingViewController: ChooseSpecialtyViewControllerDelegate {

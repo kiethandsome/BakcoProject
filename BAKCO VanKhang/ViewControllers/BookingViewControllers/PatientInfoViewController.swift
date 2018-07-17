@@ -17,9 +17,9 @@ import MBProgressHUD
 
 
 // Mark: Properties
-class PaintentInfoViewController: BaseViewController, IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
+class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
     
-    var selectedPaintent: User?
+    var selectedpatient: User?
     var userId = Int()
     var direct: DirectViewController!
     
@@ -48,7 +48,7 @@ class PaintentInfoViewController: BaseViewController, IQDropDownTextFieldDelegat
         if self.userId == MyUser.id {
             updateCurrentUserInfo()
         } else {
-            updateProfilePaintent(by: self.userId)
+            updateProfilepatient(by: self.userId)
         }
     }
     
@@ -72,7 +72,7 @@ class PaintentInfoViewController: BaseViewController, IQDropDownTextFieldDelegat
 }
 
 // Mark: Functions
-extension PaintentInfoViewController {
+extension PatientInfoViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,12 +106,12 @@ extension PaintentInfoViewController {
     }
     
     @objc func done() {
-        if let paintent: User = self.selectedPaintent {
+        if let patient: User = self.selectedpatient {
             self.navigationController?.dismiss(animated: true)
             if self.direct == .booking {
-                BookingInfo.paintent = paintent /// Gán
+                BookingInfo.patient = patient /// Gán
             } else {
-                TeleHealthInfo.paintent = paintent /// gán
+                TeleHealthInfo.patient = patient /// gán
             }
         } else {
             self.showAlert(title: "Lỗi", mess: "Không có bệnh nhân nào được chọn", style: .alert)
@@ -130,11 +130,11 @@ extension PaintentInfoViewController {
             let address = addressTextfield.text,
             let email = emailTextfield.text,
             let hi = hiTextfield.text else { return }
-        if fullname == selectedPaintent?.fullName,
-            phone == selectedPaintent?.phone,
-            address == selectedPaintent?.address,
-            email == selectedPaintent?.email,
-            hi == selectedPaintent?.healthInsurance {
+        if fullname == selectedpatient?.fullName,
+            phone == selectedpatient?.phone,
+            address == selectedpatient?.address,
+            email == selectedpatient?.email,
+            hi == selectedpatient?.healthInsurance {
             disableButton(button: confirmButton)
         } else {
             enableButton(button: confirmButton)
@@ -178,7 +178,7 @@ extension PaintentInfoViewController {
                     self.showAlert(title: "Lỗi", mess: message, style: .alert)
                 } else {
                     let user = User(data: data)
-                    self.selectedPaintent = user
+                    self.selectedpatient = user
                     self.setupAllTextField(user: user)
                     self.disableButton(button: self.confirmButton)
                 }
@@ -258,13 +258,13 @@ extension PaintentInfoViewController {
         User.setCurrent(user)
         
         if self.direct == .booking {
-            BookingInfo.paintent = user
+            BookingInfo.patient = user
         } else {
-            TeleHealthInfo.paintent = user
+            TeleHealthInfo.patient = user
         }
     }
     
-    func updateProfilePaintent(by id: Int) {
+    func updateProfilepatient(by id: Int) {
         /// Chưa có api update profile
         showAlert(title: "Thông báo", message: "Chưa có api cập nhât thông tin cho bệnh nhân", style: .alert, hasTwoButton: false) { (_) in
             self.dismiss(animated: true, completion: nil)

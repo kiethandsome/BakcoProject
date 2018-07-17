@@ -99,12 +99,18 @@ class LoginViewController: BaseViewController {
                 self.showAlert(title: "Thành công", mess: "Đăng nhập thành công", style: .alert)
                     print(dict as Any)
                     self.currentUser = User(data: dict)
+                    self.saveToken(token: token)
                     self.pushToMainViewController()
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
         }
+    }
+    
+    private func saveToken(token: String) {
+        UserDefaults.standard.set(token, forKey: UserToken)
+        MyUser.token = token
     }
     
     func pushToMainViewController() {

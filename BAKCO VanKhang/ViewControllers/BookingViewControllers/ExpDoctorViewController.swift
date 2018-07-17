@@ -83,8 +83,11 @@ extension ExpDoctorViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let doctor = self.doctorList[indexPath.row]
+        
+        let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ServicesViewController") as! ServicesViewController
+        vc.doctor = doctor
+        self.navigationController?.pushViewController(vc, animated: true)
         self.delegate.didSelectDoctor(doctor: doctor)
-        self.dismiss(animated: true)
     }
     
 }

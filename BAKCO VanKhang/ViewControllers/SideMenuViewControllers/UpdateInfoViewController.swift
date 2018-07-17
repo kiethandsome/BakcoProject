@@ -126,7 +126,9 @@ extension UpdateInfoViewController {
             let phone = phoneTextfield.text,
             let address = addressTextfield.text,
             let email = emailTextfield.text,
-            let hi = hiTextfield.text else { return }
+            let hi = hiTextfield.text,
+            let placeText = placesTextfield.text
+        else { return }
         if fullname == MyUser.name,
             phone == MyUser.phone,
             address == MyUser.address,
