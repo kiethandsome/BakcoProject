@@ -47,6 +47,15 @@ class BookingViewController: BaseViewController {
         }
     }
     
+    var serviceTypes = [ServiceType]() {
+        didSet {
+            hospitalServiceTypeNames.removeAll()
+            for service in serviceTypes {
+                hospitalServiceTypeNames.append(service.name)
+            }
+        }
+    }
+    
     var hospitalServiceTypeNames = [String]() {
         didSet {
             self.config(dropdown: exTypeDropdown, for: exTypeTextfield)
@@ -79,6 +88,7 @@ class BookingViewController: BaseViewController {
     @IBOutlet var expDocOrSpecialtyTextfield: UITextField!
     @IBOutlet var dateAndTimeTextfield: UITextField!
     @IBOutlet var ExpDocOrSpecialtyLabel: UILabel!
+    @IBOutlet weak var hiidTitleLabel: UILabel!
     
     @IBAction func showHospitals(_ sender: Any) {
         let hospitalVc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "HospitalViewController") as! HospitalViewController
@@ -122,13 +132,12 @@ class BookingViewController: BaseViewController {
             let nav = BaseNavigationController(rootViewController: vc)
             present(nav, animated: true)
         }
-        
     }
     
     @IBAction func confirm(_ sender: Any) {
         if validate() {
             showAlert(title: "Xác nhận", message: "Bạn có chắc muốn đăng kí nhận phiếu hẹn khám chữa bệnh? \n(Sau khi đặt cuộc hẹn, bệnh nhân không thể sửa hoặc huỷ).", style: .alert) { (_) in
-                if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
+                if BookingInfo.serviceType.canChooseDoctor {
                     // for expert
                     self.createExaminationNoteWithDoctor()
                 } else {
@@ -186,6 +195,25 @@ extension BookingViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.patientTextfield.text = BookingInfo.patient.fullName
+     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if BookingInfo.serviceType.canUseHI {
+            disableHiidTextField(value: false)
+        } else {
+            disableHiidTextField(value: true)
+        }
+    }
+    
+    func disableHiidTextField(value: Bool) {
+        if value {
+            hIIdTextfield.alpha = 0.5
+            hiidTitleLabel.alpha = 0.5
+        } else {
+            hIIdTextfield.alpha = 1
+            hiidTitleLabel.alpha = 1
+        }
     }
     
     func setupRightBarButton() {
@@ -206,6 +234,30 @@ extension BookingViewController {
         dropdown.bottomOffset.y = textview.plainView.bounds.height
 
         switch dropdown {
+            
+        case exTypeDropdown:
+            dropdown.dataSource = self.hospitalServiceTypeNames
+            dropdown.selectionAction =  { (index: Int, item: String) in
+                print(item)
+                self.exTypeTextfield.text = item
+                self.expDocOrSpecialtyTextfield.text = ""
+                self.dateAndTimeTextfield.text = ""
+  
+                BookingInfo.exTypeName = item  // Gán
+                BookingInfo.serviceType = self.serviceTypes[index] // gán
+                
+                if BookingInfo.serviceType.canChooseDoctor {
+                    // Cho luồng KHÁM CHUYÊN GIA
+                    self.ExpDocOrSpecialtyLabel.text = "5. Chuyên gia"
+                    self.expDocOrSpecialtyTextfield.placeholder = "Chọn chuyên gia"
+                } else {
+                    // Luồng khám thông thường và dịch vụ
+                    self.ExpDocOrSpecialtyLabel.text = "5. Chuyên khoa"
+                    self.expDocOrSpecialtyTextfield.placeholder = "Chọn chuyên khoa"
+                } 
+            }
+            break
+            
         case hiDropdown:
             dropdown.dataSource = [Constant.yes, Constant.no]
             dropdown.selectionAction =  { (index: Int, item: String) in
@@ -220,27 +272,6 @@ extension BookingViewController {
                 } else {
                     BookingInfo.didUseHI = false
                 }
-            }
-            break
-            
-        case exTypeDropdown:
-            dropdown.dataSource = self.hospitalServiceTypeNames
-            dropdown.selectionAction =  { (index: Int, item: String) in
-                print(item)
-                self.exTypeTextfield.text = item
-                self.expDocOrSpecialtyTextfield.text = ""
-                self.dateAndTimeTextfield.text = ""
-                if item == Expert {
-                    // Cho luồng KHÁM CHUYÊN GIA
-                    self.ExpDocOrSpecialtyLabel.text = "5. Chuyên gia"
-                    self.expDocOrSpecialtyTextfield.placeholder = "Chọn chuyên gia"
-                } else {
-                    // Luồng khám thông thường và dịch vụ
-                    self.ExpDocOrSpecialtyLabel.text = "5. Chuyên khoa"
-                    self.expDocOrSpecialtyTextfield.placeholder = "Chọn chuyên khoa"
-                }
-                BookingInfo.exTypeName = item  // Gán
-                BookingInfo.exTypeId = Constant.exTypeDict[item]! // Gán
             }
             break
             
@@ -276,7 +307,7 @@ extension BookingViewController {
     
     fileprivate func validate() -> Bool {
         guard let hospitalName = hospitalTextfield.text,
-            let hiId = hIIdTextfield.text,
+//            let hiId = hIIdTextfield.text,
             let exType = exTypeTextfield.text,
             let expDocNameOrSpecialtyName = expDocOrSpecialtyTextfield.text,
             let patientName = patientTextfield.text,
@@ -287,10 +318,10 @@ extension BookingViewController {
             showAlert(title: "Lỗi", mess: "Bạn phải chọn bệnh nhân", style: .alert)
         } else if hospitalName == "" {
             showAlert(title: "Lỗi", mess: "Bạn phải chọn Cơ sở khám", style: .alert)
-        } else if hiId == "" {
-            showAlert(title: "Lỗi", mess: "Bạn phải chọn Bảo hiểm y tế", style: .alert)
         } else if exType == "" {
             showAlert(title: "Lỗi", mess: "Bạn phải chọn Loại hình khám", style: .alert)
+//        } else if hiId == "" {
+//            showAlert(title: "Lỗi", mess: "Bạn phải chọn Bảo hiểm y tế", style: .alert)
         } else if expDocNameOrSpecialtyName == "" {
             if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
                 showAlert(title: "Lỗi", mess: "Bạn phải chọn Chuyên gia", style: .alert)
@@ -316,7 +347,7 @@ extension BookingViewController {
                                   "HealthCareId": BookingInfo.specialty.Id,
                                   "IsMorning": true,
                                   "Date": subString(text: BookingInfo.scheduler.Date, offsetBy: 10),
-                                  "Type": BookingInfo.exTypeId
+                                  "Type": BookingInfo.serviceType.id
         ]
         let completionHandler : ((DataResponse<JSON>) -> Void) = { response in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -347,7 +378,7 @@ extension BookingViewController {
             "CustomerId": (BookingInfo.patient.id),
             "PatientId": (BookingInfo.patient.id),
             "DoctorId": BookingInfo.doctor.id,
-            "Type": BookingInfo.exTypeId
+            "Type": BookingInfo.serviceType.id
         ]
         let completionHandler = { (response: DataResponse<JSON>) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -380,8 +411,8 @@ extension BookingViewController {
             "CustomerId": (BookingInfo.patient.id),
             "PatientId": (BookingInfo.patient.id),
             "DoctorId": BookingInfo.doctor.id,
-            "Type": BookingInfo.exTypeId
-            ]
+            "Type": BookingInfo.serviceType.id
+        ]
         
         let completionHandler = { (response: DataResponse<JSON>) -> Void in
             self.hideHUD()
@@ -407,22 +438,31 @@ extension BookingViewController {
     
     func getHospitalServiceTypes(hospitalId: Int) {
         self.showHUD()
-        let url = URL(string: API.getHospitalServiceTypes + "\(hospitalId)")!
+        let url = URL(string: API.getHospitalServiceTypes + "?HospitalId=" + "\(hospitalId)" + "&Form=1")!
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
             self.hideHUD()
             print(response)
+            self.serviceTypes.removeAll()
             if response.result.isSuccess {
-                if let data = response.value?.arrayObject as? [Int], data.count > 0 {
-                    self.hospitalServiceTypes = data
+                if let dataArray = response.value?.array, dataArray.count > 0 {
+                    dataArray.forEach({ (data) in
+                        if let dict = data.dictionaryObject {
+                            let serviceType = ServiceType(data: dict)
+                            self.serviceTypes.append(serviceType)
+                        }
+                    })
                 } else {
                     self.showAlert(title: "Lỗi", message: "Bệnh viện không có dịch vụ nào. Vui lòng thử chọn lại bệnh viện khác", style: .alert, hasTwoButton: false, okAction: { (okAction) in
                         self.navigationController?.popViewController(animated: true)
                     })
                 }
             } else {
-                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+                self.showAlert(title: "Lỗi", message: response.error.debugDescription, style: .alert, hasTwoButton: false, okAction: { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
         }
+        
     }
 }
 
@@ -443,14 +483,12 @@ extension BookingViewController: HospitalViewControllerDelegate {
         /// reset Dropdown
         guard let index = exTypeDropdown.indexPathForSelectedRow else {return}
         self.exTypeDropdown.deselectRow(index.row)
-        
     }
-
 }
 
 extension BookingViewController: ChooseSpecialtyViewControllerDelegate {
     func didChooseSpecialty(specialty: Specialty) {
-        BookingInfo.specialty = specialty // Gán
+        BookingInfo.specialty = specialty /// Gán
         self.expDocOrSpecialtyTextfield.text = specialty.Name
         /// reset date
         self.dateAndTimeTextfield.text = ""

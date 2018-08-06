@@ -14,7 +14,7 @@ import SwiftyJSON
 import MBProgressHUD
 
 public struct TeleHealthInfo {
-    static var patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+    static var patient = Constant.emtyUser
     static var hospital = Hospital()
     static var doctor = Doctor()
     static var specialty = Specialty()

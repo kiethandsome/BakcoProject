@@ -63,13 +63,13 @@ extension SchedulersViewController {
         config(collectionView: dateCollectionView)
         config(collectionView: timeCollectionView)
         
-        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
-            maskView.isHidden = true    // Ẩn maskView nếu là luồng chuyên gia
+        if BookingInfo.serviceType.canChooseHour {
+            maskView.isHidden = true    // Ẩn maskView nếu là luồng chuyên gia (có thể chọn giờ)
         } else {
             maskView.isHidden = false
         }
         
-        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
+        if BookingInfo.serviceType.canChooseDoctor {
             // Lấy lịch theo chuyên gia
             getSchedulerForExpDoctor(doctorId: BookingInfo.doctor.id,
                                      hospitalId: BookingInfo.hospital.Id)
@@ -77,13 +77,13 @@ extension SchedulersViewController {
             // Lấy lịch theo thông thường
             getSchedulerNormally(hospitalId: BookingInfo.hospital.Id,
                                  healthcareId: BookingInfo.specialty.Id,
-                                 type: BookingInfo.exTypeId)
+                                 type: "\(BookingInfo.serviceType.id)")
         }
     }
     
     @objc func done() {
         delegate.didSelectScheduler(scheduler: didSelectScheduler)
-        if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {
+        if BookingInfo.serviceType.canChooseHour {
             // Nếu là chuyên gia
             if let time = didSelectTime {
                 delegate.didSelectTime(time: time)
@@ -284,7 +284,7 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
         self.morningTimeList = dateList[indexPath.item].morning
         self.afternoonTimeList = dateList[indexPath.item].afternoon
         didSelectScheduler = dateList[indexPath.item]       // Ngày đã chọn
-        if BookingInfo.exTypeId != Constant.exTypeDict[Expert] {
+        if !BookingInfo.serviceType.canChooseHour {
             /// nếu ko phải là luồng chuyên gia.
             navigationItem.rightBarButtonItem?.isEnabled = true
         }

@@ -26,6 +26,11 @@ class ExpDoctorViewController: BaseViewController {
     }
     weak var delegate: ExpDoctorViewControllerDelegate!
     var hospitalId = Int()
+    
+    override func dismisss() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+        BookingInfo.doctor = Doctor()
+    }
 }
 
 extension ExpDoctorViewController {

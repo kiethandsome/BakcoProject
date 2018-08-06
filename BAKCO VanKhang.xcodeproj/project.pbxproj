@@ -77,6 +77,7 @@
 		9A8D5C9A20C4611F004B64FB /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9820C4611F004B64FB /* CalendarCell.swift */; };
 		9AABB63720AD648000E3117C /* UpdateInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */; };
 		9AADB86420A6A7F700B5D8D4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AADB86320A6A7F700B5D8D4 /* Constant.swift */; };
+		9AB0D71E210228D50089D965 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0D71D210228D50089D965 /* ServiceType.swift */; };
 		AC8E3BC56C27AEF8F46FE39E /* Pods_BAKCO_VanKhang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE7FCA8409304FCCB458C0A /* Pods_BAKCO_VanKhang.framework */; };
 		F31B83901FBAA46500CA8698 /* HospitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */; };
 		F31B83961FBB253000CA8698 /* ChooseSpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */; };
@@ -177,6 +178,7 @@
 		9A8D5C9820C4611F004B64FB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoViewController.swift; sourceTree = "<group>"; };
 		9AADB86320A6A7F700B5D8D4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		9AB0D71D210228D50089D965 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		C5D63BAD56B9E39C057ABAFE /* Pods-BAKCO VanKhang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAKCO VanKhang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang.debug.xcconfig"; sourceTree = "<group>"; };
 		F31B838F1FBAA46500CA8698 /* HospitalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalViewController.swift; sourceTree = "<group>"; };
 		F31B83951FBB253000CA8698 /* ChooseSpecialtyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSpecialtyViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				9A7E3F0320ECB26800BCABEF /* DoctorService.swift */,
 				F34174821FC748D20093CB1A /* Room.swift */,
 				F34174841FC749290093CB1A /* Serviced.swift */,
+				9AB0D71D210228D50089D965 /* ServiceType.swift */,
 				F34174861FC7493E0093CB1A /* Detail.swift */,
 				92DC379420728123008AD7B6 /* City.swift */,
 				9A84199920D61E6C003DD7A7 /* District.swift */,
@@ -683,6 +686,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				923694D61FE0F28100329310 /* LoginViewController.swift in Sources */,
+				9AB0D71E210228D50089D965 /* ServiceType.swift in Sources */,
 				9A443E1B20DD39930012A087 /* MedicalFacilityViewController.swift in Sources */,
 				923CFBC21FF8AFC200E6A97D /* HospitalCell.swift in Sources */,
 				923CFBBC1FF8AE8000E6A97D /* DateCell.swift in Sources */,

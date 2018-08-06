@@ -17,8 +17,11 @@ class User: NSObject {
     var healthInsurance = ""
     var email = ""
     var address = ""
-    var birthDate = "CHưa có          "
+    var birthDate = Date()
     var gender = true
+    var districtCode = Int()
+    var provinceCode = Int()
+    var wardCode = Int()
     
 //    private static var _currentUser: User?
 //    
@@ -29,7 +32,7 @@ class User: NSObject {
 //        return currentUser
 //    }
     
-    init(id: Int, name: String, phone: String, hiid: String, email: String, address: String, birthdate: String, gender: Bool) {
+    init(id: Int, name: String, phone: String, hiid: String, email: String, address: String, birthdate: Date, gender: Bool, districtCode: Int, wardCode: Int, provinceCode: Int) {
         super.init()
         self.id = id
         self.phone = phone
@@ -39,6 +42,7 @@ class User: NSObject {
         self.birthDate = birthdate
         self.gender = gender
         self.fullName = name
+        
     }
     
     init(data: [String : Any]) {
@@ -68,12 +72,24 @@ class User: NSObject {
             self.address = address
         }
         
-        if let birthdate = data["BirthDate"] as? String {
+        if let birthdate = data["BirthDate"] as? Date {
             self.birthDate = birthdate
         }
         
         if let gender = data["Gender"] as? Bool {
             self.gender = gender
+        }
+        
+        if let districtCode = data["DistrictCode"] as? Int {
+            self.districtCode = districtCode
+        }
+        
+        if let wardCode = data["WardCode"] as? Int {
+            self.wardCode = wardCode
+        }
+        
+        if let provinceCode = data["ProvinceCode"] as? Int {
+            self.provinceCode = provinceCode
         }
         
     }
@@ -102,10 +118,6 @@ class User: NSObject {
 //    }
     
     static func setCurrent(_ user: User) {
-        let str = user.birthDate
-        let index = str.index(str.startIndex, offsetBy: 10) /// Cắt bỏ phần giờ phía sau ngày sinh do server trả về
-        let mySubstring = str[..<index]
-        print(mySubstring)
     
         /// Set value for userDefault
         UserDefaults.standard.set(true, forKey: DidLogin)
@@ -114,7 +126,7 @@ class User: NSObject {
         UserDefaults.standard.setValue(user.phone, forKey: UserPhone)
         UserDefaults.standard.setValue(user.healthInsurance, forKey: UserInsurance)
         UserDefaults.standard.setValue(user.email, forKey: UserEmail)
-        UserDefaults.standard.setValue(mySubstring, forKey: UserBirthday)
+        UserDefaults.standard.setValue(user.birthDate, forKey: UserBirthday)
         UserDefaults.standard.setValue(user.gender, forKey: UserGender)
         UserDefaults.standard.set(user.address, forKey: UserAddress)
 
@@ -133,6 +145,7 @@ class User: NSObject {
         MyUser.birthday = user.birthDate
         MyUser.gender = user.gender
         MyUser.current = user
+        
     }
     
 

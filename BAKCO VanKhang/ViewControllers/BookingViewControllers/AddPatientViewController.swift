@@ -29,6 +29,10 @@ class AddPatientViewController: BaseViewController {
     @IBOutlet var femaleButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet var confirmAddingButton: UIButton!
+    
+    var city : City?
+    var dist: District?
+    var ward: Ward?
 
     @IBAction func choosePlaces(_ sender: Any) {
         let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
@@ -36,19 +40,39 @@ class AddPatientViewController: BaseViewController {
         present(nav, animated: true)
     }
     
+    @IBAction func chooseDistrict(_ sender: Any) {
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let nav = BaseNavigationController(rootViewController: cityVc)
+        present(nav, animated: true)
+    }
+    
+    @IBAction func chooseWard(_ sender: Any) {
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let nav = BaseNavigationController(rootViewController: cityVc)
+        present(nav, animated: true)
+    }
+    
     @IBAction func add(_ sender: Any) {
         if validate() {
-            let bd = birthdayTextfield.date?.convertDateToString(with: "yyyy-MM-dd")
-            createPaintent(username: usernameTextfield.text!,
-                        phone: phoneTextfield.text!,
-                        email: emailTextfield.text!,
-                        hiId: hiTextfield.text!,
-                        address: addressTextfield.text!,
-                        birthdate: bd!,
+            guard let username = usernameTextfield.text,
+                let phone = phoneTextfield.text,
+                let email = emailTextfield.text,
+                let hiid = hiTextfield.text,
+                let address = addressTextfield.text,
+                let birthdate = birthdayTextfield.date?.convertDateToString(with: "yyyy-MM-dd"),
+                let city = city,
+                let dist = dist,
+                let ward = ward else { return }
+            createPaintent(username: username,
+                        phone: phone,
+                        email: email,
+                        hiId: hiid,
+                        address: address,
+                        birthdate: birthdate,
                         gender: maleButton.isSelected ? true : false,
-                        provinceCode: Place.city.value,
-                        districtCode: Place.district.value,
-                        wardCode: Place.ward.value)
+                        provinceCode: city.value,
+                        districtCode: dist.value,
+                        wardCode: ward.value)
         } else {
             showAlert(title: "Lỗi", mess: "Bạn chưa điền đủ thông tin", style: .alert)
         }

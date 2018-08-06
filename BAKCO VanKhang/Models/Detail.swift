@@ -22,17 +22,40 @@ class DetailModel: NSObject {
     
     init(data: [String : Any]) {
         
-        guard let day = data["Time"] as? String,
-            let from = data["From"] as? String,
-            let to = data["To"] as? String,
-            let timeId = data["TimeId"] as? Int
-//            let active = data["Active"] as? String
-            else { return }
+        if let day = data["Time"] as? String {
+            self.day = day
+        } else {
+            self.day = "Chưa có ngày khám"
+        }
         
-        self.timeId = timeId
-        self.day = day
-        self.from = from
-        self.to = to
-//        self.active = active
+        if let from = data["From"] as? String {
+            self.from = from
+        } else {
+            self.from = "Chưa có giờ"
+        }
+        
+        if let to = data["To"] as? String {
+            self.to = to
+        } else {
+            self.to = "Chưa có giờ đến"
+        }
+        
+        if let timeId = data["TimeId"] as? Int {
+            self.timeId = timeId
+        }
+        
+        if let active = data["Active"] as? String {
+            self.active = active
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -55,7 +55,7 @@ class FirstAppointmentViewController: BaseViewController {
         ///
         userNameLabel.text = "Bệnh nhân: " + MyUser.name
         insuranceIDLabel.text = "BHYT: " + MyUser.insuranceId
-        birthdayLabel.text = "Ngày sinh: " + MyUser.birthday
+        birthdayLabel.text = "Ngày sinh: " + MyUser.birthday.convertDateToString(with: "dd-MM-yyyy")
         phoneNumberLabel.text = "ĐT: " + MyUser.phone
         
         if BookingInfo.exTypeId == Constant.exTypeDict[Expert] {

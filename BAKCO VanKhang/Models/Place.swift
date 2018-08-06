@@ -9,19 +9,22 @@
 import Foundation
 
 struct Place {
-    static var city = City()
-    static var district = District()
-    static var ward = Ward() {
+    var city = City()
+    var district = District()
+    var ward = Ward() {
         didSet {
             self.stringValue = ward.name + " " + district.name + " " + city.name
         }
     }
-    static var stringValue = String()
+    var stringValue = String()
     
-    static func release() {
-        self.city = City()
-        self.district = District()
-        self.ward = Ward()
-        self.stringValue = "Chưa chọn thành phố"
+    init() {
+        
+    }
+    
+    init(city: City, district: District, ward: Ward) {
+        self.city = city
+        self.district = district
+        self.ward = ward
     }
 }

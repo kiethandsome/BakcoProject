@@ -23,7 +23,8 @@ class ServicesViewController: BaseViewController {
         }
     }
     var doctor = Doctor()
-    let serviceGroupId = 2
+    let serviceGroupId = 1
+    let form = 1
 }
 
 // Mark: Methods
@@ -46,7 +47,7 @@ extension ServicesViewController {
     }
     
     private func getDoctorServices() {
-        let url = URL(string: API.getDoctorServices + "?DoctorId=" + "\(doctor.id)" + "&ServiceGroup=" + "\(serviceGroupId)" )!
+        let url = URL(string: API.getDoctorServices + "?DoctorId=" + "\(doctor.id)" + "&ServiceGroup=" + "\(serviceGroupId)" + "&Form=" + "\(form)" )!
         self.showHUD()
         let completionHandler : ((DataResponse<JSON>) -> Void) = { response in
             self.hideHUD()

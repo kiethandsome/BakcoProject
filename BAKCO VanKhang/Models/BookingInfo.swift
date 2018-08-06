@@ -9,7 +9,7 @@
 import Foundation
 
 public struct BookingInfo {
-    static var patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+    static var patient = Constant.emtyUser
     static var hospital = Hospital()
     static var didUseHI = Bool()
     static var hiid = String()
@@ -19,12 +19,13 @@ public struct BookingInfo {
     static var serviceId = Int()
     static var specialty = Specialty()
     static var scheduler = HealthCareScheduler()
-    static var time = HealthCareScheduler.Time()
+    static var time = HealthCareScheduler.Time()      
     static var match = MatchModel()
     static var appointment = Appointment()
+    static var serviceType = ServiceType()
     
     static func release() {
-        self.patient = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: "", gender: Bool())
+        self.patient = Constant.emtyUser
         self.hospital = Hospital()
         self.didUseHI = false
         self.exTypeId = String()

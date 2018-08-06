@@ -25,55 +25,92 @@ class UpdateInfoViewController: BaseViewController, IQDropDownTextFieldDelegate,
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var birthdayTextfield: IQDropDownTextField!
     @IBOutlet var addressTextfield: UITextField!
-    @IBOutlet var placesTextfield: UITextField!
     @IBOutlet var hiTextfield: UITextField!
     @IBOutlet var pesonalIdTextfield: UITextField!
     @IBOutlet var maleButton: UIButton!
     @IBOutlet var femaleButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var cityTextField: UITextField!
+    @IBOutlet var districtTextField: UITextField!
+    @IBOutlet var wardTextField: UITextField!
+
+    
+    var selectedPlace = Place()
+    var selectedCity: City?
+    var selectedDist: District?
+    var selectedWard: Ward?
 }
 
 extension UpdateInfoViewController {
     
-    @IBAction func choosePlaces(_ sender: Any) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+    /// Chọn quận huyện
+    @IBAction func chooseDistrict(_ sender: UIButton) {
+        if let city = selectedCity {
+            let distVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController") as! DistrictsViewController
+            distVc.selectedCity = city
+            distVc.delegate = self
+            let nav = BaseNavigationController(rootViewController: distVc)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn tỉnh thành", style: .alert)
+        }
+        
+    }
+    
+    /// Chọn phường xã
+    @IBAction func chooseWard(_ sender: UIButton) {
+        if let dist = selectedDist {
+            let wardVC = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController") as! WardViewController
+            wardVC.delegate = self
+            wardVC.selectedDistrict = dist
+            let nav = BaseNavigationController(rootViewController: wardVC)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn Quận huyện", style: .alert)
+        }
+    }
+    
+    /// Chọn tp
+    @IBAction func chooseCity(_ sender: Any) {
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        cityVc.delegate = self
         let nav = BaseNavigationController(rootViewController: cityVc)
         present(nav, animated: true)
     }
     
-    @IBAction func confirmUpdate(_ sender: Any) {   //Update User Information
+    
+    /// Cập nhật thông tin bệnh nhân
+    @IBAction func confirmUpdate(_ sender: Any) {
         let url = URL(string: API.updateInform)!
         guard let fullName = usernameTextfield.text, let phone = phoneTextfield.text,
             let email = emailTextfield.text, let hiid = hiTextfield.text,
-            let address = addressTextfield.text, let bd = birthdayTextfield.date
+            let address = addressTextfield.text, let bd = birthdayTextfield.date,
+            let ward = selectedWard,
+            let dist = selectedDist,
+            let city = selectedCity
             else { return }
-        let province = Place.city.value
-        let district = Place.district.value
-        let ward = Place.ward.value
 
         let parameters: Parameters = [
             "Id": MyUser.id,
-            "Username": "tuan",
-            "Password": "",
             "FullName": fullName,
             "Phone": phone,
+            "Phone1": phone,
             "Email": email,
             "HealthInsurance": hiid,
             "Address": address,
             "BirthDate": bd.convertDateToString(with: "yyyy-MM-dd"),
             "Gender": maleButton.isSelected,
-            "ProvinceCode": province,
-            "DistrictCode": district,
-            "WardCode": ward ]
+            "ProvinceCode": city.value,
+            "DistrictCode": dist.value,
+            "WardCode": ward.value ]
         let completionHandler = { (response: DataResponse<String>) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response)
             if response.result.isSuccess {
                 self.showAlert(title: "Thành công", message: "Cập nhât thông tin người dùng thành công!", style: .alert, hasTwoButton: false, okAction: { (_) in
 //                    self.getUserInfo(by: MyUser.id)
-                    Place.release()
-                    self.disableButton(button: self.confirmButton)
+                    self.navigationController?.popViewController(animated: true)
                 })
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -109,25 +146,20 @@ extension UpdateInfoViewController {
         guard let userId = self.userId else { return }
         getUserInfo(by: userId)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.placesTextfield.text = Place.stringValue
-    }
+
     
     fileprivate func setupTextfield(tf: UITextField...) {
         for tf1 in tf {
             tf1.addTarget(self, action: #selector(textDidChange(textField:)), for: .editingChanged)
         }
     }
-    
+
     @objc func textDidChange(textField: UITextField) {
         guard let fullname = usernameTextfield.text,
             let phone = phoneTextfield.text,
             let address = addressTextfield.text,
             let email = emailTextfield.text,
-            let hi = hiTextfield.text,
-            let placeText = placesTextfield.text
+            let hi = hiTextfield.text
         else { return }
         if fullname == MyUser.name,
             phone == MyUser.phone,
@@ -158,7 +190,7 @@ extension UpdateInfoViewController {
     }
     
     fileprivate func setupPicker(picker: IQDropDownTextField, user: User) {
-        let date = user.birthDate.convertStringToDate(with: "yyyy-MM-dd")
+        let date = user.birthDate
         picker.delegate = self
         picker.dataSource = self
         picker.dropDownMode = .datePicker
@@ -198,6 +230,22 @@ extension UpdateInfoViewController {
     }
 }
 
+extension UpdateInfoViewController: WardViewControllerDelegate, CitiesViewControllerDelegate, DistrictsViewControllerDelegate {
+    func didSelectDistrict(dist: District) {
+        self.selectedDist = dist
+        districtTextField.text = dist.name
+    }
+    
+    func didSelectedCity(city: City) {
+        self.selectedCity = city
+        self.cityTextField.text = city.name
+    }
+    
+    func didSelectedWard(ward: Ward) {
+        self.selectedWard = ward
+        self.wardTextField.text = ward.name
+    }
+}
 
 
 

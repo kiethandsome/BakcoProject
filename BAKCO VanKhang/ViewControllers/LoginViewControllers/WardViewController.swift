@@ -12,6 +12,10 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
+protocol WardViewControllerDelegate: class {
+    func didSelectedWard(ward: Ward)
+}
+
 class WardViewController: BaseViewController {
     
     @IBOutlet var wardTableview: UITableView!
@@ -21,13 +25,18 @@ class WardViewController: BaseViewController {
             wardTableview.reloadData()
         }
     }
+    weak var delegate: WardViewControllerDelegate!
+    
+    var selectedDistrict: District?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Phường xã"
         showBackButton()
         setupTableview(tv: wardTableview)
-        getWard(by: Place.district.value)
+        
+        guard let dist = selectedDistrict else { return }
+        getWard(by: dist.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -74,7 +83,8 @@ extension WardViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
         let selectedWard = wards[indexPath.row]
-        Place.ward = selectedWard
+        self.delegate.didSelectedWard(ward: selectedWard)
+        
         navigationController?.dismiss(animated: true)
     }
     

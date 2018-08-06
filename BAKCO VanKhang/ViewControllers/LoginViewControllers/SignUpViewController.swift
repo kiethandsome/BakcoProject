@@ -16,6 +16,11 @@ class SignUpViewController: BaseViewController {
     
     var gender = true
     
+    var selectedCity: City?
+    var selectedDistrict: District?
+    var selectedWard: Ward?
+    
+    
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstView: UIView!
     @IBOutlet var secondView: UIView!
@@ -63,27 +68,31 @@ class SignUpViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        cityTextfield.text = Place.stringValue
+        
+        guard let city = selectedCity, let dist = selectedDistrict, let ward = selectedWard else { return }
+        let placeString = city.name + ", " + dist.name + ", " + ward.name
+        cityTextfield.text = placeString
     }
     
     func setupUI() {
+        /// First View
         firstView.layer.borderColor = UIColor.specialGreenColor().cgColor
         firstView.layer.borderWidth = 1.0
         firstView.layer.cornerRadius = 10.0
         firstView.clipsToBounds = true
-        
+        /// Second View
         secondView.layer.borderColor = UIColor.specialGreenColor().cgColor
         secondView.layer.borderWidth = 1.0
         secondView.layer.cornerRadius = 10.0
         secondView.clipsToBounds = true
         showCancelButton()
-        
+        /// OK Button
         okButton.layer.cornerRadius = 10.0
         okButton.clipsToBounds = true
-        
+        /// Birthdate picker
         birthdayPicker.layer.cornerRadius = 10.0
         birthdayPicker.clipsToBounds = true
-        
+        /// Sex
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
     }
@@ -102,13 +111,14 @@ class SignUpViewController: BaseViewController {
     }
     
     func registerUser() {
+        guard let city = selectedCity, let dist = selectedDistrict, let ward = selectedWard else { return }
         let birthDate: String = birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd")
         self.signup(fullName: txtFullName.text!,
                     phone: txtPhone.text!,
                     email: txtEmail.text!,
                     birthDate: birthDate,
                     address: txtAddress.text!,
-                    provinceCode: Place.city.value, districtCode: Place.district.value, wardCode: Place.ward.value,
+                    provinceCode: city.value, districtCode: dist.value, wardCode: ward.value,
                     HealthInsurance: "",
                     username: txtUserName.text!,
                     password: txtPassword.text!,
@@ -194,7 +204,6 @@ class SignUpViewController: BaseViewController {
                                 if message == "" {
                                     self.showAlert(title: "Xác nhận", message: "Đăng kí thành công", style: .alert, hasTwoButton: false, okAction: { (_) in
                                         self.navigationController?.dismiss(animated: true)
-                                        Place.release()
                                     })
                                 } else {
                                     self.showAlert(title: "Lỗi", mess: message, style: .alert)

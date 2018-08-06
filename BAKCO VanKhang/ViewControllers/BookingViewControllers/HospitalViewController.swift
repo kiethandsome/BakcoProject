@@ -23,20 +23,23 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     @IBOutlet var hospitalSearchBar: UISearchBar!
     
-    let hospitalSearchController = UISearchController()
+    let hospitalSearchController = UISearchController(searchResultsController: nil)
     
     var hospitals = [Hospital]()
     
     var filterredHospitals = [Hospital]()
     
-    var url = URL(string: API.getHospital)!
+    var url = URL(string: API.getHospitalsForm1)!
     
     weak var delegate: HospitalViewControllerDelegate!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Chọn bệnh viện"
+        
+        setupSearchBar()
+        
+        navigationItem.title = "Chọn bệnh viện"
         hospitalCollection.isScrollEnabled = true
         hospitalCollection.delegate = self
         hospitalCollection.dataSource = self
@@ -45,22 +48,17 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
         getHospitals()
         showCancelButton()
         
-        if #available(iOS 11.0, *) {
-            setupSearchBar()
-        }
     }
     
     private func setupSearchBar() {
         if #available(iOS 11.0, *) {
             self.hospitalSearchController.searchResultsUpdater = self
             self.hospitalSearchController.obscuresBackgroundDuringPresentation = false
-            self.hospitalSearchController.searchBar.placeholder = "con chim non"
+            self.hospitalSearchController.searchBar.placeholder = "Tìm bệnh viện ..."
+            self.hospitalSearchController.searchBar.tintColor = UIColor.specialGreenColor()
+            self.hospitalSearchController.searchBar.isExclusiveTouch = true
             definesPresentationContext = true
-            
             self.navigationItem.searchController = hospitalSearchController
-
-        } else {
-
         }
     }
     
@@ -100,6 +98,10 @@ extension HospitalViewController: UISearchResultsUpdating {
         })
         self.hospitalCollection.reloadData()
     }
+    
+    func isFiltering() -> Bool {
+        return hospitalSearchController.isActive && !searchBarIsEmpty()
+    }
 }
 
 
@@ -107,19 +109,34 @@ extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
-        let currentHospital = hospitals[indexPath.item]
+        var currentHospital: Hospital
+        if isFiltering() {
+            currentHospital = filterredHospitals[indexPath.row]
+        } else {
+            currentHospital = hospitals[indexPath.row]
+        }
         self.delegate.didChooseHospital(hospital: currentHospital)
-        dismiss(animated: true)
+        self.navigationController?.dismiss(animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filterredHospitals.count
+        }
         return hospitals.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! HospitalCell
 
+        var currentHospital: Hospital
+        
+        if isFiltering() {
+            currentHospital = filterredHospitals[indexPath.row]
+        } else {
+            currentHospital = hospitals[indexPath.row]
+        }
+        
         let fontAttribute = [NSAttributedStringKey.foregroundColor: UIColor.gray,
                              NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 11.0)]
             as [NSAttributedStringKey : Any]
@@ -127,11 +144,9 @@ extension HospitalViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.hospitalImageView.clipsToBounds = true
         cell.hospitalImageView.layer.borderWidth = 1.0
         cell.hospitalImageView.layer.borderColor = UIColor.black.cgColor
-        let imageLink = hospitals[indexPath.item].Image
-        cell.hospitalImageView.sd_setImage(with: URL(string: imageLink), placeholderImage: #imageLiteral(resourceName: "hospital"))
-        cell.hospitalNameLabel.attributedText = NSAttributedString(string: hospitals[indexPath.item].Name,
+        cell.hospitalImageView.sd_setImage(with: URL(string: currentHospital.Image), placeholderImage: #imageLiteral(resourceName: "hospital"))
+        cell.hospitalNameLabel.attributedText = NSAttributedString(string: currentHospital.Name,
                                                                    attributes: fontAttribute)
-
         return cell
     }
 

@@ -12,6 +12,10 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
+protocol CitiesViewControllerDelegate: class {
+    func didSelectedCity(city: City)
+}
+
 class CitiesViewController: BaseViewController {
     
     @IBOutlet var citiesTableview: UITableView!
@@ -21,6 +25,8 @@ class CitiesViewController: BaseViewController {
             citiesTableview.reloadData()
         }
     }
+    
+    weak var delegate: CitiesViewControllerDelegate!
     
     let getCitiesUrl = URL(string: API.Location.getCities)!
         
@@ -57,9 +63,7 @@ extension CitiesViewController {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
         }
-        
     }
-    
 }
 
 extension CitiesViewController : UITableViewDelegate, UITableViewDataSource {
@@ -78,12 +82,20 @@ extension CitiesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
         let selectedCity = cities[indexPath.row]
-        Place.city = selectedCity /// Gán
-        let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController")
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.delegate.didSelectedCity(city: selectedCity)
+        self.navigationController?.dismiss(animated: true)
     }
-    
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

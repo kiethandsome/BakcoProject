@@ -17,9 +17,12 @@ struct MyUser {
     static var insuranceId = String()
     static var phone = String()
     static var email = String()
-    static var birthday = String()
+    static var birthday = Date()
     static var token = String()
     static var gender = Bool()
+    static var provinceCode = Int()
+    static var districtCode = Int()
+    static var wardCode = Int()
 }
 
 

@@ -16,11 +16,11 @@ struct HeaderApi {
     static let deploy = "http://api.vkhealth.vn"   ///  deploy
 }
 
-public let ApiDomain = HeaderApi.deploy
+public let ApiDomain = HeaderApi.test
 
 struct API {
     static let sosEmergency = ApiDomain + "/api/SOSCall/CallSOS"
-    static let getHealthCareScheduler = ApiDomain + "/api/BkHealthCareScheduler/GetByHospitalHealthCareId"
+    static let getHealthCareScheduler = ApiDomain + "/api/BkHealthCareScheduler/GetByHospitalHealthCareId"  
     static let createExaminationNote = ApiDomain + "/api/BkMedicalExaminationNote/CreateForMember"
     static let createExaminationNoteByDoctor = ApiDomain + "/api/BkMedicalExaminationNote/CreateWithDoctor"
     static let getFirstAppointment = ApiDomain + "/api/BkMedicalExaminationNote/Create"
@@ -42,9 +42,10 @@ struct API {
     static let getPatients = ApiDomain + "/api/BkCustomer/GetProfiles"
     static let createCustomer = ApiDomain + "/api/BkCustomer/Create"
     static let addProfiles = ApiDomain + "/api/BkCustomer/AddProfiles"
-    static let getHospitalServiceTypes = ApiDomain + "/api/BkHospital/GetServiceTypes?HospitalId="
+    static let getHospitalServiceTypes = ApiDomain + "/api/BkHospital/GetServiceTypes"
     static let getDoctorServices = ApiDomain + "/api/BkDoctor/GetServicesByDoctor"
     static let changePass = ApiDomain + "/api/Account/ChangePassword"
+    static let getHospitalsForm1 = ApiDomain + "/api/BkHospital/GetByForm?form=1"
     
     struct TeleHealth {
         static let getHospitals = ApiDomain + "/api/BkHospital/GetByUnitType"

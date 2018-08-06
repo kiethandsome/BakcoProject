@@ -12,6 +12,10 @@ import MBProgressHUD
 import AlamofireSwiftyJSON
 import Alamofire
 
+protocol DistrictsViewControllerDelegate: class {
+    func didSelectDistrict(dist: District)
+}
+
 class DistrictsViewController: BaseViewController {
     
     @IBOutlet var distTableview: UITableView!
@@ -22,12 +26,17 @@ class DistrictsViewController: BaseViewController {
         }
     }
     
+    var selectedCity: City?
+    
+    weak var delegate: DistrictsViewControllerDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Quận huyện"
         showBackButton()
         setupTableview(tv: distTableview)
-        getDist(by: Place.city.value)
+        guard let city = selectedCity else { return }
+        getDist(by: city.value)
     }
     
     func setupTableview(tv: UITableView) {
@@ -79,12 +88,24 @@ extension DistrictsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
         let district = districts[indexPath.row]
-        Place.district = district /// Gán
-        let vc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController")
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.delegate.didSelectDistrict(dist: district)
+        self.navigationController?.dismiss(animated: true)
     }
     
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -23,6 +23,11 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     var userId = Int()
     var direct: DirectViewController!
     
+    var city: City?
+    var dist: District?
+    var ward: Ward?
+    var place: Place?
+    
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var usernameTextfield: UITextField!
     @IBOutlet var phoneTextfield: UITextField!
@@ -97,7 +102,7 @@ extension PatientInfoViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        placesTextfield.text = Place.stringValue
+        placesTextfield.text = ""
     }
     
     fileprivate func setupDoneButton() {
@@ -159,7 +164,7 @@ extension PatientInfoViewController {
     }
     
     fileprivate func setupPicker(picker: IQDropDownTextField, user: User) {
-        let date = user.birthDate.convertStringToDate(with: "yyyy-MM-dd")
+        let date = user.birthDate
         picker.delegate = self
         picker.dataSource = self
         picker.dropDownMode = .datePicker
@@ -200,16 +205,14 @@ extension PatientInfoViewController {
     }
     
     fileprivate func updateCurrentUserInfo() {
-        Place.release()
         let url = URL(string: API.updateInform)!
         guard let fullName = usernameTextfield.text, let phone = phoneTextfield.text,
             let email = emailTextfield.text, let hiid = hiTextfield.text,
-            let address = addressTextfield.text, let bd = birthdayTextfield.date
+            let address = addressTextfield.text, let bd = birthdayTextfield.date,
+            let city = city,
+            let dist = dist,
+            let ward = ward
             else { return }
-        let province = Place.city.value
-        let district = Place.district.value
-        let ward = Place.ward.value
-        
         let parameters: Parameters = [
             "Id": self.userId,
             "FullName": fullName,
@@ -221,9 +224,9 @@ extension PatientInfoViewController {
             "Address": address,
             "BirthDate": bd.convertDateToString(with: "yyyy-MM-dd"),
             "Gender": maleButton.isSelected,
-            "ProvinceCode": province,
-            "DistrictCode": district,
-            "WardCode": ward ]
+            "ProvinceCode": city.value,
+            "DistrictCode": dist.value,
+            "WardCode": ward.value ]
         let completionHandler = { (response: DataResponse<String>) -> Void in
             self.hideHUD()
             print(response)
@@ -247,14 +250,21 @@ extension PatientInfoViewController {
     }
     
     func parseToCurrentUser() {
+        guard let city = city,
+            let dist = dist,
+            let ward = ward
+            else { return }
         let user = User(id: self.userId,
                         name: usernameTextfield.text!,
                         phone: phoneTextfield.text!,
                         hiid: hiTextfield.text!,
                         email: emailTextfield.text!,
                         address: addressTextfield.text!,
-                        birthdate: birthdayTextfield.date!.convertDateToString(with: "yyyy-MM-dd"),
-                        gender: maleButton.isSelected ? true : false)
+                        birthdate: birthdayTextfield.date!,
+                        gender: maleButton.isSelected ? true : false,
+                        districtCode: Int(dist.value)!,
+                        wardCode: Int(ward.value)!,
+                        provinceCode: Int(city.value)!)
         User.setCurrent(user)
         
         if self.direct == .booking {
