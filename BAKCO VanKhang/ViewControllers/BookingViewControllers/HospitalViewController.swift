@@ -29,14 +29,24 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
     
     var filterredHospitals = [Hospital]()
     
-    var url = URL(string: API.getHospitalsForm1)!
+    var url: URL!
     
     weak var delegate: HospitalViewControllerDelegate!
+    
+    var direction: DirectViewController! {
+        didSet {
+            if direction == .booking {
+                self.url = URL(string: API.getHospitalsForm1)!
+            } else {
+                self.url = URL(string: API.TeleHealth.getHospitals)!
+            }
+        }
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        reDefineURL()
         setupSearchBar()
         
         navigationItem.title = "Chọn bệnh viện"
@@ -47,6 +57,9 @@ class HospitalViewController: BaseViewController, UISearchControllerDelegate, UI
         hospitalCollection.register(HospitalCell.self, forCellWithReuseIdentifier: "cellId")
         getHospitals()
         showCancelButton()
+    }
+    
+    private func reDefineURL() {
         
     }
     

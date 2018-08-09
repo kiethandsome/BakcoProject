@@ -49,8 +49,7 @@ class SchedulersViewController: BaseViewController {
     var didSelectTime: HealthCareScheduler.Time?
     
     var didSelectScheduler = HealthCareScheduler()
-    
-    var serviceId = Int()
+
 }
 
 extension SchedulersViewController {
@@ -64,7 +63,7 @@ extension SchedulersViewController {
         config(collectionView: timeCollectionView)
         
         if BookingInfo.serviceType.canChooseHour {
-            maskView.isHidden = true    // Ẩn maskView nếu là luồng chuyên gia (có thể chọn giờ)
+            maskView.isHidden = true    /// Ẩn maskView nếu là luồng chuyên gia (có thể chọn giờ)
         } else {
             maskView.isHidden = false
         }
@@ -72,7 +71,7 @@ extension SchedulersViewController {
         if BookingInfo.serviceType.canChooseDoctor {
             // Lấy lịch theo chuyên gia
             getSchedulerForExpDoctor(doctorId: BookingInfo.doctor.id,
-                                     hospitalId: BookingInfo.hospital.Id)
+                                     hospitalId: BookingInfo.hospital.Id, serviceId: BookingInfo.serviceType.id)
         } else {
             // Lấy lịch theo thông thường
             getSchedulerNormally(hospitalId: BookingInfo.hospital.Id,
@@ -122,10 +121,10 @@ extension SchedulersViewController {
         }
     }
     
-    func getSchedulerForExpDoctor(doctorId: Int, hospitalId: Int) {
+    func getSchedulerForExpDoctor(doctorId: Int, hospitalId: Int, serviceId: Int) {
         let parameters: Parameters = ["HospitalId" : hospitalId,
                                       "DoctorId" : doctorId,
-                                      "ServiceId" : BookingInfo.serviceId]
+                                      "ServiceId" : serviceId]
         let api = URL(string: API.getSchedulerByDoctor)!
         let completionHandler: (DataResponse<JSON>) -> Void = {response in
             MBProgressHUD.hide(for: self.view, animated: true)

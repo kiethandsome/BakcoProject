@@ -29,27 +29,43 @@ class AddPatientViewController: BaseViewController {
     @IBOutlet var femaleButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet var confirmAddingButton: UIButton!
+    @IBOutlet var distTextField: UITextField!
+    @IBOutlet var wardTextField: UITextField!
     
     var city : City?
     var dist: District?
     var ward: Ward?
 
     @IBAction func choosePlaces(_ sender: Any) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        cityVc.delegate = self
         let nav = BaseNavigationController(rootViewController: cityVc)
         present(nav, animated: true)
+
     }
     
     @IBAction func chooseDistrict(_ sender: Any) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
-        let nav = BaseNavigationController(rootViewController: cityVc)
-        present(nav, animated: true)
+        if let city = city {
+            let distVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController") as! DistrictsViewController
+            distVc.selectedCity = city
+            distVc.delegate = self
+            let nav = BaseNavigationController(rootViewController: distVc)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn tỉnh thành", style: .alert)
+        }
     }
     
     @IBAction func chooseWard(_ sender: Any) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
-        let nav = BaseNavigationController(rootViewController: cityVc)
-        present(nav, animated: true)
+        if let dist = dist {
+            let wardVC = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController") as! WardViewController
+            wardVC.delegate = self
+            wardVC.selectedDistrict = dist
+            let nav = BaseNavigationController(rootViewController: wardVC)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn Quận huyện", style: .alert)
+        }
     }
     
     @IBAction func add(_ sender: Any) {
@@ -184,6 +200,25 @@ extension AddPatientViewController: IQDropDownTextFieldDelegate, IQDropDownTextF
         self.showHUD()
         Alamofire.request(url, method: .post, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
     }
+}
+
+extension AddPatientViewController: CitiesViewControllerDelegate, DistrictsViewControllerDelegate, WardViewControllerDelegate {
+    func didSelectedCity(city: City) {
+        self.city = city
+        self.placesTextfield.text = city.name
+    }
+    
+    func didSelectDistrict(dist: District) {
+        self.dist = dist
+        self.distTextField.text = dist.name
+    }
+    
+    func didSelectedWard(ward: Ward) {
+        self.ward = ward
+        self.wardTextField.text = ward.name
+    }
+    
+    
 }
 
 

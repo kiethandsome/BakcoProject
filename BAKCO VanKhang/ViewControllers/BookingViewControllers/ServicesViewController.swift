@@ -13,6 +13,10 @@ import Alamofire
 import SwiftyJSON
 import MBProgressHUD
 
+protocol ServiceViewControllerDelegate: class {
+    func didSelectDoctorService(service: DoctorService)
+}
+
 
 // Mark: Properties
 class ServicesViewController: BaseViewController {
@@ -23,8 +27,23 @@ class ServicesViewController: BaseViewController {
         }
     }
     var doctor = Doctor()
-    let serviceGroupId = 1
-    let form = 1
+    let serviceGroupId = BookingInfo.serviceType.id
+    var form = Int()
+    var direction: DirectViewController! {
+        didSet {
+            if direction == .booking {
+                self.form = 1
+            } else if direction == .teleHealth {
+                self.form = 2
+            }
+        }
+    }
+    
+    
+    override func popToBack() {
+        navigationController?.popViewController(animated: true)
+        BookingInfo.doctorService = DoctorService() // release
+    }
 }
 
 // Mark: Methods
@@ -71,6 +90,7 @@ extension ServicesViewController {
         }
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default).responseSwiftyJSON(completionHandler: completionHandler)
     }
+
 }
 
 // Mark: Delegate and Datasource
@@ -88,8 +108,7 @@ extension ServicesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         /// Gán
-        let serviceId = servicesArray[indexPath.row].id
-        BookingInfo.serviceId = serviceId
+        BookingInfo.doctorService = servicesArray[indexPath.row]
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

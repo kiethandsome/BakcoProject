@@ -113,11 +113,8 @@ extension PatientInfoViewController {
     @objc func done() {
         if let patient: User = self.selectedpatient {
             self.navigationController?.dismiss(animated: true)
-            if self.direct == .booking {
-                BookingInfo.patient = patient /// Gán
-            } else {
-                TeleHealthInfo.patient = patient /// gán
-            }
+            BookingInfo.patient = patient /// Gán
+
         } else {
             self.showAlert(title: "Lỗi", mess: "Không có bệnh nhân nào được chọn", style: .alert)
         }
@@ -266,12 +263,7 @@ extension PatientInfoViewController {
                         wardCode: Int(ward.value)!,
                         provinceCode: Int(city.value)!)
         User.setCurrent(user)
-        
-        if self.direct == .booking {
-            BookingInfo.patient = user
-        } else {
-            TeleHealthInfo.patient = user
-        }
+        BookingInfo.patient = user
     }
     
     func updateProfilepatient(by id: Int) {

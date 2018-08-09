@@ -16,7 +16,7 @@ public struct BookingInfo {
     static var exTypeId = String()
     static var exTypeName = String()
     static var doctor = Doctor()
-    static var serviceId = Int()
+    static var doctorService = DoctorService()
     static var specialty = Specialty()
     static var scheduler = HealthCareScheduler()
     static var time = HealthCareScheduler.Time()      
@@ -35,6 +35,6 @@ public struct BookingInfo {
         self.time = HealthCareScheduler.Time()
         self.hiid = ""
         self.appointment = Appointment()
-        self.serviceId = Int()
+        self.doctorService = DoctorService()
     }
 }

@@ -11,12 +11,12 @@ import Foundation
 var _deviceToken = String()
 
 struct HeaderApi {
-    static let dev = "http://202.78.227.176:8009"  ///  Dev
+    static let dev = "http://202.78.227.101"  ///  Dev
     static let test = "http://apiv2.vkhealth.vn"   ///  test
     static let deploy = "http://api.vkhealth.vn"   ///  deploy
 }
 
-public let ApiDomain = HeaderApi.test
+public let ApiDomain = HeaderApi.deploy
 
 struct API {
     static let sosEmergency = ApiDomain + "/api/SOSCall/CallSOS"
@@ -48,7 +48,7 @@ struct API {
     static let getHospitalsForm1 = ApiDomain + "/api/BkHospital/GetByForm?form=1"
     
     struct TeleHealth {
-        static let getHospitals = ApiDomain + "/api/BkHospital/GetByUnitType"
+        static let getHospitals = ApiDomain + "/api/BkHospital/GetByForm?form=2"
         static let getSchedule = ApiDomain + "/api/TelehealthSchedule/GetScheduleByDoctor"
     }
     

@@ -89,10 +89,12 @@ class BookingViewController: BaseViewController {
     @IBOutlet var dateAndTimeTextfield: UITextField!
     @IBOutlet var ExpDocOrSpecialtyLabel: UILabel!
     @IBOutlet weak var hiidTitleLabel: UILabel!
+    @IBOutlet weak var insuranceButton: UIButton!
     
     @IBAction func showHospitals(_ sender: Any) {
         let hospitalVc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "HospitalViewController") as! HospitalViewController
         hospitalVc.delegate = self
+        hospitalVc.direction = DirectViewController.booking
         let nav = BaseNavigationController(rootViewController: hospitalVc)
         present(nav, animated: true)
     }
@@ -155,13 +157,8 @@ class BookingViewController: BaseViewController {
         present(nav, animated: true)
     }
     
-    @IBAction func hiDropdown(_ sender: Any) {
-        guard let patientName = patientTextfield.text else { return }
-        if patientName == "" || BookingInfo.patient.id == 0 {
-            showAlert(title: "Lỗi", mess: "Bạn chưa chọn bệnh nhân!", style: .alert)
-        } else {
-            self.hiDropdown.show()
-        }
+    @IBAction func showHealthInsurance(_ sender: UIButton) {
+        self.hiDropdown.show()
     }
     
     @IBAction func examinationTypesDropdown(_ sender: Any) {
@@ -171,7 +168,6 @@ class BookingViewController: BaseViewController {
             self.showAlert(title: "Lỗi", mess: "Chưa chọn bệnh viện", style: .alert)
         }
     }
-    
     override func popToBack() {
         navigationController?.popViewController(animated: true)
         BookingInfo.release()
@@ -195,6 +191,9 @@ extension BookingViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.patientTextfield.text = BookingInfo.patient.fullName
+        if BookingInfo.serviceType.canChooseDoctor {
+            self.expDocOrSpecialtyTextfield.text = BookingInfo.doctor.fullName + " - " + BookingInfo.doctorService.name
+        }
      }
     
     override func viewDidLayoutSubviews() {
@@ -210,9 +209,15 @@ extension BookingViewController {
         if value {
             hIIdTextfield.alpha = 0.5
             hiidTitleLabel.alpha = 0.5
+            hIIdTextfield.isEnabled = false
+            hIIdTextfield.text! = String()
+            BookingInfo.didUseHI = Bool()
+            insuranceButton.isEnabled = false
         } else {
             hIIdTextfield.alpha = 1
             hiidTitleLabel.alpha = 1
+            hIIdTextfield.isEnabled = true
+            insuranceButton.isEnabled = true
         }
     }
     
@@ -285,12 +290,14 @@ extension BookingViewController {
         let nav = BaseNavigationController(rootViewController: doctorVc)
         doctorVc.delegate = self
         doctorVc.hospitalId = BookingInfo.hospital.Id
+        doctorVc.direction = DirectViewController.booking /// Booking
         navigationController?.present(nav, animated: true)
     }
     
     fileprivate func showSpecialty() {
         if hospitalTextfield.text != "" {
             let next = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ChooseSpecialtyViewController") as! ChooseSpecialtyViewController
+            next.direction = DirectViewController.booking /// Booking
             let nav = BaseNavigationController(rootViewController: next)
             next.delegate = self
             navigationController?.present(nav, animated: true)
@@ -354,7 +361,7 @@ extension BookingViewController {
             if response.result.isSuccess {
                 guard let data = response.value?.dictionaryObject else { return }
                 let match = MatchModel(data: data)
-                print(match.schedulerId)
+                print(response)
                 BookingInfo.match = match // Gán
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -387,7 +394,7 @@ extension BookingViewController {
                 guard let data = response.value?.dictionaryObject else {return}
                 let newAppointment = Appointment(data: data)
                 BookingInfo.appointment = newAppointment  // Gán
-                print(newAppointment.service.Code)
+                print(response)
                 let vc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "FirstAppointmentViewController") as! FirstAppointmentViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
@@ -407,7 +414,7 @@ extension BookingViewController {
             "HasHealthInsurance": BookingInfo.didUseHI,
             "HospitalId": BookingInfo.hospital.Id,
             "HealthCareSchedulerId": BookingInfo.time.timeId, /// thay HealthcareSchedulerId bằng time id
-            "ServiceId" : BookingInfo.serviceId,
+            "ServiceId" : BookingInfo.doctorService.id,
             "CustomerId": (BookingInfo.patient.id),
             "PatientId": (BookingInfo.patient.id),
             "DoctorId": BookingInfo.doctor.id,
@@ -421,7 +428,7 @@ extension BookingViewController {
                 if let data = response.value?.dictionaryObject {
                     let newAppointment = Appointment(data: data)
                     BookingInfo.appointment = newAppointment  // Gán
-                    print(newAppointment.service.Code)
+                    print(response)
                     let vc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "FirstAppointmentViewController") as! FirstAppointmentViewController
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
@@ -462,7 +469,6 @@ extension BookingViewController {
                 })
             }
         }
-        
     }
 }
 
@@ -498,7 +504,7 @@ extension BookingViewController: ChooseSpecialtyViewControllerDelegate {
 extension BookingViewController: ExpDoctorViewControllerDelegate {
     func didSelectDoctor(doctor: Doctor) {
         BookingInfo.doctor = doctor  /// Gán
-        self.expDocOrSpecialtyTextfield.text = doctor.fullName
+//        self.expDocOrSpecialtyTextfield.text = doctor.fullName
         /// reset date
         self.dateAndTimeTextfield.text = ""
     }
@@ -507,7 +513,7 @@ extension BookingViewController: ExpDoctorViewControllerDelegate {
 extension BookingViewController: SchedulersViewControllerDelegate {
     func didSelectTime(time: HealthCareScheduler.Time ) {
         BookingInfo.time = time  /// Gán
-///        dateAndTimeTextfield.text = time.from
+        dateAndTimeTextfield.text = dateAndTimeTextfield.text! + " - " + time.from
     }
     
     func didSelectScheduler(scheduler: HealthCareScheduler) {

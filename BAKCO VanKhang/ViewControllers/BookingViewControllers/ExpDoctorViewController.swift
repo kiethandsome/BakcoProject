@@ -31,6 +31,18 @@ class ExpDoctorViewController: BaseViewController {
         self.navigationController?.dismiss(animated: true, completion: nil)
         BookingInfo.doctor = Doctor()
     }
+    
+    var form = Int()
+    
+    var direction: DirectViewController! {
+        didSet {
+            if direction == .booking {
+                self.form = 1
+            } else {
+                self.form = 2
+            }
+        }
+    }
 }
 
 extension ExpDoctorViewController {
@@ -39,7 +51,7 @@ extension ExpDoctorViewController {
         super.viewDidLoad()
         title = "Chuyên gia"
         config(tableView: doctorTableview)
-        getDoctor(hospitalId: self.hospitalId)
+        getDoctor(hospitalId: self.hospitalId, form: form)
         showCancelButton(title: "Huỷ")
     }
     
@@ -52,9 +64,9 @@ extension ExpDoctorViewController {
         tableView.tableFooterView = UIView()
     }
     
-    fileprivate func getDoctor(hospitalId: Int) {
+    fileprivate func getDoctor(hospitalId: Int, form: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let api = URL(string: API.getDoctor + "/\(hospitalId)")!
+        let api = URL(string: API.getDoctor + "/\(hospitalId)" + "?Form=\(form)")!
         let completionHandler: (DataResponse<JSON>) -> Void = {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.doctorList.removeAll()
@@ -88,9 +100,9 @@ extension ExpDoctorViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let doctor = self.doctorList[indexPath.row]
-        
         let vc = MyStoryboard.bookingStoryboard.instantiateViewController(withIdentifier: "ServicesViewController") as! ServicesViewController
         vc.doctor = doctor
+        vc.direction = self.direction
         self.navigationController?.pushViewController(vc, animated: true)
         self.delegate.didSelectDoctor(doctor: doctor)
     }

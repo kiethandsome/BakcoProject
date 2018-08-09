@@ -47,7 +47,7 @@ class FinalAppointmentViewController: BaseViewController {
         numberLabel.text = "\(BookingInfo.appointment.id)"
         userNameLabel.text = "Bệnh nhân: \(MyUser.name)"
         insuranceIDLabel.text = "BHYT: \(MyUser.insuranceId)"
-        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday)"
+        birthdayLabel.text = "Ngày sinh: \(MyUser.birthday.convertDateToString(with: "dd-MM-yyyy"))"
         phoneNumberLabel.text = "ĐT: \(MyUser.phone)"
     }
     

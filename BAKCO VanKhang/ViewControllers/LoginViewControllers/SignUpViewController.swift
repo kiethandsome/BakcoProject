@@ -16,9 +16,9 @@ class SignUpViewController: BaseViewController {
     
     var gender = true
     
-    var selectedCity: City?
-    var selectedDistrict: District?
-    var selectedWard: Ward?
+    var city: City?
+    var dist: District?
+    var ward: Ward?
     
     
     @IBOutlet var userImageView: UIImageView!
@@ -33,6 +33,8 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet var birthdayPicker: UIDatePicker!
     @IBOutlet var cityTextfield: UITextField!
+    @IBOutlet var distTextField: UITextField!
+    @IBOutlet var wardTextField: UITextField!
     
     @IBOutlet weak var txtUserName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -54,9 +56,34 @@ class SignUpViewController: BaseViewController {
     }
     
     @IBAction func showCityVc(_ sender: UIButton) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        cityVc.delegate = self
         let nav = BaseNavigationController(rootViewController: cityVc)
         present(nav, animated: true)
+    }
+    
+    @IBAction func chooseDistrict(_ sender: Any) {
+        if let city = city {
+            let distVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController") as! DistrictsViewController
+            distVc.selectedCity = city
+            distVc.delegate = self
+            let nav = BaseNavigationController(rootViewController: distVc)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn tỉnh thành", style: .alert)
+        }
+    }
+    
+    @IBAction func chooseWard(_ sender: Any) {
+        if let dist = dist {
+            let wardVC = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController") as! WardViewController
+            wardVC.delegate = self
+            wardVC.selectedDistrict = dist
+            let nav = BaseNavigationController(rootViewController: wardVC)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn Quận huyện", style: .alert)
+        }
     }
     
     
@@ -69,7 +96,7 @@ class SignUpViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let city = selectedCity, let dist = selectedDistrict, let ward = selectedWard else { return }
+        guard let city = city, let dist = dist, let ward = ward else { return }
         let placeString = city.name + ", " + dist.name + ", " + ward.name
         cityTextfield.text = placeString
     }
@@ -102,16 +129,15 @@ class SignUpViewController: BaseViewController {
     }
     
     @IBAction func actOk(_ sender: Any) {
-        let isValid = validateInputContent()
-        if isValid == true {
+        if validateInputContent() {
             self.registerUser()
         } else {
-            
+            self.showAlert(title: "Lỗi", mess: "Vui lòng kiểm tra lại thông tin đả nhập đầy đủ hay chưa!", style: .alert)
         }
     }
     
     func registerUser() {
-        guard let city = selectedCity, let dist = selectedDistrict, let ward = selectedWard else { return }
+        guard let city = city, let dist = dist, let ward = ward else { return }
         let birthDate: String = birthdayPicker.date.convertDateToString(with: "yyyy-MM-dd")
         self.signup(fullName: txtFullName.text!,
                     phone: txtPhone.text!,
@@ -230,12 +256,27 @@ class SignUpViewController: BaseViewController {
             }
         }
     }
-    
-    
 }
 
 
-
+extension SignUpViewController: CitiesViewControllerDelegate, DistrictsViewControllerDelegate, WardViewControllerDelegate {
+    func didSelectedCity(city: City) {
+        self.city = city
+        self.cityTextfield.text = city.name
+    }
+    
+    func didSelectDistrict(dist: District) {
+        self.dist = dist
+        self.distTextField.text = dist.name
+    }
+    
+    func didSelectedWard(ward: Ward) {
+        self.ward = ward
+        self.wardTextField.text = ward.name
+    }
+    
+    
+}
 
 
 

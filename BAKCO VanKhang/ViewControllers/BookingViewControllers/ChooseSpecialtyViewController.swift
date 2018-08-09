@@ -26,9 +26,18 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
     var hospitalAddress:String!
     var hospitalService:String!
     
-    var hospitalId:Int!
-    var type:String!
-    var naviTitle:String!
+    var form = Int()
+    
+    var direction: DirectViewController! {
+        didSet {
+            if direction == .booking {
+                self.form = 1
+            } else {
+                self.form = 2
+            }
+        }
+    }
+
     
     let searchController = UISearchController(searchResultsController: nil)
     var shouldShowSearchResults = false
@@ -50,7 +59,7 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
 //        guard let hospitalID = hospitalId, let type = type
 //            else { return }
         
-        getSpecialties(hospitalId: BookingInfo.hospital.Id, type: BookingInfo.exTypeId)
+        getSpecialties(hospitalId: BookingInfo.hospital.Id, type: BookingInfo.serviceType.id, form: form)
         showCancelButton()
     }
     
@@ -74,9 +83,9 @@ class ChooseSpecialtyViewController: BaseViewController, CustomSearchControllerD
     }
     
     
-    func getSpecialties(hospitalId:Int, type:String) {
+    func getSpecialties(hospitalId:Int, type: Int, form: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        Alamofire.request(URL(string: API.getHealthCareByHospital + "?HospitalId=\(hospitalId)&Type=\(type)")!, method: .get).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: API.getHealthCareByHospital + "?HospitalId=\(hospitalId)&Type=\(type)&Form=\(form)")!, method: .get).responseSwiftyJSON { (response) in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response.value as Any)
             response.result.value?.forEach({ (json) in

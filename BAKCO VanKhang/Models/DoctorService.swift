@@ -10,9 +10,12 @@ import Foundation
 
 
 struct DoctorService {
+    
     var id = Int()
     var name = String()
     var serviceGroup = Int()
+    
+    init() {}
     
     init(data: [String : Any]) {
         guard let id = data["Id"] as? Int,
