@@ -30,7 +30,6 @@ class FinalAppointmentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Phiếu hẹn"
-        showBackButton()
         if isPaid {
             paidmentStatusLabel.text = "Tình trạng thanh toán: Đã thanh toán"
         } else {
@@ -39,7 +38,7 @@ class FinalAppointmentViewController: BaseViewController {
         lblHospitalName.text = BookingInfo.hospital.Name
         lblAddress.text = BookingInfo.hospital.Address
         exDayLabel.text = BookingInfo.scheduler.DateView
-        InsuranceLabel.text = BookingInfo.hiid
+        InsuranceLabel.text = BookingInfo.didUseHI ? "Sử dụng BHYT: Có" : "Sử dụng BHYT: Không"
         exTypeLabel.text = BookingInfo.serviceType.name
         timeLabel.text = BookingInfo.time.from
         roomNumberLabel.text = BookingInfo.appointment.room.Name

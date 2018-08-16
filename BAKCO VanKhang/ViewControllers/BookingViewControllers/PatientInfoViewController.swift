@@ -112,7 +112,13 @@ extension PatientInfoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        getUserInfo(by: userId)
+        
+        if userId == MyUser.id {
+            getUserInfo(by: userId)
+        } else {
+            getPatientInfo(id: userId)
+        }
+
         setupDoneButton()
         disableButton(button: confirmButton)
         ///
@@ -188,7 +194,20 @@ extension PatientInfoViewController {
     }
     
     fileprivate func getPatientInfo(id: Int) {
-        
+        self.showHUD()
+        Alamofire.request(URL(string: API.getUserById + "\(id)")! , method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            if response.result.isSuccess {
+                if let data = response.value?.dictionaryObject {
+                    self.selectedpatient = User(data: data)
+                    guard let user = self.selectedpatient else {return }
+                    self.setupAllTextField(user: user)
+                    self.disableButton(button: self.confirmButton)
+                }
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
+            }
+        }
     }
     
     fileprivate func setupAllTextField(user: User) {

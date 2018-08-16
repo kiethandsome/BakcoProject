@@ -298,7 +298,7 @@ extension SchedulersViewController: UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
-    // Deselect là bỏ chọn chứ ko phải nhấp lại
+    /// Deselect là bỏ chọn chứ ko phải nhấp lại
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.specialGreenColor()

@@ -25,7 +25,7 @@ class MainViewController: BaseViewController  {
     @IBAction func checkConnection(_ sender: UIButton) {
         if Reachability.isConnectedToNetwork(){
             
-        }else{
+        } else {
             print("Internet Connection not Available!")
         }
     }

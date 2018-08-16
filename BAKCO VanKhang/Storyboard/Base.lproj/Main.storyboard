@@ -167,7 +167,7 @@
                                             <action selector="bookingButtonAction:" destination="voV-aQ-ISa" eventType="touchUpInside" id="uad-g3-8wX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng ký     khám bệnh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-pI-DTa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng kÍ     khám bệnh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-pI-DTa">
                                         <rect key="frame" x="-8" y="127" width="80" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="xhH-yK-uXu"/>
@@ -1097,7 +1097,7 @@
                         <outlet property="InsuranceLabel" destination="gyO-GE-rlY" id="MSf-YN-6ne"/>
                         <outlet property="birthdayLabel" destination="FHI-Yk-bSj" id="LOB-ss-Gg5"/>
                         <outlet property="exDayLabel" destination="95r-20-pNi" id="JHI-3b-rYr"/>
-                        <outlet property="exTypeLabel" destination="gyO-GE-rlY" id="WpV-p6-p8V"/>
+                        <outlet property="exTypeLabel" destination="hJL-uk-7XD" id="xO1-O8-EYt"/>
                         <outlet property="insuranceIDLabel" destination="sDU-Z2-pzx" id="fb6-dL-BIx"/>
                         <outlet property="lblAddress" destination="mU7-ri-iNf" id="Bwu-Jz-Ec2"/>
                         <outlet property="lblHospitalName" destination="Iec-pX-ooU" id="g9x-px-2WY"/>
