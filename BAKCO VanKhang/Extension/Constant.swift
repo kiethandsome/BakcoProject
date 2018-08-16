@@ -22,6 +22,8 @@ struct Constant {
     static let yes = "Có"
     static let no = "Không"
     
-    static let emtyUser = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: Date(), gender: false, districtCode: 0, wardCode: 0, provinceCode: 0)
+    static let emtyUser = User(id: 0, name: "", phone: "", hiid: "", email: "", address: "", birthdate: Date(), gender: false, districtCode: "0", wardCode: "0", provinceCode: "0")
+    
+    static let format = "yyyy-MM-dd'T'HH:mm:ss"
     
 }

@@ -32,9 +32,8 @@ class WardViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Phường xã"
-        showBackButton()
+        showCancelButton()
         setupTableview(tv: wardTableview)
-        
         guard let dist = selectedDistrict else { return }
         getWard(by: dist.value)
     }

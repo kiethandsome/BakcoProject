@@ -23,10 +23,9 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     var userId = Int()
     var direct: DirectViewController!
     
-    var city: City?
-    var dist: District?
-    var ward: Ward?
-    var place: Place?
+    var city = City()
+    var dist = District()
+    var ward = Ward()
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var usernameTextfield: UITextField!
@@ -34,19 +33,46 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var birthdayTextfield: IQDropDownTextField!
     @IBOutlet var addressTextfield: UITextField!
-    @IBOutlet var placesTextfield: UITextField!
+    @IBOutlet var cityTextField: UITextField!
     @IBOutlet var hiTextfield: UITextField!
-    @IBOutlet var pesonalIdTextfield: UITextField!
+    @IBOutlet var personalIdTextfield: UITextField!
     @IBOutlet var maleButton: UIButton!
     @IBOutlet var femaleButton: UIButton!
     @IBOutlet var contentView: UIView!
     @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var districtTextField: UITextField!
+    @IBOutlet var wardTextField: UITextField!
     
     
     @IBAction func choosePlaces(_ sender: Any) {
-        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController")
+        let cityVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        cityVc.delegate = self
         let nav = BaseNavigationController(rootViewController: cityVc)
         present(nav, animated: true)
+    }
+    
+    @IBAction func chooseDistrict(_ sender: Any) {
+        if cityTextField.text != "" {
+            let distVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController") as! DistrictsViewController
+            distVc.selectedCity = city
+            distVc.delegate = self
+            let nav = BaseNavigationController(rootViewController: distVc)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn tỉnh thành", style: .alert)
+        }
+    }
+    
+    @IBAction func chooseWard(_ sender: Any) {
+        if districtTextField.text != "" {
+            let wardVC = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController") as! WardViewController
+            wardVC.delegate = self
+            wardVC.selectedDistrict = dist
+            let nav = BaseNavigationController(rootViewController: wardVC)
+            present(nav, animated: true)
+        } else {
+            self.showAlert(title: "Lỗi", mess: "Chưa chọn Quận huyện", style: .alert)
+        }
     }
     
     @IBAction func confirmUpdate(_ sender: Any) {
@@ -63,6 +89,8 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     
     func isMale() {
         self.maleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
+        self.maleButton.isSelected = true
+        self.femaleButton.isSelected = false
         self.femaleButton.setImage(UIImage(named: "no-image"), for: .normal)
     }
     
@@ -72,6 +100,8 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     
     func isFemale() {
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
+        self.maleButton.isSelected = false
+        self.femaleButton.isSelected = true
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
     }
 }
@@ -83,26 +113,19 @@ extension PatientInfoViewController {
         super.viewDidLoad()
         setupUI()
         getUserInfo(by: userId)
-        setupTextfield(tf: usernameTextfield, phoneTextfield, emailTextfield, addressTextfield, hiTextfield)
         setupDoneButton()
-        
-        if self.userId != MyUser.id {
-            self.usernameTextfield.isUserInteractionEnabled = false
-            self.phoneTextfield.isUserInteractionEnabled = false
-            self.addressTextfield.isUserInteractionEnabled = false
-            self.birthdayTextfield.isUserInteractionEnabled = false
-            self.emailTextfield.isUserInteractionEnabled = false
-            self.placesTextfield.isUserInteractionEnabled = false
-            self.hiTextfield.isUserInteractionEnabled = false
-            self.maleButton.isUserInteractionEnabled = false
-            self.femaleButton.isUserInteractionEnabled = false
-            self.pesonalIdTextfield.isUserInteractionEnabled = false
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        placesTextfield.text = ""
+        disableButton(button: confirmButton)
+        ///
+        self.usernameTextfield.isUserInteractionEnabled = false
+        self.phoneTextfield.isUserInteractionEnabled = false
+        self.addressTextfield.isUserInteractionEnabled = false
+        self.birthdayTextfield.isUserInteractionEnabled = false
+        self.emailTextfield.isUserInteractionEnabled = false
+        self.cityTextField.isUserInteractionEnabled = false
+        self.hiTextfield.isUserInteractionEnabled = false
+        self.maleButton.isUserInteractionEnabled = false
+        self.femaleButton.isUserInteractionEnabled = false
+        self.personalIdTextfield.isUserInteractionEnabled = false
     }
     
     fileprivate func setupDoneButton() {
@@ -114,32 +137,8 @@ extension PatientInfoViewController {
         if let patient: User = self.selectedpatient {
             self.navigationController?.dismiss(animated: true)
             BookingInfo.patient = patient /// Gán
-
         } else {
             self.showAlert(title: "Lỗi", mess: "Không có bệnh nhân nào được chọn", style: .alert)
-        }
-    }
-    
-    fileprivate func setupTextfield(tf: UITextField...) {
-        for tf1 in tf {
-            tf1.addTarget(self, action: #selector(textDidChange(textField:)), for: .editingChanged)
-        }
-    }
-    
-    @objc func textDidChange(textField: UITextField) {
-        guard let fullname = usernameTextfield.text,
-            let phone = phoneTextfield.text,
-            let address = addressTextfield.text,
-            let email = emailTextfield.text,
-            let hi = hiTextfield.text else { return }
-        if fullname == selectedpatient?.fullName,
-            phone == selectedpatient?.phone,
-            address == selectedpatient?.address,
-            email == selectedpatient?.email,
-            hi == selectedpatient?.healthInsurance {
-            disableButton(button: confirmButton)
-        } else {
-            enableButton(button: confirmButton)
         }
     }
     
@@ -171,16 +170,14 @@ extension PatientInfoViewController {
     }
     
     fileprivate func getUserInfo(by userId: Int) {
-        MBProgressHUD.showAdded(to: view, animated: true)
-        Alamofire.request(URL(string: API.getUserById + "/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            print(response.value?.dictionaryValue as Any)
-            if let data = response.value?.dictionaryObject {
-                if let message = data["Message"] as? String {
-                    self.showAlert(title: "Lỗi", mess: message, style: .alert)
-                } else {
-                    let user = User(data: data)
-                    self.selectedpatient = user
+        self.showHUD()
+        Alamofire.request(URL(string: API.getUserInfo)!, method: .get, encoding: JSONEncoding.default, headers: ["Authorization" : "Bearer \(MyUser.token)"]).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            print(response)
+            if response.result.isSuccess {
+                if let data = response.value?.dictionaryObject {
+                    self.selectedpatient = User(data: data)
+                    guard let user = self.selectedpatient else {return }
                     self.setupAllTextField(user: user)
                     self.disableButton(button: self.confirmButton)
                 }
@@ -188,6 +185,10 @@ extension PatientInfoViewController {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
         }
+    }
+    
+    fileprivate func getPatientInfo(id: Int) {
+        
     }
     
     fileprivate func setupAllTextField(user: User) {
@@ -198,6 +199,16 @@ extension PatientInfoViewController {
         emailTextfield.text = user.email
         addressTextfield.text = user.address
         hiTextfield.text = user.healthInsurance
+        /// Set City
+        cityTextField.text = user.cityName
+        city = City(name: user.cityName, value: "\(user.provinceCode)")
+        /// Set dist
+        districtTextField.text = user.distName
+        dist = District(name: user.distName, value: "\(user.districtCode)")
+        /// Set ward
+        wardTextField.text = user.wardName
+        ward = Ward(name: user.wardName, value: "\(user.wardCode)")
+        
         setupPicker(picker: birthdayTextfield, user: user)
     }
     
@@ -205,17 +216,13 @@ extension PatientInfoViewController {
         let url = URL(string: API.updateInform)!
         guard let fullName = usernameTextfield.text, let phone = phoneTextfield.text,
             let email = emailTextfield.text, let hiid = hiTextfield.text,
-            let address = addressTextfield.text, let bd = birthdayTextfield.date,
-            let city = city,
-            let dist = dist,
-            let ward = ward
+            let address = addressTextfield.text, let bd = birthdayTextfield.date
             else { return }
         let parameters: Parameters = [
             "Id": self.userId,
             "FullName": fullName,
-            "Username": "",
-            "Password": "",
             "Phone": phone,
+            "Phone1": phone,
             "Email": email,
             "HealthInsurance": hiid,
             "Address": address,
@@ -247,10 +254,6 @@ extension PatientInfoViewController {
     }
     
     func parseToCurrentUser() {
-        guard let city = city,
-            let dist = dist,
-            let ward = ward
-            else { return }
         let user = User(id: self.userId,
                         name: usernameTextfield.text!,
                         phone: phoneTextfield.text!,
@@ -259,9 +262,9 @@ extension PatientInfoViewController {
                         address: addressTextfield.text!,
                         birthdate: birthdayTextfield.date!,
                         gender: maleButton.isSelected ? true : false,
-                        districtCode: Int(dist.value)!,
-                        wardCode: Int(ward.value)!,
-                        provinceCode: Int(city.value)!)
+                        districtCode: dist.value,
+                        wardCode: ward.value,
+                        provinceCode: city.value)
         User.setCurrent(user)
         BookingInfo.patient = user
     }
@@ -274,7 +277,34 @@ extension PatientInfoViewController {
     }
 }
 
-
+extension PatientInfoViewController: DistrictsViewControllerDelegate, WardViewControllerDelegate, CitiesViewControllerDelegate {
+    func didSelectDistrict(dist: District) {
+        self.dist = dist
+        districtTextField.text = dist.name
+        
+        /// Xóa phường xã đã chọn
+        self.wardTextField.text = String()
+        self.ward = Ward()
+    }
+    
+    func didSelectedCity(city: City) {
+        self.city = city
+        self.cityTextField.text = city.name
+        
+        /// Xóa quận đã chọn
+        self.districtTextField.text = String()
+        self.dist = District()
+        
+        /// Xóa phường đã chọn
+        self.wardTextField.text = String()
+        self.ward = Ward()
+    }
+    
+    func didSelectedWard(ward: Ward) {
+        self.ward = ward
+        self.wardTextField.text = ward.name
+    }
+}
 
 
 

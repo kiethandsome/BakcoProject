@@ -16,6 +16,12 @@ class Ward: NSObject {
         self.name = ""
         self.value = ""
     }
+    
+    init(name: String, value: String) {
+        self.name = name
+        self.value = value
+    }
+    
     init(data: [String : Any]) {
         self.name = data["Name"] as! String
         self.value = data["Value"] as! String

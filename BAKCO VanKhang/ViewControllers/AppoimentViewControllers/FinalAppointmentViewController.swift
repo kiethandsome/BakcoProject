@@ -40,7 +40,7 @@ class FinalAppointmentViewController: BaseViewController {
         lblAddress.text = BookingInfo.hospital.Address
         exDayLabel.text = BookingInfo.scheduler.DateView
         InsuranceLabel.text = BookingInfo.hiid
-        exTypeLabel.text = BookingInfo.exTypeName
+        exTypeLabel.text = BookingInfo.serviceType.name
         timeLabel.text = BookingInfo.time.from
         roomNumberLabel.text = BookingInfo.appointment.room.Name
         ///

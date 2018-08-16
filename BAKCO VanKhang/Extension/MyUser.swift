@@ -20,9 +20,12 @@ struct MyUser {
     static var birthday = Date()
     static var token = String()
     static var gender = Bool()
-    static var provinceCode = Int()
-    static var districtCode = Int()
-    static var wardCode = Int()
+    static var provinceCode = String()
+    static var districtCode = String()
+    static var wardCode = String()
+    static var cityName = String()
+    static var distName = String()
+    static var wardName = String()
 }
 
 

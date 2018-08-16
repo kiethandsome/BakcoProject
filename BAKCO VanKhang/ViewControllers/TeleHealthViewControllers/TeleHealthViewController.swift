@@ -174,7 +174,7 @@ extension TeleHealthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         BookingInfo.release()
-        title = "Đăng kí khám bệnh"
+        title = "Tư vấn sức khỏe từ xa"
         showBackButton()
         config(dropdown: exTypeDropdown, for: exTypeTextfield)
         setupRightBarButton()

@@ -107,7 +107,7 @@ class BookingViewController: BaseViewController {
         } else if exType == "" {
             showAlert(title: "Lỗi", mess: "Bạn chưa chọn loại hình khám", style: .alert)
         }  else {
-            if exType == Expert {
+            if BookingInfo.serviceType.canChooseDoctor {
                 showExpDoc()
             } else {
                 showSpecialty()
@@ -290,7 +290,8 @@ extension BookingViewController {
         let nav = BaseNavigationController(rootViewController: doctorVc)
         doctorVc.delegate = self
         doctorVc.hospitalId = BookingInfo.hospital.Id
-        doctorVc.direction = DirectViewController.booking /// Booking
+        doctorVc.direction = DirectViewController.booking  /// Booking
+        doctorVc.serviceType = BookingInfo.serviceType.id
         navigationController?.present(nav, animated: true)
     }
     
@@ -520,7 +521,7 @@ extension BookingViewController: SchedulersViewControllerDelegate {
         BookingInfo.scheduler = scheduler /// Gán
         dateAndTimeTextfield.text = scheduler.DateView
         
-        if BookingInfo.exTypeId != Constant.exTypeDict[Expert] {
+        if !BookingInfo.serviceType.canChooseDoctor {
             /** LẤy id lịch sau khi chọn ngày
              cho luồng thông thường và dịch vụ */
             getSchedulerId()

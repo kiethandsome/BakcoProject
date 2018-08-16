@@ -18,6 +18,8 @@ import MBProgressHUD
 class UpdateInfoViewController: BaseViewController, IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
     
     var userId : Int?
+    var currentUser: User?
+    var editingUser: User?
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var usernameTextfield: UITextField!
@@ -37,18 +39,15 @@ class UpdateInfoViewController: BaseViewController, IQDropDownTextFieldDelegate,
 
     
     var selectedPlace = Place()
-    var selectedCity: City?
-    var selectedDist: District?
-    var selectedWard: Ward?
-}
+    var currentCity = City()
+    var currentDist = District()
+    var currentWard = Ward()
 
-extension UpdateInfoViewController {
-    
     /// Chọn quận huyện
     @IBAction func chooseDistrict(_ sender: UIButton) {
-        if let city = selectedCity {
+        if cityTextField.text != "" {
             let distVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "DistrictsViewController") as! DistrictsViewController
-            distVc.selectedCity = city
+            distVc.selectedCity = currentCity
             distVc.delegate = self
             let nav = BaseNavigationController(rootViewController: distVc)
             present(nav, animated: true)
@@ -60,10 +59,10 @@ extension UpdateInfoViewController {
     
     /// Chọn phường xã
     @IBAction func chooseWard(_ sender: UIButton) {
-        if let dist = selectedDist {
+        if districtTextField.text != "" {
             let wardVC = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "WardViewController") as! WardViewController
             wardVC.delegate = self
-            wardVC.selectedDistrict = dist
+            wardVC.selectedDistrict = self.currentDist
             let nav = BaseNavigationController(rootViewController: wardVC)
             present(nav, animated: true)
         } else {
@@ -85,10 +84,7 @@ extension UpdateInfoViewController {
         let url = URL(string: API.updateInform)!
         guard let fullName = usernameTextfield.text, let phone = phoneTextfield.text,
             let email = emailTextfield.text, let hiid = hiTextfield.text,
-            let address = addressTextfield.text, let bd = birthdayTextfield.date,
-            let ward = selectedWard,
-            let dist = selectedDist,
-            let city = selectedCity
+            let address = addressTextfield.text, let bd = birthdayTextfield.date
             else { return }
 
         let parameters: Parameters = [
@@ -101,15 +97,16 @@ extension UpdateInfoViewController {
             "Address": address,
             "BirthDate": bd.convertDateToString(with: "yyyy-MM-dd"),
             "Gender": maleButton.isSelected,
-            "ProvinceCode": city.value,
-            "DistrictCode": dist.value,
-            "WardCode": ward.value ]
+            "ProvinceCode": currentCity.value,
+            "DistrictCode": currentDist.value,
+            "WardCode": currentWard.value ]
         let completionHandler = { (response: DataResponse<String>) -> Void in
             MBProgressHUD.hide(for: self.view, animated: true)
             print(response)
             if response.result.isSuccess {
                 self.showAlert(title: "Thành công", message: "Cập nhât thông tin người dùng thành công!", style: .alert, hasTwoButton: false, okAction: { (_) in
-//                    self.getUserInfo(by: MyUser.id)
+                    /// Sau khi cập nhật thông tin thành công thì gán giá trị mới cho MyUser.
+                    self.parseToCurrentUser()
                     self.navigationController?.popViewController(animated: true)
                 })
             } else {
@@ -126,6 +123,8 @@ extension UpdateInfoViewController {
     
     func isMale() {
         self.maleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
+        self.maleButton.isSelected = true
+        self.femaleButton.isSelected = false
         self.femaleButton.setImage(UIImage(named: "no-image"), for: .normal)
     }
     
@@ -135,6 +134,8 @@ extension UpdateInfoViewController {
     
     func isFemale() {
         self.maleButton.setImage(UIImage(named: "no-image"), for: .normal)
+        self.maleButton.isSelected = false
+        self.femaleButton.isSelected = true
         self.femaleButton.setImage(#imageLiteral(resourceName: "checked").withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
@@ -142,50 +143,15 @@ extension UpdateInfoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupTextfield(tf: usernameTextfield, phoneTextfield, emailTextfield, addressTextfield, hiTextfield)
         guard let userId = self.userId else { return }
         getUserInfo(by: userId)
     }
-
     
-    fileprivate func setupTextfield(tf: UITextField...) {
-        for tf1 in tf {
-            tf1.addTarget(self, action: #selector(textDidChange(textField:)), for: .editingChanged)
-        }
-    }
-
-    @objc func textDidChange(textField: UITextField) {
-        guard let fullname = usernameTextfield.text,
-            let phone = phoneTextfield.text,
-            let address = addressTextfield.text,
-            let email = emailTextfield.text,
-            let hi = hiTextfield.text
-        else { return }
-        if fullname == MyUser.name,
-            phone == MyUser.phone,
-            address == MyUser.address,
-            email == MyUser.email,
-            hi == MyUser.insuranceId {
-            disableButton(button: confirmButton)
-        } else {
-            enableButton(button: confirmButton)
-        }
-    }
-    
-    fileprivate func disableButton(button: UIButton) {
-        button.backgroundColor = .lightGray
-        button.isEnabled = false
-    }
-    
-    fileprivate func enableButton(button: UIButton) {
-        button.backgroundColor = UIColor.specialGreenColor()
-        button.isEnabled = true
-    }
     
     fileprivate func setupUI() {
         title = "Cập nhật thông tin cá nhân"
         showBackButton()
-        disableButton(button: confirmButton)
+//        disableButton(button: confirmButton)
         contentView.layer.borderColor = UIColor.specialGreenColor().cgColor
     }
     
@@ -200,23 +166,42 @@ extension UpdateInfoViewController {
     }
     
     fileprivate func getUserInfo(by userId: Int) {
-        MBProgressHUD.showAdded(to: view, animated: true)
-        Alamofire.request(URL(string: API.getUserById + "/\(userId)")!, method: .get).responseSwiftyJSON { (response) in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            print(response.value?.dictionaryValue as Any)
-            if let data = response.value?.dictionaryObject {
-                if let message = data["Message"] as? String {
-                    self.showAlert(title: "Lỗi", mess: message, style: .alert)
-                } else {
-                    let user = User(data: data)
+        self.showHUD()
+        Alamofire.request(URL(string: API.getUserInfo)!,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: ["Authorization" : "Bearer \(MyUser.token)"]).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            print(response)
+            if response.result.isSuccess {
+                if let data = response.value?.dictionaryObject {
+                    self.currentUser = User(data: data)
+                    guard let user = self.currentUser else { return }
                     self.setupAllTextField(user: user)
-                    self.disableButton(button: self.confirmButton)
+//                    self.disableButton(button: self.confirmButton)
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
             }
         }
     }
+    
+    func parseToCurrentUser() {
+        let user = User(id: MyUser.id,
+                        name: usernameTextfield.text!,
+                        phone: phoneTextfield.text!,
+                        hiid: hiTextfield.text!,
+                        email: emailTextfield.text!,
+                        address: addressTextfield.text!,
+                        birthdate: birthdayTextfield.date!,
+                        gender: maleButton.isSelected,
+                        districtCode: currentDist.value,
+                        wardCode: currentWard.value,
+                        provinceCode: currentCity.value)
+        User.setCurrent(user)
+
+    }
+
     
     fileprivate func setupAllTextField(user: User) {
         if (user.gender) { isMale() }
@@ -226,23 +211,45 @@ extension UpdateInfoViewController {
         emailTextfield.text = user.email
         addressTextfield.text = user.address
         hiTextfield.text = user.healthInsurance
+        /// Set City
+        cityTextField.text = user.cityName
+        currentCity = City(name: user.cityName, value: "\(user.provinceCode)")
+        /// Set dist
+        districtTextField.text = user.distName
+        currentDist = District(name: user.distName, value: "\(user.districtCode)")
+        /// Set ward
+        wardTextField.text = user.wardName
+        currentWard = Ward(name: user.wardName, value: "\(user.wardCode)")
+
         setupPicker(picker: birthdayTextfield, user: user)
     }
 }
 
 extension UpdateInfoViewController: WardViewControllerDelegate, CitiesViewControllerDelegate, DistrictsViewControllerDelegate {
-    func didSelectDistrict(dist: District) {
-        self.selectedDist = dist
-        districtTextField.text = dist.name
+    func didSelectedCity(city: City) {
+        self.currentCity = city
+        self.cityTextField.text = city.name
+        
+        /// Xóa quận đã chọn
+        self.districtTextField.text = String()
+        self.currentDist = District()
+        
+        /// Xóa phường đã chọn
+        self.wardTextField.text = String()
+        self.currentWard = Ward()
     }
     
-    func didSelectedCity(city: City) {
-        self.selectedCity = city
-        self.cityTextField.text = city.name
+    func didSelectDistrict(dist: District) {
+        self.currentDist = dist
+        districtTextField.text = dist.name
+        
+        /// Xóa phường xã đã chọn
+        self.wardTextField.text = String()
+        self.currentWard = Ward()
     }
     
     func didSelectedWard(ward: Ward) {
-        self.selectedWard = ward
+        self.currentWard = ward
         self.wardTextField.text = ward.name
     }
 }

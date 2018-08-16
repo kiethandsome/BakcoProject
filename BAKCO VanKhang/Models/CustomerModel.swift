@@ -19,6 +19,8 @@ let UserAddress = "Address"
 let UserBirthday = "Birthday"
 let UserGender = "Gender"
 let UserToken = "Token"
+let UserDistCode = "DistCode"
+let UserDistName = "DistName"
 let DidLogin = "DidLogin"
 
 class Customer {

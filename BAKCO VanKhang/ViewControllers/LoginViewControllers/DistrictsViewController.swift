@@ -33,7 +33,7 @@ class DistrictsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Quận huyện"
-        showBackButton()
+        showCancelButton()
         setupTableview(tv: distTableview)
         guard let city = selectedCity else { return }
         getDist(by: city.value)

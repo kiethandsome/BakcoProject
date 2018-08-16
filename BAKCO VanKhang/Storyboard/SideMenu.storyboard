@@ -855,7 +855,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                             <constraint firstAttribute="width" constant="25" id="dOn-0a-5bR"/>
                                                             <constraint firstAttribute="height" constant="20" id="fvF-ot-opo"/>
                                                         </constraints>
-                                                        <state key="normal" image="checked"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                 <real key="value" value="2.5"/>
@@ -872,13 +871,16 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
                                                         <color key="textColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yh-TT-MwQ">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yh-TT-MwQ">
                                                         <rect key="frame" x="185" y="7.5" width="25" height="20"/>
                                                         <color key="backgroundColor" red="0.24956762790000001" green="0.58300304410000003" blue="0.64055615659999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="ECK-u4-6jt"/>
                                                             <constraint firstAttribute="width" constant="25" id="lq0-yH-HAv"/>
                                                         </constraints>
+                                                        <state key="normal">
+                                                            <color key="titleColor" red="0.0" green="0.58823529411764708" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                 <real key="value" value="2.5"/>
@@ -1174,7 +1176,6 @@ Người sử dụng chỉ thanh toán phí dịch vụ y tế và sản phẩm 
         <image name="avatar-placeholder" width="540" height="540"/>
         <image name="cake" width="64" height="64"/>
         <image name="caret-down (1)" width="42" height="42"/>
-        <image name="checked" width="21" height="21"/>
         <image name="home1" width="21" height="21"/>
         <image name="id-card" width="64" height="64"/>
         <image name="phoe" width="64" height="64"/>

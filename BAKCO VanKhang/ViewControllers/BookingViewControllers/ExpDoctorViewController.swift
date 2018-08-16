@@ -33,6 +33,7 @@ class ExpDoctorViewController: BaseViewController {
     }
     
     var form = Int()
+    var serviceType = Int()
     
     var direction: DirectViewController! {
         didSet {
@@ -51,7 +52,7 @@ extension ExpDoctorViewController {
         super.viewDidLoad()
         title = "Chuyên gia"
         config(tableView: doctorTableview)
-        getDoctor(hospitalId: self.hospitalId, form: form)
+        getDoctor(hospitalId: self.hospitalId, form: form, serviceType: serviceType)
         showCancelButton(title: "Huỷ")
     }
     
@@ -64,9 +65,9 @@ extension ExpDoctorViewController {
         tableView.tableFooterView = UIView()
     }
     
-    fileprivate func getDoctor(hospitalId: Int, form: Int) {
+    fileprivate func getDoctor(hospitalId: Int, form: Int, serviceType: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        let api = URL(string: API.getDoctor + "/\(hospitalId)" + "?Form=\(form)")!
+        let api = URL(string: API.getDoctor + "/\(hospitalId)?Form=\(form)?ServiceType=\(serviceType)")!
         let completionHandler: (DataResponse<JSON>) -> Void = {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.doctorList.removeAll()

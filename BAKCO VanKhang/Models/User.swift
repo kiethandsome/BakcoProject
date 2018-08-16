@@ -19,9 +19,13 @@ class User: NSObject {
     var address = ""
     var birthDate = Date()
     var gender = true
-    var districtCode = Int()
-    var provinceCode = Int()
-    var wardCode = Int()
+    var districtCode = String()
+    var provinceCode = String()
+    var wardCode = String()
+    var personalId = String()
+    var distName = String()
+    var wardName = String()
+    var cityName = String()
     
 //    private static var _currentUser: User?
 //    
@@ -32,7 +36,7 @@ class User: NSObject {
 //        return currentUser
 //    }
     
-    init(id: Int, name: String, phone: String, hiid: String, email: String, address: String, birthdate: Date, gender: Bool, districtCode: Int, wardCode: Int, provinceCode: Int) {
+    init(id: Int, name: String, phone: String, hiid: String, email: String, address: String, birthdate: Date, gender: Bool, districtCode: String, wardCode: String, provinceCode: String) {
         super.init()
         self.id = id
         self.phone = phone
@@ -42,7 +46,9 @@ class User: NSObject {
         self.birthDate = birthdate
         self.gender = gender
         self.fullName = name
-        
+        self.districtCode = districtCode
+        self.provinceCode = provinceCode
+        self.wardCode = wardCode
     }
     
     init(data: [String : Any]) {
@@ -72,26 +78,37 @@ class User: NSObject {
             self.address = address
         }
         
-        if let birthdate = data["BirthDate"] as? Date {
-            self.birthDate = birthdate
+        if let birthdate = data["BirthDate"] as? String {
+            self.birthDate = birthdate.convertStringToDate(with: "yyyy-MM-dd'T'HH:mm:ss")
         }
         
         if let gender = data["Gender"] as? Bool {
             self.gender = gender
         }
         
-        if let districtCode = data["DistrictCode"] as? Int {
+        if let districtCode = data["DistrictCode"] as? String {
             self.districtCode = districtCode
         }
         
-        if let wardCode = data["WardCode"] as? Int {
+        if let wardCode = data["WardCode"] as? String {
             self.wardCode = wardCode
         }
         
-        if let provinceCode = data["ProvinceCode"] as? Int {
+        if let provinceCode = data["ProvinceCode"] as? String {
             self.provinceCode = provinceCode
         }
         
+        if let cityName = data["ProvinceName"] as? String {
+            self.cityName = cityName
+        }
+        
+        if let distName = data["DistrictName"] as? String {
+            self.distName = distName
+        }
+        
+        if let wardName = data["WardName"] as? String {
+            self.wardName = wardName
+        }
     }
     
 //    required init?(coder aDecoder: NSCoder) {
@@ -130,12 +147,12 @@ class User: NSObject {
         UserDefaults.standard.setValue(user.gender, forKey: UserGender)
         UserDefaults.standard.set(user.address, forKey: UserAddress)
 
-        setCurrentToMyUser(user: user)
+        setNewForMyUser(user: user)
         
     }
     
     /// Gán dữ liệu cho My User hỗ trợ Get thuộc tính user Nhanh gọn.
-    private static func setCurrentToMyUser(user: User) {
+    private static func setNewForMyUser(user: User) {
         MyUser.name = user.fullName
         MyUser.id = user.id
         MyUser.address = user.address
@@ -145,7 +162,12 @@ class User: NSObject {
         MyUser.birthday = user.birthDate
         MyUser.gender = user.gender
         MyUser.current = user
-        
+        MyUser.cityName = user.cityName
+        MyUser.provinceCode = user.provinceCode
+        MyUser.districtCode = user.districtCode
+        MyUser.distName = user.distName
+        MyUser.wardCode = user.wardCode
+        MyUser.wardName = user.wardName
     }
     
 

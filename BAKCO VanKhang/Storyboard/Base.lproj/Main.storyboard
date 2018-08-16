@@ -167,7 +167,7 @@
                                             <action selector="bookingButtonAction:" destination="voV-aQ-ISa" eventType="touchUpInside" id="uad-g3-8wX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng kí     khám bệnh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-pI-DTa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng ký     khám bệnh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-pI-DTa">
                                         <rect key="frame" x="-8" y="127" width="80" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="xhH-yK-uXu"/>

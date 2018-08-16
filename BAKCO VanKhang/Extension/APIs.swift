@@ -46,6 +46,7 @@ struct API {
     static let getDoctorServices = ApiDomain + "/api/BkDoctor/GetServicesByDoctor"
     static let changePass = ApiDomain + "/api/Account/ChangePassword"
     static let getHospitalsForm1 = ApiDomain + "/api/BkHospital/GetByForm?form=1"
+    static let getUserInfo = ApiDomain + "/api/Account/UserInfo"
     
     struct TeleHealth {
         static let getHospitals = ApiDomain + "/api/BkHospital/GetByForm?form=2"
