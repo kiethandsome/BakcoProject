@@ -31,7 +31,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
         switch self.title! {
             
         case ServiceIntroductionTitle:
-            self.cellTitles = ["Gọi cấp cứu SOS", "Tư vấn sức khoẻ từ xa", "Chữa bệnh tại nhà", "Đăng kí khám chữa bệnh"]
+            self.cellTitles = ["Thông tin VKHS", "Gọi cấp cứu SOS", "Tư vấn sức khoẻ từ xa", "Chữa bệnh tại nhà", "Đặt lịch khám chữa bệnh"]
             break
             
         case GuildlineTitle:
@@ -39,8 +39,7 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             break
             
         case PersonalInforTitle:
-//            self.cellTitles = ["Thông tin cá nhân", "Thông tin người thân", "Lịch sử dùng dịch vụ", "Hồ sơ sức khoẻ cá nhân"]
-            self.cellTitles = ["Thông tin cá nhân", "Lịch sử dùng dịch vụ", "Đổi mật khẩu"]
+            self.cellTitles = ["Thông tin cá nhân", "Lịch sử sử dụng dịch vụ", "Đổi mật khẩu", "Hồ sơ sức khỏe cá nhân (PHR)"]
             break
             
         default:
@@ -72,6 +71,12 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
         let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "IntroductionViewController") as! IntroductionViewController
 
         switch titleText {
+            
+        case "Thông tin VKHS":
+            let viewController = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "VkhsInfoViewController")
+            self.navigationController?.pushViewController(viewController, animated: true)
+            break
+            
         case "Gọi cấp cứu SOS":
             self.navigationController?.pushViewController(vc, animated: true)
             vc.title = "Gọi cấp cứu SOS"
@@ -90,13 +95,13 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             vc.content = MyIntroductionText.familyDoctor
             break
             
-        case "Đăng kí khám chữa bệnh" :
+        case "Đặt lịch khám chữa bệnh" :
             self.navigationController?.pushViewController(vc, animated: true)
             vc.title = "Đăng kí khám chữa bệnh"
             vc.content = MyIntroductionText.booking
             break
             
-        case "Lịch sử dùng dịch vụ" :
+        case "Lịch sử sử dụng dịch vụ" :
             let healthSchedulerVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "HealthSchedulersViewController")
             self.navigationController?.pushViewController(healthSchedulerVc, animated: true)
             break
@@ -111,14 +116,14 @@ class SelectIntroductionViewController : BaseViewController, UITableViewDelegate
             let changePassVc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
             self.navigationController?.pushViewController(changePassVc, animated: true)
             break
+            
+        case "Hồ sơ sức khỏe cá nhân (PHR)":
+            break
         
         default:
             break
         }
     }
-    
-
-
 }
 
 

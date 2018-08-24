@@ -68,6 +68,7 @@
 		9A7C3EDB20C6E4BB007D9311 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C3EDA20C6E4BB007D9311 /* Reachability.swift */; };
 		9A7E3F0220ECAEF900BCABEF /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E3F0120ECAEF900BCABEF /* ServicesViewController.swift */; };
 		9A7E3F0420ECB26800BCABEF /* DoctorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E3F0320ECB26800BCABEF /* DoctorService.swift */; };
+		9A806229212FDB7A00CE5882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A806228212FDB7A00CE5882 /* MapViewController.swift */; };
 		9A84199A20D61E6C003DD7A7 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199920D61E6C003DD7A7 /* District.swift */; };
 		9A84199C20D61E92003DD7A7 /* Ward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A84199B20D61E92003DD7A7 /* Ward.swift */; };
 		9A8655EB20F717EF005CCCAC /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8655EA20F717EF005CCCAC /* ChangePasswordViewController.swift */; };
@@ -169,6 +170,7 @@
 		9A7C3EDA20C6E4BB007D9311 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		9A7E3F0120ECAEF900BCABEF /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		9A7E3F0320ECB26800BCABEF /* DoctorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorService.swift; sourceTree = "<group>"; };
+		9A806228212FDB7A00CE5882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9A84199920D61E6C003DD7A7 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		9A84199B20D61E92003DD7A7 /* Ward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ward.swift; sourceTree = "<group>"; };
 		9A8655EA20F717EF005CCCAC /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			children = (
 				F32F2EFA1F989CC7008C5CAF /* MainViewController.swift */,
 				F379DD051FFB9F8800314610 /* TestViewController.swift */,
+				9A806228212FDB7A00CE5882 /* MapViewController.swift */,
 			);
 			path = MainViewControllers;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				F32F2EF21F989CC7008C5CAF /* Frameworks */,
 				F32F2EF31F989CC7008C5CAF /* Resources */,
 				92ED8900ECAE2CC1EAA0C77E /* [CP] Embed Pods Frameworks */,
+				FCA6757F5C1CA6F7B737009F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -678,6 +682,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FCA6757F5C1CA6F7B737009F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -758,6 +780,7 @@
 				F34174851FC749290093CB1A /* Serviced.swift in Sources */,
 				F32F2F011F989CC7008C5CAF /* BAKCO_VanKhang.xcdatamodeld in Sources */,
 				9210F313206816D90059076F /* VkhsInfoViewcontroller.swift in Sources */,
+				9A806229212FDB7A00CE5882 /* MapViewController.swift in Sources */,
 				92E52A0B207E515E00DC32CD /* FavoriteDrViewController.swift in Sources */,
 				9A8655EB20F717EF005CCCAC /* ChangePasswordViewController.swift in Sources */,
 				9271C17520807C0B00D5A41B /* FamilyDoctor.swift in Sources */,

@@ -11,6 +11,7 @@ import CoreData
 import IQKeyboardManagerSwift
 import UserNotifications
 import DropDown
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder {
@@ -22,7 +23,12 @@ class AppDelegate: UIResponder {
         setupFirstScreen()
         registerForPushNotification()
         DropDown.startListeningToKeyboard()
+        setupGMS(apiKey: "AIzaSyBUh3hwleRVX4_E9SGlQCN_EyVadwCDKco")
         return true
+    }
+    
+    func setupGMS(apiKey: String) {
+        GMSServices.provideAPIKey(apiKey)
     }
     
     func setupFirstScreen() {

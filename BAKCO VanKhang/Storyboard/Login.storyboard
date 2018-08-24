@@ -124,11 +124,19 @@
                                     <action selector="loginButtonAction:" destination="dOJ-vF-fCL" eventType="touchUpInside" id="ohb-6w-7lg"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1f-nM-eyT">
+                                <rect key="frame" x="62" y="205" width="250" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Cjr-M3-jbV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uCR-pH-H4L" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="0dI-nl-gEl"/>
                             <constraint firstItem="vCZ-wE-qwL" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="4Vg-OH-FB2"/>
+                            <constraint firstItem="YIf-gC-DhM" firstAttribute="top" secondItem="h1f-nM-eyT" secondAttribute="bottom" constant="20" id="4oB-yb-wpF"/>
                             <constraint firstItem="nuj-ci-9yd" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="5Ls-lU-g51"/>
                             <constraint firstItem="vCZ-wE-qwL" firstAttribute="top" secondItem="HMt-xs-3Rw" secondAttribute="bottom" constant="20" id="DJ7-vL-Wmr"/>
                             <constraint firstItem="aEG-bH-PYb" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="Ewh-d4-HBn"/>
@@ -136,8 +144,10 @@
                             <constraint firstItem="aEG-bH-PYb" firstAttribute="top" secondItem="LaO-OC-zjv" secondAttribute="top" constant="20" id="NV6-Nw-uB1"/>
                             <constraint firstItem="HMt-xs-3Rw" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="UP6-6z-bnT"/>
                             <constraint firstItem="YIf-gC-DhM" firstAttribute="top" secondItem="uCR-pH-H4L" secondAttribute="bottom" constant="20" id="Xjb-iO-rTe"/>
+                            <constraint firstItem="h1f-nM-eyT" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="cbg-zG-mdH"/>
                             <constraint firstItem="nuj-ci-9yd" firstAttribute="top" secondItem="aEG-bH-PYb" secondAttribute="bottom" constant="30" id="fYy-rg-W9L"/>
                             <constraint firstItem="hdl-Lc-kC8" firstAttribute="top" secondItem="vCZ-wE-qwL" secondAttribute="bottom" constant="15" id="lKm-Va-xcI"/>
+                            <constraint firstItem="h1f-nM-eyT" firstAttribute="top" secondItem="nuj-ci-9yd" secondAttribute="bottom" constant="30" id="loK-sN-1MM"/>
                             <constraint firstItem="uCR-pH-H4L" firstAttribute="top" secondItem="nuj-ci-9yd" secondAttribute="bottom" constant="30" id="nIn-yt-6YQ"/>
                             <constraint firstItem="YIf-gC-DhM" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="yNv-eo-z0e"/>
                             <constraint firstItem="hdl-Lc-kC8" firstAttribute="centerX" secondItem="JO6-FU-A4P" secondAttribute="centerX" id="yc9-5R-ww3"/>
@@ -154,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fxj-KM-t4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5263" y="-769"/>
+            <point key="canvasLocation" x="-5263.1999999999998" y="-769.56521739130437"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="K7M-SN-ApS">
@@ -946,7 +956,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWA-p0-90C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3602" y="-770"/>
+            <point key="canvasLocation" x="-3662" y="-852"/>
         </scene>
         <!--Districts View Controller-->
         <scene sceneID="sZ3-Ua-NnS">

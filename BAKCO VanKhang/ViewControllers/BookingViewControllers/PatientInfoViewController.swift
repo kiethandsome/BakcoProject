@@ -76,11 +76,7 @@ class PatientInfoViewController: BaseViewController, IQDropDownTextFieldDelegate
     }
     
     @IBAction func confirmUpdate(_ sender: Any) {
-        if self.userId == MyUser.id {
-            updateCurrentUserInfo()
-        } else {
-            updateProfilepatient(by: self.userId)
-        }
+        self.updatePatientInfo(userId: self.userId)
     }
     
     @IBAction func isMale(_ sender: Any) {
@@ -120,18 +116,18 @@ extension PatientInfoViewController {
         }
 
         setupDoneButton()
-        disableButton(button: confirmButton)
+//        disableButton(button: confirmButton)
         ///
-        self.usernameTextfield.isUserInteractionEnabled = false
-        self.phoneTextfield.isUserInteractionEnabled = false
-        self.addressTextfield.isUserInteractionEnabled = false
-        self.birthdayTextfield.isUserInteractionEnabled = false
-        self.emailTextfield.isUserInteractionEnabled = false
-        self.cityTextField.isUserInteractionEnabled = false
-        self.hiTextfield.isUserInteractionEnabled = false
-        self.maleButton.isUserInteractionEnabled = false
-        self.femaleButton.isUserInteractionEnabled = false
-        self.personalIdTextfield.isUserInteractionEnabled = false
+//        self.usernameTextfield.isUserInteractionEnabled = false
+//        self.phoneTextfield.isUserInteractionEnabled = false
+//        self.addressTextfield.isUserInteractionEnabled = false
+//        self.birthdayTextfield.isUserInteractionEnabled = false
+//        self.emailTextfield.isUserInteractionEnabled = false
+//        self.cityTextField.isUserInteractionEnabled = false
+//        self.hiTextfield.isUserInteractionEnabled = false
+//        self.maleButton.isUserInteractionEnabled = false
+//        self.femaleButton.isUserInteractionEnabled = false
+//        self.personalIdTextfield.isUserInteractionEnabled = false
     }
     
     fileprivate func setupDoneButton() {
@@ -161,7 +157,6 @@ extension PatientInfoViewController {
     fileprivate func setupUI() {
         title = "Thông tin bệnh nhân"
         showBackButton()
-        disableButton(button: confirmButton)
         contentView.layer.borderColor = UIColor.specialGreenColor().cgColor
     }
     
@@ -185,7 +180,6 @@ extension PatientInfoViewController {
                     self.selectedpatient = User(data: data)
                     guard let user = self.selectedpatient else {return }
                     self.setupAllTextField(user: user)
-                    self.disableButton(button: self.confirmButton)
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -195,14 +189,14 @@ extension PatientInfoViewController {
     
     fileprivate func getPatientInfo(id: Int) {
         self.showHUD()
-        Alamofire.request(URL(string: API.getUserById + "\(id)")! , method: .get, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+        Alamofire.request(URL(string: API.getUserById + "\(id)")! , method: .get, encoding: JSONEncoding.default, headers: ["Authorization" : "Bearer \(MyUser.token)"]).responseSwiftyJSON { (response) in
             self.hideHUD()
+            print(response)
             if response.result.isSuccess {
                 if let data = response.value?.dictionaryObject {
                     self.selectedpatient = User(data: data)
                     guard let user = self.selectedpatient else {return }
                     self.setupAllTextField(user: user)
-                    self.disableButton(button: self.confirmButton)
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -231,14 +225,14 @@ extension PatientInfoViewController {
         setupPicker(picker: birthdayTextfield, user: user)
     }
     
-    fileprivate func updateCurrentUserInfo() {
+    fileprivate func updatePatientInfo(userId: Int) {
         let url = URL(string: API.updateInform)!
         guard let fullName = usernameTextfield.text, let phone = phoneTextfield.text,
             let email = emailTextfield.text, let hiid = hiTextfield.text,
             let address = addressTextfield.text, let bd = birthdayTextfield.date
             else { return }
         let parameters: Parameters = [
-            "Id": self.userId,
+            "Id": userId,
             "FullName": fullName,
             "Phone": phone,
             "Phone1": phone,
@@ -258,10 +252,7 @@ extension PatientInfoViewController {
                 let alertTitle = "Xác nhận"
                 let alertMess = "Cập nhật thông tin bệnh nhân thành công!"
                 self.showAlert(title: alertTitle, message: alertMess, style: .alert, hasTwoButton: false, okAction: { (_) in
-                    
-                    if self.userId == MyUser.id { /// Nếu là tài khoản cá nhân thì gán vào userDefault
-                        self.parseToCurrentUser()
-                    }
+                    self.createUserModel()
                     self.navigationController?.dismiss(animated: true)
                 })
             } else {
@@ -272,7 +263,7 @@ extension PatientInfoViewController {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString(completionHandler: completionHandler)
     }
     
-    func parseToCurrentUser() {
+    func createUserModel() {
         let user = User(id: self.userId,
                         name: usernameTextfield.text!,
                         phone: phoneTextfield.text!,
@@ -284,14 +275,10 @@ extension PatientInfoViewController {
                         districtCode: dist.value,
                         wardCode: ward.value,
                         provinceCode: city.value)
-        User.setCurrent(user)
+        
         BookingInfo.patient = user
-    }
-    
-    func updateProfilepatient(by id: Int) {
-        /// Chưa có api update profile
-        showAlert(title: "Thông báo", message: "Chưa có api cập nhât thông tin cho bệnh nhân", style: .alert, hasTwoButton: false) { (_) in
-            self.dismiss(animated: true, completion: nil)
+        if self.userId == MyUser.id { /// Nếu là tài khoản cá nhân thì gán vào userDefault
+            User.setCurrent(user)
         }
     }
 }

@@ -11,10 +11,22 @@ import DynamicColor
 import Alamofire
 import AlamofireSwiftyJSON
 import MBProgressHUD
+import CoreLocation
 
 
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    let tokenHeader = ["Authorization" : "Bearer \(MyUser.token)"]
+    
+    var locationManager = CLLocationManager()
+    var location: CLLocation!{
+        didSet {
+            MyLocation.lat = location.coordinate.latitude
+            MyLocation.long = location.coordinate.longitude
+            print("Long: \(location.coordinate.latitude), Lat: \(location.coordinate.longitude)")
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -47,7 +59,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     ///Mark: MenuButton
     func setupUserRightBarButton() {
-        let menuButon = UIBarButtonItem(image: #imageLiteral(resourceName: "user (1)").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(showUserMenu))
+        let menuButon = UIBarButtonItem(image: #imageLiteral(resourceName: "green-menu-2").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(showUserMenu))
         navigationItem.rightBarButtonItem = menuButon
     }
     @objc func showUserMenu() {
@@ -154,12 +166,50 @@ extension BaseViewController {
     }
 }
 
+extension BaseViewController {
+    
+    open func reqestApiWithToken(url: String, method: HTTPMethod, param: Parameters, completion: @escaping (_ response : [String: Any]) -> Void) {
+        let urll = URL(string: url)!
+        self.showHUD()
+        Alamofire.request(urll, method: method, parameters: param, encoding: JSONEncoding.default, headers: self.tokenHeader).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            print(response)
+            if let responsed = response.value?.dictionaryObject, response.error == nil {
+                completion(responsed)
+            } else {
+                self.showAlert(title: "Lỗi", mess: response.debugDescription, style: .alert)
+            }
+        }
+    }
+    
+}
 
 
 
 
 
-
+extension BaseViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        location = (locations ).last
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func checkCoreLocationPermission(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
+            self.locationManager.startUpdatingLocation()
+        }
+        else if CLLocationManager.authorizationStatus() == .notDetermined{
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        else if CLLocationManager.authorizationStatus() == .restricted{
+            print("unauthorized")
+        }
+    }
+}
 
 
 

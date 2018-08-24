@@ -23,10 +23,10 @@ class TestViewController: BaseViewController{
         super.viewDidLoad()
         showBackButton()
         navigationItem.title = "Cấp cứu!"
-        connection = SignalR("http://api.vkhs.vn/signalr/hubs")
+        connection = SignalR("http://api.vkhealth.vn/signalr/hubs")
         
         connection.useWKWebView = true
-        connection.signalRVersion = .v2_2_0
+        connection.signalRVersion = .v2_0_0
         connection.queryString = ["accessToken": "longhdt"]
         centerHub = Hub("centerHub")
         centerHub.on("receiveSOSStatus")  { args in
@@ -50,7 +50,6 @@ class TestViewController: BaseViewController{
         connection.connected = { [weak self] in
             print("Connection ID: \(self!.connection.connectionID!)")
             self?.statusLabel.text = "Connected"
-            
         }
         
         connection.reconnected = { [weak self] in
@@ -77,7 +76,6 @@ class TestViewController: BaseViewController{
                 self?.connection.start()
             }
         }
-        
         connection.start()
     }
     
@@ -102,9 +100,20 @@ class TestViewController: BaseViewController{
             }
         }
     }
-
-
-    
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

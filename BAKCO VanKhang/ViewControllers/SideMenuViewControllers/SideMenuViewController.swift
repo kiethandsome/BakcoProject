@@ -11,8 +11,8 @@ import UIKit
 
 class SideMenuViewController: BaseViewController {
     
-    let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "information.png"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
-    let titles = [MyUser.name, PersonalInforTitle, ServiceIntroductionTitle, "Thông tin VKHS", "Liên hệ", "Đăng xuất"]
+    let images = [#imageLiteral(resourceName: "new_user"), #imageLiteral(resourceName: "user (1)"), #imageLiteral(resourceName: "open-book"), #imageLiteral(resourceName: "phoe"), #imageLiteral(resourceName: "logout")]
+    let titles = [MyUser.name, PersonalInforTitle, ServiceIntroductionTitle, "Liên hệ", "Đăng xuất"]
     
     @objc func dismissWithAnmation() {
         dismiss(animated: true)
@@ -23,7 +23,7 @@ class SideMenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tuỳ chọn thông tin"
-        setupBackDownButton()
+        showCancelButton()
         configTableView(tv: sideTableView)
     }
     
@@ -90,13 +90,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             vc.title = PersonalInforTitle
             self.navigationController?.pushViewController(vc, animated: true)
             break
-
-            
-//        case 2: /// Hướng dẫn sử dụng
-//            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
-//            vc.title = GuildlineTitle
-//            self.navigationController?.pushViewController(vc, animated: true)
-//            break
             
         case 2: /// Gioi thieu dich vu
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "SelectIntroductionViewController") as! SelectIntroductionViewController
@@ -105,19 +98,19 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             break
             
             
-        case 3: /// Thông tin ứng dụng
-            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "VkhsInfoViewController")
-            self.navigationController?.pushViewController(vc, animated: true)
-            break
+//        case 3: /// Thông tin ứng dụng
+//            let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "VkhsInfoViewController")
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            break
             
-        case 4: /// Liên hệ
+        case 3: /// Liên hệ
             let vc = MyStoryboard.sideMenuStoryboard.instantiateViewController(withIdentifier: "IntroductionViewController") as! IntroductionViewController
             vc.content = MyIntroductionText.contactInformation
             vc.title = "Liên hệ"
             self.navigationController?.pushViewController(vc, animated: true)
             break
         
-        case 5: /// Đăng xuất
+        case 4: /// Đăng xuất
             let alert = UIAlertController(title: "Xác nhận", message: "Bạn chắc chắn muốn đăng xuất?", preferredStyle: .alert)
             let okACtion = UIAlertAction(title: "Đăng xuất", style: .destructive, handler: { (action) in
                 let loginVc = MyStoryboard.loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")

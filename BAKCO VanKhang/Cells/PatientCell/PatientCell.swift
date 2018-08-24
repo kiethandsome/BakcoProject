@@ -13,6 +13,7 @@ class PatientCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneNumLabel: UILabel!
+    @IBOutlet weak var birthdateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

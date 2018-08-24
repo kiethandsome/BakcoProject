@@ -34,38 +34,32 @@ class MainViewController: BaseViewController  {
         sosButton.layer.cornerRadius = sosButton.bounds.width / 2
         sosButton.clipsToBounds = true
         let longPressed = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
-        longPressed.minimumPressDuration = 2.0
+        longPressed.minimumPressDuration = 1.0
         longPressed.delegate = self
         sosButton.addGestureRecognizer(longPressed)
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
+//        if sender.state == .began {
+//            let parameters: Parameters = ["Phone": MyUser.phone,
+//                                          "Lat": MyLocation.lat,
+//                                          "Lng": MyLocation.long,
+//                                          "Speed": 0]
+//            let sosUrl = URL(string: API.sosEmergency)!
+//
+//            locationManager.startUpdatingLocation()
+//            MBProgressHUD.showAdded(to: self.view, animated: true)
+//            Alamofire.request(sosUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
+//                MBProgressHUD.hide(for: self.view, animated: true)
+//                print(response)
+//                let test = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController")
+//                self.navigationController?.pushViewController(test!, animated: true)
+//            }
+//        }
+        
         if sender.state == .began {
-            let parameters: Parameters = ["Phone": MyUser.phone,
-                                          "Lat": MyLocation.lat,
-                                          "Lng": MyLocation.long,
-                                          "Speed": 0]
-            let sosUrl = URL(string: API.sosEmergency)!
-            
-            locationManager.startUpdatingLocation()
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            Alamofire.request(sosUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                print(response.value as Any)
-                let test = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController")
-                self.navigationController?.pushViewController(test!, animated: true)
-            }
-        }
-    }
-    
-    /*_______________________________*/
-    // Location
-    var locationManager = CLLocationManager()
-    var location: CLLocation!{
-        didSet {
-            MyLocation.lat = location.coordinate.latitude
-            MyLocation.long = location.coordinate.longitude
-            print("Long: \(location.coordinate.latitude), Lat: \(location.coordinate.longitude)")
+            let mapVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "MapViewController")
+            navigationController?.pushViewController(mapVc, animated: true)
         }
     }
     
@@ -77,12 +71,11 @@ class MainViewController: BaseViewController  {
         setupSOSButton()
         setupUserRightBarButton()
         
-        showLogoImage()
         self.checkContract(phone: MyUser.phone)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.checkCoreLocationPermission()
         ///
         if MyUser.id != 0 {
@@ -133,34 +126,10 @@ class MainViewController: BaseViewController  {
             UIApplication.shared.open(url!)
         }
     }
-}
 
-//Mark: Location manager delegate.
 
-extension MainViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = (locations ).last
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func checkCoreLocationPermission(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-            self.locationManager.startUpdatingLocation()
-        }
-        else if CLLocationManager.authorizationStatus() == .notDetermined{
-            self.locationManager.requestWhenInUseAuthorization()
-        }
-        else if CLLocationManager.authorizationStatus() == .restricted{
-            print("unauthorized")
-        }
-    }
-    
     func checkingConnection() {
-
+        
     }
     
     func checkInsternetConnection() {

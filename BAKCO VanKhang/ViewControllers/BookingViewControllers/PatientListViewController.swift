@@ -28,7 +28,7 @@ class PatientListViewController: BaseViewController {
     }
 
     var direct: DirectViewController!
-
+    
     @IBOutlet weak var patientTableview: UITableView!
 }
 
@@ -65,7 +65,7 @@ extension PatientListViewController {
         tv.tableFooterView = UIView()
         tv.separatorColor = UIColor.specialGreenColor()
         tv.separatorInset.left = 0.0
-        tv.rowHeight = 70.0
+        tv.rowHeight = 95.0
         tv.register(UINib(nibName: "PatientCell", bundle: nil), forCellReuseIdentifier: "PatientCell")
     }
     
@@ -86,7 +86,7 @@ extension PatientListViewController {
         if response.result.isSuccess {
             guard let dataArray = response.value?.array else { return }
             dataArray.forEach({ (Json) in
-                guard let data = Json.dictionaryObject else {return}
+                guard let data = Json.dictionaryObject else { return }
                 let patient = User(data: data)
                 patientList.append(patient)
             })
@@ -103,8 +103,10 @@ extension PatientListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PatientCell", for: indexPath) as! PatientCell
-        cell.nameLabel.text = patientList[indexPath.row]?.fullName
-        cell.phoneNumLabel.text = patientList[indexPath.row]?.phone
+        let patient = patientList[indexPath.row]!
+        cell.nameLabel.text = patient.fullName
+        cell.phoneNumLabel.text = patient.phone
+        cell.birthdateLabel.text = patient.birthDate.convertDateToString(with: "dd-MM-yyyy")
         return cell
     }
     
@@ -117,8 +119,6 @@ extension PatientListViewController: UITableViewDelegate, UITableViewDataSource 
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
-
 
 
 
