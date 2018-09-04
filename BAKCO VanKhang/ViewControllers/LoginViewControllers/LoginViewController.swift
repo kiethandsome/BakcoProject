@@ -101,6 +101,7 @@ class LoginViewController: BaseViewController {
                     self.currentUser = User(data: dict)
                     self.saveToken(token: token)
                     self.pushToMainViewController()
+                    self.saveUserName()
                 }
             } else {
                 self.showAlert(title: "Lỗi", mess: response.error.debugDescription, style: .alert)
@@ -111,6 +112,10 @@ class LoginViewController: BaseViewController {
     private func saveToken(token: String) {
         UserDefaults.standard.set(token, forKey: UserToken)
         MyUser.token = token
+    }
+    
+    func saveUserName() {
+        MyUser.username = self.usernameTextfield.text!
     }
     
     func pushToMainViewController() {

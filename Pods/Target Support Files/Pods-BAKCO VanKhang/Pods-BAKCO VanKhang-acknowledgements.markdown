@@ -99,6 +99,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Copyright 2018 Google
 
+## GooglePlaces
+
+Copyright 2018 Google
+
 ## IQDropDownTextField
 
 The MIT License (MIT)

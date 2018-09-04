@@ -23,7 +23,7 @@ class SideMenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tuỳ chọn thông tin"
-        showCancelButton()
+        setupPopDownButton()
         configTableView(tv: sideTableView)
     }
     

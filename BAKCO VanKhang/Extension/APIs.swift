@@ -20,6 +20,8 @@ public let ApiDomain = HeaderApi.deploy
 
 struct API {
     static let sosEmergency = ApiDomain + "/api/SOSCall/CallSOS"
+    static let signalR = ApiDomain + "/signalr/hubs"
+    
     static let getHealthCareScheduler = ApiDomain + "/api/BkHealthCareScheduler/GetByHospitalHealthCareId"  
     static let createExaminationNote = ApiDomain + "/api/BkMedicalExaminationNote/CreateForMember"
     static let createExaminationNoteByDoctor = ApiDomain + "/api/BkMedicalExaminationNote/CreateWithDoctor"
@@ -34,7 +36,6 @@ struct API {
     static let getDoctor = ApiDomain + "/api/BkHospital/GetDoctorByHospitalId"
     static let getSchedulerByDoctor = ApiDomain + "/api/BkHealthCareScheduler/GetByDoctor"
     static let getSchedulerCustomer = ApiDomain + "/api/BkCustomer/GetSchedulerCustomer" 
-    static let signalR = ApiDomain + "/signalr/hubs"
     static let getHealthCareByHospital = ApiDomain + "/api/BkHealthCare/GetByHospitalId"
     static let getHospital = ApiDomain + "/api/BkHospital/Get"
     static let updateHI = ApiDomain + "/api/BkCustomer/UpdateHealthInsurance"

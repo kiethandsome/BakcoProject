@@ -26,6 +26,13 @@ struct MyUser {
     static var cityName = String()
     static var distName = String()
     static var wardName = String()
+    
+    /// Tên đăng nhập
+    static var username = String() {
+        didSet {
+            UserDefaults.standard.set(username, forKey: LoginUserName)
+        }
+    }
 }
 
 

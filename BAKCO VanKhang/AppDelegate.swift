@@ -61,6 +61,7 @@ class AppDelegate: UIResponder {
         MyUser.email = UserDefaults.standard.string(forKey: UserEmail)!
         MyUser.birthday = UserDefaults.standard.value(forKey: UserBirthday) as! Date
         MyUser.token = UserDefaults.standard.string(forKey: UserToken)!
+        MyUser.username = UserDefaults.standard.string(forKey: LoginUserName)!
         MyUser.current = User(id: MyUser.id, name: MyUser.name, phone: MyUser.phone, hiid: MyUser.insuranceId, email: MyUser.email, address: MyUser.address, birthdate: MyUser.birthday, gender: MyUser.gender, districtCode: MyUser.districtCode, wardCode: MyUser.wardCode, provinceCode: MyUser.provinceCode)
     }
  }

@@ -17,5 +17,6 @@ pod 'DropDown'
 pod 'Presentr'
 pod 'JTAppleCalendar', '~> 7.0'
 pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end

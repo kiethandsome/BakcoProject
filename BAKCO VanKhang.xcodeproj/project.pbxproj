@@ -76,6 +76,7 @@
 		9A8D5C9420C43A0E004B64FB /* TeleHealth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9320C43A0E004B64FB /* TeleHealth.storyboard */; };
 		9A8D5C9620C45FEE004B64FB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9520C45FEE004B64FB /* CalendarViewController.swift */; };
 		9A8D5C9A20C4611F004B64FB /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8D5C9820C4611F004B64FB /* CalendarCell.swift */; };
+		9A9A695721318EC70058D18E /* MySignalR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A695621318EC70058D18E /* MySignalR.swift */; };
 		9AABB63720AD648000E3117C /* UpdateInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */; };
 		9AADB86420A6A7F700B5D8D4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AADB86320A6A7F700B5D8D4 /* Constant.swift */; };
 		9AB0D71E210228D50089D965 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0D71D210228D50089D965 /* ServiceType.swift */; };
@@ -178,6 +179,7 @@
 		9A8D5C9320C43A0E004B64FB /* TeleHealth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeleHealth.storyboard; sourceTree = "<group>"; };
 		9A8D5C9520C45FEE004B64FB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9A8D5C9820C4611F004B64FB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		9A9A695621318EC70058D18E /* MySignalR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySignalR.swift; sourceTree = "<group>"; };
 		9AABB63620AD648000E3117C /* UpdateInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoViewController.swift; sourceTree = "<group>"; };
 		9AADB86320A6A7F700B5D8D4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9AB0D71D210228D50089D965 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				9271C17420807C0B00D5A41B /* FamilyDoctor.swift */,
 				92806FA720A0A58800BD717E /* HealthCareScheduler.swift */,
 				9A4CBAC720A4988D00810258 /* BookingInfo.swift */,
+				9A9A695621318EC70058D18E /* MySignalR.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -690,10 +693,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BAKCO VanKhang/Pods-BAKCO VanKhang-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -733,6 +738,7 @@
 				92F3ADD51FC55F8500C0D6E7 /* BaseViewController.swift in Sources */,
 				925E4155207357CC00F9B393 /* DistrictsViewController.swift in Sources */,
 				F3CD6BFD1F9E41A100E9E830 /* MatchModel.swift in Sources */,
+				9A9A695721318EC70058D18E /* MySignalR.swift in Sources */,
 				9A84199C20D61E92003DD7A7 /* Ward.swift in Sources */,
 				F32F2EF91F989CC7008C5CAF /* AppDelegate.swift in Sources */,
 				9AADB86420A6A7F700B5D8D4 /* Constant.swift in Sources */,

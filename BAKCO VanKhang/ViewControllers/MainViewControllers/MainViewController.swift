@@ -15,8 +15,16 @@ import MBProgressHUD
 
 
 struct MyLocation {
-    static var long = Double()
-    static var lat = Double()
+    static var long = Double() {
+        didSet {
+            print("Long: \(long)")
+        }
+    }
+    static var lat = Double() {
+        didSet {
+            print("Lat: \(lat)")
+        }
+    }
 }
 
 class MainViewController: BaseViewController  {
@@ -40,47 +48,40 @@ class MainViewController: BaseViewController  {
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
-//        if sender.state == .began {
-//            let parameters: Parameters = ["Phone": MyUser.phone,
-//                                          "Lat": MyLocation.lat,
-//                                          "Lng": MyLocation.long,
-//                                          "Speed": 0]
-//            let sosUrl = URL(string: API.sosEmergency)!
-//
-//            locationManager.startUpdatingLocation()
-//            MBProgressHUD.showAdded(to: self.view, animated: true)
-//            Alamofire.request(sosUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseSwiftyJSON { (response) in
-//                MBProgressHUD.hide(for: self.view, animated: true)
-//                print(response)
-//                let test = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController")
-//                self.navigationController?.pushViewController(test!, animated: true)
-//            }
-//        }
-        
         if sender.state == .began {
-            let mapVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "MapViewController")
-            navigationController?.pushViewController(mapVc, animated: true)
+            let parameters: Parameters = ["Phone": MyUser.phone,
+                                          "Lat": MyLocation.lat,
+                                          "Lng": MyLocation.long,
+                                          "Speed": 0]
+            let sosUrl = URL(string: API.sosEmergency)!
+            self.showHUD()
+            Alamofire.request(sosUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { (responseString) in
+                self.hideHUD()
+                print(responseString)
+                let mapVc = MyStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "MapViewController")
+                self.presentVcWithNav(vc: mapVc)
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(sosButton)
         view.backgroundColor = .white
-
         setupSOSButton()
         setupUserRightBarButton()
         
         self.checkContract(phone: MyUser.phone)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         self.checkCoreLocationPermission()
         ///
         if MyUser.id != 0 {
             print("User id : \(MyUser.id)")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.checkCoreLocationPermission()
     }
     
     private func checkContract(phone: String) {

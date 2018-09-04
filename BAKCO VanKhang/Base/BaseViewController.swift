@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireSwiftyJSON
 import MBProgressHUD
 import CoreLocation
+import GooglePlaces
 
 
 
@@ -24,7 +25,6 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         didSet {
             MyLocation.lat = location.coordinate.latitude
             MyLocation.long = location.coordinate.longitude
-            print("Long: \(location.coordinate.latitude), Lat: \(location.coordinate.longitude)")
         }
     }
     
@@ -39,6 +39,12 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = UIColor.white
 
+    }
+    
+    @objc func dismisss() {
+        dismiss(animated: true) {
+            self.tabBarController?.tabBar.isHidden = true
+        }
     }
     
     ///MArk: Right Bar button
@@ -70,14 +76,10 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     ///Mark: Popdown Button
     func setupPopDownButton() {
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Cancel2").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(dismisss))
-        navigationItem.rightBarButtonItem = backButton
+        let backButton = UIBarButtonItem(title: "Trở về", style: .plain, target: self, action: #selector(dismisss))
+        navigationItem.leftBarButtonItem = backButton
     }
-    @objc func dismisss() {
-        dismiss(animated: true) {
-            self.tabBarController?.tabBar.isHidden = true
-        }
-    }
+
     
     ///Mark: Cancel button
     func showCancelButton(title: String = "Huỷ") {
@@ -186,18 +188,19 @@ extension BaseViewController {
 
 
 
-
-
 extension BaseViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = (locations ).last
-        locationManager.stopUpdatingLocation()
+//        locationManager.stopUpdatingLocation()
     }
     
     func checkCoreLocationPermission(){
-        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             self.locationManager.startUpdatingLocation()
@@ -209,6 +212,28 @@ extension BaseViewController: CLLocationManagerDelegate {
             print("unauthorized")
         }
     }
+    
+    // Handle authorization for the location manager.
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+        }
+    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+        print("Error: \(error)")
+    }
+
 }
 
 

@@ -93,14 +93,6 @@ class SignUpViewController: BaseViewController {
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        guard let city = city, let dist = dist, let ward = ward else { return }
-        let placeString = city.name + ", " + dist.name + ", " + ward.name
-        cityTextfield.text = placeString
-    }
-    
     func setupUI() {
         /// First View
         firstView.layer.borderColor = UIColor.specialGreenColor().cgColor

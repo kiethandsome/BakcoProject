@@ -22,6 +22,7 @@ let UserToken = "Token"
 let UserDistCode = "DistCode"
 let UserDistName = "DistName"
 let DidLogin = "DidLogin"
+let LoginUserName = "LoginUserName"
 
 class Customer {
     

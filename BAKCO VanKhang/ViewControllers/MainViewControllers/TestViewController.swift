@@ -16,20 +16,19 @@ class TestViewController: BaseViewController{
     @IBOutlet var bigNotificationLabel: UILabel!
     
     var centerHub: Hub!
-    var connection: SignalR!
+    var connection = SignalR("http://api.vkhealth.vn/signalr/hubs")
     var name: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showBackButton()
+        showCancelButton()
         navigationItem.title = "Cấp cứu!"
-        connection = SignalR("http://api.vkhealth.vn/signalr/hubs")
         
         connection.useWKWebView = true
         connection.signalRVersion = .v2_0_0
         connection.queryString = ["accessToken": "longhdt"]
         centerHub = Hub("centerHub")
-        centerHub.on("receiveSOSStatus")  { args in
+        centerHub.on("receiveSOSDoctorLocation")  { args in
             let s = args![0] as! String
             print(s)
             self.notificationLabel.text = s
@@ -64,13 +63,6 @@ class TestViewController: BaseViewController{
         
         connection.error = { [weak self] error in
             print("Error: \(String(describing: error))")
-            
-            // Here's an example of how to automatically reconnect after a timeout.
-            //
-            // For example, on the device, if the app is in the background long enough
-            // for the SignalR connection to time out, you'll get disconnected/error
-            // notifications when the app becomes active again.
-            
             if let source = error?["source"] as? String, source == "TimeoutException" {
                 print("Connection timed out. Restarting...")
                 self?.connection.start()
