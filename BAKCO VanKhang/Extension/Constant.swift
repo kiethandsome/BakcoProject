@@ -26,4 +26,6 @@ struct Constant {
     
     static let format = "yyyy-MM-dd'T'HH:mm:ss"
     
+    static let googleMapKey = "AIzaSyBUh3hwleRVX4_E9SGlQCN_EyVadwCDKco"
+    
 }

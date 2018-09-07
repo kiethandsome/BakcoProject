@@ -15,6 +15,8 @@ import Alamofire
 import AlamofireSwiftyJSON
 
 class MapViewController: BaseViewController {
+    
+    let distanceTimerAPI = "https://maps.googleapis.com/maps/api/directions/json?origin=10.876708,106.677346&destination=10.8653408,106.6815172&key=AIzaSyBXef65svDYYsCz2WHCdR96g3GrLdApEq8&sensor=false"
 
     let attribute: [NSAttributedStringKey : Any] = {
         let pr = NSMutableParagraphStyle()
@@ -34,6 +36,11 @@ class MapViewController: BaseViewController {
         marker.title = "Vị trí xe cấp cứu"
         return marker
     }()
+    
+    let status1Label = UILabel()
+    let status2Label = UILabel()
+    let status3Label = UILabel()
+
     
     let patientMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: MyLocation.lat, longitude: MyLocation.long))
     
@@ -61,6 +68,7 @@ class MapViewController: BaseViewController {
     fileprivate func setupSignalR() {
         MySignalR.autoSetup()
         receiveSosStatus()
+        receiveSOSDoctorLocation()
         checkSignalRStatus()
     }
     
@@ -121,8 +129,7 @@ class MapViewController: BaseViewController {
         }
     }
     
-    fileprivate func configStatusLabel1() {
-        let label = UILabel()
+    fileprivate func configStatusLabel1(label: UILabel) {
         label.attributedText = NSAttributedString(string: "\(getCurrentTime()): Hệ thống đã nhận được yêu cầu, đang chờ xử lý", attributes: self.attribute)
         label.backgroundColor = UIColor.white
         label.layer.cornerRadius = 15.0
@@ -132,8 +139,7 @@ class MapViewController: BaseViewController {
         view.addSubview(label)
     }
     
-    fileprivate func configStatusLabel2() {
-        let label = UILabel()
+    fileprivate func configStatusLabel2(label: UILabel) {
         mapView.addSubview(label)
         label.attributedText = NSAttributedString(string: "\(getCurrentTime()): Bác sĩ đã nhận ca", attributes: self.attribute)
         label.backgroundColor = UIColor.white
@@ -143,10 +149,9 @@ class MapViewController: BaseViewController {
         label.frame = frame
     }
     
-    fileprivate func configStatusLabel3() {
-        let label = UILabel()
+    fileprivate func configStatusLabel3(label: UILabel) {
         mapView.addSubview(label)
-        label.attributedText = NSAttributedString(string: "\(getCurrentTime()): Bác sĩ đã tiếp cận bênh nhân", attributes: self.attribute)
+        label.attributedText = NSAttributedString(string: "\(getCurrentTime()): Bác sĩ đang đến", attributes: self.attribute)
         label.backgroundColor = UIColor.white
         label.layer.cornerRadius = 15.0
         label.clipsToBounds = true
@@ -180,16 +185,20 @@ class MapViewController: BaseViewController {
                 switch message {
                     
                 case "1":
-                    self.configStatusLabel1()
+                    self.configStatusLabel1(label: self.status1Label)
                     
                 case "2":
-                    self.configStatusLabel2()
-                    self.receiveSOSDoctorLocation()
+                    self.configStatusLabel1(label: self.status1Label)
+                    self.configStatusLabel2(label: self.status2Label)
                     
                 case "3":
-                    self.configStatusLabel3()
-                    self.dismisss()
-                
+                    self.configStatusLabel3(label: self.status3Label)
+                    
+                case "4":
+                    self.showAlert(title: "Thông báo", message: "Bác sĩ đã tiếp cận bệnh nhân!", style: .alert, hasTwoButton: false, okAction: { (_) in
+                        self.dismisss()
+                    })
+
                 case "5":
                     self.showAlert(title: "Thông báo", message: "Ca cấp cứu của bạn đã được chuyển sang ngoài quy trình!", style: .alert, hasTwoButton: false, okAction: { (_) in
                         self.dismisss()
@@ -220,6 +229,7 @@ class MapViewController: BaseViewController {
                 self.mapView.clear()
                 self.setAmbulancePosition(title: "Vị trí xe cấp cứu", icon: #imageLiteral(resourceName: "ambulance"), lat: lat, long: long)
                 self.drawPath(startLocation: self.currentLocation, endLocation: self.ambulanceLocation)
+                self.calculateDistanceTimer(startLocation: self.currentLocation, endLocation: self.ambulanceLocation)
             } else {
                 print("Cannot cast")
             }
@@ -254,12 +264,24 @@ class MapViewController: BaseViewController {
                 let points = routeOverviewPolyline?["points"]?.stringValue
                 let path = GMSPath.init(fromEncodedPath: points!)
                 let polyline = GMSPolyline.init(path: path)
-                polyline.strokeWidth = 2.5
+                polyline.strokeWidth = 4.0
                 polyline.strokeColor = UIColor.red
                 polyline.geodesic = true
                 polyline.map = self.mapView
             }
         }
+    }
+    
+    private func calculateDistanceTimer(startLocation: CLLocationCoordinate2D, endLocation: CLLocationCoordinate2D) {
+        let origin = "\(startLocation.latitude),\(startLocation.longitude)"
+        let destination = "\(endLocation.latitude),\(endLocation.longitude)"
+        self.showHUD()
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&key=\(Constant.googleMapKey)&sensor=false"
+        Alamofire.request(url).responseSwiftyJSON { (response) in
+            self.hideHUD()
+            print(response)
+        }
+
     }
 }
 

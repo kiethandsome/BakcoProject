@@ -26,27 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
-            timestampString = "557779213.733194"
+            timestampString = "557931903.90978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "getCurrentTime()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
-            timestampString = "557779213.7335351"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "receiveSosStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,27 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
-            timestampString = "557779213.733804"
+            timestampString = "557931937.306205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "configStatusLabel1()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
-            timestampString = "557779213.734005"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "receiveSosStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,12 +58,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
-            timestampString = "557779213.734193"
+            timestampString = "557931964.822459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "configStatusLabel1()"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "receiveSosStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BAKCO VanKhang/ViewControllers/MainViewControllers/MapViewController.swift"
+            timestampString = "557931977.2304569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "configStatusLabel1(label:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
