@@ -497,15 +497,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1UG-CY-8EK"/>
                     </view>
-                    <connections>
-                        <outlet property="mapHolderView" destination="rGo-GG-vzl" id="ztI-BQ-FBv"/>
-                        <outlet property="status1Label" destination="Scl-HN-Hex" id="AoJ-V7-3qh"/>
-                        <outlet property="status2Label" destination="tqD-hx-Da4" id="5dd-xK-3Is"/>
-                        <outlet property="status3Label" destination="939-3n-3cr" id="WEh-UB-qy1"/>
-                        <outlet property="time1Label" destination="9RZ-ya-D2P" id="S2F-Vp-e4f"/>
-                        <outlet property="time2Label" destination="mWH-QW-ijf" id="8We-Gb-uMo"/>
-                        <outlet property="time3Label" destination="wjx-yc-amh" id="Ka9-xB-dam"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq0-4x-0pB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

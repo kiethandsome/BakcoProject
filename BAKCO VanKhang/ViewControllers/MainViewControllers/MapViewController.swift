@@ -49,13 +49,14 @@ class MapViewController: BaseViewController {
     var polyline = GMSPolyline()
     
     var currentLocation = CLLocationCoordinate2D(latitude: MyLocation.lat, longitude: MyLocation.long)
-    
-    override func loadView() {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.checkCoreLocationPermission()
         self.setupPopDownButton()
         self.title = "Cấp cứu"
         self.configMapView()
-        
+
         /// SignalR
         setupSignalR()
     }
@@ -75,13 +76,13 @@ class MapViewController: BaseViewController {
     func configMapView() {
         /// Camera
         let camera = GMSCameraPosition.camera(withLatitude: MyLocation.lat, longitude: MyLocation.long, zoom: 15.0)
-        self.mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.settings.compassButton = true
         self.mapView.settings.zoomGestures = true
         self.mapView.delegate = self
-        self.view = mapView
+        self.view.addSubview(self.mapView)
     }
     
     // Mark: Create Marker
